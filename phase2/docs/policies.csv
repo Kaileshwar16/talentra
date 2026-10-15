@@ -1,0 +1,20 @@
+schemaname,tablename,policyname,permissive,roles,cmd,qual,with_check
+public,organisation,read_organisation,PERMISSIVE,['talentra_runtime'],SELECT,identity.can_read_organisation(id),
+public,candidate_profile,read_candidate,PERMISSIVE,['talentra_runtime'],SELECT,identity.can_view_candidate(id),
+public,candidate_profile,insert_candidate,PERMISSIVE,['talentra_runtime'],INSERT,,((user_account_id = identity.actor_user_id()) AND identity.has_permission('profile.write_own'::text))
+public,candidate_profile,update_candidate,PERMISSIVE,['talentra_runtime'],UPDATE,((user_account_id = identity.actor_user_id()) AND identity.has_permission('profile.write_own'::text)),((user_account_id = identity.actor_user_id()) AND identity.has_permission('profile.write_own'::text))
+public,job_requirement,read_job,PERMISSIVE,['talentra_runtime'],SELECT,identity.can_read_job(id),
+public,job_requirement,insert_job,PERMISSIVE,['talentra_runtime'],INSERT,,identity.can_create_job(organisation_id)
+public,job_requirement,update_job,PERMISSIVE,['talentra_runtime'],UPDATE,identity.can_manage_job(id),identity.can_manage_job(id)
+gig,gig_worker_profile,read_worker,PERMISSIVE,['talentra_runtime'],SELECT,"((user_account_id = identity.actor_user_id()) OR identity.has_permission('admin.manage_roles'::text) OR (EXISTS ( SELECT 1
+   FROM gig.gig_application a
+  WHERE ((a.gig_worker_profile_id = a.id) AND identity.can_manage_gig_request(a.gig_request_id)))))",
+gig,gig_request,read_gig_request,PERMISSIVE,['talentra_runtime'],SELECT,identity.can_read_gig_request(id),
+gig,gig_application,read_gig_application,PERMISSIVE,['talentra_runtime'],SELECT,identity.can_read_gig_application(id),
+gig,gig_assignment,read_gig_assignment,PERMISSIVE,['talentra_runtime'],SELECT,identity.can_read_gig_application(gig_application_id),
+gig,gig_service,read_gig_service,PERMISSIVE,['talentra_runtime'],SELECT,"(EXISTS ( SELECT 1
+   FROM gig.gig_worker_profile w
+  WHERE ((w.id = gig_service.gig_worker_profile_id) AND (w.user_account_id = identity.actor_user_id()))))",
+gig,gig_availability,read_gig_availability,PERMISSIVE,['talentra_runtime'],SELECT,"(EXISTS ( SELECT 1
+   FROM gig.gig_worker_profile w
+  WHERE ((w.id = gig_availability.gig_worker_profile_id) AND (w.user_account_id = identity.actor_user_id()))))",

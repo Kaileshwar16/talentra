@@ -1,6 +1,8 @@
 # Talentra Phase 1 foundation
 
-Scope: Phase 1, Milestones 1–6, backlogs B1–B23 in `Talentra-Database-Design-Hackathon-Docket.pdf`. The attached `Talentra_Connected_ER_Diagram (1).png` supplies the core relationship model. The PDF's common module list supplies additional Phase 1 entities that the diagram does not show.
+This is the Phase 1 design snapshot. [Phase 2](../phase2/README.md) later added Administration, Organisation/account, and Gig marketplace tables; the deferred-status notes below describe the state at the end of Phase 1.
+
+Scope: Phase 1, Milestones 1–6, backlogs B1–B23 in `sources/Talentra-Database-Design-Hackathon-Docket.pdf`. The attached `sources/Talentra_Connected_ER_Diagram (1).png` supplies the core relationship model. The PDF's common module list supplies additional Phase 1 entities that the diagram does not show.
 
 ## Provider and target
 
@@ -33,7 +35,7 @@ There are **103 tables**: 65 from the non-campus diagram, 19 supporting lookup/m
 
 The diagram's optional `placement_cycle`, `job_placement_cycle`, and `candidate_placement_enrolment` tables are deferred. Academic programs and institutions remain because candidate education and job eligibility reference them.
 
-Later phases are deferred: credentials/roles/permissions/consent/blocking and full audit, company verification/recruiter mappings, gigs, licensing/devices, sourcing, wallets/payments/subscriptions, notifications/community, analytics, bulk synthetic seeding, performance benchmarks, security enforcement and backup/restore exercises. The earlier `talentra_schema.sql` is a separate all-module draft and was not executed or modified.
+Later phases are deferred: credentials/roles/permissions/consent/blocking and full audit, company verification/recruiter mappings, gigs, licensing/devices, sourcing, wallets/payments/subscriptions, notifications/community, analytics, bulk synthetic seeding, performance benchmarks, security enforcement and backup/restore exercises. The earlier `sources/talentra_schema.sql` is a separate all-module draft and was not executed or modified.
 
 ## Design decisions and relationships
 
@@ -72,30 +74,30 @@ Only initial lookup values, English labels and INR/USD currencies are seeded. No
 | B1 | PostgreSQL provider decision and reasons above; live Neon version in validation report |
 | B2 | Module scope and deferred modules above |
 | B3 | Common modules assigned to Team above |
-| B4–B5 | Profile entity inventory in `docs/phase1/entities.csv`; existence checked against live catalog |
+| B4–B5 | Profile entity inventory in `phase1/docs/entities.csv`; existence checked against live catalog |
 | B6–B7 | Jobs and Applications entity inventory in the same file; existence checked against live catalog |
-| B8–B9 | Profile relationship definitions in `docs/phase1/relationships.csv`; FK and ownership checks |
+| B8–B9 | Profile relationship definitions in `phase1/docs/relationships.csv`; FK and ownership checks |
 | B10–B11 | Jobs and Applications relationships in the same file; cross-job and cross-candidate rejection tests |
-| B12–B13 | Profile column definitions in `docs/phase1/columns.csv`; live PostgreSQL types/defaults/nullability |
+| B12–B13 | Profile column definitions in `phase1/docs/columns.csv`; live PostgreSQL types/defaults/nullability |
 | B14–B15 | Jobs and Applications column definitions in the same file |
-| B16–B17 | Combined Profile design in `migrations/001_connected_er.sql`, model above, catalog and test evidence |
+| B16–B17 | Combined Profile design in `phase1/migrations/001_connected_er.sql`, model above, catalog and test evidence |
 | B18–B19 | Combined Jobs and Applications design in the same migration and evidence |
-| B20–B21 | Profile keys/constraints in `docs/phase1/constraints.csv`; uniqueness, FK, date and immutability tests |
+| B20–B21 | Profile keys/constraints in `phase1/docs/constraints.csv`; uniqueness, FK, date and immutability tests |
 | B22–B23 | Jobs and Applications keys/constraints in the same file; structural validation and sign-off status below |
 
 ## Validation and sign-off
 
 The migration was first executed together with 26 integrity checks inside a rollback-only transaction on the actual target PostgreSQL engine. An initial dry run identified a TEXT/UUID mismatch against Neon Auth; this was corrected to the catalog's UUID type. The test suite also uses PostgreSQL 18's `23001` SQLSTATE for a RESTRICT deletion. Both failed dry runs rolled back all objects.
 
-`tests/phase1_constraints.sql` is repeatable and rolls back all fixture records. PostgreSQL identity sequences can advance during tests; no assumption of contiguous identifiers is made. It checks both a valid linked application flow and rejected duplicate, orphan, ownership, answer, money, date, score and history operations. Concurrency and load benchmarks are not claimed.
+`phase1/tests/phase1_constraints.sql` is repeatable and rolls back all fixture records. PostgreSQL identity sequences can advance during tests; no assumption of contiguous identifiers is made. It checks both a valid linked application flow and rejected duplicate, orphan, ownership, answer, money, date, score and history operations. Concurrency and load benchmarks are not claimed.
 
-Final installation status and catalog counts are recorded in `docs/phase1/validation-report.json`. Source MCP responses for the migration and verification are saved beside it. Human team review/signature for B23 remains **pending**; automated validation is not a substitute for that signature. No human acceptance is claimed.
+Final installation status and catalog counts are recorded in `phase1/docs/validation-report.json`. Source MCP responses for the migration and verification are saved beside it. Human team review/signature for B23 remains **pending**; automated validation is not a substitute for that signature. No human acceptance is claimed.
 
 To reproduce in a new database with the same Neon Auth UUID user table:
 
 ```bash
-psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f migrations/001_connected_er.sql
-psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f tests/phase1_constraints.sql
+psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f phase1/migrations/001_connected_er.sql
+psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f phase1/tests/phase1_constraints.sql
 ```
 
 This is a one-time baseline: rerunning it on the installed schema fails and rolls back. Do not run the old all-module draft afterward. The tests may be rerun independently. Application grants/RLS, blocked-party visibility, credential policy, retention automation and production security sign-off belong to later phases and are not represented as complete here.

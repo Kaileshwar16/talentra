@@ -1,0 +1,569 @@
+module,schema,table_name,position,column_name,data_type,nullable,default,identity,data_class,nullability_reason
+Gig marketplace,gig,application_status,1,id,bigint,NO,,YES,Internal,
+Gig marketplace,gig,application_status,2,code,character varying(80),NO,,NO,Internal,
+Gig marketplace,gig,application_status,3,display_name,character varying(150),NO,,NO,Internal,
+Gig marketplace,gig,application_status,4,active,boolean,NO,true,NO,Internal,
+Gig marketplace,gig,application_status,5,sort_order,integer,NO,0,NO,Internal,
+Gig marketplace,gig,application_status,6,reference_code_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,application_status,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,application_status,8,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Gig marketplace,gig,application_status,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,application_status,10,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Gig marketplace,gig,application_status,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Gig marketplace,gig,assignment_status,1,id,bigint,NO,,YES,Internal,
+Gig marketplace,gig,assignment_status,2,code,character varying(80),NO,,NO,Internal,
+Gig marketplace,gig,assignment_status,3,display_name,character varying(150),NO,,NO,Internal,
+Gig marketplace,gig,assignment_status,4,active,boolean,NO,true,NO,Internal,
+Gig marketplace,gig,assignment_status,5,sort_order,integer,NO,0,NO,Internal,
+Gig marketplace,gig,assignment_status,6,reference_code_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,assignment_status,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,assignment_status,8,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Gig marketplace,gig,assignment_status,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,assignment_status,10,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Gig marketplace,gig,assignment_status,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Gig marketplace,gig,availability_status,1,id,bigint,NO,,YES,Internal,
+Gig marketplace,gig,availability_status,2,code,character varying(80),NO,,NO,Internal,
+Gig marketplace,gig,availability_status,3,display_name,character varying(150),NO,,NO,Internal,
+Gig marketplace,gig,availability_status,4,active,boolean,NO,true,NO,Internal,
+Gig marketplace,gig,availability_status,5,sort_order,integer,NO,0,NO,Internal,
+Gig marketplace,gig,availability_status,6,reference_code_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,availability_status,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,availability_status,8,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Gig marketplace,gig,availability_status,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,availability_status,10,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Gig marketplace,gig,availability_status,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Gig marketplace,gig,fulfilment_event,1,id,bigint,NO,,YES,Personal,
+Gig marketplace,gig,fulfilment_event,2,external_system_code,character varying(80),NO,,NO,Personal,
+Gig marketplace,gig,fulfilment_event,3,external_event_id,character varying(200),NO,,NO,Personal,
+Gig marketplace,gig,fulfilment_event,4,event_kind,character varying(80),NO,,NO,Personal,
+Gig marketplace,gig,fulfilment_event,5,observed_at,timestamp with time zone,NO,,NO,Personal,
+Gig marketplace,gig,fulfilment_event,6,received_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Gig marketplace,gig,fulfilment_event,7,payload_digest,character(64),YES,,NO,Sensitive,Provider did not supply a canonical payload for hashing.
+Gig marketplace,gig,fulfilment_event,8,gig_assignment_id,bigint,NO,,NO,Personal,
+Gig marketplace,gig,fulfilment_event,9,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Gig marketplace,gig,fulfilment_event,10,created_by,bigint,YES,,NO,Personal,System or seed creation has no human actor; supplied value references user_account.
+Gig marketplace,gig,fulfilment_event,11,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Gig marketplace,gig,fulfilment_event,12,updated_by,bigint,YES,,NO,Personal,System or seed update has no human actor; supplied value references user_account.
+Gig marketplace,gig,fulfilment_event,13,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Gig marketplace,gig,gig_application,1,id,bigint,NO,,YES,Personal,
+Gig marketplace,gig,gig_application,2,proposed_amount,"numeric(18,2)",YES,,NO,Personal,Worker did not propose a price distinct from the gig request.
+Gig marketplace,gig,gig_application,3,submitted_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Gig marketplace,gig,gig_application,4,decided_at,timestamp with time zone,YES,,NO,Personal,Requester has not accepted or rejected the application.
+Gig marketplace,gig,gig_application,5,gig_request_id,bigint,NO,,NO,Personal,
+Gig marketplace,gig,gig_application,6,gig_worker_profile_id,bigint,NO,,NO,Personal,
+Gig marketplace,gig,gig_application,7,application_status_id,bigint,NO,,NO,Personal,
+Gig marketplace,gig,gig_application,8,proposed_currency_id,bigint,YES,,NO,Personal,No proposed price; amount and currency must be present together.
+Gig marketplace,gig,gig_application,9,decision_by_user_account_id,bigint,YES,,NO,Personal,Requester has not made a decision.
+Gig marketplace,gig,gig_application,10,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Gig marketplace,gig,gig_application,11,created_by,bigint,YES,,NO,Personal,System or seed creation has no human actor; supplied value references user_account.
+Gig marketplace,gig,gig_application,12,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Gig marketplace,gig,gig_application,13,updated_by,bigint,YES,,NO,Personal,System or seed update has no human actor; supplied value references user_account.
+Gig marketplace,gig,gig_application,14,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Gig marketplace,gig,gig_assignment,1,id,bigint,NO,,YES,Personal,
+Gig marketplace,gig,gig_assignment,2,external_system_code,character varying(80),NO,,NO,Personal,
+Gig marketplace,gig,gig_assignment,3,handoff_reference,character varying(200),NO,,NO,Sensitive,
+Gig marketplace,gig,gig_assignment,4,assignment_start_at,timestamp with time zone,NO,,NO,Personal,
+Gig marketplace,gig,gig_assignment,5,assignment_end_at,timestamp with time zone,NO,,NO,Personal,
+Gig marketplace,gig,gig_assignment,6,handed_off_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Gig marketplace,gig,gig_assignment,7,reconciled_at,timestamp with time zone,YES,,NO,Personal,External fulfilment status has not been reconciled.
+Gig marketplace,gig,gig_assignment,8,estimated_earnings,"numeric(18,2)",YES,,NO,Personal,External fulfilment system has not supplied an estimate.
+Gig marketplace,gig,gig_assignment,9,total_earnings,"numeric(18,2)",YES,,NO,Personal,External fulfilment system has not supplied a total.
+Gig marketplace,gig,gig_assignment,10,projected_earnings,"numeric(18,2)",YES,,NO,Personal,External fulfilment system has not supplied a projection.
+Gig marketplace,gig,gig_assignment,11,gig_application_id,bigint,NO,,NO,Personal,
+Gig marketplace,gig,gig_assignment,12,gig_request_id,bigint,NO,,NO,Personal,
+Gig marketplace,gig,gig_assignment,13,gig_worker_profile_id,bigint,NO,,NO,Personal,
+Gig marketplace,gig,gig_assignment,14,assignment_status_id,bigint,NO,,NO,Personal,
+Gig marketplace,gig,gig_assignment,15,estimated_currency_id,bigint,YES,,NO,Personal,Estimate is absent; money and currency must be present together.
+Gig marketplace,gig,gig_assignment,16,total_currency_id,bigint,YES,,NO,Personal,Total is absent; money and currency must be present together.
+Gig marketplace,gig,gig_assignment,17,projected_currency_id,bigint,YES,,NO,Personal,Projection is absent; money and currency must be present together.
+Gig marketplace,gig,gig_assignment,18,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Gig marketplace,gig,gig_assignment,19,created_by,bigint,YES,,NO,Personal,System or seed creation has no human actor; supplied value references user_account.
+Gig marketplace,gig,gig_assignment,20,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Gig marketplace,gig,gig_assignment,21,updated_by,bigint,YES,,NO,Personal,System or seed update has no human actor; supplied value references user_account.
+Gig marketplace,gig,gig_assignment,22,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Gig marketplace,gig,gig_availability,1,id,bigint,NO,,YES,Internal,
+Gig marketplace,gig,gig_availability,2,available_from,timestamp with time zone,NO,,NO,Internal,
+Gig marketplace,gig,gig_availability,3,available_to,timestamp with time zone,NO,,NO,Internal,
+Gig marketplace,gig,gig_availability,4,gig_worker_profile_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,gig_availability,5,availability_status_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,gig_availability,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,gig_availability,7,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Gig marketplace,gig,gig_availability,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,gig_availability,9,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Gig marketplace,gig,gig_availability,10,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Gig marketplace,gig,gig_rating,1,id,bigint,NO,,YES,Personal,
+Gig marketplace,gig,gig_rating,2,rating_value,smallint,NO,,NO,Personal,
+Gig marketplace,gig,gig_rating,3,review_text,character varying(2000),YES,,NO,Personal,Optional review text is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Gig marketplace,gig,gig_rating,4,gig_assignment_id,bigint,NO,,NO,Personal,
+Gig marketplace,gig,gig_rating,5,requester_user_account_id,bigint,NO,,NO,Personal,
+Gig marketplace,gig,gig_rating,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Gig marketplace,gig,gig_rating,7,created_by,bigint,YES,,NO,Personal,System or seed creation has no human actor; supplied value references user_account.
+Gig marketplace,gig,gig_rating,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Gig marketplace,gig,gig_rating,9,updated_by,bigint,YES,,NO,Personal,System or seed update has no human actor; supplied value references user_account.
+Gig marketplace,gig,gig_rating,10,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Gig marketplace,gig,gig_request,1,id,bigint,NO,,YES,Internal,
+Gig marketplace,gig,gig_request,2,title,character varying(150),NO,,NO,Internal,
+Gig marketplace,gig,gig_request,3,description,text,NO,,NO,Internal,
+Gig marketplace,gig,gig_request,4,start_at,timestamp with time zone,NO,,NO,Internal,
+Gig marketplace,gig,gig_request,5,end_at,timestamp with time zone,NO,,NO,Internal,
+Gig marketplace,gig,gig_request,6,price_amount,"numeric(18,2)",NO,,NO,Internal,
+Gig marketplace,gig,gig_request,7,source_timezone,character varying(100),NO,'UTC'::character varying,NO,Internal,
+Gig marketplace,gig,gig_request,8,requester_organisation_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,gig_request,9,requester_user_account_id,bigint,NO,,NO,Personal,
+Gig marketplace,gig,gig_request,10,pricing_model_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,gig_request,11,currency_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,gig_request,12,request_status_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,gig_request,13,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,gig_request,14,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Gig marketplace,gig,gig_request,15,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,gig_request,16,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Gig marketplace,gig,gig_request,17,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Gig marketplace,gig,gig_service,1,id,bigint,NO,,YES,Internal,
+Gig marketplace,gig,gig_service,2,service_name,character varying(150),NO,,NO,Internal,
+Gig marketplace,gig,gig_service,3,description,character varying(2000),YES,,NO,Internal,Optional description is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Gig marketplace,gig,gig_service,4,rate_amount,"numeric(18,2)",NO,,NO,Internal,
+Gig marketplace,gig,gig_service,5,gig_worker_profile_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,gig_service,6,currency_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,gig_service,7,rate_unit_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,gig_service,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,gig_service,9,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Gig marketplace,gig,gig_service,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,gig_service,11,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Gig marketplace,gig,gig_service,12,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Gig marketplace,gig,gig_worker_list_entry,1,id,bigint,NO,,YES,Internal,
+Gig marketplace,gig,gig_worker_list_entry,2,requester_organisation_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,gig_worker_list_entry,3,gig_worker_profile_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,gig_worker_list_entry,4,worker_list_type_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,gig_worker_list_entry,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,gig_worker_list_entry,6,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Gig marketplace,gig,gig_worker_list_entry,7,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,gig_worker_list_entry,8,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Gig marketplace,gig,gig_worker_list_entry,9,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Gig marketplace,gig,gig_worker_profile,1,id,bigint,NO,,YES,Personal,
+Gig marketplace,gig,gig_worker_profile,2,public_name,character varying(150),NO,,NO,Personal,
+Gig marketplace,gig,gig_worker_profile,3,bio,character varying(4000),YES,,NO,Personal,Optional bio is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Gig marketplace,gig,gig_worker_profile,4,is_active,boolean,NO,true,NO,Personal,
+Gig marketplace,gig,gig_worker_profile,5,user_account_id,bigint,NO,,NO,Personal,
+Gig marketplace,gig,gig_worker_profile,6,home_city_id,bigint,YES,,NO,Personal,Optional home city id is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Gig marketplace,gig,gig_worker_profile,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Gig marketplace,gig,gig_worker_profile,8,created_by,bigint,YES,,NO,Personal,System or seed creation has no human actor; supplied value references user_account.
+Gig marketplace,gig,gig_worker_profile,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Gig marketplace,gig,gig_worker_profile,10,updated_by,bigint,YES,,NO,Personal,System or seed update has no human actor; supplied value references user_account.
+Gig marketplace,gig,gig_worker_profile,11,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Gig marketplace,gig,pricing_model,1,id,bigint,NO,,YES,Internal,
+Gig marketplace,gig,pricing_model,2,code,character varying(80),NO,,NO,Internal,
+Gig marketplace,gig,pricing_model,3,display_name,character varying(150),NO,,NO,Internal,
+Gig marketplace,gig,pricing_model,4,active,boolean,NO,true,NO,Internal,
+Gig marketplace,gig,pricing_model,5,sort_order,integer,NO,0,NO,Internal,
+Gig marketplace,gig,pricing_model,6,reference_code_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,pricing_model,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,pricing_model,8,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Gig marketplace,gig,pricing_model,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,pricing_model,10,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Gig marketplace,gig,pricing_model,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Gig marketplace,gig,rate_unit,1,id,bigint,NO,,YES,Internal,
+Gig marketplace,gig,rate_unit,2,code,character varying(80),NO,,NO,Internal,
+Gig marketplace,gig,rate_unit,3,display_name,character varying(150),NO,,NO,Internal,
+Gig marketplace,gig,rate_unit,4,active,boolean,NO,true,NO,Internal,
+Gig marketplace,gig,rate_unit,5,sort_order,integer,NO,0,NO,Internal,
+Gig marketplace,gig,rate_unit,6,reference_code_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,rate_unit,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,rate_unit,8,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Gig marketplace,gig,rate_unit,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,rate_unit,10,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Gig marketplace,gig,rate_unit,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Gig marketplace,gig,request_status,1,id,bigint,NO,,YES,Internal,
+Gig marketplace,gig,request_status,2,code,character varying(80),NO,,NO,Internal,
+Gig marketplace,gig,request_status,3,display_name,character varying(150),NO,,NO,Internal,
+Gig marketplace,gig,request_status,4,active,boolean,NO,true,NO,Internal,
+Gig marketplace,gig,request_status,5,sort_order,integer,NO,0,NO,Internal,
+Gig marketplace,gig,request_status,6,reference_code_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,request_status,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,request_status,8,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Gig marketplace,gig,request_status,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,request_status,10,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Gig marketplace,gig,request_status,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Gig marketplace,gig,worker_list_type,1,id,bigint,NO,,YES,Internal,
+Gig marketplace,gig,worker_list_type,2,code,character varying(80),NO,,NO,Internal,
+Gig marketplace,gig,worker_list_type,3,display_name,character varying(150),NO,,NO,Internal,
+Gig marketplace,gig,worker_list_type,4,active,boolean,NO,true,NO,Internal,
+Gig marketplace,gig,worker_list_type,5,sort_order,integer,NO,0,NO,Internal,
+Gig marketplace,gig,worker_list_type,6,reference_code_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,worker_list_type,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,worker_list_type,8,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Gig marketplace,gig,worker_list_type,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,worker_list_type,10,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Gig marketplace,gig,worker_list_type,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Gig marketplace,gig,worker_project,1,id,bigint,NO,,YES,Internal,
+Gig marketplace,gig,worker_project,2,title,character varying(150),NO,,NO,Internal,
+Gig marketplace,gig,worker_project,3,project_role,character varying(150),NO,,NO,Internal,
+Gig marketplace,gig,worker_project,4,start_date,date,NO,,NO,Internal,
+Gig marketplace,gig,worker_project,5,end_date,date,YES,,NO,Internal,Project remains active or the end date is not yet supplied.
+Gig marketplace,gig,worker_project,6,outcome,character varying(4000),YES,,NO,Internal,Optional outcome is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Gig marketplace,gig,worker_project,7,gig_worker_profile_id,bigint,NO,,NO,Internal,
+Gig marketplace,gig,worker_project,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,worker_project,9,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Gig marketplace,gig,worker_project,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Gig marketplace,gig,worker_project,11,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Gig marketplace,gig,worker_project,12,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Administration,identity,account_status,1,id,bigint,NO,,YES,Internal,
+Administration,identity,account_status,2,code,character varying(80),NO,,NO,Internal,
+Administration,identity,account_status,3,display_name,character varying(150),NO,,NO,Internal,
+Administration,identity,account_status,4,active,boolean,NO,true,NO,Internal,
+Administration,identity,account_status,5,sort_order,integer,NO,0,NO,Internal,
+Administration,identity,account_status,6,reference_code_id,bigint,NO,,NO,Internal,
+Administration,identity,account_status,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,account_status,8,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Administration,identity,account_status,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,account_status,10,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Administration,identity,account_status,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Administration,identity,app_role,1,id,bigint,NO,,YES,Public,
+Administration,identity,app_role,2,code,character varying(60),NO,,NO,Public,
+Administration,identity,app_role,3,display_name,character varying(150),NO,,NO,Public,
+Administration,identity,app_role,4,active,boolean,NO,true,NO,Public,
+Administration,identity,app_role,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,app_role,6,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Administration,identity,app_role,7,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,app_role,8,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Administration,identity,app_role,9,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Administration,identity,audit_event,1,id,bigint,NO,,YES,Personal,
+Administration,identity,audit_event,2,action_code,character varying(100),NO,,NO,Personal,
+Administration,identity,audit_event,3,entity_schema,character varying(80),NO,,NO,Personal,
+Administration,identity,audit_event,4,entity_table,character varying(100),NO,,NO,Personal,
+Administration,identity,audit_event,5,entity_id,bigint,YES,,NO,Personal,Schema-level action has no row identifier.
+Administration,identity,audit_event,6,occurred_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,audit_event,7,request_id,uuid,YES,,NO,Personal,No access-layer request ID was supplied.
+Administration,identity,audit_event,8,source_ip,inet,YES,,NO,Personal,Source IP is not available to the database connection.
+Administration,identity,audit_event,9,details,jsonb,NO,'{}'::jsonb,NO,Personal,
+Administration,identity,audit_event,10,actor_user_account_id,bigint,YES,,NO,Personal,System action or maintenance operation without a mapped end-user principal.
+Administration,identity,audit_event,11,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,audit_event,12,created_by,bigint,YES,,NO,Personal,System or seed creation has no human actor; supplied value references user_account.
+Administration,identity,audit_event,13,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,audit_event,14,updated_by,bigint,YES,,NO,Personal,System or seed update has no human actor; supplied value references user_account.
+Administration,identity,audit_event,15,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Administration,identity,consent_type,1,id,bigint,NO,,YES,Internal,
+Administration,identity,consent_type,2,code,character varying(80),NO,,NO,Internal,
+Administration,identity,consent_type,3,display_name,character varying(150),NO,,NO,Internal,
+Administration,identity,consent_type,4,active,boolean,NO,true,NO,Internal,
+Administration,identity,consent_type,5,sort_order,integer,NO,0,NO,Internal,
+Administration,identity,consent_type,6,reference_code_id,bigint,NO,,NO,Internal,
+Administration,identity,consent_type,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,consent_type,8,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Administration,identity,consent_type,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,consent_type,10,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Administration,identity,consent_type,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Administration,identity,credential,1,id,bigint,NO,,YES,Personal,
+Administration,identity,credential,2,secret_hash,character varying(500),YES,,NO,Sensitive,External identity-provider credentials have no locally stored secret hash.
+Administration,identity,credential,3,external_reference,character varying(500),YES,,NO,Sensitive,Locally hashed credentials have no external reference.
+Administration,identity,credential,4,issued_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,credential,5,expires_at,timestamp with time zone,YES,,NO,Personal,Credential does not have a defined expiry.
+Administration,identity,credential,6,revoked_at,timestamp with time zone,YES,,NO,Personal,Credential has not been revoked.
+Administration,identity,credential,7,user_account_id,bigint,NO,,NO,Personal,
+Administration,identity,credential,8,credential_type_id,bigint,NO,,NO,Personal,
+Administration,identity,credential,9,hash_algorithm_id,bigint,NO,,NO,Personal,
+Administration,identity,credential,10,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,credential,11,created_by,bigint,YES,,NO,Personal,System or seed creation has no human actor; supplied value references user_account.
+Administration,identity,credential,12,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,credential,13,updated_by,bigint,YES,,NO,Personal,System or seed update has no human actor; supplied value references user_account.
+Administration,identity,credential,14,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Administration,identity,credential_type,1,id,bigint,NO,,YES,Internal,
+Administration,identity,credential_type,2,code,character varying(80),NO,,NO,Internal,
+Administration,identity,credential_type,3,display_name,character varying(150),NO,,NO,Internal,
+Administration,identity,credential_type,4,active,boolean,NO,true,NO,Internal,
+Administration,identity,credential_type,5,sort_order,integer,NO,0,NO,Internal,
+Administration,identity,credential_type,6,reference_code_id,bigint,NO,,NO,Internal,
+Administration,identity,credential_type,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,credential_type,8,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Administration,identity,credential_type,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,credential_type,10,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Administration,identity,credential_type,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Administration,identity,db_principal,1,id,bigint,NO,,YES,Personal,
+Administration,identity,db_principal,2,db_role_name,name,NO,,NO,Personal,
+Administration,identity,db_principal,3,user_account_id,bigint,NO,,NO,Personal,
+Administration,identity,db_principal,4,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,db_principal,5,created_by,bigint,YES,,NO,Personal,System or seed creation has no human actor; supplied value references user_account.
+Administration,identity,db_principal,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,db_principal,7,updated_by,bigint,YES,,NO,Personal,System or seed update has no human actor; supplied value references user_account.
+Administration,identity,db_principal,8,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Administration,identity,hash_algorithm,1,id,bigint,NO,,YES,Internal,
+Administration,identity,hash_algorithm,2,code,character varying(80),NO,,NO,Internal,
+Administration,identity,hash_algorithm,3,display_name,character varying(150),NO,,NO,Internal,
+Administration,identity,hash_algorithm,4,active,boolean,NO,true,NO,Internal,
+Administration,identity,hash_algorithm,5,sort_order,integer,NO,0,NO,Internal,
+Administration,identity,hash_algorithm,6,reference_code_id,bigint,NO,,NO,Internal,
+Administration,identity,hash_algorithm,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,hash_algorithm,8,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Administration,identity,hash_algorithm,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,hash_algorithm,10,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Administration,identity,hash_algorithm,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Administration,identity,permission,1,id,bigint,NO,,YES,Public,
+Administration,identity,permission,2,code,character varying(100),NO,,NO,Public,
+Administration,identity,permission,3,description,character varying(500),NO,,NO,Internal,
+Administration,identity,permission,4,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,permission,5,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Administration,identity,permission,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,permission,7,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Administration,identity,permission,8,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Administration,identity,role_permission,1,id,bigint,NO,,YES,Internal,
+Administration,identity,role_permission,2,app_role_id,bigint,NO,,NO,Internal,
+Administration,identity,role_permission,3,permission_id,bigint,NO,,NO,Internal,
+Administration,identity,role_permission,4,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,role_permission,5,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Administration,identity,role_permission,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,role_permission,7,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Administration,identity,role_permission,8,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Administration,identity,session_record,1,id,bigint,NO,,YES,Personal,
+Administration,identity,session_record,2,neon_auth_session_id,uuid,YES,,NO,Sensitive,Session may originate outside Neon Auth or has not been linked.
+Administration,identity,session_record,3,session_digest,character(64),NO,,NO,Sensitive,
+Administration,identity,session_record,4,started_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,session_record,5,expires_at,timestamp with time zone,NO,,NO,Personal,
+Administration,identity,session_record,6,ended_at,timestamp with time zone,YES,,NO,Personal,Session has not ended.
+Administration,identity,session_record,7,last_activity_at,timestamp with time zone,YES,,NO,Personal,No activity has been recorded since session creation.
+Administration,identity,session_record,8,user_account_id,bigint,NO,,NO,Personal,
+Administration,identity,session_record,9,session_status_id,bigint,NO,,NO,Personal,
+Administration,identity,session_record,10,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,session_record,11,created_by,bigint,YES,,NO,Personal,System or seed creation has no human actor; supplied value references user_account.
+Administration,identity,session_record,12,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,session_record,13,updated_by,bigint,YES,,NO,Personal,System or seed update has no human actor; supplied value references user_account.
+Administration,identity,session_record,14,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Administration,identity,session_status,1,id,bigint,NO,,YES,Internal,
+Administration,identity,session_status,2,code,character varying(80),NO,,NO,Internal,
+Administration,identity,session_status,3,display_name,character varying(150),NO,,NO,Internal,
+Administration,identity,session_status,4,active,boolean,NO,true,NO,Internal,
+Administration,identity,session_status,5,sort_order,integer,NO,0,NO,Internal,
+Administration,identity,session_status,6,reference_code_id,bigint,NO,,NO,Internal,
+Administration,identity,session_status,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,session_status,8,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Administration,identity,session_status,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,session_status,10,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Administration,identity,session_status,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Administration,identity,system_error_log,1,id,bigint,NO,,YES,Personal,
+Administration,identity,system_error_log,2,error_code,character varying(100),NO,,NO,Personal,
+Administration,identity,system_error_log,3,severity,character varying(40),NO,,NO,Personal,
+Administration,identity,system_error_log,4,component_name,character varying(100),NO,,NO,Personal,
+Administration,identity,system_error_log,5,safe_message,character varying(2000),NO,,NO,Personal,
+Administration,identity,system_error_log,6,occurred_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,system_error_log,7,correlation_id,uuid,YES,,NO,Personal,Optional correlation id is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Administration,identity,system_error_log,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,system_error_log,9,created_by,bigint,YES,,NO,Personal,System or seed creation has no human actor; supplied value references user_account.
+Administration,identity,system_error_log,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,system_error_log,11,updated_by,bigint,YES,,NO,Personal,System or seed update has no human actor; supplied value references user_account.
+Administration,identity,system_error_log,12,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Administration,identity,user_block,1,id,bigint,NO,,YES,Personal,
+Administration,identity,user_block,2,reason,character varying(500),YES,,NO,Personal,Optional reason is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Administration,identity,user_block,3,candidate_profile_id,bigint,NO,,NO,Personal,
+Administration,identity,user_block,4,blocked_user_account_id,bigint,YES,,NO,Personal,Block targets an organisation instead of a user.
+Administration,identity,user_block,5,blocked_organisation_id,bigint,YES,,NO,Personal,Block targets a user instead of an organisation.
+Administration,identity,user_block,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,user_block,7,created_by,bigint,YES,,NO,Personal,System or seed creation has no human actor; supplied value references user_account.
+Administration,identity,user_block,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,user_block,9,updated_by,bigint,YES,,NO,Personal,System or seed update has no human actor; supplied value references user_account.
+Administration,identity,user_block,10,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Administration,identity,user_consent,1,id,bigint,NO,,YES,Personal,
+Administration,identity,user_consent,2,consent_version,character varying(40),NO,,NO,Personal,
+Administration,identity,user_consent,3,granted,boolean,NO,,NO,Personal,
+Administration,identity,user_consent,4,recorded_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,user_consent,5,withdrawn_at,timestamp with time zone,YES,,NO,Personal,Consent remains granted or was never granted.
+Administration,identity,user_consent,6,user_account_id,bigint,NO,,NO,Personal,
+Administration,identity,user_consent,7,consent_type_id,bigint,NO,,NO,Personal,
+Administration,identity,user_consent,8,language_id,bigint,YES,,NO,Personal,Optional language id is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Administration,identity,user_consent,9,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,user_consent,10,created_by,bigint,YES,,NO,Personal,System or seed creation has no human actor; supplied value references user_account.
+Administration,identity,user_consent,11,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Administration,identity,user_consent,12,updated_by,bigint,YES,,NO,Personal,System or seed update has no human actor; supplied value references user_account.
+Administration,identity,user_consent,13,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Administration,identity,user_role,1,id,bigint,NO,,YES,Internal,
+Administration,identity,user_role,2,valid_from,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,user_role,3,valid_to,timestamp with time zone,YES,,NO,Internal,"Open-ended assignment, role, or membership period."
+Administration,identity,user_role,4,user_account_id,bigint,NO,,NO,Personal,
+Administration,identity,user_role,5,app_role_id,bigint,NO,,NO,Internal,
+Administration,identity,user_role,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,user_role,7,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Administration,identity,user_role,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,identity,user_role,9,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Administration,identity,user_role,10,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Organisation and account,organisation,account_administrator,1,id,bigint,NO,,YES,Internal,
+Organisation and account,organisation,account_administrator,2,valid_from,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,account_administrator,3,valid_to,timestamp with time zone,YES,,NO,Internal,"Open-ended assignment, role, or membership period."
+Organisation and account,organisation,account_administrator,4,account_profile_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,account_administrator,5,user_account_id,bigint,NO,,NO,Personal,
+Organisation and account,organisation,account_administrator,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,account_administrator,7,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Organisation and account,organisation,account_administrator,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,account_administrator,9,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Organisation and account,organisation,account_administrator,10,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Organisation and account,organisation,account_profile,1,id,bigint,NO,,YES,Internal,
+Organisation and account,organisation,account_profile,2,account_name,character varying(150),NO,,NO,Internal,
+Organisation and account,organisation,account_profile,3,account_status_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,account_profile,4,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,account_profile,5,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Organisation and account,organisation,account_profile,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,account_profile,7,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Organisation and account,organisation,account_profile,8,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Organisation and account,organisation,account_status,1,id,bigint,NO,,YES,Internal,
+Organisation and account,organisation,account_status,2,code,character varying(80),NO,,NO,Internal,
+Organisation and account,organisation,account_status,3,display_name,character varying(150),NO,,NO,Internal,
+Organisation and account,organisation,account_status,4,active,boolean,NO,true,NO,Internal,
+Organisation and account,organisation,account_status,5,sort_order,integer,NO,0,NO,Internal,
+Organisation and account,organisation,account_status,6,reference_code_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,account_status,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,account_status,8,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Organisation and account,organisation,account_status,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,account_status,10,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Organisation and account,organisation,account_status,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Organisation and account,organisation,identifier_type,1,id,bigint,NO,,YES,Internal,
+Organisation and account,organisation,identifier_type,2,code,character varying(80),NO,,NO,Internal,
+Organisation and account,organisation,identifier_type,3,display_name,character varying(150),NO,,NO,Internal,
+Organisation and account,organisation,identifier_type,4,active,boolean,NO,true,NO,Internal,
+Organisation and account,organisation,identifier_type,5,sort_order,integer,NO,0,NO,Internal,
+Organisation and account,organisation,identifier_type,6,reference_code_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,identifier_type,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,identifier_type,8,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Organisation and account,organisation,identifier_type,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,identifier_type,10,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Organisation and account,organisation,identifier_type,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Organisation and account,organisation,job_recruiter_assignment,1,id,bigint,NO,,YES,Internal,
+Organisation and account,organisation,job_recruiter_assignment,2,valid_from,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,job_recruiter_assignment,3,valid_to,timestamp with time zone,YES,,NO,Internal,"Open-ended assignment, role, or membership period."
+Organisation and account,organisation,job_recruiter_assignment,4,job_requirement_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,job_recruiter_assignment,5,organisation_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,job_recruiter_assignment,6,recruiter_user_account_id,bigint,NO,,NO,Personal,
+Organisation and account,organisation,job_recruiter_assignment,7,organisation_recruiter_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,job_recruiter_assignment,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,job_recruiter_assignment,9,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Organisation and account,organisation,job_recruiter_assignment,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,job_recruiter_assignment,11,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Organisation and account,organisation,job_recruiter_assignment,12,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Organisation and account,organisation,organisation_identifier,1,id,bigint,NO,,YES,Internal,
+Organisation and account,organisation,organisation_identifier,2,identifier_ciphertext,bytea,NO,,NO,Sensitive,
+Organisation and account,organisation,organisation_identifier,3,identifier_fingerprint,character(64),NO,,NO,Sensitive,
+Organisation and account,organisation,organisation_identifier,4,verified_at,timestamp with time zone,YES,,NO,Internal,Verification has not completed.
+Organisation and account,organisation,organisation_identifier,5,organisation_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,organisation_identifier,6,country_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,organisation_identifier,7,identifier_type_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,organisation_identifier,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,organisation_identifier,9,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Organisation and account,organisation,organisation_identifier,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,organisation_identifier,11,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Organisation and account,organisation,organisation_identifier,12,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Organisation and account,organisation,organisation_location,1,id,bigint,NO,,YES,Internal,
+Organisation and account,organisation,organisation_location,2,location_name,character varying(150),YES,,NO,Internal,Optional location name is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Organisation and account,organisation,organisation_location,3,address_line_1,character varying(250),NO,,NO,Internal,
+Organisation and account,organisation,organisation_location,4,address_line_2,character varying(250),YES,,NO,Internal,Optional address line 2 is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Organisation and account,organisation,organisation_location,5,postal_code,character varying(30),YES,,NO,Internal,Address does not have a supplied postal code.
+Organisation and account,organisation,organisation_location,6,is_primary,boolean,NO,false,NO,Internal,
+Organisation and account,organisation,organisation_location,7,organisation_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,organisation_location,8,city_id,bigint,YES,,NO,Internal,"Location is remote, unknown, or not yet in the city catalog."
+Organisation and account,organisation,organisation_location,9,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,organisation_location,10,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Organisation and account,organisation,organisation_location,11,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,organisation_location,12,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Organisation and account,organisation,organisation_location,13,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Organisation and account,organisation,organisation_member,1,id,bigint,NO,,YES,Internal,
+Organisation and account,organisation,organisation_member,2,valid_from,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,organisation_member,3,valid_to,timestamp with time zone,YES,,NO,Internal,"Open-ended assignment, role, or membership period."
+Organisation and account,organisation,organisation_member,4,organisation_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,organisation_member,5,user_account_id,bigint,NO,,NO,Personal,
+Organisation and account,organisation,organisation_member,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,organisation_member,7,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Organisation and account,organisation,organisation_member,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,organisation_member,9,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Organisation and account,organisation,organisation_member,10,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Organisation and account,organisation,organisation_recruiter,1,id,bigint,NO,,YES,Internal,
+Organisation and account,organisation,organisation_recruiter,2,valid_from,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,organisation_recruiter,3,valid_to,timestamp with time zone,YES,,NO,Internal,"Open-ended assignment, role, or membership period."
+Organisation and account,organisation,organisation_recruiter,4,organisation_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,organisation_recruiter,5,recruiter_user_account_id,bigint,NO,,NO,Personal,
+Organisation and account,organisation,organisation_recruiter,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,organisation_recruiter,7,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Organisation and account,organisation,organisation_recruiter,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,organisation_recruiter,9,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Organisation and account,organisation,organisation_recruiter,10,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Organisation and account,organisation,organisation_type,1,id,bigint,NO,,YES,Internal,
+Organisation and account,organisation,organisation_type,2,code,character varying(80),NO,,NO,Internal,
+Organisation and account,organisation,organisation_type,3,display_name,character varying(150),NO,,NO,Internal,
+Organisation and account,organisation,organisation_type,4,active,boolean,NO,true,NO,Internal,
+Organisation and account,organisation,organisation_type,5,sort_order,integer,NO,0,NO,Internal,
+Organisation and account,organisation,organisation_type,6,reference_code_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,organisation_type,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,organisation_type,8,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Organisation and account,organisation,organisation_type,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,organisation_type,10,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Organisation and account,organisation,organisation_type,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Organisation and account,organisation,verification_record,1,id,bigint,NO,,YES,Internal,
+Organisation and account,organisation,verification_record,2,provider_code,character varying(80),NO,,NO,Internal,
+Organisation and account,organisation,verification_record,3,provider_reference,character varying(200),YES,,NO,Sensitive,Provider has not returned a reference.
+Organisation and account,organisation,verification_record,4,checked_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,verification_record,5,verified_at,timestamp with time zone,YES,,NO,Internal,Verification has not completed.
+Organisation and account,organisation,verification_record,6,failure_code,character varying(80),YES,,NO,Internal,Verification did not fail.
+Organisation and account,organisation,verification_record,7,organisation_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,verification_record,8,verification_type_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,verification_record,9,verification_status_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,verification_record,10,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,verification_record,11,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Organisation and account,organisation,verification_record,12,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,verification_record,13,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Organisation and account,organisation,verification_record,14,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Organisation and account,organisation,verification_type,1,id,bigint,NO,,YES,Internal,
+Organisation and account,organisation,verification_type,2,code,character varying(80),NO,,NO,Internal,
+Organisation and account,organisation,verification_type,3,display_name,character varying(150),NO,,NO,Internal,
+Organisation and account,organisation,verification_type,4,active,boolean,NO,true,NO,Internal,
+Organisation and account,organisation,verification_type,5,sort_order,integer,NO,0,NO,Internal,
+Organisation and account,organisation,verification_type,6,reference_code_id,bigint,NO,,NO,Internal,
+Organisation and account,organisation,verification_type,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,verification_type,8,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Organisation and account,organisation,verification_type,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,organisation,verification_type,10,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Organisation and account,organisation,verification_type,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Phase 1 anchor extended by Phase 2,public,job_requirement,1,id,bigint,NO,,YES,Internal,
+Phase 1 anchor extended by Phase 2,public,job_requirement,2,title,character varying(150),NO,,NO,Internal,
+Phase 1 anchor extended by Phase 2,public,job_requirement,3,description,text,YES,,NO,Internal,Optional description is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Phase 1 anchor extended by Phase 2,public,job_requirement,4,salary_min,"numeric(18,2)",YES,,NO,Internal,Optional salary min is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Phase 1 anchor extended by Phase 2,public,job_requirement,5,salary_max,"numeric(18,2)",YES,,NO,Internal,Optional salary max is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Phase 1 anchor extended by Phase 2,public,job_requirement,6,deadline,timestamp with time zone,YES,,NO,Internal,Optional deadline is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Phase 1 anchor extended by Phase 2,public,job_requirement,7,positions,integer,NO,1,NO,Internal,
+Phase 1 anchor extended by Phase 2,public,job_requirement,8,published_at,timestamp with time zone,YES,,NO,Internal,Optional published at is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Phase 1 anchor extended by Phase 2,public,job_requirement,9,open_to_consultants,boolean,NO,false,NO,Internal,
+Phase 1 anchor extended by Phase 2,public,job_requirement,10,organisation_id,bigint,NO,,NO,Internal,
+Phase 1 anchor extended by Phase 2,public,job_requirement,11,job_status_id,bigint,NO,,NO,Internal,
+Phase 1 anchor extended by Phase 2,public,job_requirement,12,work_type_id,bigint,NO,,NO,Internal,
+Phase 1 anchor extended by Phase 2,public,job_requirement,13,employment_type_id,bigint,NO,,NO,Internal,
+Phase 1 anchor extended by Phase 2,public,job_requirement,14,currency_id,bigint,YES,,NO,Internal,Optional currency id is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Phase 1 anchor extended by Phase 2,public,job_requirement,15,salary_period_id,bigint,YES,,NO,Internal,Optional salary period id is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Phase 1 anchor extended by Phase 2,public,job_requirement,16,language_id,bigint,YES,,NO,Internal,Optional language id is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Phase 1 anchor extended by Phase 2,public,job_requirement,17,job_role_id,bigint,YES,,NO,Internal,Optional job role id is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Phase 1 anchor extended by Phase 2,public,job_requirement,18,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Phase 1 anchor extended by Phase 2,public,job_requirement,19,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Phase 1 anchor extended by Phase 2,public,job_requirement,20,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Phase 1 anchor extended by Phase 2,public,job_requirement,21,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Phase 1 anchor extended by Phase 2,public,job_requirement,22,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Organisation and account,public,organisation,1,id,bigint,NO,,YES,Internal,
+Organisation and account,public,organisation,2,name,character varying(150),NO,,NO,Internal,
+Organisation and account,public,organisation,3,website_url,character varying(2048),YES,,NO,Internal,Optional website url is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Organisation and account,public,organisation,4,city_id,bigint,YES,,NO,Internal,"Location is remote, unknown, or not yet in the city catalog."
+Organisation and account,public,organisation,5,industry_id,bigint,YES,,NO,Internal,Optional industry id is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Organisation and account,public,organisation,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,public,organisation,7,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Organisation and account,public,organisation,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Organisation and account,public,organisation,9,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Organisation and account,public,organisation,10,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Organisation and account,public,organisation,11,account_profile_id,bigint,NO,,NO,Internal,
+Organisation and account,public,organisation,12,parent_organisation_id,bigint,YES,,NO,Internal,Root organisation in an account hierarchy.
+Organisation and account,public,organisation,13,organisation_type_id,bigint,NO,,NO,Internal,
+Organisation and account,public,organisation,14,verification_status_id,bigint,NO,,NO,Internal,
+Organisation and account,public,organisation,15,verified_at,timestamp with time zone,YES,,NO,Internal,Verification has not completed.
+Organisation and account,public,organisation,16,is_active,boolean,NO,true,NO,Internal,
+Organisation and account,public,organisation,17,description,text,YES,,NO,Internal,Optional description is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Administration,public,user_account,1,id,bigint,NO,,YES,Internal,
+Administration,public,user_account,2,full_name,character varying(150),NO,,NO,Internal,
+Administration,public,user_account,3,email,character varying(254),NO,,NO,Personal,
+Administration,public,user_account,4,neon_auth_user_id,uuid,YES,,NO,Internal,Optional neon auth user id is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Administration,public,user_account,5,language_id,bigint,YES,,NO,Internal,Optional language id is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Administration,public,user_account,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,public,user_account,7,created_by,bigint,YES,,NO,Internal,System or seed creation has no human actor; supplied value references user_account.
+Administration,public,user_account,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Administration,public,user_account,9,updated_by,bigint,YES,,NO,Internal,System or seed update has no human actor; supplied value references user_account.
+Administration,public,user_account,10,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL marks an active row. Append-only rows cannot be soft-deleted by ordinary updates.
+Administration,public,user_account,11,account_status_id,bigint,NO,identity.default_active_account_status_id(),NO,Internal,
+Administration,public,user_account,12,email_verified_at,timestamp with time zone,YES,,NO,Personal,Optional email verified at is not yet supplied or not applicable; Phase 2 does not encode those cases separately.
+Administration,public,user_account,13,last_login_at,timestamp with time zone,YES,,NO,Internal,Optional last login at is not yet supplied or not applicable; Phase 2 does not encode those cases separately.

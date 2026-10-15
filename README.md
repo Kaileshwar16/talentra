@@ -1,9 +1,10 @@
 # Talentra database
 
-This repository contains the Talentra database design source, the connected ER diagram, and the Phase 1 PostgreSQL implementation.
+The [hackathon docket](sources/Talentra-Database-Design-Hackathon-Docket.pdf) defines the milestone scope. The [connected ER diagram](sources/Talentra_Connected_ER_Diagram%20%281%29.png) is the visual source for the foundation schema.
 
-The [Phase 1 design and validation record](TALENTRA_SCHEMA.md) explains scope, table relationships, constraints, and what remains for later phases. The [migration](migrations/001_connected_er.sql) was applied to the `Talentra` Neon project (`production` branch, `neondb` database). The [constraint checks](tests/phase1_constraints.sql) ran successfully on that database and roll back their test data.
+- [Phase 1: Foundation](phase1/TALENTRA_SCHEMA.md) — migration, constraint tests, entity/column/relationship inventories and Neon validation evidence.
+- [Phase 2: Administration, organisation, and gig marketplace](phase2/README.md) — schema migration, integrity and access tests, design inventory and validation evidence.
 
-The original [hackathon docket](Talentra-Database-Design-Hackathon-Docket.pdf), [connected ER diagram](Talentra_Connected_ER_Diagram%20%281%29.png), and [older all-module SQL draft](talentra_schema.sql) are retained as source material. The older draft was not executed and should not be applied on top of the Phase 1 migration.
+The [older all-module SQL draft](sources/talentra_schema.sql) is reference material. It was not applied to the database and must not be run on top of the phase migrations.
 
-`docs/phase1/` contains the table, column, relationship, index, trigger, and validation exports from the installed schema. The docket is marked confidential, so keep this repository private unless its owner approves sharing it.
+The docket is marked confidential; this repository is private.

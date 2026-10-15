@@ -1,0 +1,714 @@
+table_schema,table_name,constraint_name,constraint_type,definition,validated,referenced_schema,referenced_table
+gig,application_status,application_status_active_not_null,n,NOT NULL active,True,,
+gig,application_status,application_status_code_key,u,UNIQUE (code),True,,
+gig,application_status,application_status_code_not_null,n,NOT NULL code,True,,
+gig,application_status,application_status_created_at_not_null,n,NOT NULL created_at,True,,
+gig,application_status,application_status_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,application_status,application_status_display_name_not_null,n,NOT NULL display_name,True,,
+gig,application_status,application_status_id_not_null,n,NOT NULL id,True,,
+gig,application_status,application_status_pkey,p,PRIMARY KEY (id),True,,
+gig,application_status,application_status_reference_code_id_fkey,f,FOREIGN KEY (reference_code_id) REFERENCES reference_code(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,reference_code
+gig,application_status,application_status_reference_code_id_key,u,UNIQUE (reference_code_id),True,,
+gig,application_status,application_status_reference_code_id_not_null,n,NOT NULL reference_code_id,True,,
+gig,application_status,application_status_sort_order_not_null,n,NOT NULL sort_order,True,,
+gig,application_status,application_status_updated_at_not_null,n,NOT NULL updated_at,True,,
+gig,application_status,application_status_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,assignment_status,assignment_status_active_not_null,n,NOT NULL active,True,,
+gig,assignment_status,assignment_status_code_key,u,UNIQUE (code),True,,
+gig,assignment_status,assignment_status_code_not_null,n,NOT NULL code,True,,
+gig,assignment_status,assignment_status_created_at_not_null,n,NOT NULL created_at,True,,
+gig,assignment_status,assignment_status_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,assignment_status,assignment_status_display_name_not_null,n,NOT NULL display_name,True,,
+gig,assignment_status,assignment_status_id_not_null,n,NOT NULL id,True,,
+gig,assignment_status,assignment_status_pkey,p,PRIMARY KEY (id),True,,
+gig,assignment_status,assignment_status_reference_code_id_fkey,f,FOREIGN KEY (reference_code_id) REFERENCES reference_code(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,reference_code
+gig,assignment_status,assignment_status_reference_code_id_key,u,UNIQUE (reference_code_id),True,,
+gig,assignment_status,assignment_status_reference_code_id_not_null,n,NOT NULL reference_code_id,True,,
+gig,assignment_status,assignment_status_sort_order_not_null,n,NOT NULL sort_order,True,,
+gig,assignment_status,assignment_status_updated_at_not_null,n,NOT NULL updated_at,True,,
+gig,assignment_status,assignment_status_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,availability_status,availability_status_active_not_null,n,NOT NULL active,True,,
+gig,availability_status,availability_status_code_key,u,UNIQUE (code),True,,
+gig,availability_status,availability_status_code_not_null,n,NOT NULL code,True,,
+gig,availability_status,availability_status_created_at_not_null,n,NOT NULL created_at,True,,
+gig,availability_status,availability_status_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,availability_status,availability_status_display_name_not_null,n,NOT NULL display_name,True,,
+gig,availability_status,availability_status_id_not_null,n,NOT NULL id,True,,
+gig,availability_status,availability_status_pkey,p,PRIMARY KEY (id),True,,
+gig,availability_status,availability_status_reference_code_id_fkey,f,FOREIGN KEY (reference_code_id) REFERENCES reference_code(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,reference_code
+gig,availability_status,availability_status_reference_code_id_key,u,UNIQUE (reference_code_id),True,,
+gig,availability_status,availability_status_reference_code_id_not_null,n,NOT NULL reference_code_id,True,,
+gig,availability_status,availability_status_sort_order_not_null,n,NOT NULL sort_order,True,,
+gig,availability_status,availability_status_updated_at_not_null,n,NOT NULL updated_at,True,,
+gig,availability_status,availability_status_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,fulfilment_event,fulfilment_event_created_at_not_null,n,NOT NULL created_at,True,,
+gig,fulfilment_event,fulfilment_event_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,fulfilment_event,fulfilment_event_event_kind_not_null,n,NOT NULL event_kind,True,,
+gig,fulfilment_event,fulfilment_event_external_event_id_not_null,n,NOT NULL external_event_id,True,,
+gig,fulfilment_event,fulfilment_event_external_system_code_external_event_id_key,u,"UNIQUE (external_system_code, external_event_id)",True,,
+gig,fulfilment_event,fulfilment_event_external_system_code_not_null,n,NOT NULL external_system_code,True,,
+gig,fulfilment_event,fulfilment_event_gig_assignment_id_fkey,f,FOREIGN KEY (gig_assignment_id) REFERENCES gig.gig_assignment(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,gig_assignment
+gig,fulfilment_event,fulfilment_event_gig_assignment_id_not_null,n,NOT NULL gig_assignment_id,True,,
+gig,fulfilment_event,fulfilment_event_id_not_null,n,NOT NULL id,True,,
+gig,fulfilment_event,fulfilment_event_observed_at_not_null,n,NOT NULL observed_at,True,,
+gig,fulfilment_event,fulfilment_event_payload_digest_check,c,CHECK ((payload_digest ~ '^[a-f0-9]{64}$'::text)),True,,
+gig,fulfilment_event,fulfilment_event_pkey,p,PRIMARY KEY (id),True,,
+gig,fulfilment_event,fulfilment_event_received_at_not_null,n,NOT NULL received_at,True,,
+gig,fulfilment_event,fulfilment_event_updated_at_not_null,n,NOT NULL updated_at,True,,
+gig,fulfilment_event,fulfilment_event_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_application,gig_application_application_status_id_fkey,f,FOREIGN KEY (application_status_id) REFERENCES gig.application_status(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,application_status
+gig,gig_application,gig_application_application_status_id_not_null,n,NOT NULL application_status_id,True,,
+gig,gig_application,gig_application_check,c,CHECK (((proposed_amount IS NULL) = (proposed_currency_id IS NULL))),True,,
+gig,gig_application,gig_application_check1,c,CHECK (((decided_at IS NULL) = (decision_by_user_account_id IS NULL))),True,,
+gig,gig_application,gig_application_created_at_not_null,n,NOT NULL created_at,True,,
+gig,gig_application,gig_application_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_application,gig_application_decision_by_user_account_id_fkey,f,FOREIGN KEY (decision_by_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_application,gig_application_gig_request_id_fkey,f,FOREIGN KEY (gig_request_id) REFERENCES gig.gig_request(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,gig_request
+gig,gig_application,gig_application_gig_request_id_gig_worker_profile_id_key,u,"UNIQUE (gig_request_id, gig_worker_profile_id)",True,,
+gig,gig_application,gig_application_gig_request_id_not_null,n,NOT NULL gig_request_id,True,,
+gig,gig_application,gig_application_gig_worker_profile_id_fkey,f,FOREIGN KEY (gig_worker_profile_id) REFERENCES gig.gig_worker_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,gig_worker_profile
+gig,gig_application,gig_application_gig_worker_profile_id_not_null,n,NOT NULL gig_worker_profile_id,True,,
+gig,gig_application,gig_application_id_gig_request_id_gig_worker_profile_id_key,u,"UNIQUE (id, gig_request_id, gig_worker_profile_id)",True,,
+gig,gig_application,gig_application_id_not_null,n,NOT NULL id,True,,
+gig,gig_application,gig_application_pkey,p,PRIMARY KEY (id),True,,
+gig,gig_application,gig_application_proposed_amount_check,c,CHECK ((proposed_amount >= (0)::numeric)),True,,
+gig,gig_application,gig_application_proposed_currency_id_fkey,f,FOREIGN KEY (proposed_currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,currency
+gig,gig_application,gig_application_submitted_at_not_null,n,NOT NULL submitted_at,True,,
+gig,gig_application,gig_application_updated_at_not_null,n,NOT NULL updated_at,True,,
+gig,gig_application,gig_application_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_assignment,ex_gig_assignment_worker_no_overlap,x,"EXCLUDE USING gist (gig_worker_profile_id WITH =, tstzrange(assignment_start_at, assignment_end_at, '[)'::text) WITH &&) WHERE ((deleted_at IS NULL))",True,,
+gig,gig_assignment,gig_assignment_assignment_end_at_not_null,n,NOT NULL assignment_end_at,True,,
+gig,gig_assignment,gig_assignment_assignment_start_at_not_null,n,NOT NULL assignment_start_at,True,,
+gig,gig_assignment,gig_assignment_assignment_status_id_fkey,f,FOREIGN KEY (assignment_status_id) REFERENCES gig.assignment_status(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,assignment_status
+gig,gig_assignment,gig_assignment_assignment_status_id_not_null,n,NOT NULL assignment_status_id,True,,
+gig,gig_assignment,gig_assignment_check,c,CHECK (((estimated_earnings IS NULL) = (estimated_currency_id IS NULL))),True,,
+gig,gig_assignment,gig_assignment_check1,c,CHECK (((total_earnings IS NULL) = (total_currency_id IS NULL))),True,,
+gig,gig_assignment,gig_assignment_check2,c,CHECK (((projected_earnings IS NULL) = (projected_currency_id IS NULL))),True,,
+gig,gig_assignment,gig_assignment_check3,c,CHECK ((assignment_end_at > assignment_start_at)),True,,
+gig,gig_assignment,gig_assignment_created_at_not_null,n,NOT NULL created_at,True,,
+gig,gig_assignment,gig_assignment_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_assignment,gig_assignment_estimated_currency_id_fkey,f,FOREIGN KEY (estimated_currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,currency
+gig,gig_assignment,gig_assignment_estimated_earnings_check,c,CHECK ((estimated_earnings >= (0)::numeric)),True,,
+gig,gig_assignment,gig_assignment_external_system_code_handoff_reference_key,u,"UNIQUE (external_system_code, handoff_reference)",True,,
+gig,gig_assignment,gig_assignment_external_system_code_not_null,n,NOT NULL external_system_code,True,,
+gig,gig_assignment,gig_assignment_gig_application_id_fkey,f,FOREIGN KEY (gig_application_id) REFERENCES gig.gig_application(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,gig_application
+gig,gig_assignment,gig_assignment_gig_application_id_gig_request_id_gig_worke_fkey,f,"FOREIGN KEY (gig_application_id, gig_request_id, gig_worker_profile_id) REFERENCES gig.gig_application(id, gig_request_id, gig_worker_profile_id) ON UPDATE RESTRICT ON DELETE RESTRICT",True,gig,gig_application
+gig,gig_assignment,gig_assignment_gig_application_id_key,u,UNIQUE (gig_application_id),True,,
+gig,gig_assignment,gig_assignment_gig_application_id_not_null,n,NOT NULL gig_application_id,True,,
+gig,gig_assignment,gig_assignment_gig_request_id_assignment_start_at_assignme_fkey,f,"FOREIGN KEY (gig_request_id, assignment_start_at, assignment_end_at) REFERENCES gig.gig_request(id, start_at, end_at) ON UPDATE RESTRICT ON DELETE RESTRICT",True,gig,gig_request
+gig,gig_assignment,gig_assignment_gig_request_id_fkey,f,FOREIGN KEY (gig_request_id) REFERENCES gig.gig_request(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,gig_request
+gig,gig_assignment,gig_assignment_gig_request_id_not_null,n,NOT NULL gig_request_id,True,,
+gig,gig_assignment,gig_assignment_gig_worker_profile_id_fkey,f,FOREIGN KEY (gig_worker_profile_id) REFERENCES gig.gig_worker_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,gig_worker_profile
+gig,gig_assignment,gig_assignment_gig_worker_profile_id_not_null,n,NOT NULL gig_worker_profile_id,True,,
+gig,gig_assignment,gig_assignment_handed_off_at_not_null,n,NOT NULL handed_off_at,True,,
+gig,gig_assignment,gig_assignment_handoff_reference_not_null,n,NOT NULL handoff_reference,True,,
+gig,gig_assignment,gig_assignment_id_not_null,n,NOT NULL id,True,,
+gig,gig_assignment,gig_assignment_pkey,p,PRIMARY KEY (id),True,,
+gig,gig_assignment,gig_assignment_projected_currency_id_fkey,f,FOREIGN KEY (projected_currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,currency
+gig,gig_assignment,gig_assignment_projected_earnings_check,c,CHECK ((projected_earnings >= (0)::numeric)),True,,
+gig,gig_assignment,gig_assignment_total_currency_id_fkey,f,FOREIGN KEY (total_currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,currency
+gig,gig_assignment,gig_assignment_total_earnings_check,c,CHECK ((total_earnings >= (0)::numeric)),True,,
+gig,gig_assignment,gig_assignment_updated_at_not_null,n,NOT NULL updated_at,True,,
+gig,gig_assignment,gig_assignment_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_availability,ex_gig_availability_worker_no_overlap,x,"EXCLUDE USING gist (gig_worker_profile_id WITH =, tstzrange(available_from, available_to, '[)'::text) WITH &&) WHERE ((deleted_at IS NULL))",True,,
+gig,gig_availability,gig_availability_availability_status_id_fkey,f,FOREIGN KEY (availability_status_id) REFERENCES gig.availability_status(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,availability_status
+gig,gig_availability,gig_availability_availability_status_id_not_null,n,NOT NULL availability_status_id,True,,
+gig,gig_availability,gig_availability_available_from_not_null,n,NOT NULL available_from,True,,
+gig,gig_availability,gig_availability_available_to_not_null,n,NOT NULL available_to,True,,
+gig,gig_availability,gig_availability_check,c,CHECK ((available_to > available_from)),True,,
+gig,gig_availability,gig_availability_created_at_not_null,n,NOT NULL created_at,True,,
+gig,gig_availability,gig_availability_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_availability,gig_availability_gig_worker_profile_id_fkey,f,FOREIGN KEY (gig_worker_profile_id) REFERENCES gig.gig_worker_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,gig_worker_profile
+gig,gig_availability,gig_availability_gig_worker_profile_id_not_null,n,NOT NULL gig_worker_profile_id,True,,
+gig,gig_availability,gig_availability_id_not_null,n,NOT NULL id,True,,
+gig,gig_availability,gig_availability_pkey,p,PRIMARY KEY (id),True,,
+gig,gig_availability,gig_availability_updated_at_not_null,n,NOT NULL updated_at,True,,
+gig,gig_availability,gig_availability_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_rating,gig_rating_created_at_not_null,n,NOT NULL created_at,True,,
+gig,gig_rating,gig_rating_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_rating,gig_rating_gig_assignment_id_fkey,f,FOREIGN KEY (gig_assignment_id) REFERENCES gig.gig_assignment(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,gig_assignment
+gig,gig_rating,gig_rating_gig_assignment_id_key,u,UNIQUE (gig_assignment_id),True,,
+gig,gig_rating,gig_rating_gig_assignment_id_not_null,n,NOT NULL gig_assignment_id,True,,
+gig,gig_rating,gig_rating_id_not_null,n,NOT NULL id,True,,
+gig,gig_rating,gig_rating_pkey,p,PRIMARY KEY (id),True,,
+gig,gig_rating,gig_rating_rating_value_check,c,CHECK (((rating_value >= 1) AND (rating_value <= 5))),True,,
+gig,gig_rating,gig_rating_rating_value_not_null,n,NOT NULL rating_value,True,,
+gig,gig_rating,gig_rating_requester_user_account_id_fkey,f,FOREIGN KEY (requester_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_rating,gig_rating_requester_user_account_id_not_null,n,NOT NULL requester_user_account_id,True,,
+gig,gig_rating,gig_rating_updated_at_not_null,n,NOT NULL updated_at,True,,
+gig,gig_rating,gig_rating_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_request,gig_request_check,c,CHECK ((end_at > start_at)),True,,
+gig,gig_request,gig_request_created_at_not_null,n,NOT NULL created_at,True,,
+gig,gig_request,gig_request_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_request,gig_request_currency_id_fkey,f,FOREIGN KEY (currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,currency
+gig,gig_request,gig_request_currency_id_not_null,n,NOT NULL currency_id,True,,
+gig,gig_request,gig_request_description_not_null,n,NOT NULL description,True,,
+gig,gig_request,gig_request_end_at_not_null,n,NOT NULL end_at,True,,
+gig,gig_request,gig_request_id_not_null,n,NOT NULL id,True,,
+gig,gig_request,gig_request_id_requester_organisation_id_key,u,"UNIQUE (id, requester_organisation_id)",True,,
+gig,gig_request,gig_request_id_start_at_end_at_key,u,"UNIQUE (id, start_at, end_at)",True,,
+gig,gig_request,gig_request_pkey,p,PRIMARY KEY (id),True,,
+gig,gig_request,gig_request_price_amount_check,c,CHECK ((price_amount >= (0)::numeric)),True,,
+gig,gig_request,gig_request_price_amount_not_null,n,NOT NULL price_amount,True,,
+gig,gig_request,gig_request_pricing_model_id_fkey,f,FOREIGN KEY (pricing_model_id) REFERENCES gig.pricing_model(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,pricing_model
+gig,gig_request,gig_request_pricing_model_id_not_null,n,NOT NULL pricing_model_id,True,,
+gig,gig_request,gig_request_request_status_id_fkey,f,FOREIGN KEY (request_status_id) REFERENCES gig.request_status(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,request_status
+gig,gig_request,gig_request_request_status_id_not_null,n,NOT NULL request_status_id,True,,
+gig,gig_request,gig_request_requester_organisation_id_fkey,f,FOREIGN KEY (requester_organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,organisation
+gig,gig_request,gig_request_requester_organisation_id_not_null,n,NOT NULL requester_organisation_id,True,,
+gig,gig_request,gig_request_requester_user_account_id_fkey,f,FOREIGN KEY (requester_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_request,gig_request_requester_user_account_id_not_null,n,NOT NULL requester_user_account_id,True,,
+gig,gig_request,gig_request_source_timezone_not_null,n,NOT NULL source_timezone,True,,
+gig,gig_request,gig_request_start_at_not_null,n,NOT NULL start_at,True,,
+gig,gig_request,gig_request_title_not_null,n,NOT NULL title,True,,
+gig,gig_request,gig_request_updated_at_not_null,n,NOT NULL updated_at,True,,
+gig,gig_request,gig_request_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_service,gig_service_created_at_not_null,n,NOT NULL created_at,True,,
+gig,gig_service,gig_service_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_service,gig_service_currency_id_fkey,f,FOREIGN KEY (currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,currency
+gig,gig_service,gig_service_currency_id_not_null,n,NOT NULL currency_id,True,,
+gig,gig_service,gig_service_gig_worker_profile_id_fkey,f,FOREIGN KEY (gig_worker_profile_id) REFERENCES gig.gig_worker_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,gig_worker_profile
+gig,gig_service,gig_service_gig_worker_profile_id_not_null,n,NOT NULL gig_worker_profile_id,True,,
+gig,gig_service,gig_service_gig_worker_profile_id_service_name_key,u,"UNIQUE (gig_worker_profile_id, service_name)",True,,
+gig,gig_service,gig_service_id_not_null,n,NOT NULL id,True,,
+gig,gig_service,gig_service_pkey,p,PRIMARY KEY (id),True,,
+gig,gig_service,gig_service_rate_amount_check,c,CHECK ((rate_amount >= (0)::numeric)),True,,
+gig,gig_service,gig_service_rate_amount_not_null,n,NOT NULL rate_amount,True,,
+gig,gig_service,gig_service_rate_unit_id_fkey,f,FOREIGN KEY (rate_unit_id) REFERENCES gig.rate_unit(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,rate_unit
+gig,gig_service,gig_service_rate_unit_id_not_null,n,NOT NULL rate_unit_id,True,,
+gig,gig_service,gig_service_service_name_not_null,n,NOT NULL service_name,True,,
+gig,gig_service,gig_service_updated_at_not_null,n,NOT NULL updated_at,True,,
+gig,gig_service,gig_service_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_worker_list_entry,gig_worker_list_entry_created_at_not_null,n,NOT NULL created_at,True,,
+gig,gig_worker_list_entry,gig_worker_list_entry_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_worker_list_entry,gig_worker_list_entry_gig_worker_profile_id_fkey,f,FOREIGN KEY (gig_worker_profile_id) REFERENCES gig.gig_worker_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,gig_worker_profile
+gig,gig_worker_list_entry,gig_worker_list_entry_gig_worker_profile_id_not_null,n,NOT NULL gig_worker_profile_id,True,,
+gig,gig_worker_list_entry,gig_worker_list_entry_id_not_null,n,NOT NULL id,True,,
+gig,gig_worker_list_entry,gig_worker_list_entry_pkey,p,PRIMARY KEY (id),True,,
+gig,gig_worker_list_entry,gig_worker_list_entry_requester_organisation_id_fkey,f,FOREIGN KEY (requester_organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,organisation
+gig,gig_worker_list_entry,gig_worker_list_entry_requester_organisation_id_gig_worker__key,u,"UNIQUE (requester_organisation_id, gig_worker_profile_id)",True,,
+gig,gig_worker_list_entry,gig_worker_list_entry_requester_organisation_id_not_null,n,NOT NULL requester_organisation_id,True,,
+gig,gig_worker_list_entry,gig_worker_list_entry_updated_at_not_null,n,NOT NULL updated_at,True,,
+gig,gig_worker_list_entry,gig_worker_list_entry_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_worker_list_entry,gig_worker_list_entry_worker_list_type_id_fkey,f,FOREIGN KEY (worker_list_type_id) REFERENCES gig.worker_list_type(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,worker_list_type
+gig,gig_worker_list_entry,gig_worker_list_entry_worker_list_type_id_not_null,n,NOT NULL worker_list_type_id,True,,
+gig,gig_worker_profile,gig_worker_profile_created_at_not_null,n,NOT NULL created_at,True,,
+gig,gig_worker_profile,gig_worker_profile_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_worker_profile,gig_worker_profile_home_city_id_fkey,f,FOREIGN KEY (home_city_id) REFERENCES city(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,city
+gig,gig_worker_profile,gig_worker_profile_id_not_null,n,NOT NULL id,True,,
+gig,gig_worker_profile,gig_worker_profile_is_active_not_null,n,NOT NULL is_active,True,,
+gig,gig_worker_profile,gig_worker_profile_pkey,p,PRIMARY KEY (id),True,,
+gig,gig_worker_profile,gig_worker_profile_public_name_not_null,n,NOT NULL public_name,True,,
+gig,gig_worker_profile,gig_worker_profile_updated_at_not_null,n,NOT NULL updated_at,True,,
+gig,gig_worker_profile,gig_worker_profile_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_worker_profile,gig_worker_profile_user_account_id_fkey,f,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,gig_worker_profile,gig_worker_profile_user_account_id_key,u,UNIQUE (user_account_id),True,,
+gig,gig_worker_profile,gig_worker_profile_user_account_id_not_null,n,NOT NULL user_account_id,True,,
+gig,pricing_model,pricing_model_active_not_null,n,NOT NULL active,True,,
+gig,pricing_model,pricing_model_code_key,u,UNIQUE (code),True,,
+gig,pricing_model,pricing_model_code_not_null,n,NOT NULL code,True,,
+gig,pricing_model,pricing_model_created_at_not_null,n,NOT NULL created_at,True,,
+gig,pricing_model,pricing_model_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,pricing_model,pricing_model_display_name_not_null,n,NOT NULL display_name,True,,
+gig,pricing_model,pricing_model_id_not_null,n,NOT NULL id,True,,
+gig,pricing_model,pricing_model_pkey,p,PRIMARY KEY (id),True,,
+gig,pricing_model,pricing_model_reference_code_id_fkey,f,FOREIGN KEY (reference_code_id) REFERENCES reference_code(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,reference_code
+gig,pricing_model,pricing_model_reference_code_id_key,u,UNIQUE (reference_code_id),True,,
+gig,pricing_model,pricing_model_reference_code_id_not_null,n,NOT NULL reference_code_id,True,,
+gig,pricing_model,pricing_model_sort_order_not_null,n,NOT NULL sort_order,True,,
+gig,pricing_model,pricing_model_updated_at_not_null,n,NOT NULL updated_at,True,,
+gig,pricing_model,pricing_model_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,rate_unit,rate_unit_active_not_null,n,NOT NULL active,True,,
+gig,rate_unit,rate_unit_code_key,u,UNIQUE (code),True,,
+gig,rate_unit,rate_unit_code_not_null,n,NOT NULL code,True,,
+gig,rate_unit,rate_unit_created_at_not_null,n,NOT NULL created_at,True,,
+gig,rate_unit,rate_unit_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,rate_unit,rate_unit_display_name_not_null,n,NOT NULL display_name,True,,
+gig,rate_unit,rate_unit_id_not_null,n,NOT NULL id,True,,
+gig,rate_unit,rate_unit_pkey,p,PRIMARY KEY (id),True,,
+gig,rate_unit,rate_unit_reference_code_id_fkey,f,FOREIGN KEY (reference_code_id) REFERENCES reference_code(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,reference_code
+gig,rate_unit,rate_unit_reference_code_id_key,u,UNIQUE (reference_code_id),True,,
+gig,rate_unit,rate_unit_reference_code_id_not_null,n,NOT NULL reference_code_id,True,,
+gig,rate_unit,rate_unit_sort_order_not_null,n,NOT NULL sort_order,True,,
+gig,rate_unit,rate_unit_updated_at_not_null,n,NOT NULL updated_at,True,,
+gig,rate_unit,rate_unit_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,request_status,request_status_active_not_null,n,NOT NULL active,True,,
+gig,request_status,request_status_code_key,u,UNIQUE (code),True,,
+gig,request_status,request_status_code_not_null,n,NOT NULL code,True,,
+gig,request_status,request_status_created_at_not_null,n,NOT NULL created_at,True,,
+gig,request_status,request_status_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,request_status,request_status_display_name_not_null,n,NOT NULL display_name,True,,
+gig,request_status,request_status_id_not_null,n,NOT NULL id,True,,
+gig,request_status,request_status_pkey,p,PRIMARY KEY (id),True,,
+gig,request_status,request_status_reference_code_id_fkey,f,FOREIGN KEY (reference_code_id) REFERENCES reference_code(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,reference_code
+gig,request_status,request_status_reference_code_id_key,u,UNIQUE (reference_code_id),True,,
+gig,request_status,request_status_reference_code_id_not_null,n,NOT NULL reference_code_id,True,,
+gig,request_status,request_status_sort_order_not_null,n,NOT NULL sort_order,True,,
+gig,request_status,request_status_updated_at_not_null,n,NOT NULL updated_at,True,,
+gig,request_status,request_status_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,worker_list_type,worker_list_type_active_not_null,n,NOT NULL active,True,,
+gig,worker_list_type,worker_list_type_code_key,u,UNIQUE (code),True,,
+gig,worker_list_type,worker_list_type_code_not_null,n,NOT NULL code,True,,
+gig,worker_list_type,worker_list_type_created_at_not_null,n,NOT NULL created_at,True,,
+gig,worker_list_type,worker_list_type_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,worker_list_type,worker_list_type_display_name_not_null,n,NOT NULL display_name,True,,
+gig,worker_list_type,worker_list_type_id_not_null,n,NOT NULL id,True,,
+gig,worker_list_type,worker_list_type_pkey,p,PRIMARY KEY (id),True,,
+gig,worker_list_type,worker_list_type_reference_code_id_fkey,f,FOREIGN KEY (reference_code_id) REFERENCES reference_code(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,reference_code
+gig,worker_list_type,worker_list_type_reference_code_id_key,u,UNIQUE (reference_code_id),True,,
+gig,worker_list_type,worker_list_type_reference_code_id_not_null,n,NOT NULL reference_code_id,True,,
+gig,worker_list_type,worker_list_type_sort_order_not_null,n,NOT NULL sort_order,True,,
+gig,worker_list_type,worker_list_type_updated_at_not_null,n,NOT NULL updated_at,True,,
+gig,worker_list_type,worker_list_type_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,worker_project,worker_project_check,c,CHECK (((end_date IS NULL) OR (end_date >= start_date))),True,,
+gig,worker_project,worker_project_created_at_not_null,n,NOT NULL created_at,True,,
+gig,worker_project,worker_project_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+gig,worker_project,worker_project_gig_worker_profile_id_fkey,f,FOREIGN KEY (gig_worker_profile_id) REFERENCES gig.gig_worker_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,gig,gig_worker_profile
+gig,worker_project,worker_project_gig_worker_profile_id_not_null,n,NOT NULL gig_worker_profile_id,True,,
+gig,worker_project,worker_project_id_not_null,n,NOT NULL id,True,,
+gig,worker_project,worker_project_pkey,p,PRIMARY KEY (id),True,,
+gig,worker_project,worker_project_project_role_not_null,n,NOT NULL project_role,True,,
+gig,worker_project,worker_project_start_date_not_null,n,NOT NULL start_date,True,,
+gig,worker_project,worker_project_title_not_null,n,NOT NULL title,True,,
+gig,worker_project,worker_project_updated_at_not_null,n,NOT NULL updated_at,True,,
+gig,worker_project,worker_project_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,account_status,account_status_active_not_null,n,NOT NULL active,True,,
+identity,account_status,account_status_code_key,u,UNIQUE (code),True,,
+identity,account_status,account_status_code_not_null,n,NOT NULL code,True,,
+identity,account_status,account_status_created_at_not_null,n,NOT NULL created_at,True,,
+identity,account_status,account_status_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,account_status,account_status_display_name_not_null,n,NOT NULL display_name,True,,
+identity,account_status,account_status_id_not_null,n,NOT NULL id,True,,
+identity,account_status,account_status_pkey,p,PRIMARY KEY (id),True,,
+identity,account_status,account_status_reference_code_id_fkey,f,FOREIGN KEY (reference_code_id) REFERENCES reference_code(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,reference_code
+identity,account_status,account_status_reference_code_id_key,u,UNIQUE (reference_code_id),True,,
+identity,account_status,account_status_reference_code_id_not_null,n,NOT NULL reference_code_id,True,,
+identity,account_status,account_status_sort_order_not_null,n,NOT NULL sort_order,True,,
+identity,account_status,account_status_updated_at_not_null,n,NOT NULL updated_at,True,,
+identity,account_status,account_status_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,app_role,app_role_active_not_null,n,NOT NULL active,True,,
+identity,app_role,app_role_code_key,u,UNIQUE (code),True,,
+identity,app_role,app_role_code_not_null,n,NOT NULL code,True,,
+identity,app_role,app_role_created_at_not_null,n,NOT NULL created_at,True,,
+identity,app_role,app_role_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,app_role,app_role_display_name_not_null,n,NOT NULL display_name,True,,
+identity,app_role,app_role_id_not_null,n,NOT NULL id,True,,
+identity,app_role,app_role_pkey,p,PRIMARY KEY (id),True,,
+identity,app_role,app_role_updated_at_not_null,n,NOT NULL updated_at,True,,
+identity,app_role,app_role_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,audit_event,audit_event_action_code_not_null,n,NOT NULL action_code,True,,
+identity,audit_event,audit_event_actor_user_account_id_fkey,f,FOREIGN KEY (actor_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,audit_event,audit_event_created_at_not_null,n,NOT NULL created_at,True,,
+identity,audit_event,audit_event_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,audit_event,audit_event_details_check,c,CHECK ((jsonb_typeof(details) = 'object'::text)),True,,
+identity,audit_event,audit_event_details_not_null,n,NOT NULL details,True,,
+identity,audit_event,audit_event_entity_schema_not_null,n,NOT NULL entity_schema,True,,
+identity,audit_event,audit_event_entity_table_not_null,n,NOT NULL entity_table,True,,
+identity,audit_event,audit_event_id_not_null,n,NOT NULL id,True,,
+identity,audit_event,audit_event_occurred_at_not_null,n,NOT NULL occurred_at,True,,
+identity,audit_event,audit_event_pkey,p,PRIMARY KEY (id),True,,
+identity,audit_event,audit_event_updated_at_not_null,n,NOT NULL updated_at,True,,
+identity,audit_event,audit_event_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,consent_type,consent_type_active_not_null,n,NOT NULL active,True,,
+identity,consent_type,consent_type_code_key,u,UNIQUE (code),True,,
+identity,consent_type,consent_type_code_not_null,n,NOT NULL code,True,,
+identity,consent_type,consent_type_created_at_not_null,n,NOT NULL created_at,True,,
+identity,consent_type,consent_type_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,consent_type,consent_type_display_name_not_null,n,NOT NULL display_name,True,,
+identity,consent_type,consent_type_id_not_null,n,NOT NULL id,True,,
+identity,consent_type,consent_type_pkey,p,PRIMARY KEY (id),True,,
+identity,consent_type,consent_type_reference_code_id_fkey,f,FOREIGN KEY (reference_code_id) REFERENCES reference_code(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,reference_code
+identity,consent_type,consent_type_reference_code_id_key,u,UNIQUE (reference_code_id),True,,
+identity,consent_type,consent_type_reference_code_id_not_null,n,NOT NULL reference_code_id,True,,
+identity,consent_type,consent_type_sort_order_not_null,n,NOT NULL sort_order,True,,
+identity,consent_type,consent_type_updated_at_not_null,n,NOT NULL updated_at,True,,
+identity,consent_type,consent_type_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,credential,credential_check,c,CHECK (((secret_hash IS NULL) <> (external_reference IS NULL))),True,,
+identity,credential,credential_check1,c,CHECK (((expires_at IS NULL) OR (expires_at > issued_at))),True,,
+identity,credential,credential_check2,c,CHECK (((revoked_at IS NULL) OR (revoked_at >= issued_at))),True,,
+identity,credential,credential_created_at_not_null,n,NOT NULL created_at,True,,
+identity,credential,credential_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,credential,credential_credential_type_id_fkey,f,FOREIGN KEY (credential_type_id) REFERENCES identity.credential_type(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,identity,credential_type
+identity,credential,credential_credential_type_id_not_null,n,NOT NULL credential_type_id,True,,
+identity,credential,credential_hash_algorithm_id_fkey,f,FOREIGN KEY (hash_algorithm_id) REFERENCES identity.hash_algorithm(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,identity,hash_algorithm
+identity,credential,credential_hash_algorithm_id_not_null,n,NOT NULL hash_algorithm_id,True,,
+identity,credential,credential_id_not_null,n,NOT NULL id,True,,
+identity,credential,credential_issued_at_not_null,n,NOT NULL issued_at,True,,
+identity,credential,credential_pkey,p,PRIMARY KEY (id),True,,
+identity,credential,credential_updated_at_not_null,n,NOT NULL updated_at,True,,
+identity,credential,credential_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,credential,credential_user_account_id_fkey,f,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,credential,credential_user_account_id_not_null,n,NOT NULL user_account_id,True,,
+identity,credential_type,credential_type_active_not_null,n,NOT NULL active,True,,
+identity,credential_type,credential_type_code_key,u,UNIQUE (code),True,,
+identity,credential_type,credential_type_code_not_null,n,NOT NULL code,True,,
+identity,credential_type,credential_type_created_at_not_null,n,NOT NULL created_at,True,,
+identity,credential_type,credential_type_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,credential_type,credential_type_display_name_not_null,n,NOT NULL display_name,True,,
+identity,credential_type,credential_type_id_not_null,n,NOT NULL id,True,,
+identity,credential_type,credential_type_pkey,p,PRIMARY KEY (id),True,,
+identity,credential_type,credential_type_reference_code_id_fkey,f,FOREIGN KEY (reference_code_id) REFERENCES reference_code(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,reference_code
+identity,credential_type,credential_type_reference_code_id_key,u,UNIQUE (reference_code_id),True,,
+identity,credential_type,credential_type_reference_code_id_not_null,n,NOT NULL reference_code_id,True,,
+identity,credential_type,credential_type_sort_order_not_null,n,NOT NULL sort_order,True,,
+identity,credential_type,credential_type_updated_at_not_null,n,NOT NULL updated_at,True,,
+identity,credential_type,credential_type_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,db_principal,db_principal_created_at_not_null,n,NOT NULL created_at,True,,
+identity,db_principal,db_principal_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,db_principal,db_principal_db_role_name_key,u,UNIQUE (db_role_name),True,,
+identity,db_principal,db_principal_db_role_name_not_null,n,NOT NULL db_role_name,True,,
+identity,db_principal,db_principal_id_not_null,n,NOT NULL id,True,,
+identity,db_principal,db_principal_pkey,p,PRIMARY KEY (id),True,,
+identity,db_principal,db_principal_updated_at_not_null,n,NOT NULL updated_at,True,,
+identity,db_principal,db_principal_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,db_principal,db_principal_user_account_id_fkey,f,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,db_principal,db_principal_user_account_id_key,u,UNIQUE (user_account_id),True,,
+identity,db_principal,db_principal_user_account_id_not_null,n,NOT NULL user_account_id,True,,
+identity,hash_algorithm,hash_algorithm_active_not_null,n,NOT NULL active,True,,
+identity,hash_algorithm,hash_algorithm_code_key,u,UNIQUE (code),True,,
+identity,hash_algorithm,hash_algorithm_code_not_null,n,NOT NULL code,True,,
+identity,hash_algorithm,hash_algorithm_created_at_not_null,n,NOT NULL created_at,True,,
+identity,hash_algorithm,hash_algorithm_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,hash_algorithm,hash_algorithm_display_name_not_null,n,NOT NULL display_name,True,,
+identity,hash_algorithm,hash_algorithm_id_not_null,n,NOT NULL id,True,,
+identity,hash_algorithm,hash_algorithm_pkey,p,PRIMARY KEY (id),True,,
+identity,hash_algorithm,hash_algorithm_reference_code_id_fkey,f,FOREIGN KEY (reference_code_id) REFERENCES reference_code(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,reference_code
+identity,hash_algorithm,hash_algorithm_reference_code_id_key,u,UNIQUE (reference_code_id),True,,
+identity,hash_algorithm,hash_algorithm_reference_code_id_not_null,n,NOT NULL reference_code_id,True,,
+identity,hash_algorithm,hash_algorithm_sort_order_not_null,n,NOT NULL sort_order,True,,
+identity,hash_algorithm,hash_algorithm_updated_at_not_null,n,NOT NULL updated_at,True,,
+identity,hash_algorithm,hash_algorithm_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,permission,permission_code_key,u,UNIQUE (code),True,,
+identity,permission,permission_code_not_null,n,NOT NULL code,True,,
+identity,permission,permission_created_at_not_null,n,NOT NULL created_at,True,,
+identity,permission,permission_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,permission,permission_description_not_null,n,NOT NULL description,True,,
+identity,permission,permission_id_not_null,n,NOT NULL id,True,,
+identity,permission,permission_pkey,p,PRIMARY KEY (id),True,,
+identity,permission,permission_updated_at_not_null,n,NOT NULL updated_at,True,,
+identity,permission,permission_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,role_permission,role_permission_app_role_id_fkey,f,FOREIGN KEY (app_role_id) REFERENCES identity.app_role(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,identity,app_role
+identity,role_permission,role_permission_app_role_id_not_null,n,NOT NULL app_role_id,True,,
+identity,role_permission,role_permission_app_role_id_permission_id_key,u,"UNIQUE (app_role_id, permission_id)",True,,
+identity,role_permission,role_permission_created_at_not_null,n,NOT NULL created_at,True,,
+identity,role_permission,role_permission_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,role_permission,role_permission_id_not_null,n,NOT NULL id,True,,
+identity,role_permission,role_permission_permission_id_fkey,f,FOREIGN KEY (permission_id) REFERENCES identity.permission(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,identity,permission
+identity,role_permission,role_permission_permission_id_not_null,n,NOT NULL permission_id,True,,
+identity,role_permission,role_permission_pkey,p,PRIMARY KEY (id),True,,
+identity,role_permission,role_permission_updated_at_not_null,n,NOT NULL updated_at,True,,
+identity,role_permission,role_permission_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,session_record,session_record_check,c,CHECK ((expires_at > started_at)),True,,
+identity,session_record,session_record_check1,c,CHECK (((ended_at IS NULL) OR (ended_at >= started_at))),True,,
+identity,session_record,session_record_created_at_not_null,n,NOT NULL created_at,True,,
+identity,session_record,session_record_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,session_record,session_record_expires_at_not_null,n,NOT NULL expires_at,True,,
+identity,session_record,session_record_id_not_null,n,NOT NULL id,True,,
+identity,session_record,session_record_neon_auth_session_id_fkey,f,FOREIGN KEY (neon_auth_session_id) REFERENCES neon_auth.session(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,neon_auth,session
+identity,session_record,session_record_neon_auth_session_id_key,u,UNIQUE (neon_auth_session_id),True,,
+identity,session_record,session_record_pkey,p,PRIMARY KEY (id),True,,
+identity,session_record,session_record_session_digest_check,c,CHECK ((session_digest ~ '^[a-f0-9]{64}$'::text)),True,,
+identity,session_record,session_record_session_digest_key,u,UNIQUE (session_digest),True,,
+identity,session_record,session_record_session_digest_not_null,n,NOT NULL session_digest,True,,
+identity,session_record,session_record_session_status_id_fkey,f,FOREIGN KEY (session_status_id) REFERENCES identity.session_status(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,identity,session_status
+identity,session_record,session_record_session_status_id_not_null,n,NOT NULL session_status_id,True,,
+identity,session_record,session_record_started_at_not_null,n,NOT NULL started_at,True,,
+identity,session_record,session_record_updated_at_not_null,n,NOT NULL updated_at,True,,
+identity,session_record,session_record_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,session_record,session_record_user_account_id_fkey,f,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,session_record,session_record_user_account_id_not_null,n,NOT NULL user_account_id,True,,
+identity,session_status,session_status_active_not_null,n,NOT NULL active,True,,
+identity,session_status,session_status_code_key,u,UNIQUE (code),True,,
+identity,session_status,session_status_code_not_null,n,NOT NULL code,True,,
+identity,session_status,session_status_created_at_not_null,n,NOT NULL created_at,True,,
+identity,session_status,session_status_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,session_status,session_status_display_name_not_null,n,NOT NULL display_name,True,,
+identity,session_status,session_status_id_not_null,n,NOT NULL id,True,,
+identity,session_status,session_status_pkey,p,PRIMARY KEY (id),True,,
+identity,session_status,session_status_reference_code_id_fkey,f,FOREIGN KEY (reference_code_id) REFERENCES reference_code(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,reference_code
+identity,session_status,session_status_reference_code_id_key,u,UNIQUE (reference_code_id),True,,
+identity,session_status,session_status_reference_code_id_not_null,n,NOT NULL reference_code_id,True,,
+identity,session_status,session_status_sort_order_not_null,n,NOT NULL sort_order,True,,
+identity,session_status,session_status_updated_at_not_null,n,NOT NULL updated_at,True,,
+identity,session_status,session_status_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,system_error_log,system_error_log_component_name_not_null,n,NOT NULL component_name,True,,
+identity,system_error_log,system_error_log_created_at_not_null,n,NOT NULL created_at,True,,
+identity,system_error_log,system_error_log_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,system_error_log,system_error_log_error_code_not_null,n,NOT NULL error_code,True,,
+identity,system_error_log,system_error_log_id_not_null,n,NOT NULL id,True,,
+identity,system_error_log,system_error_log_occurred_at_not_null,n,NOT NULL occurred_at,True,,
+identity,system_error_log,system_error_log_pkey,p,PRIMARY KEY (id),True,,
+identity,system_error_log,system_error_log_safe_message_not_null,n,NOT NULL safe_message,True,,
+identity,system_error_log,system_error_log_severity_not_null,n,NOT NULL severity,True,,
+identity,system_error_log,system_error_log_updated_at_not_null,n,NOT NULL updated_at,True,,
+identity,system_error_log,system_error_log_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,user_block,user_block_blocked_organisation_id_fkey,f,FOREIGN KEY (blocked_organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,organisation
+identity,user_block,user_block_blocked_user_account_id_fkey,f,FOREIGN KEY (blocked_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,user_block,user_block_candidate_profile_id_fkey,f,FOREIGN KEY (candidate_profile_id) REFERENCES candidate_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,candidate_profile
+identity,user_block,user_block_candidate_profile_id_not_null,n,NOT NULL candidate_profile_id,True,,
+identity,user_block,user_block_check,c,"CHECK ((num_nonnulls(blocked_user_account_id, blocked_organisation_id) = 1))",True,,
+identity,user_block,user_block_created_at_not_null,n,NOT NULL created_at,True,,
+identity,user_block,user_block_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,user_block,user_block_id_not_null,n,NOT NULL id,True,,
+identity,user_block,user_block_pkey,p,PRIMARY KEY (id),True,,
+identity,user_block,user_block_updated_at_not_null,n,NOT NULL updated_at,True,,
+identity,user_block,user_block_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,user_consent,user_consent_check,c,CHECK (((withdrawn_at IS NULL) OR (granted AND (withdrawn_at >= recorded_at)))),True,,
+identity,user_consent,user_consent_consent_type_id_fkey,f,FOREIGN KEY (consent_type_id) REFERENCES identity.consent_type(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,identity,consent_type
+identity,user_consent,user_consent_consent_type_id_not_null,n,NOT NULL consent_type_id,True,,
+identity,user_consent,user_consent_consent_version_not_null,n,NOT NULL consent_version,True,,
+identity,user_consent,user_consent_created_at_not_null,n,NOT NULL created_at,True,,
+identity,user_consent,user_consent_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,user_consent,user_consent_granted_not_null,n,NOT NULL granted,True,,
+identity,user_consent,user_consent_id_not_null,n,NOT NULL id,True,,
+identity,user_consent,user_consent_language_id_fkey,f,FOREIGN KEY (language_id) REFERENCES language(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,language
+identity,user_consent,user_consent_pkey,p,PRIMARY KEY (id),True,,
+identity,user_consent,user_consent_recorded_at_not_null,n,NOT NULL recorded_at,True,,
+identity,user_consent,user_consent_updated_at_not_null,n,NOT NULL updated_at,True,,
+identity,user_consent,user_consent_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,user_consent,user_consent_user_account_id_consent_type_id_consent_versio_key,u,"UNIQUE (user_account_id, consent_type_id, consent_version, recorded_at)",True,,
+identity,user_consent,user_consent_user_account_id_fkey,f,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,user_consent,user_consent_user_account_id_not_null,n,NOT NULL user_account_id,True,,
+identity,user_role,ex_user_role_no_overlap,x,"EXCLUDE USING gist (user_account_id WITH =, app_role_id WITH =, tstzrange(valid_from, valid_to, '[)'::text) WITH &&) WHERE ((deleted_at IS NULL))",True,,
+identity,user_role,user_role_app_role_id_fkey,f,FOREIGN KEY (app_role_id) REFERENCES identity.app_role(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,identity,app_role
+identity,user_role,user_role_app_role_id_not_null,n,NOT NULL app_role_id,True,,
+identity,user_role,user_role_check,c,CHECK (((valid_to IS NULL) OR (valid_to > valid_from))),True,,
+identity,user_role,user_role_created_at_not_null,n,NOT NULL created_at,True,,
+identity,user_role,user_role_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,user_role,user_role_id_not_null,n,NOT NULL id,True,,
+identity,user_role,user_role_id_user_account_id_key,u,"UNIQUE (id, user_account_id)",True,,
+identity,user_role,user_role_pkey,p,PRIMARY KEY (id),True,,
+identity,user_role,user_role_updated_at_not_null,n,NOT NULL updated_at,True,,
+identity,user_role,user_role_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,user_role,user_role_user_account_id_fkey,f,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+identity,user_role,user_role_user_account_id_not_null,n,NOT NULL user_account_id,True,,
+identity,user_role,user_role_valid_from_not_null,n,NOT NULL valid_from,True,,
+organisation,account_administrator,account_administrator_account_profile_id_fkey,f,FOREIGN KEY (account_profile_id) REFERENCES organisation.account_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,organisation,account_profile
+organisation,account_administrator,account_administrator_account_profile_id_not_null,n,NOT NULL account_profile_id,True,,
+organisation,account_administrator,account_administrator_check,c,CHECK (((valid_to IS NULL) OR (valid_to > valid_from))),True,,
+organisation,account_administrator,account_administrator_created_at_not_null,n,NOT NULL created_at,True,,
+organisation,account_administrator,account_administrator_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,account_administrator,account_administrator_id_not_null,n,NOT NULL id,True,,
+organisation,account_administrator,account_administrator_pkey,p,PRIMARY KEY (id),True,,
+organisation,account_administrator,account_administrator_updated_at_not_null,n,NOT NULL updated_at,True,,
+organisation,account_administrator,account_administrator_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,account_administrator,account_administrator_user_account_id_fkey,f,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,account_administrator,account_administrator_user_account_id_not_null,n,NOT NULL user_account_id,True,,
+organisation,account_administrator,account_administrator_valid_from_not_null,n,NOT NULL valid_from,True,,
+organisation,account_administrator,ex_account_admin_no_overlap,x,"EXCLUDE USING gist (account_profile_id WITH =, user_account_id WITH =, tstzrange(valid_from, valid_to, '[)'::text) WITH &&) WHERE ((deleted_at IS NULL))",True,,
+organisation,account_profile,account_profile_account_name_not_null,n,NOT NULL account_name,True,,
+organisation,account_profile,account_profile_account_status_id_fkey,f,FOREIGN KEY (account_status_id) REFERENCES organisation.account_status(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,organisation,account_status
+organisation,account_profile,account_profile_account_status_id_not_null,n,NOT NULL account_status_id,True,,
+organisation,account_profile,account_profile_created_at_not_null,n,NOT NULL created_at,True,,
+organisation,account_profile,account_profile_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,account_profile,account_profile_id_not_null,n,NOT NULL id,True,,
+organisation,account_profile,account_profile_pkey,p,PRIMARY KEY (id),True,,
+organisation,account_profile,account_profile_updated_at_not_null,n,NOT NULL updated_at,True,,
+organisation,account_profile,account_profile_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,account_status,account_status_active_not_null,n,NOT NULL active,True,,
+organisation,account_status,account_status_code_key,u,UNIQUE (code),True,,
+organisation,account_status,account_status_code_not_null,n,NOT NULL code,True,,
+organisation,account_status,account_status_created_at_not_null,n,NOT NULL created_at,True,,
+organisation,account_status,account_status_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,account_status,account_status_display_name_not_null,n,NOT NULL display_name,True,,
+organisation,account_status,account_status_id_not_null,n,NOT NULL id,True,,
+organisation,account_status,account_status_pkey,p,PRIMARY KEY (id),True,,
+organisation,account_status,account_status_reference_code_id_fkey,f,FOREIGN KEY (reference_code_id) REFERENCES reference_code(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,reference_code
+organisation,account_status,account_status_reference_code_id_key,u,UNIQUE (reference_code_id),True,,
+organisation,account_status,account_status_reference_code_id_not_null,n,NOT NULL reference_code_id,True,,
+organisation,account_status,account_status_sort_order_not_null,n,NOT NULL sort_order,True,,
+organisation,account_status,account_status_updated_at_not_null,n,NOT NULL updated_at,True,,
+organisation,account_status,account_status_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,identifier_type,identifier_type_active_not_null,n,NOT NULL active,True,,
+organisation,identifier_type,identifier_type_code_key,u,UNIQUE (code),True,,
+organisation,identifier_type,identifier_type_code_not_null,n,NOT NULL code,True,,
+organisation,identifier_type,identifier_type_created_at_not_null,n,NOT NULL created_at,True,,
+organisation,identifier_type,identifier_type_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,identifier_type,identifier_type_display_name_not_null,n,NOT NULL display_name,True,,
+organisation,identifier_type,identifier_type_id_not_null,n,NOT NULL id,True,,
+organisation,identifier_type,identifier_type_pkey,p,PRIMARY KEY (id),True,,
+organisation,identifier_type,identifier_type_reference_code_id_fkey,f,FOREIGN KEY (reference_code_id) REFERENCES reference_code(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,reference_code
+organisation,identifier_type,identifier_type_reference_code_id_key,u,UNIQUE (reference_code_id),True,,
+organisation,identifier_type,identifier_type_reference_code_id_not_null,n,NOT NULL reference_code_id,True,,
+organisation,identifier_type,identifier_type_sort_order_not_null,n,NOT NULL sort_order,True,,
+organisation,identifier_type,identifier_type_updated_at_not_null,n,NOT NULL updated_at,True,,
+organisation,identifier_type,identifier_type_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,job_recruiter_assignment,ex_job_recruiter_assignment_no_overlap,x,"EXCLUDE USING gist (job_requirement_id WITH =, recruiter_user_account_id WITH =, tstzrange(valid_from, valid_to, '[)'::text) WITH &&) WHERE ((deleted_at IS NULL))",True,,
+organisation,job_recruiter_assignment,job_recruiter_assignment_check,c,CHECK (((valid_to IS NULL) OR (valid_to > valid_from))),True,,
+organisation,job_recruiter_assignment,job_recruiter_assignment_created_at_not_null,n,NOT NULL created_at,True,,
+organisation,job_recruiter_assignment,job_recruiter_assignment_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,job_recruiter_assignment,job_recruiter_assignment_id_not_null,n,NOT NULL id,True,,
+organisation,job_recruiter_assignment,job_recruiter_assignment_job_requirement_id_fkey,f,FOREIGN KEY (job_requirement_id) REFERENCES job_requirement(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,job_requirement
+organisation,job_recruiter_assignment,job_recruiter_assignment_job_requirement_id_not_null,n,NOT NULL job_requirement_id,True,,
+organisation,job_recruiter_assignment,job_recruiter_assignment_job_requirement_id_organisation_i_fkey,f,"FOREIGN KEY (job_requirement_id, organisation_id) REFERENCES job_requirement(id, organisation_id) ON UPDATE RESTRICT ON DELETE RESTRICT",True,public,job_requirement
+organisation,job_recruiter_assignment,job_recruiter_assignment_organisation_id_fkey,f,FOREIGN KEY (organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,organisation
+organisation,job_recruiter_assignment,job_recruiter_assignment_organisation_id_not_null,n,NOT NULL organisation_id,True,,
+organisation,job_recruiter_assignment,job_recruiter_assignment_organisation_recruiter_id_fkey,f,FOREIGN KEY (organisation_recruiter_id) REFERENCES organisation.organisation_recruiter(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,organisation,organisation_recruiter
+organisation,job_recruiter_assignment,job_recruiter_assignment_organisation_recruiter_id_not_null,n,NOT NULL organisation_recruiter_id,True,,
+organisation,job_recruiter_assignment,job_recruiter_assignment_organisation_recruiter_id_organis_fkey,f,"FOREIGN KEY (organisation_recruiter_id, organisation_id, recruiter_user_account_id) REFERENCES organisation.organisation_recruiter(id, organisation_id, recruiter_user_account_id) ON UPDATE RESTRICT ON DELETE RESTRICT",True,organisation,organisation_recruiter
+organisation,job_recruiter_assignment,job_recruiter_assignment_pkey,p,PRIMARY KEY (id),True,,
+organisation,job_recruiter_assignment,job_recruiter_assignment_recruiter_user_account_id_fkey,f,FOREIGN KEY (recruiter_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,job_recruiter_assignment,job_recruiter_assignment_recruiter_user_account_id_not_null,n,NOT NULL recruiter_user_account_id,True,,
+organisation,job_recruiter_assignment,job_recruiter_assignment_updated_at_not_null,n,NOT NULL updated_at,True,,
+organisation,job_recruiter_assignment,job_recruiter_assignment_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,job_recruiter_assignment,job_recruiter_assignment_valid_from_not_null,n,NOT NULL valid_from,True,,
+organisation,organisation_identifier,organisation_identifier_country_id_fkey,f,FOREIGN KEY (country_id) REFERENCES country(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,country
+organisation,organisation_identifier,organisation_identifier_country_id_identifier_type_id_ident_key,u,"UNIQUE (country_id, identifier_type_id, identifier_fingerprint)",True,,
+organisation,organisation_identifier,organisation_identifier_country_id_not_null,n,NOT NULL country_id,True,,
+organisation,organisation_identifier,organisation_identifier_created_at_not_null,n,NOT NULL created_at,True,,
+organisation,organisation_identifier,organisation_identifier_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,organisation_identifier,organisation_identifier_id_not_null,n,NOT NULL id,True,,
+organisation,organisation_identifier,organisation_identifier_identifier_ciphertext_not_null,n,NOT NULL identifier_ciphertext,True,,
+organisation,organisation_identifier,organisation_identifier_identifier_fingerprint_check,c,CHECK ((identifier_fingerprint ~ '^[a-f0-9]{64}$'::text)),True,,
+organisation,organisation_identifier,organisation_identifier_identifier_fingerprint_not_null,n,NOT NULL identifier_fingerprint,True,,
+organisation,organisation_identifier,organisation_identifier_identifier_type_id_fkey,f,FOREIGN KEY (identifier_type_id) REFERENCES organisation.identifier_type(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,organisation,identifier_type
+organisation,organisation_identifier,organisation_identifier_identifier_type_id_not_null,n,NOT NULL identifier_type_id,True,,
+organisation,organisation_identifier,organisation_identifier_organisation_id_fkey,f,FOREIGN KEY (organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,organisation
+organisation,organisation_identifier,organisation_identifier_organisation_id_not_null,n,NOT NULL organisation_id,True,,
+organisation,organisation_identifier,organisation_identifier_pkey,p,PRIMARY KEY (id),True,,
+organisation,organisation_identifier,organisation_identifier_updated_at_not_null,n,NOT NULL updated_at,True,,
+organisation,organisation_identifier,organisation_identifier_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,organisation_location,organisation_location_address_line_1_not_null,n,NOT NULL address_line_1,True,,
+organisation,organisation_location,organisation_location_city_id_fkey,f,FOREIGN KEY (city_id) REFERENCES city(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,city
+organisation,organisation_location,organisation_location_created_at_not_null,n,NOT NULL created_at,True,,
+organisation,organisation_location,organisation_location_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,organisation_location,organisation_location_id_not_null,n,NOT NULL id,True,,
+organisation,organisation_location,organisation_location_is_primary_not_null,n,NOT NULL is_primary,True,,
+organisation,organisation_location,organisation_location_organisation_id_fkey,f,FOREIGN KEY (organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,organisation
+organisation,organisation_location,organisation_location_organisation_id_not_null,n,NOT NULL organisation_id,True,,
+organisation,organisation_location,organisation_location_pkey,p,PRIMARY KEY (id),True,,
+organisation,organisation_location,organisation_location_updated_at_not_null,n,NOT NULL updated_at,True,,
+organisation,organisation_location,organisation_location_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,organisation_member,ex_organisation_member_no_overlap,x,"EXCLUDE USING gist (organisation_id WITH =, user_account_id WITH =, tstzrange(valid_from, valid_to, '[)'::text) WITH &&) WHERE ((deleted_at IS NULL))",True,,
+organisation,organisation_member,organisation_member_check,c,CHECK (((valid_to IS NULL) OR (valid_to > valid_from))),True,,
+organisation,organisation_member,organisation_member_created_at_not_null,n,NOT NULL created_at,True,,
+organisation,organisation_member,organisation_member_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,organisation_member,organisation_member_id_not_null,n,NOT NULL id,True,,
+organisation,organisation_member,organisation_member_organisation_id_fkey,f,FOREIGN KEY (organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,organisation
+organisation,organisation_member,organisation_member_organisation_id_not_null,n,NOT NULL organisation_id,True,,
+organisation,organisation_member,organisation_member_pkey,p,PRIMARY KEY (id),True,,
+organisation,organisation_member,organisation_member_updated_at_not_null,n,NOT NULL updated_at,True,,
+organisation,organisation_member,organisation_member_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,organisation_member,organisation_member_user_account_id_fkey,f,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,organisation_member,organisation_member_user_account_id_not_null,n,NOT NULL user_account_id,True,,
+organisation,organisation_member,organisation_member_valid_from_not_null,n,NOT NULL valid_from,True,,
+organisation,organisation_recruiter,ex_recruiter_company_no_overlap,x,"EXCLUDE USING gist (recruiter_user_account_id WITH =, tstzrange(valid_from, valid_to, '[)'::text) WITH &&) WHERE ((deleted_at IS NULL))",True,,
+organisation,organisation_recruiter,organisation_recruiter_check,c,CHECK (((valid_to IS NULL) OR (valid_to > valid_from))),True,,
+organisation,organisation_recruiter,organisation_recruiter_created_at_not_null,n,NOT NULL created_at,True,,
+organisation,organisation_recruiter,organisation_recruiter_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,organisation_recruiter,organisation_recruiter_id_not_null,n,NOT NULL id,True,,
+organisation,organisation_recruiter,organisation_recruiter_id_organisation_id_recruiter_user_ac_key,u,"UNIQUE (id, organisation_id, recruiter_user_account_id)",True,,
+organisation,organisation_recruiter,organisation_recruiter_organisation_id_fkey,f,FOREIGN KEY (organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,organisation
+organisation,organisation_recruiter,organisation_recruiter_organisation_id_not_null,n,NOT NULL organisation_id,True,,
+organisation,organisation_recruiter,organisation_recruiter_pkey,p,PRIMARY KEY (id),True,,
+organisation,organisation_recruiter,organisation_recruiter_recruiter_user_account_id_fkey,f,FOREIGN KEY (recruiter_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,organisation_recruiter,organisation_recruiter_recruiter_user_account_id_not_null,n,NOT NULL recruiter_user_account_id,True,,
+organisation,organisation_recruiter,organisation_recruiter_updated_at_not_null,n,NOT NULL updated_at,True,,
+organisation,organisation_recruiter,organisation_recruiter_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,organisation_recruiter,organisation_recruiter_valid_from_not_null,n,NOT NULL valid_from,True,,
+organisation,organisation_type,organisation_type_active_not_null,n,NOT NULL active,True,,
+organisation,organisation_type,organisation_type_code_key,u,UNIQUE (code),True,,
+organisation,organisation_type,organisation_type_code_not_null,n,NOT NULL code,True,,
+organisation,organisation_type,organisation_type_created_at_not_null,n,NOT NULL created_at,True,,
+organisation,organisation_type,organisation_type_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,organisation_type,organisation_type_display_name_not_null,n,NOT NULL display_name,True,,
+organisation,organisation_type,organisation_type_id_not_null,n,NOT NULL id,True,,
+organisation,organisation_type,organisation_type_pkey,p,PRIMARY KEY (id),True,,
+organisation,organisation_type,organisation_type_reference_code_id_fkey,f,FOREIGN KEY (reference_code_id) REFERENCES reference_code(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,reference_code
+organisation,organisation_type,organisation_type_reference_code_id_key,u,UNIQUE (reference_code_id),True,,
+organisation,organisation_type,organisation_type_reference_code_id_not_null,n,NOT NULL reference_code_id,True,,
+organisation,organisation_type,organisation_type_sort_order_not_null,n,NOT NULL sort_order,True,,
+organisation,organisation_type,organisation_type_updated_at_not_null,n,NOT NULL updated_at,True,,
+organisation,organisation_type,organisation_type_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,verification_record,verification_record_checked_at_not_null,n,NOT NULL checked_at,True,,
+organisation,verification_record,verification_record_created_at_not_null,n,NOT NULL created_at,True,,
+organisation,verification_record,verification_record_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,verification_record,verification_record_id_not_null,n,NOT NULL id,True,,
+organisation,verification_record,verification_record_organisation_id_fkey,f,FOREIGN KEY (organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,organisation
+organisation,verification_record,verification_record_organisation_id_not_null,n,NOT NULL organisation_id,True,,
+organisation,verification_record,verification_record_pkey,p,PRIMARY KEY (id),True,,
+organisation,verification_record,verification_record_provider_code_not_null,n,NOT NULL provider_code,True,,
+organisation,verification_record,verification_record_provider_code_provider_reference_key,u,"UNIQUE (provider_code, provider_reference)",True,,
+organisation,verification_record,verification_record_updated_at_not_null,n,NOT NULL updated_at,True,,
+organisation,verification_record,verification_record_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,verification_record,verification_record_verification_status_id_fkey,f,FOREIGN KEY (verification_status_id) REFERENCES verification_status(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,verification_status
+organisation,verification_record,verification_record_verification_status_id_not_null,n,NOT NULL verification_status_id,True,,
+organisation,verification_record,verification_record_verification_type_id_fkey,f,FOREIGN KEY (verification_type_id) REFERENCES organisation.verification_type(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,organisation,verification_type
+organisation,verification_record,verification_record_verification_type_id_not_null,n,NOT NULL verification_type_id,True,,
+organisation,verification_type,verification_type_active_not_null,n,NOT NULL active,True,,
+organisation,verification_type,verification_type_code_key,u,UNIQUE (code),True,,
+organisation,verification_type,verification_type_code_not_null,n,NOT NULL code,True,,
+organisation,verification_type,verification_type_created_at_not_null,n,NOT NULL created_at,True,,
+organisation,verification_type,verification_type_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+organisation,verification_type,verification_type_display_name_not_null,n,NOT NULL display_name,True,,
+organisation,verification_type,verification_type_id_not_null,n,NOT NULL id,True,,
+organisation,verification_type,verification_type_pkey,p,PRIMARY KEY (id),True,,
+organisation,verification_type,verification_type_reference_code_id_fkey,f,FOREIGN KEY (reference_code_id) REFERENCES reference_code(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,reference_code
+organisation,verification_type,verification_type_reference_code_id_key,u,UNIQUE (reference_code_id),True,,
+organisation,verification_type,verification_type_reference_code_id_not_null,n,NOT NULL reference_code_id,True,,
+organisation,verification_type,verification_type_sort_order_not_null,n,NOT NULL sort_order,True,,
+organisation,verification_type,verification_type_updated_at_not_null,n,NOT NULL updated_at,True,,
+organisation,verification_type,verification_type_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+public,job_requirement,job_requirement_check,c,CHECK (((salary_min IS NULL) OR (salary_max IS NULL) OR (salary_min <= salary_max))),True,,
+public,job_requirement,job_requirement_check1,c,CHECK ((((salary_min IS NULL) AND (salary_max IS NULL)) OR ((currency_id IS NOT NULL) AND (salary_period_id IS NOT NULL)))),True,,
+public,job_requirement,job_requirement_check2,c,CHECK (((deadline IS NULL) OR (published_at IS NULL) OR (deadline >= published_at))),True,,
+public,job_requirement,job_requirement_created_at_not_null,n,NOT NULL created_at,True,,
+public,job_requirement,job_requirement_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+public,job_requirement,job_requirement_currency_id_fkey,f,FOREIGN KEY (currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,currency
+public,job_requirement,job_requirement_employment_type_id_fkey,f,FOREIGN KEY (employment_type_id) REFERENCES employment_type(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,employment_type
+public,job_requirement,job_requirement_employment_type_id_not_null,n,NOT NULL employment_type_id,True,,
+public,job_requirement,job_requirement_id_not_null,n,NOT NULL id,True,,
+public,job_requirement,job_requirement_id_organisation_id_key,u,"UNIQUE (id, organisation_id)",True,,
+public,job_requirement,job_requirement_job_role_id_fkey,f,FOREIGN KEY (job_role_id) REFERENCES job_role(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,job_role
+public,job_requirement,job_requirement_job_status_id_fkey,f,FOREIGN KEY (job_status_id) REFERENCES job_status(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,job_status
+public,job_requirement,job_requirement_job_status_id_not_null,n,NOT NULL job_status_id,True,,
+public,job_requirement,job_requirement_language_id_fkey,f,FOREIGN KEY (language_id) REFERENCES language(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,language
+public,job_requirement,job_requirement_open_to_consultants_not_null,n,NOT NULL open_to_consultants,True,,
+public,job_requirement,job_requirement_organisation_id_fkey,f,FOREIGN KEY (organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,organisation
+public,job_requirement,job_requirement_organisation_id_not_null,n,NOT NULL organisation_id,True,,
+public,job_requirement,job_requirement_pkey,p,PRIMARY KEY (id),True,,
+public,job_requirement,job_requirement_positions_check,c,CHECK ((positions > 0)),True,,
+public,job_requirement,job_requirement_positions_not_null,n,NOT NULL positions,True,,
+public,job_requirement,job_requirement_salary_max_check,c,CHECK ((salary_max >= (0)::numeric)),True,,
+public,job_requirement,job_requirement_salary_min_check,c,CHECK ((salary_min >= (0)::numeric)),True,,
+public,job_requirement,job_requirement_salary_period_id_fkey,f,FOREIGN KEY (salary_period_id) REFERENCES salary_period(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,salary_period
+public,job_requirement,job_requirement_title_not_null,n,NOT NULL title,True,,
+public,job_requirement,job_requirement_updated_at_not_null,n,NOT NULL updated_at,True,,
+public,job_requirement,job_requirement_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+public,job_requirement,job_requirement_work_type_id_fkey,f,FOREIGN KEY (work_type_id) REFERENCES work_type(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,work_type
+public,job_requirement,job_requirement_work_type_id_not_null,n,NOT NULL work_type_id,True,,
+public,organisation,organisation_account_profile_id_fkey,f,FOREIGN KEY (account_profile_id) REFERENCES organisation.account_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,organisation,account_profile
+public,organisation,organisation_account_profile_id_not_null,n,NOT NULL account_profile_id,True,,
+public,organisation,organisation_check,c,CHECK (((parent_organisation_id IS NULL) OR (parent_organisation_id <> id))),True,,
+public,organisation,organisation_city_id_fkey,f,FOREIGN KEY (city_id) REFERENCES city(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,city
+public,organisation,organisation_created_at_not_null,n,NOT NULL created_at,True,,
+public,organisation,organisation_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+public,organisation,organisation_id_account_profile_id_key,u,"UNIQUE (id, account_profile_id)",True,,
+public,organisation,organisation_id_not_null,n,NOT NULL id,True,,
+public,organisation,organisation_industry_id_fkey,f,FOREIGN KEY (industry_id) REFERENCES industry(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,industry
+public,organisation,organisation_is_active_not_null,n,NOT NULL is_active,True,,
+public,organisation,organisation_name_not_null,n,NOT NULL name,True,,
+public,organisation,organisation_organisation_type_id_fkey,f,FOREIGN KEY (organisation_type_id) REFERENCES organisation.organisation_type(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,organisation,organisation_type
+public,organisation,organisation_organisation_type_id_not_null,n,NOT NULL organisation_type_id,True,,
+public,organisation,organisation_parent_organisation_id_account_profile_id_fkey,f,"FOREIGN KEY (parent_organisation_id, account_profile_id) REFERENCES organisation(id, account_profile_id) ON UPDATE RESTRICT ON DELETE RESTRICT",True,public,organisation
+public,organisation,organisation_parent_organisation_id_fkey,f,FOREIGN KEY (parent_organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,organisation
+public,organisation,organisation_pkey,p,PRIMARY KEY (id),True,,
+public,organisation,organisation_updated_at_not_null,n,NOT NULL updated_at,True,,
+public,organisation,organisation_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+public,organisation,organisation_verification_status_id_fkey,f,FOREIGN KEY (verification_status_id) REFERENCES verification_status(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,verification_status
+public,organisation,organisation_verification_status_id_not_null,n,NOT NULL verification_status_id,True,,
+public,user_account,fk_user_account_neon_auth,f,"FOREIGN KEY (neon_auth_user_id) REFERENCES neon_auth.""user""(id) ON UPDATE RESTRICT ON DELETE RESTRICT",True,neon_auth,user
+public,user_account,user_account_account_status_id_fkey,f,FOREIGN KEY (account_status_id) REFERENCES identity.account_status(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,identity,account_status
+public,user_account,user_account_account_status_id_not_null,n,NOT NULL account_status_id,True,,
+public,user_account,user_account_created_at_not_null,n,NOT NULL created_at,True,,
+public,user_account,user_account_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
+public,user_account,user_account_email_check,c,CHECK ((((email)::text = lower((email)::text)) AND ((email)::text ~ '^[^[:space:]@]+@[^[:space:]@]+\.[^[:space:]@]+$'::text))),True,,
+public,user_account,user_account_email_key,u,UNIQUE (email),True,,
+public,user_account,user_account_email_not_null,n,NOT NULL email,True,,
+public,user_account,user_account_full_name_not_null,n,NOT NULL full_name,True,,
+public,user_account,user_account_id_not_null,n,NOT NULL id,True,,
+public,user_account,user_account_language_id_fkey,f,FOREIGN KEY (language_id) REFERENCES language(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,language
+public,user_account,user_account_neon_auth_user_id_key,u,UNIQUE (neon_auth_user_id),True,,
+public,user_account,user_account_pkey,p,PRIMARY KEY (id),True,,
+public,user_account,user_account_updated_at_not_null,n,NOT NULL updated_at,True,,
+public,user_account,user_account_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT,True,public,user_account
