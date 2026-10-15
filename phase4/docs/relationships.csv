@@ -1,0 +1,22 @@
+source_schema,source_table,constraint_name,target_schema,target_table,definition
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_job_requirement_id_fkey,public,job_requirement,FOREIGN KEY (job_requirement_id) REFERENCES job_requirement(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_organisation_id_fkey,public,organisation,FOREIGN KEY (organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,analytics_recruiter_velocity,analytics_recruiter_velocity_organisation_id_fkey,public,organisation,FOREIGN KEY (organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,analytics_recruiter_velocity,analytics_recruiter_velocity_recruiter_user_account_id_fkey,public,user_account,FOREIGN KEY (recruiter_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,analytics_sourcing_efficiency,analytics_sourcing_efficiency_organisation_id_fkey,public,organisation,FOREIGN KEY (organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,community_comment,community_comment_author_user_account_id_fkey,public,user_account,FOREIGN KEY (author_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,community_comment,community_comment_discussion_id_fkey,public,community_discussion,FOREIGN KEY (discussion_id) REFERENCES community_discussion(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,community_comment,community_comment_parent_comment_id_fkey,public,community_comment,FOREIGN KEY (parent_comment_id) REFERENCES community_comment(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,community_discussion,community_discussion_author_user_account_id_fkey,public,user_account,FOREIGN KEY (author_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,notification_delivery,notification_delivery_template_id_fkey,public,notification_template,FOREIGN KEY (template_id) REFERENCES notification_template(id)
+public,notification_delivery,notification_delivery_user_account_id_fkey,public,user_account,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,notification_preference,notification_preference_user_account_id_fkey,public,user_account,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,notification_template,notification_template_created_by_fkey,public,user_account,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,notification_template,notification_template_updated_by_fkey,public,user_account,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,support_ticket,support_ticket_assigned_admin_user_id_fkey,public,user_account,FOREIGN KEY (assigned_admin_user_id) REFERENCES user_account(id)
+public,support_ticket,support_ticket_assigned_to_user_account_id_fkey,public,user_account,FOREIGN KEY (assigned_to_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,support_ticket,support_ticket_requester_user_account_id_fkey,public,user_account,FOREIGN KEY (requester_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,support_ticket,support_ticket_user_account_id_fkey,public,user_account,FOREIGN KEY (user_account_id) REFERENCES user_account(id)
+public,support_ticket_message,support_ticket_message_author_user_account_id_fkey,public,user_account,FOREIGN KEY (author_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,support_ticket_message,support_ticket_message_sender_user_account_id_fkey,public,user_account,FOREIGN KEY (sender_user_account_id) REFERENCES user_account(id)
+public,support_ticket_message,support_ticket_message_support_ticket_id_fkey,public,support_ticket,FOREIGN KEY (support_ticket_id) REFERENCES support_ticket(id) ON UPDATE RESTRICT ON DELETE RESTRICT

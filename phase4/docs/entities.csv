@@ -1,0 +1,14 @@
+module,schema,table_name,type,origin,lifecycle,status,source_migration
+"Module 10 — Notifications, Preferences and Community",public,analytics_application_funnel_daily,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,004
+"Module 10 — Notifications, Preferences and Community",public,analytics_recruiter_velocity,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,004
+"Module 10 — Notifications, Preferences and Community",public,analytics_refresh_log,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,004
+"Module 10 — Notifications, Preferences and Community",public,analytics_sourcing_efficiency,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,004
+"Module 10 — Notifications, Preferences and Community",public,analytics_wallet_reconciliation_summary,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,004
+"Module 10 — Notifications, Preferences and Community",public,community_comment,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,004
+"Module 10 — Notifications, Preferences and Community",public,community_discussion,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,004
+"Module 10 — Notifications, Preferences and Community",public,faq_article,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,004
+"Module 10 — Notifications, Preferences and Community",public,notification_delivery,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,004
+"Module 10 — Notifications, Preferences and Community",public,notification_preference,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,004
+"Module 10 — Notifications, Preferences and Community",public,notification_template,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,004
+"Module 10 — Notifications, Preferences and Community",public,support_ticket,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,004
+"Module 10 — Notifications, Preferences and Community",public,support_ticket_message,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,004

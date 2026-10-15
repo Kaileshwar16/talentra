@@ -1,0 +1,19 @@
+{
+  "phase": 4,
+  "phase_title": "Notifications and Analytics",
+  "modules": [
+    "Module 10 \u2014 Notifications, Preferences and Community",
+    "Module 11 \u2014 Analytics, Reporting and Data Marts"
+  ],
+  "target_schemas": [
+    "public"
+  ],
+  "target_tables_count": 13,
+  "deployed_tables_count": 13,
+  "status": "IMPLEMENTED",
+  "docket_milestones": "Milestones for Phase 4",
+  "exclusions": [
+    "neon_auth",
+    "neon_auth.*"
+  ]
+}

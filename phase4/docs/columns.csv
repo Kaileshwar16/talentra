@@ -1,0 +1,171 @@
+schema,table_name,ordinal_position,column_name,data_type,is_nullable,default_value
+public,analytics_application_funnel_daily,1,id,bigint,NO,
+public,analytics_application_funnel_daily,2,report_date,date,NO,
+public,analytics_application_funnel_daily,3,job_requirement_id,bigint,NO,
+public,analytics_application_funnel_daily,4,organisation_id,bigint,NO,
+public,analytics_application_funnel_daily,5,applied_count,integer,NO,0
+public,analytics_application_funnel_daily,6,shortlisted_count,integer,NO,0
+public,analytics_application_funnel_daily,7,interviewing_count,integer,NO,0
+public,analytics_application_funnel_daily,8,offered_count,integer,NO,0
+public,analytics_application_funnel_daily,9,joined_count,integer,NO,0
+public,analytics_application_funnel_daily,10,rejected_count,integer,NO,0
+public,analytics_application_funnel_daily,11,withdrawn_count,integer,NO,0
+public,analytics_application_funnel_daily,12,calculated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,analytics_application_funnel_daily,13,total_views,integer,YES,0
+public,analytics_application_funnel_daily,14,total_applications,integer,YES,0
+public,analytics_application_funnel_daily,15,total_shortlisted,integer,YES,0
+public,analytics_application_funnel_daily,16,total_interviewed,integer,YES,0
+public,analytics_application_funnel_daily,17,total_offered,integer,YES,0
+public,analytics_application_funnel_daily,18,total_joined,integer,YES,0
+public,analytics_application_funnel_daily,19,total_withdrawn,integer,YES,0
+public,analytics_application_funnel_daily,20,refreshed_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,analytics_recruiter_velocity,1,id,bigint,NO,
+public,analytics_recruiter_velocity,2,report_month,date,NO,
+public,analytics_recruiter_velocity,3,recruiter_user_account_id,bigint,NO,
+public,analytics_recruiter_velocity,4,organisation_id,bigint,NO,
+public,analytics_recruiter_velocity,5,total_jobs_managed,integer,NO,0
+public,analytics_recruiter_velocity,6,total_applications_reviewed,integer,NO,0
+public,analytics_recruiter_velocity,7,avg_hours_to_first_review,numeric,YES,
+public,analytics_recruiter_velocity,8,avg_days_to_hire,numeric,YES,
+public,analytics_recruiter_velocity,9,total_offers_extended,integer,NO,0
+public,analytics_recruiter_velocity,10,total_offers_accepted,integer,NO,0
+public,analytics_recruiter_velocity,11,offer_acceptance_rate_percent,numeric,YES,
+public,analytics_recruiter_velocity,12,refreshed_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,analytics_refresh_log,1,id,bigint,NO,
+public,analytics_refresh_log,2,mart_name,character varying,NO,
+public,analytics_refresh_log,3,period_start,date,NO,
+public,analytics_refresh_log,4,period_end,date,NO,
+public,analytics_refresh_log,5,rows_processed,integer,NO,0
+public,analytics_refresh_log,6,refresh_status,character varying,NO,'SUCCESS'::character varying
+public,analytics_refresh_log,7,error_message,text,YES,
+public,analytics_refresh_log,8,duration_ms,integer,YES,
+public,analytics_refresh_log,9,refreshed_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,analytics_sourcing_efficiency,1,id,bigint,NO,
+public,analytics_sourcing_efficiency,2,report_date,date,NO,
+public,analytics_sourcing_efficiency,3,organisation_id,bigint,NO,
+public,analytics_sourcing_efficiency,4,sourcing_channel,character varying,NO,
+public,analytics_sourcing_efficiency,5,candidates_sourced,integer,NO,0
+public,analytics_sourcing_efficiency,6,candidates_applied,integer,NO,0
+public,analytics_sourcing_efficiency,7,candidates_hired,integer,NO,0
+public,analytics_sourcing_efficiency,8,channel_conversion_rate,numeric,YES,
+public,analytics_sourcing_efficiency,9,refreshed_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,analytics_wallet_reconciliation_summary,1,id,bigint,NO,
+public,analytics_wallet_reconciliation_summary,2,reconciliation_date,date,NO,
+public,analytics_wallet_reconciliation_summary,3,total_credits_purchased,integer,NO,0
+public,analytics_wallet_reconciliation_summary,4,total_credits_granted,integer,NO,0
+public,analytics_wallet_reconciliation_summary,5,total_credits_consumed,integer,NO,0
+public,analytics_wallet_reconciliation_summary,6,total_credits_refunded,integer,NO,0
+public,analytics_wallet_reconciliation_summary,7,net_active_wallet_balance,integer,NO,0
+public,analytics_wallet_reconciliation_summary,8,total_resumes_downloaded,integer,NO,0
+public,analytics_wallet_reconciliation_summary,9,discrepancy_count,integer,NO,0
+public,analytics_wallet_reconciliation_summary,10,reconciled_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,community_comment,1,id,bigint,NO,
+public,community_comment,2,discussion_id,bigint,NO,
+public,community_comment,3,author_user_account_id,bigint,NO,
+public,community_comment,4,parent_comment_id,bigint,YES,
+public,community_comment,5,body,text,NO,
+public,community_comment,6,upvotes,integer,NO,0
+public,community_comment,7,is_moderated,boolean,NO,false
+public,community_comment,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,community_comment,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,community_comment,10,deleted_at,timestamp with time zone,YES,
+public,community_discussion,1,id,bigint,NO,
+public,community_discussion,2,author_user_account_id,bigint,NO,
+public,community_discussion,3,title,character varying,NO,
+public,community_discussion,4,body,text,NO,
+public,community_discussion,5,category,character varying,NO,'CAREER_ADVICE'::character varying
+public,community_discussion,6,view_count,integer,NO,0
+public,community_discussion,7,is_pinned,boolean,NO,false
+public,community_discussion,8,is_locked,boolean,NO,false
+public,community_discussion,9,is_moderated,boolean,NO,false
+public,community_discussion,10,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,community_discussion,11,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,community_discussion,12,deleted_at,timestamp with time zone,YES,
+public,faq_article,1,id,bigint,NO,
+public,faq_article,2,category,character varying,NO,
+public,faq_article,3,question,character varying,NO,
+public,faq_article,4,answer,text,YES,
+public,faq_article,5,sort_order,integer,NO,0
+public,faq_article,6,is_published,boolean,NO,true
+public,faq_article,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,faq_article,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,faq_article,9,answer_markdown,text,YES,
+public,faq_article,10,view_count,integer,YES,0
+public,faq_article,11,helpful_votes,integer,YES,0
+public,faq_article,12,deleted_at,timestamp with time zone,YES,
+public,notification_delivery,1,id,bigint,NO,
+public,notification_delivery,2,user_account_id,bigint,NO,
+public,notification_delivery,3,notification_type,character varying,YES,
+public,notification_delivery,4,channel_code,character varying,YES,
+public,notification_delivery,5,provider_name,character varying,YES,
+public,notification_delivery,6,provider_message_reference,character varying,YES,
+public,notification_delivery,7,delivery_status,character varying,NO,'QUEUED'::character varying
+public,notification_delivery,8,subject,character varying,YES,
+public,notification_delivery,9,queued_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,notification_delivery,10,sent_at,timestamp with time zone,YES,
+public,notification_delivery,11,delivered_at,timestamp with time zone,YES,
+public,notification_delivery,12,failed_at,timestamp with time zone,YES,
+public,notification_delivery,13,failure_code,character varying,YES,
+public,notification_delivery,14,retry_count,integer,NO,0
+public,notification_delivery,15,correlation_id,uuid,YES,
+public,notification_delivery,16,template_id,bigint,YES,
+public,notification_delivery,17,channel,character varying,YES,'IN_APP'::character varying
+public,notification_delivery,18,title,character varying,YES,
+public,notification_delivery,19,body_content,text,YES,
+public,notification_delivery,20,read_at,timestamp with time zone,YES,
+public,notification_delivery,21,last_error,text,YES,
+public,notification_delivery,22,idempotency_key,character varying,YES,
+public,notification_delivery,23,created_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,notification_delivery,24,updated_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,notification_preference,1,id,bigint,NO,
+public,notification_preference,2,user_account_id,bigint,NO,
+public,notification_preference,3,notification_category,character varying,YES,
+public,notification_preference,4,channel_code,character varying,YES,
+public,notification_preference,5,is_enabled,boolean,NO,true
+public,notification_preference,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,notification_preference,7,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,notification_preference,8,category,character varying,YES,'ALL'::character varying
+public,notification_preference,9,in_app_enabled,boolean,YES,true
+public,notification_preference,10,email_enabled,boolean,YES,true
+public,notification_preference,11,sms_enabled,boolean,YES,false
+public,notification_preference,12,push_enabled,boolean,YES,true
+public,notification_preference,13,digest_frequency,character varying,YES,'INSTANT'::character varying
+public,notification_preference,14,marketing_opt_in,boolean,YES,false
+public,notification_template,1,id,bigint,NO,
+public,notification_template,2,template_code,character varying,NO,
+public,notification_template,3,category,character varying,NO,'SYSTEM'::character varying
+public,notification_template,4,subject_template,character varying,NO,
+public,notification_template,5,body_template,text,NO,
+public,notification_template,6,supported_channels,character varying,NO,"'IN_APP,EMAIL'::character varying"
+public,notification_template,7,is_active,boolean,NO,true
+public,notification_template,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,notification_template,9,created_by,bigint,YES,
+public,notification_template,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,notification_template,11,updated_by,bigint,YES,
+public,notification_template,12,deleted_at,timestamp with time zone,YES,
+public,support_ticket,1,id,bigint,NO,
+public,support_ticket,2,ticket_number,character varying,YES,
+public,support_ticket,3,requester_user_account_id,bigint,YES,
+public,support_ticket,4,assigned_to_user_account_id,bigint,YES,
+public,support_ticket,5,category,character varying,NO,'GENERAL'::character varying
+public,support_ticket,6,priority,character varying,NO,'MEDIUM'::character varying
+public,support_ticket,7,status,character varying,NO,'OPEN'::character varying
+public,support_ticket,8,subject,character varying,NO,
+public,support_ticket,9,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,support_ticket,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,support_ticket,11,ticket_reference,character varying,YES,
+public,support_ticket,12,user_account_id,bigint,YES,
+public,support_ticket,13,ticket_status,character varying,YES,'OPEN'::character varying
+public,support_ticket,14,assigned_admin_user_id,bigint,YES,
+public,support_ticket,15,resolution_summary,text,YES,
+public,support_ticket,16,resolved_at,timestamp with time zone,YES,
+public,support_ticket,17,deleted_at,timestamp with time zone,YES,
+public,support_ticket_message,1,id,bigint,NO,
+public,support_ticket_message,2,support_ticket_id,bigint,NO,
+public,support_ticket_message,3,author_user_account_id,bigint,YES,
+public,support_ticket_message,4,message_body,text,NO,
+public,support_ticket_message,5,is_internal_note,boolean,NO,false
+public,support_ticket_message,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,support_ticket_message,7,sender_user_account_id,bigint,YES,
+public,support_ticket_message,8,is_staff_reply,boolean,YES,false
+public,support_ticket_message,9,attachment_storage_reference,character varying,YES,

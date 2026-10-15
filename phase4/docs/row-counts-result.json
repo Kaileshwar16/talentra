@@ -1,0 +1,83 @@
+{
+  "captured_at_utc": "2026-10-15T19:41:44.524074+00:00",
+  "row_counts": [
+    {
+      "schema": "public",
+      "table_name": "analytics_application_funnel_daily",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "analytics_recruiter_velocity",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "analytics_refresh_log",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "analytics_sourcing_efficiency",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "analytics_wallet_reconciliation_summary",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "community_comment",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "community_discussion",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "faq_article",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "notification_delivery",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "notification_preference",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "notification_template",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "support_ticket",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "support_ticket_message",
+      "type": "BASE TABLE",
+      "row_count": 0
+    }
+  ]
+}
