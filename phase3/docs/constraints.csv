@@ -1,0 +1,159 @@
+schema,table_name,constraint_name,constraint_type,definition
+public,account_licence,account_licence_account_profile_id_fkey,f,FOREIGN KEY (account_profile_id) REFERENCES account_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,account_licence,account_licence_account_profile_id_not_null,n,NOT NULL account_profile_id
+public,account_licence,account_licence_created_at_not_null,n,NOT NULL created_at
+public,account_licence,account_licence_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id)
+public,account_licence,account_licence_id_not_null,n,NOT NULL id
+public,account_licence,account_licence_is_active_not_null,n,NOT NULL is_active
+public,account_licence,account_licence_licence_key_key,u,UNIQUE (licence_key)
+public,account_licence,account_licence_licence_key_not_null,n,NOT NULL licence_key
+public,account_licence,account_licence_max_devices_per_user_check,c,CHECK ((max_devices_per_user > 0))
+public,account_licence,account_licence_max_devices_per_user_not_null,n,NOT NULL max_devices_per_user
+public,account_licence,account_licence_max_seats_check,c,CHECK ((max_seats > 0))
+public,account_licence,account_licence_max_seats_not_null,n,NOT NULL max_seats
+public,account_licence,account_licence_pkey,p,PRIMARY KEY (id)
+public,account_licence,account_licence_starts_at_not_null,n,NOT NULL starts_at
+public,account_licence,account_licence_subscription_plan_id_fkey,f,FOREIGN KEY (subscription_plan_id) REFERENCES subscription_plan(id)
+public,account_licence,account_licence_updated_at_not_null,n,NOT NULL updated_at
+public,account_licence,account_licence_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id)
+public,account_licence,chk_licence_dates,c,CHECK (((expires_at IS NULL) OR (expires_at >= starts_at)))
+public,account_subscription,account_subscription_account_profile_id_fkey,f,FOREIGN KEY (account_profile_id) REFERENCES account_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,account_subscription,account_subscription_account_profile_id_not_null,n,NOT NULL account_profile_id
+public,account_subscription,account_subscription_created_at_not_null,n,NOT NULL created_at
+public,account_subscription,account_subscription_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id)
+public,account_subscription,account_subscription_id_not_null,n,NOT NULL id
+public,account_subscription,account_subscription_pkey,p,PRIMARY KEY (id)
+public,account_subscription,account_subscription_starts_at_not_null,n,NOT NULL starts_at
+public,account_subscription,account_subscription_subscription_plan_id_fkey,f,FOREIGN KEY (subscription_plan_id) REFERENCES subscription_plan(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,account_subscription,account_subscription_subscription_plan_id_not_null,n,NOT NULL subscription_plan_id
+public,account_subscription,account_subscription_subscription_status_check,c,"CHECK (((subscription_status)::text = ANY ((ARRAY['TRIAL'::character varying, 'ACTIVE'::character varying, 'PAST_DUE'::character varying, 'CANCELLED'::character varying, 'EXPIRED'::character varying])::text[])))"
+public,account_subscription,account_subscription_subscription_status_not_null,n,NOT NULL subscription_status
+public,account_subscription,account_subscription_updated_at_not_null,n,NOT NULL updated_at
+public,account_subscription,account_subscription_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id)
+public,account_subscription,chk_sub_timing,c,CHECK (((ends_at IS NULL) OR (ends_at >= starts_at)))
+public,consultant_request,consultant_request_approved_by_user_id_fkey,f,FOREIGN KEY (approved_by_user_id) REFERENCES user_account(id)
+public,consultant_request,consultant_request_consultant_organisation_id_fkey,f,FOREIGN KEY (consultant_organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,consultant_request,consultant_request_consultant_organisation_id_not_null,n,NOT NULL consultant_organisation_id
+public,consultant_request,consultant_request_consultant_user_account_id_fkey,f,FOREIGN KEY (consultant_user_account_id) REFERENCES user_account(id)
+public,consultant_request,consultant_request_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id)
+public,consultant_request,consultant_request_id_not_null,n,NOT NULL id
+public,consultant_request,consultant_request_job_requirement_id_fkey,f,FOREIGN KEY (job_requirement_id) REFERENCES job_requirement(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,consultant_request,consultant_request_job_requirement_id_not_null,n,NOT NULL job_requirement_id
+public,consultant_request,consultant_request_pkey,p,PRIMARY KEY (id)
+public,consultant_request,consultant_request_request_status_check,c,"CHECK (((request_status)::text = ANY ((ARRAY['REQUESTED'::character varying, 'ACCEPTED'::character varying, 'DECLINED'::character varying, 'TERMINATED'::character varying])::text[])))"
+public,consultant_request,consultant_request_request_status_not_null,n,NOT NULL request_status
+public,consultant_request,consultant_request_requested_at_not_null,n,NOT NULL requested_at
+public,consultant_request,consultant_request_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id)
+public,device_session,device_session_expires_at_not_null,n,NOT NULL expires_at
+public,device_session,device_session_id_not_null,n,NOT NULL id
+public,device_session,device_session_last_activity_at_not_null,n,NOT NULL last_activity_at
+public,device_session,device_session_pkey,p,PRIMARY KEY (id)
+public,device_session,device_session_session_token_hash_key,u,UNIQUE (session_token_hash)
+public,device_session,device_session_session_token_hash_not_null,n,NOT NULL session_token_hash
+public,device_session,device_session_started_at_not_null,n,NOT NULL started_at
+public,device_session,device_session_user_account_id_fkey,f,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,device_session,device_session_user_account_id_not_null,n,NOT NULL user_account_id
+public,licence_seat_assignment,licence_seat_assignment_account_licence_id_fkey,f,FOREIGN KEY (account_licence_id) REFERENCES account_licence(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,licence_seat_assignment,licence_seat_assignment_account_licence_id_not_null,n,NOT NULL account_licence_id
+public,licence_seat_assignment,licence_seat_assignment_assigned_at_not_null,n,NOT NULL assigned_at
+public,licence_seat_assignment,licence_seat_assignment_assigned_by_fkey,f,FOREIGN KEY (assigned_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,licence_seat_assignment,licence_seat_assignment_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id)
+public,licence_seat_assignment,licence_seat_assignment_id_not_null,n,NOT NULL id
+public,licence_seat_assignment,licence_seat_assignment_pkey,p,PRIMARY KEY (id)
+public,licence_seat_assignment,licence_seat_assignment_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id)
+public,licence_seat_assignment,licence_seat_assignment_user_account_id_fkey,f,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,licence_seat_assignment,licence_seat_assignment_user_account_id_not_null,n,NOT NULL user_account_id
+public,licence_seat_assignment,uq_licence_seat,u,"UNIQUE (account_licence_id, user_account_id)"
+public,payment_transaction,payment_transaction_account_profile_id_fkey,f,FOREIGN KEY (account_profile_id) REFERENCES account_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,payment_transaction,payment_transaction_account_profile_id_not_null,n,NOT NULL account_profile_id
+public,payment_transaction,payment_transaction_amount_check,c,CHECK ((amount > (0)::numeric))
+public,payment_transaction,payment_transaction_amount_not_null,n,NOT NULL amount
+public,payment_transaction,payment_transaction_created_at_not_null,n,NOT NULL created_at
+public,payment_transaction,payment_transaction_currency_id_fkey,f,FOREIGN KEY (currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,payment_transaction,payment_transaction_currency_id_not_null,n,NOT NULL currency_id
+public,payment_transaction,payment_transaction_gateway_transaction_id_key,u,UNIQUE (gateway_transaction_id)
+public,payment_transaction,payment_transaction_gateway_transaction_id_not_null,n,NOT NULL gateway_transaction_id
+public,payment_transaction,payment_transaction_id_not_null,n,NOT NULL id
+public,payment_transaction,payment_transaction_idempotency_key_key,u,UNIQUE (idempotency_key)
+public,payment_transaction,payment_transaction_idempotency_key_not_null,n,NOT NULL idempotency_key
+public,payment_transaction,payment_transaction_occurred_at_not_null,n,NOT NULL occurred_at
+public,payment_transaction,payment_transaction_payment_gateway_not_null,n,NOT NULL payment_gateway
+public,payment_transaction,payment_transaction_payment_status_not_null,n,NOT NULL payment_status
+public,payment_transaction,payment_transaction_pkey,p,PRIMARY KEY (id)
+public,payment_transaction,payment_transaction_subscription_plan_id_fkey,f,FOREIGN KEY (subscription_plan_id) REFERENCES subscription_plan(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,payment_transaction,payment_transaction_updated_at_not_null,n,NOT NULL updated_at
+public,payment_transaction,payment_transaction_wallet_account_id_fkey,f,FOREIGN KEY (wallet_account_id) REFERENCES wallet_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,profile_download_event,profile_download_event_candidate_profile_id_fkey,f,FOREIGN KEY (candidate_profile_id) REFERENCES candidate_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,profile_download_event,profile_download_event_candidate_profile_id_not_null,n,NOT NULL candidate_profile_id
+public,profile_download_event,profile_download_event_credits_deducted_check,c,CHECK ((credits_deducted >= 0))
+public,profile_download_event,profile_download_event_credits_deducted_not_null,n,NOT NULL credits_deducted
+public,profile_download_event,profile_download_event_downloaded_at_not_null,n,NOT NULL downloaded_at
+public,profile_download_event,profile_download_event_downloader_user_account_id_fkey,f,FOREIGN KEY (downloader_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,profile_download_event,profile_download_event_id_not_null,n,NOT NULL id
+public,profile_download_event,profile_download_event_organisation_id_fkey,f,FOREIGN KEY (organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,profile_download_event,profile_download_event_pkey,p,PRIMARY KEY (id)
+public,profile_download_event,profile_download_event_recruiter_user_account_id_fkey,f,FOREIGN KEY (recruiter_user_account_id) REFERENCES user_account(id)
+public,profile_download_event,profile_download_event_resume_version_id_fkey,f,FOREIGN KEY (resume_version_id) REFERENCES resume_version(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,profile_download_event,profile_download_event_wallet_transaction_id_fkey,f,FOREIGN KEY (wallet_transaction_id) REFERENCES wallet_transaction_ledger(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,sourcing_pool,sourcing_pool_created_at_not_null,n,NOT NULL created_at
+public,sourcing_pool,sourcing_pool_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id)
+public,sourcing_pool,sourcing_pool_id_not_null,n,NOT NULL id
+public,sourcing_pool,sourcing_pool_organisation_id_fkey,f,FOREIGN KEY (organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,sourcing_pool,sourcing_pool_organisation_id_not_null,n,NOT NULL organisation_id
+public,sourcing_pool,sourcing_pool_pkey,p,PRIMARY KEY (id)
+public,sourcing_pool,sourcing_pool_updated_at_not_null,n,NOT NULL updated_at
+public,sourcing_pool,sourcing_pool_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id)
+public,sourcing_pool_candidate,sourcing_pool_candidate_added_at_not_null,n,NOT NULL added_at
+public,sourcing_pool_candidate,sourcing_pool_candidate_added_by_recruiter_id_fkey,f,FOREIGN KEY (added_by_recruiter_id) REFERENCES user_account(id)
+public,sourcing_pool_candidate,sourcing_pool_candidate_added_by_user_id_fkey,f,FOREIGN KEY (added_by_user_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,sourcing_pool_candidate,sourcing_pool_candidate_candidate_profile_id_fkey,f,FOREIGN KEY (candidate_profile_id) REFERENCES candidate_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,sourcing_pool_candidate,sourcing_pool_candidate_candidate_profile_id_not_null,n,NOT NULL candidate_profile_id
+public,sourcing_pool_candidate,sourcing_pool_candidate_id_not_null,n,NOT NULL id
+public,sourcing_pool_candidate,sourcing_pool_candidate_pkey,p,PRIMARY KEY (id)
+public,sourcing_pool_candidate,sourcing_pool_candidate_sourcing_pool_id_fkey,f,FOREIGN KEY (sourcing_pool_id) REFERENCES sourcing_pool(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,sourcing_pool_candidate,sourcing_pool_candidate_sourcing_pool_id_not_null,n,NOT NULL sourcing_pool_id
+public,sourcing_pool_candidate,uq_sourcing_pool_cand,u,"UNIQUE (sourcing_pool_id, candidate_profile_id)"
+public,subscription_plan,subscription_plan_active_not_null,n,NOT NULL active
+public,subscription_plan,subscription_plan_billing_interval_check,c,"CHECK (((billing_interval)::text = ANY ((ARRAY['MONTHLY'::character varying, 'QUARTERLY'::character varying, 'ANNUAL'::character varying])::text[])))"
+public,subscription_plan,subscription_plan_billing_interval_not_null,n,NOT NULL billing_interval
+public,subscription_plan,subscription_plan_candidate_download_credits_check,c,CHECK ((candidate_download_credits >= 0))
+public,subscription_plan,subscription_plan_candidate_download_credits_not_null,n,NOT NULL candidate_download_credits
+public,subscription_plan,subscription_plan_code_key,u,UNIQUE (code)
+public,subscription_plan,subscription_plan_code_not_null,n,NOT NULL code
+public,subscription_plan,subscription_plan_created_at_not_null,n,NOT NULL created_at
+public,subscription_plan,subscription_plan_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id)
+public,subscription_plan,subscription_plan_currency_id_fkey,f,FOREIGN KEY (currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,subscription_plan,subscription_plan_currency_id_not_null,n,NOT NULL currency_id
+public,subscription_plan,subscription_plan_id_not_null,n,NOT NULL id
+public,subscription_plan,subscription_plan_job_posting_limit_check,c,CHECK ((job_posting_limit > 0))
+public,subscription_plan,subscription_plan_job_posting_limit_not_null,n,NOT NULL job_posting_limit
+public,subscription_plan,subscription_plan_max_seats_check,c,CHECK ((max_seats > 0))
+public,subscription_plan,subscription_plan_max_seats_not_null,n,NOT NULL max_seats
+public,subscription_plan,subscription_plan_name_not_null,n,NOT NULL name
+public,subscription_plan,subscription_plan_pkey,p,PRIMARY KEY (id)
+public,subscription_plan,subscription_plan_price_check,c,CHECK ((price >= (0)::numeric))
+public,subscription_plan,subscription_plan_price_not_null,n,NOT NULL price
+public,subscription_plan,subscription_plan_updated_at_not_null,n,NOT NULL updated_at
+public,subscription_plan,subscription_plan_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id)
+public,wallet_account,wallet_account_account_profile_id_fkey,f,FOREIGN KEY (account_profile_id) REFERENCES account_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,wallet_account,wallet_account_account_profile_id_key,u,UNIQUE (account_profile_id)
+public,wallet_account,wallet_account_account_profile_id_not_null,n,NOT NULL account_profile_id
+public,wallet_account,wallet_account_created_at_not_null,n,NOT NULL created_at
+public,wallet_account,wallet_account_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id)
+public,wallet_account,wallet_account_credit_balance_check,c,CHECK ((credit_balance >= 0))
+public,wallet_account,wallet_account_credit_balance_not_null,n,NOT NULL credit_balance
+public,wallet_account,wallet_account_currency_id_fkey,f,FOREIGN KEY (currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,wallet_account,wallet_account_currency_id_not_null,n,NOT NULL currency_id
+public,wallet_account,wallet_account_id_not_null,n,NOT NULL id
+public,wallet_account,wallet_account_pkey,p,PRIMARY KEY (id)
+public,wallet_account,wallet_account_updated_at_not_null,n,NOT NULL updated_at
+public,wallet_account,wallet_account_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id)
+public,wallet_transaction_ledger,wallet_transaction_ledger_balance_after_check,c,CHECK ((balance_after >= 0))
+public,wallet_transaction_ledger,wallet_transaction_ledger_balance_after_not_null,n,NOT NULL balance_after
+public,wallet_transaction_ledger,wallet_transaction_ledger_id_not_null,n,NOT NULL id
+public,wallet_transaction_ledger,wallet_transaction_ledger_pkey,p,PRIMARY KEY (id)
+public,wallet_transaction_ledger,wallet_transaction_ledger_recorded_at_not_null,n,NOT NULL recorded_at
+public,wallet_transaction_ledger,wallet_transaction_ledger_transaction_type_check,c,"CHECK (((transaction_type)::text = ANY ((ARRAY['PURCHASE'::character varying, 'PLAN_GRANT'::character varying, 'PROFILE_DOWNLOAD'::character varying, 'REFUND'::character varying, 'CORRECTION'::character varying, 'EXPIRY'::character varying])::text[])))"
+public,wallet_transaction_ledger,wallet_transaction_ledger_transaction_type_not_null,n,NOT NULL transaction_type
+public,wallet_transaction_ledger,wallet_transaction_ledger_wallet_account_id_fkey,f,FOREIGN KEY (wallet_account_id) REFERENCES wallet_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,wallet_transaction_ledger,wallet_transaction_ledger_wallet_account_id_not_null,n,NOT NULL wallet_account_id

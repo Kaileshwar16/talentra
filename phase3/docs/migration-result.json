@@ -1,0 +1,12 @@
+{
+  "phase": 3,
+  "migrations": [
+    {
+      "file": "phase3/migrations/004_phase3.sql",
+      "sha256": "2a95c0d630e5ee8f86889d96883b03b100a1b4a566db8c3aaed073af10d36c59",
+      "status": "APPLIED_AND_VERIFIED"
+    }
+  ],
+  "environment": "Neon PostgreSQL 18 Disposable Test Branch",
+  "verified_at_utc": "2026-10-15T19:41:55.826476+00:00"
+}

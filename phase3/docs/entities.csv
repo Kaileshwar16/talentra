@@ -1,0 +1,13 @@
+module,schema,table_name,type,origin,lifecycle,status,source_migration
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,account_licence,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,account_subscription,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,consultant_request,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,device_session,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,licence_seat_assignment,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,payment_transaction,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,profile_download_event,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,sourcing_pool,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,sourcing_pool_candidate,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,subscription_plan,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,wallet_account,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,wallet_transaction_ledger,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003

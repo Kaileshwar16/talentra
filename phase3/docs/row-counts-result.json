@@ -1,0 +1,77 @@
+{
+  "captured_at_utc": "2026-10-15T19:41:43.432378+00:00",
+  "row_counts": [
+    {
+      "schema": "public",
+      "table_name": "account_licence",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "account_subscription",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "consultant_request",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "device_session",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "licence_seat_assignment",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "payment_transaction",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "profile_download_event",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "sourcing_pool",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "sourcing_pool_candidate",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "subscription_plan",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "wallet_account",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "wallet_transaction_ledger",
+      "type": "BASE TABLE",
+      "row_count": 0
+    }
+  ]
+}
