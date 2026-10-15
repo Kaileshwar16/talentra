@@ -1,0 +1,104 @@
+module,table_name,source,owner,lifecycle,row_count
+Profile,academic_program,Connected ER diagram,Team,soft-delete,0
+Master data,accomplishment_type,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,5
+Master data,activity_type,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,5
+Jobs and Applications,application,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,application_answer,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,application_document,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,application_profile_snapshot,Connected ER diagram,Team,append-only,0
+Jobs and Applications,application_stage_result,Connected ER diagram,Team,soft-delete,0
+Master data,application_status,Connected ER diagram,Team,soft-delete,7
+Jobs and Applications,application_status_history,Connected ER diagram,Team,append-only,0
+Jobs and Applications,application_withdrawal,Connected ER diagram,Team,soft-delete,0
+Profile,assessment,PDF Phase 1 module coverage,Team,soft-delete,0
+Profile,assessment_result,PDF Phase 1 module coverage,Team,soft-delete,0
+Profile,candidate_academic_result,Connected ER diagram,Team,soft-delete,0
+Profile,candidate_accomplishment,Connected ER diagram,Team,soft-delete,0
+Profile,candidate_activity_log,PDF Phase 1 module coverage,Team,append-only,0
+Master data,candidate_activity_type,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,4
+Profile,candidate_backlog,Connected ER diagram,Team,soft-delete,0
+Profile,candidate_bookmark,PDF Phase 1 module coverage,Team,soft-delete,0
+Profile,candidate_bookmark_history,PDF Phase 1 module coverage,Team,append-only,0
+Profile,candidate_contact,Connected ER diagram,Team,soft-delete,0
+Profile,candidate_document,Connected ER diagram,Team,soft-delete,0
+Profile,candidate_education,Connected ER diagram,Team,soft-delete,0
+Profile,candidate_experience,Connected ER diagram,Team,soft-delete,0
+Profile,candidate_extracurricular_activity,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,candidate_job_eligibility_check,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,candidate_job_search_history,PDF Phase 1 module coverage,Team,append-only,0
+Profile,candidate_language,Connected ER diagram,Team,soft-delete,0
+Profile,candidate_profile,Connected ER diagram,Team,soft-delete,0
+Profile,candidate_project,Connected ER diagram,Team,soft-delete,0
+Profile,candidate_skill,Connected ER diagram,Team,soft-delete,0
+Profile,candidate_social_link,Connected ER diagram,Team,soft-delete,0
+Profile,candidate_subject,Connected ER diagram,Team,soft-delete,0
+Profile,candidate_volunteer_experience,Connected ER diagram,Team,soft-delete,0
+Master data,city,Connected ER diagram,Team,soft-delete,0
+Master data,country,Connected ER diagram,Team,soft-delete,0
+Profile,course,PDF Phase 1 module coverage,Team,soft-delete,0
+Profile,course_enrolment,PDF Phase 1 module coverage,Team,soft-delete,0
+Master data,course_enrolment_status,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,4
+Master data,currency,Connected ER diagram,Team,soft-delete,2
+Master data,document_type,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,5
+Master data,education_level,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,6
+Profile,education_verification,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,eligibility_check_result,Connected ER diagram,Team,soft-delete,0
+Master data,eligibility_decision,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,3
+Master data,employment_type,Connected ER diagram,Team,soft-delete,6
+Master data,experience_type,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,4
+Master data,hiring_stage_type,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,5
+Master data,industry,PDF Phase 1 module coverage,Team,soft-delete,0
+Profile,institution,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,interview,Connected ER diagram,Team,soft-delete,0
+Master data,interview_status,Connected ER diagram,Team,soft-delete,4
+Jobs and Applications,job_academic_criterion,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,job_application_policy,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,job_attachment,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,job_eligibility_policy,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,job_eligible_program,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,job_event,Connected ER diagram,Team,soft-delete,0
+Master data,job_event_type,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,5
+Jobs and Applications,job_external_ats,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,job_hiring_stage,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,job_location,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,job_position,PDF Phase 1 module coverage,Team,soft-delete,0
+Master data,job_position_status,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,3
+Jobs and Applications,job_qualification_requirement,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,job_requirement,Connected ER diagram,Team,soft-delete,0
+Master data,job_role,PDF Phase 1 module coverage,Team,soft-delete,0
+Jobs and Applications,job_shortlist,PDF Phase 1 module coverage,Team,soft-delete,0
+Jobs and Applications,job_skill_requirement,Connected ER diagram,Team,soft-delete,0
+Master data,job_status,Connected ER diagram,Team,soft-delete,5
+Jobs and Applications,job_status_history,Connected ER diagram,Team,append-only,0
+Jobs and Applications,joining_record,Connected ER diagram,Team,soft-delete,0
+Master data,language,Connected ER diagram,Team,soft-delete,1
+Jobs and Applications,offer,Connected ER diagram,Team,soft-delete,0
+Master data,offer_status,Connected ER diagram,Team,soft-delete,6
+Shared dependency anchor,organisation,Connected ER diagram,Team,soft-delete,0
+Master data,proficiency_level,Connected ER diagram,Team,soft-delete,5
+Profile,profile_completion_score,PDF Phase 1 module coverage,Team,soft-delete,0
+Profile,profile_view_history,PDF Phase 1 module coverage,Team,append-only,0
+Master data,qualification,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,question,Connected ER diagram,Team,soft-delete,0
+Jobs and Applications,question_option,Connected ER diagram,Team,soft-delete,0
+Master data,question_type,Connected ER diagram,Team,soft-delete,7
+Jobs and Applications,questionnaire,Connected ER diagram,Team,soft-delete,0
+Master data,reference_code,PDF Phase 1 module coverage,Team,soft-delete,119
+Master data,reference_translation,PDF Phase 1 module coverage,Team,soft-delete,119
+Master data,referral_status,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,4
+Profile,referral_tracking,PDF Phase 1 module coverage,Team,soft-delete,0
+Profile,resume_template,Connected ER diagram,Team,soft-delete,0
+Profile,resume_version,Connected ER diagram,Team,append-only,0
+Master data,salary_period,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,5
+Master data,score_scale,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,3
+Jobs and Applications,shortlist_history,PDF Phase 1 module coverage,Team,append-only,0
+Master data,skill,Connected ER diagram,Team,soft-delete,0
+Master data,social_platform,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,4
+Master data,stage_decision,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,4
+Master data,state,Connected ER diagram,Team,soft-delete,0
+Master data,subject,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,0
+Master data,ui_translation,PDF Phase 1 module coverage,Team,soft-delete,3
+Shared dependency anchor,user_account,Connected ER diagram,Team,soft-delete,0
+Master data,verification_status,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,3
+Master data,withdrawal_outcome,Supporting enum/master referenced by diagram or Phase 1,Team,soft-delete,4
+Master data,work_type,Connected ER diagram,Team,soft-delete,3

@@ -1,0 +1,1107 @@
+module,table_name,position,column_name,data_type,nullable,default,identity,data_class,nullability_reason
+Profile,academic_program,1,id,bigint,NO,,YES,Personal,
+Profile,academic_program,2,name,character varying(150),NO,,NO,Personal,
+Profile,academic_program,3,institution_id,bigint,NO,,NO,Personal,
+Profile,academic_program,4,qualification_id,bigint,NO,,NO,Personal,
+Profile,academic_program,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,academic_program,6,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,academic_program,7,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,academic_program,8,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,academic_program,9,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,accomplishment_type,1,id,bigint,NO,,YES,Public,
+Master data,accomplishment_type,2,code,character varying(80),NO,,NO,Public,
+Master data,accomplishment_type,3,display_name,character varying(150),NO,,NO,Public,
+Master data,accomplishment_type,4,active,boolean,NO,true,NO,Public,
+Master data,accomplishment_type,5,sort_order,integer,NO,0,NO,Public,
+Master data,accomplishment_type,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,accomplishment_type,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,accomplishment_type,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,accomplishment_type,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,accomplishment_type,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,accomplishment_type,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,activity_type,1,id,bigint,NO,,YES,Public,
+Master data,activity_type,2,code,character varying(80),NO,,NO,Public,
+Master data,activity_type,3,display_name,character varying(150),NO,,NO,Public,
+Master data,activity_type,4,active,boolean,NO,true,NO,Public,
+Master data,activity_type,5,sort_order,integer,NO,0,NO,Public,
+Master data,activity_type,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,activity_type,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,activity_type,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,activity_type,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,activity_type,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,activity_type,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,application,1,id,bigint,NO,,YES,Personal,
+Jobs and Applications,application,2,applied_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application,3,cover_letter,character varying(4000),YES,,NO,Personal,Optional cover letter has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,application,4,candidate_profile_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application,5,job_requirement_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application,6,application_status_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application,7,resume_version_id,bigint,YES,,NO,Personal,Resume not supplied; job submission policy is enforced by the access layer.
+Jobs and Applications,application,8,questionnaire_id,bigint,YES,,NO,Personal,Application has no questionnaire; answers require a non-null questionnaire.
+Jobs and Applications,application,9,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application,10,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,application,11,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application,12,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,application,13,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,application_answer,1,id,bigint,NO,,YES,Personal,
+Jobs and Applications,application_answer,2,answer_text,character varying(10000),YES,,NO,Personal,Not the selected answer representation; exactly one value field/option is required.
+Jobs and Applications,application_answer,3,answer_number,"numeric(20,6)",YES,,NO,Personal,Not the selected answer representation; exactly one value field/option is required.
+Jobs and Applications,application_answer,4,answer_date,date,YES,,NO,Personal,Not the selected answer representation; exactly one value field/option is required.
+Jobs and Applications,application_answer,5,answer_boolean,boolean,YES,,NO,Personal,Not the selected answer representation; exactly one value field/option is required.
+Jobs and Applications,application_answer,6,application_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application_answer,7,question_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application_answer,8,questionnaire_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application_answer,9,question_option_id,bigint,YES,,NO,Personal,Answer uses one of the typed scalar answer fields instead.
+Jobs and Applications,application_answer,10,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application_answer,11,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,application_answer,12,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application_answer,13,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,application_answer,14,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,application_document,1,id,bigint,NO,,YES,Personal,
+Jobs and Applications,application_document,2,application_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application_document,3,candidate_document_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application_document,4,candidate_profile_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application_document,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application_document,6,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,application_document,7,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application_document,8,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,application_document,9,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,application_profile_snapshot,1,id,bigint,NO,,YES,Personal,
+Jobs and Applications,application_profile_snapshot,2,profile_version,integer,NO,,NO,Personal,
+Jobs and Applications,application_profile_snapshot,3,profile_data,jsonb,NO,,NO,Sensitive,
+Jobs and Applications,application_profile_snapshot,4,captured_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application_profile_snapshot,5,application_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application_profile_snapshot,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application_profile_snapshot,7,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,application_profile_snapshot,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application_profile_snapshot,9,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,application_profile_snapshot,10,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,application_stage_result,1,id,bigint,NO,,YES,Personal,
+Jobs and Applications,application_stage_result,2,attempt_number,integer,NO,1,NO,Personal,
+Jobs and Applications,application_stage_result,3,score,"numeric(7,3)",YES,,NO,Personal,Assessment/stage has not been scored; stage maximum must accompany a supplied score.
+Jobs and Applications,application_stage_result,4,maximum_score,"numeric(7,3)",YES,,NO,Personal,Stage has not been scored; both score and maximum must be supplied together.
+Jobs and Applications,application_stage_result,5,feedback,character varying(4000),YES,,NO,Personal,Optional feedback has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,application_stage_result,6,completed_at,timestamp with time zone,YES,,NO,Personal,Optional completed at has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,application_stage_result,7,application_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application_stage_result,8,job_hiring_stage_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application_stage_result,9,job_requirement_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application_stage_result,10,stage_decision_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application_stage_result,11,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application_stage_result,12,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,application_stage_result,13,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application_stage_result,14,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,application_stage_result,15,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,application_status,1,id,bigint,NO,,YES,Personal,
+Master data,application_status,2,code,character varying(80),NO,,NO,Personal,
+Master data,application_status,3,display_name,character varying(150),NO,,NO,Personal,
+Master data,application_status,4,active,boolean,NO,true,NO,Personal,
+Master data,application_status,5,sort_order,integer,NO,0,NO,Personal,
+Master data,application_status,6,reference_code_id,bigint,NO,,NO,Personal,
+Master data,application_status,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Master data,application_status,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,application_status,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Master data,application_status,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,application_status,11,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,application_status_history,1,id,bigint,NO,,YES,Personal,
+Jobs and Applications,application_status_history,2,changed_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application_status_history,3,reason,character varying(2000),YES,,NO,Personal,Optional reason has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,application_status_history,4,application_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application_status_history,5,application_status_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application_status_history,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application_status_history,7,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,application_status_history,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application_status_history,9,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,application_status_history,10,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,application_withdrawal,1,id,bigint,NO,,YES,Personal,
+Jobs and Applications,application_withdrawal,2,requested_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application_withdrawal,3,reason,character varying(2000),NO,,NO,Personal,
+Jobs and Applications,application_withdrawal,4,resolved_at,timestamp with time zone,YES,,NO,Personal,Withdrawal has not been resolved.
+Jobs and Applications,application_withdrawal,5,application_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application_withdrawal,6,withdrawal_outcome_id,bigint,NO,,NO,Personal,
+Jobs and Applications,application_withdrawal,7,resolved_by,bigint,YES,,NO,Personal,Withdrawal is pending or resolved by a system process.
+Jobs and Applications,application_withdrawal,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application_withdrawal,9,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,application_withdrawal,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,application_withdrawal,11,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,application_withdrawal,12,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,assessment,1,id,bigint,NO,,YES,Personal,
+Profile,assessment,2,code,character varying(80),NO,,NO,Personal,
+Profile,assessment,3,name,character varying(150),NO,,NO,Personal,
+Profile,assessment,4,provider,character varying(150),YES,,NO,Personal,Optional provider has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,assessment,5,maximum_score,"numeric(10,3)",NO,,NO,Personal,
+Profile,assessment,6,skill_id,bigint,YES,,NO,Personal,Optional skill id has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,assessment,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,assessment,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,assessment,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,assessment,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,assessment,11,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,assessment_result,1,id,bigint,NO,,YES,Personal,
+Profile,assessment_result,2,attempt_number,integer,NO,1,NO,Personal,
+Profile,assessment_result,3,score,"numeric(10,3)",NO,,NO,Personal,
+Profile,assessment_result,4,maximum_score,"numeric(10,3)",NO,,NO,Personal,
+Profile,assessment_result,5,taken_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,assessment_result,6,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,assessment_result,7,assessment_id,bigint,NO,,NO,Personal,
+Profile,assessment_result,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,assessment_result,9,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,assessment_result,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,assessment_result,11,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,assessment_result,12,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_academic_result,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_academic_result,2,semester,smallint,NO,,NO,Personal,
+Profile,candidate_academic_result,3,score,"numeric(7,3)",NO,,NO,Personal,
+Profile,candidate_academic_result,4,maximum_score,"numeric(7,3)",NO,,NO,Personal,
+Profile,candidate_academic_result,5,candidate_education_id,bigint,NO,,NO,Personal,
+Profile,candidate_academic_result,6,score_scale_id,bigint,NO,,NO,Personal,
+Profile,candidate_academic_result,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_academic_result,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_academic_result,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_academic_result,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_academic_result,11,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_accomplishment,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_accomplishment,2,title,character varying(150),NO,,NO,Personal,
+Profile,candidate_accomplishment,3,issuer,character varying(150),YES,,NO,Personal,Optional issuer has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_accomplishment,4,issued_on,date,YES,,NO,Personal,Optional issued on has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_accomplishment,5,expires_on,date,YES,,NO,Personal,Optional expires on has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_accomplishment,6,credential_reference,character varying(500),YES,,NO,Sensitive,Optional credential reference has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_accomplishment,7,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,candidate_accomplishment,8,accomplishment_type_id,bigint,NO,,NO,Personal,
+Profile,candidate_accomplishment,9,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_accomplishment,10,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_accomplishment,11,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_accomplishment,12,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_accomplishment,13,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_activity_log,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_activity_log,2,occurred_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_activity_log,3,description,character varying(2000),YES,,NO,Personal,Optional description has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_activity_log,4,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,candidate_activity_log,5,candidate_activity_type_id,bigint,NO,,NO,Personal,
+Profile,candidate_activity_log,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_activity_log,7,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_activity_log,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_activity_log,9,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_activity_log,10,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,candidate_activity_type,1,id,bigint,NO,,YES,Public,
+Master data,candidate_activity_type,2,code,character varying(80),NO,,NO,Public,
+Master data,candidate_activity_type,3,display_name,character varying(150),NO,,NO,Public,
+Master data,candidate_activity_type,4,active,boolean,NO,true,NO,Public,
+Master data,candidate_activity_type,5,sort_order,integer,NO,0,NO,Public,
+Master data,candidate_activity_type,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,candidate_activity_type,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,candidate_activity_type,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,candidate_activity_type,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,candidate_activity_type,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,candidate_activity_type,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_backlog,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_backlog,2,semester,smallint,NO,,NO,Personal,
+Profile,candidate_backlog,3,identified_on,date,NO,,NO,Personal,
+Profile,candidate_backlog,4,cleared_on,date,YES,,NO,Personal,Backlog remains unresolved.
+Profile,candidate_backlog,5,candidate_education_id,bigint,NO,,NO,Personal,
+Profile,candidate_backlog,6,subject_id,bigint,NO,,NO,Personal,
+Profile,candidate_backlog,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_backlog,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_backlog,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_backlog,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_backlog,11,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_bookmark,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_bookmark,2,bookmarked_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_bookmark,3,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,candidate_bookmark,4,bookmarked_by,bigint,NO,,NO,Personal,
+Profile,candidate_bookmark,5,organisation_id,bigint,NO,,NO,Personal,
+Profile,candidate_bookmark,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_bookmark,7,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_bookmark,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_bookmark,9,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_bookmark,10,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_bookmark_history,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_bookmark_history,2,is_bookmarked,boolean,NO,true,NO,Personal,
+Profile,candidate_bookmark_history,3,changed_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_bookmark_history,4,candidate_bookmark_id,bigint,NO,,NO,Personal,
+Profile,candidate_bookmark_history,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_bookmark_history,6,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_bookmark_history,7,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_bookmark_history,8,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_bookmark_history,9,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_contact,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_contact,2,phone_e164,character varying(16),NO,,NO,Personal,
+Profile,candidate_contact,3,is_primary,boolean,NO,false,NO,Personal,
+Profile,candidate_contact,4,verified_at,timestamp with time zone,YES,,NO,Personal,Verification has not completed.
+Profile,candidate_contact,5,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,candidate_contact,6,country_id,bigint,NO,,NO,Personal,
+Profile,candidate_contact,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_contact,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_contact,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_contact,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_contact,11,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_document,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_document,2,name,character varying(150),NO,,NO,Personal,
+Profile,candidate_document,3,private_storage_reference,character varying(2048),NO,,NO,Sensitive,
+Profile,candidate_document,4,content_sha256,character(64),YES,,NO,Personal,Optional content sha256 has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_document,5,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,candidate_document,6,candidate_education_id,bigint,YES,,NO,Personal,Document applies to the profile generally rather than a particular education record.
+Profile,candidate_document,7,document_type_id,bigint,NO,,NO,Personal,
+Profile,candidate_document,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_document,9,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_document,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_document,11,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_document,12,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_education,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_education,2,start_date,date,YES,,NO,Personal,Optional start date has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_education,3,end_date,date,YES,,NO,Personal,Ongoing or not yet supplied; unknown versus not applicable is not separately encoded.
+Profile,candidate_education,4,graduation_year,smallint,YES,,NO,Personal,Optional graduation year has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_education,5,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,candidate_education,6,qualification_id,bigint,NO,,NO,Personal,
+Profile,candidate_education,7,academic_program_id,bigint,YES,,NO,Personal,Education may be outside the curated program catalog.
+Profile,candidate_education,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_education,9,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_education,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_education,11,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_education,12,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_experience,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_experience,2,employer_name,character varying(150),NO,,NO,Personal,
+Profile,candidate_experience,3,job_title,character varying(150),NO,,NO,Personal,
+Profile,candidate_experience,4,start_date,date,NO,,NO,Personal,
+Profile,candidate_experience,5,end_date,date,YES,,NO,Personal,Ongoing or not yet supplied; unknown versus not applicable is not separately encoded.
+Profile,candidate_experience,6,description,character varying(4000),YES,,NO,Personal,Optional description has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_experience,7,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,candidate_experience,8,experience_type_id,bigint,NO,,NO,Personal,
+Profile,candidate_experience,9,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_experience,10,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_experience,11,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_experience,12,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_experience,13,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_extracurricular_activity,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_extracurricular_activity,2,title,character varying(150),NO,,NO,Personal,
+Profile,candidate_extracurricular_activity,3,start_date,date,YES,,NO,Personal,Optional start date has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_extracurricular_activity,4,end_date,date,YES,,NO,Personal,Ongoing or not yet supplied; unknown versus not applicable is not separately encoded.
+Profile,candidate_extracurricular_activity,5,description,character varying(4000),YES,,NO,Personal,Optional description has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_extracurricular_activity,6,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,candidate_extracurricular_activity,7,activity_type_id,bigint,NO,,NO,Personal,
+Profile,candidate_extracurricular_activity,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_extracurricular_activity,9,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_extracurricular_activity,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_extracurricular_activity,11,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_extracurricular_activity,12,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,candidate_job_eligibility_check,1,id,bigint,NO,,YES,Personal,
+Jobs and Applications,candidate_job_eligibility_check,2,checked_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,candidate_job_eligibility_check,3,candidate_profile_id,bigint,NO,,NO,Personal,
+Jobs and Applications,candidate_job_eligibility_check,4,job_requirement_id,bigint,NO,,NO,Personal,
+Jobs and Applications,candidate_job_eligibility_check,5,job_eligibility_policy_id,bigint,NO,,NO,Personal,
+Jobs and Applications,candidate_job_eligibility_check,6,eligibility_decision_id,bigint,NO,,NO,Personal,
+Jobs and Applications,candidate_job_eligibility_check,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,candidate_job_eligibility_check,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,candidate_job_eligibility_check,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,candidate_job_eligibility_check,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,candidate_job_eligibility_check,11,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,candidate_job_search_history,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,candidate_job_search_history,2,searched_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,candidate_job_search_history,3,search_text,character varying(1000),YES,,NO,Internal,Optional search text has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,candidate_job_search_history,4,filters,jsonb,NO,'{}'::jsonb,NO,Internal,
+Jobs and Applications,candidate_job_search_history,5,candidate_profile_id,bigint,NO,,NO,Internal,
+Jobs and Applications,candidate_job_search_history,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,candidate_job_search_history,7,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,candidate_job_search_history,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,candidate_job_search_history,9,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,candidate_job_search_history,10,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_language,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_language,2,can_read,boolean,NO,false,NO,Personal,
+Profile,candidate_language,3,can_write,boolean,NO,false,NO,Personal,
+Profile,candidate_language,4,can_speak,boolean,NO,false,NO,Personal,
+Profile,candidate_language,5,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,candidate_language,6,language_id,bigint,NO,,NO,Personal,
+Profile,candidate_language,7,proficiency_level_id,bigint,YES,,NO,Personal,No proficiency rating has been supplied.
+Profile,candidate_language,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_language,9,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_language,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_language,11,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_language,12,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_profile,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_profile,2,headline,character varying(300),YES,,NO,Personal,Optional headline has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_profile,3,summary,character varying(4000),YES,,NO,Personal,Optional summary has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_profile,4,date_of_birth,date,YES,,NO,Personal,Candidate has not disclosed birth date.
+Profile,candidate_profile,5,available_from,date,YES,,NO,Personal,Optional available from has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_profile,6,user_account_id,bigint,NO,,NO,Personal,
+Profile,candidate_profile,7,city_id,bigint,YES,,NO,Personal,Location is not yet supplied or the entity operates remotely.
+Profile,candidate_profile,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_profile,9,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_profile,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_profile,11,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_profile,12,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_project,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_project,2,title,character varying(150),NO,,NO,Personal,
+Profile,candidate_project,3,project_role,character varying(150),NO,,NO,Personal,
+Profile,candidate_project,4,start_date,date,NO,,NO,Personal,
+Profile,candidate_project,5,end_date,date,YES,,NO,Personal,Ongoing or not yet supplied; unknown versus not applicable is not separately encoded.
+Profile,candidate_project,6,project_url,character varying(2048),YES,,NO,Personal,Optional project url has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_project,7,outcome,character varying(4000),YES,,NO,Personal,Optional outcome has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_project,8,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,candidate_project,9,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_project,10,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_project,11,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_project,12,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_project,13,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_skill,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_skill,2,years_experience,"numeric(4,1)",YES,,NO,Personal,Optional years experience has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_skill,3,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,candidate_skill,4,skill_id,bigint,NO,,NO,Personal,
+Profile,candidate_skill,5,proficiency_level_id,bigint,YES,,NO,Personal,No proficiency rating has been supplied.
+Profile,candidate_skill,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_skill,7,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_skill,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_skill,9,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_skill,10,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_social_link,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_social_link,2,url,character varying(2048),NO,,NO,Personal,
+Profile,candidate_social_link,3,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,candidate_social_link,4,social_platform_id,bigint,NO,,NO,Personal,
+Profile,candidate_social_link,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_social_link,6,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_social_link,7,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_social_link,8,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_social_link,9,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_subject,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_subject,2,semester,smallint,NO,,NO,Personal,
+Profile,candidate_subject,3,candidate_education_id,bigint,NO,,NO,Personal,
+Profile,candidate_subject,4,subject_id,bigint,NO,,NO,Personal,
+Profile,candidate_subject,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_subject,6,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_subject,7,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_subject,8,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_subject,9,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,candidate_volunteer_experience,1,id,bigint,NO,,YES,Personal,
+Profile,candidate_volunteer_experience,2,organisation_name,character varying(150),NO,,NO,Personal,
+Profile,candidate_volunteer_experience,3,role,character varying(150),NO,,NO,Personal,
+Profile,candidate_volunteer_experience,4,start_date,date,NO,,NO,Personal,
+Profile,candidate_volunteer_experience,5,end_date,date,YES,,NO,Personal,Ongoing or not yet supplied; unknown versus not applicable is not separately encoded.
+Profile,candidate_volunteer_experience,6,description,character varying(4000),YES,,NO,Personal,Optional description has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,candidate_volunteer_experience,7,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,candidate_volunteer_experience,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_volunteer_experience,9,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,candidate_volunteer_experience,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,candidate_volunteer_experience,11,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,candidate_volunteer_experience,12,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,city,1,id,bigint,NO,,YES,Public,
+Master data,city,2,display_name,character varying(150),NO,,NO,Public,
+Master data,city,3,state_id,bigint,NO,,NO,Public,
+Master data,city,4,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,city,5,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,city,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,city,7,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,city,8,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,country,1,id,bigint,NO,,YES,Public,
+Master data,country,2,code,character(2),NO,,NO,Public,
+Master data,country,3,display_name,character varying(150),NO,,NO,Public,
+Master data,country,4,phone_calling_code,character varying(8),YES,,NO,Public,Optional phone calling code has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Master data,country,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,country,6,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,country,7,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,country,8,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,country,9,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,course,1,id,bigint,NO,,YES,Personal,
+Profile,course,2,code,character varying(80),NO,,NO,Personal,
+Profile,course,3,name,character varying(150),NO,,NO,Personal,
+Profile,course,4,provider,character varying(150),NO,,NO,Personal,
+Profile,course,5,course_url,character varying(2048),YES,,NO,Personal,Optional course url has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,course,6,skill_id,bigint,YES,,NO,Personal,Optional skill id has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,course,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,course,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,course,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,course,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,course,11,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,course_enrolment,1,id,bigint,NO,,YES,Personal,
+Profile,course_enrolment,2,enrolled_on,date,NO,,NO,Personal,
+Profile,course_enrolment,3,completed_on,date,YES,,NO,Personal,Course has not completed.
+Profile,course_enrolment,4,certificate_reference,character varying(2048),YES,,NO,Sensitive,Optional certificate reference has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,course_enrolment,5,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,course_enrolment,6,course_id,bigint,NO,,NO,Personal,
+Profile,course_enrolment,7,course_enrolment_status_id,bigint,NO,,NO,Personal,
+Profile,course_enrolment,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,course_enrolment,9,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,course_enrolment,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,course_enrolment,11,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,course_enrolment,12,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,course_enrolment_status,1,id,bigint,NO,,YES,Public,
+Master data,course_enrolment_status,2,code,character varying(80),NO,,NO,Public,
+Master data,course_enrolment_status,3,display_name,character varying(150),NO,,NO,Public,
+Master data,course_enrolment_status,4,active,boolean,NO,true,NO,Public,
+Master data,course_enrolment_status,5,sort_order,integer,NO,0,NO,Public,
+Master data,course_enrolment_status,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,course_enrolment_status,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,course_enrolment_status,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,course_enrolment_status,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,course_enrolment_status,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,course_enrolment_status,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,currency,1,id,bigint,NO,,YES,Public,
+Master data,currency,2,code,character(3),NO,,NO,Public,
+Master data,currency,3,display_name,character varying(150),NO,,NO,Public,
+Master data,currency,4,minor_unit,smallint,NO,2,NO,Public,
+Master data,currency,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,currency,6,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,currency,7,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,currency,8,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,currency,9,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,document_type,1,id,bigint,NO,,YES,Public,
+Master data,document_type,2,code,character varying(80),NO,,NO,Public,
+Master data,document_type,3,display_name,character varying(150),NO,,NO,Public,
+Master data,document_type,4,active,boolean,NO,true,NO,Public,
+Master data,document_type,5,sort_order,integer,NO,0,NO,Public,
+Master data,document_type,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,document_type,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,document_type,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,document_type,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,document_type,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,document_type,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,education_level,1,id,bigint,NO,,YES,Public,
+Master data,education_level,2,code,character varying(80),NO,,NO,Public,
+Master data,education_level,3,display_name,character varying(150),NO,,NO,Public,
+Master data,education_level,4,active,boolean,NO,true,NO,Public,
+Master data,education_level,5,sort_order,integer,NO,0,NO,Public,
+Master data,education_level,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,education_level,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,education_level,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,education_level,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,education_level,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,education_level,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,education_verification,1,id,bigint,NO,,YES,Personal,
+Profile,education_verification,2,verified_at,timestamp with time zone,YES,,NO,Personal,Verification has not completed.
+Profile,education_verification,3,frozen,boolean,NO,false,NO,Personal,
+Profile,education_verification,4,notes,character varying(2000),YES,,NO,Personal,Optional notes has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,education_verification,5,candidate_education_id,bigint,NO,,NO,Personal,
+Profile,education_verification,6,verification_status_id,bigint,NO,,NO,Personal,
+Profile,education_verification,7,verifier_id,bigint,YES,,NO,Personal,Verification is pending or performed by an external/system process.
+Profile,education_verification,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,education_verification,9,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,education_verification,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,education_verification,11,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,education_verification,12,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,eligibility_check_result,1,id,bigint,NO,,YES,Personal,
+Jobs and Applications,eligibility_check_result,2,criterion,character varying(150),NO,,NO,Personal,
+Jobs and Applications,eligibility_check_result,3,observed_value,character varying(1000),YES,,NO,Personal,Optional observed value has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,eligibility_check_result,4,required_value,character varying(1000),YES,,NO,Personal,Optional required value has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,eligibility_check_result,5,explanation,character varying(2000),YES,,NO,Personal,Optional explanation has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,eligibility_check_result,6,candidate_job_eligibility_check_id,bigint,NO,,NO,Personal,
+Jobs and Applications,eligibility_check_result,7,eligibility_decision_id,bigint,NO,,NO,Personal,
+Jobs and Applications,eligibility_check_result,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,eligibility_check_result,9,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,eligibility_check_result,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,eligibility_check_result,11,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,eligibility_check_result,12,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,eligibility_decision,1,id,bigint,NO,,YES,Public,
+Master data,eligibility_decision,2,code,character varying(80),NO,,NO,Public,
+Master data,eligibility_decision,3,display_name,character varying(150),NO,,NO,Public,
+Master data,eligibility_decision,4,active,boolean,NO,true,NO,Public,
+Master data,eligibility_decision,5,sort_order,integer,NO,0,NO,Public,
+Master data,eligibility_decision,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,eligibility_decision,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,eligibility_decision,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,eligibility_decision,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,eligibility_decision,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,eligibility_decision,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,employment_type,1,id,bigint,NO,,YES,Public,
+Master data,employment_type,2,code,character varying(80),NO,,NO,Public,
+Master data,employment_type,3,display_name,character varying(150),NO,,NO,Public,
+Master data,employment_type,4,active,boolean,NO,true,NO,Public,
+Master data,employment_type,5,sort_order,integer,NO,0,NO,Public,
+Master data,employment_type,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,employment_type,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,employment_type,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,employment_type,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,employment_type,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,employment_type,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,experience_type,1,id,bigint,NO,,YES,Public,
+Master data,experience_type,2,code,character varying(80),NO,,NO,Public,
+Master data,experience_type,3,display_name,character varying(150),NO,,NO,Public,
+Master data,experience_type,4,active,boolean,NO,true,NO,Public,
+Master data,experience_type,5,sort_order,integer,NO,0,NO,Public,
+Master data,experience_type,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,experience_type,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,experience_type,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,experience_type,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,experience_type,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,experience_type,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,hiring_stage_type,1,id,bigint,NO,,YES,Public,
+Master data,hiring_stage_type,2,code,character varying(80),NO,,NO,Public,
+Master data,hiring_stage_type,3,display_name,character varying(150),NO,,NO,Public,
+Master data,hiring_stage_type,4,active,boolean,NO,true,NO,Public,
+Master data,hiring_stage_type,5,sort_order,integer,NO,0,NO,Public,
+Master data,hiring_stage_type,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,hiring_stage_type,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,hiring_stage_type,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,hiring_stage_type,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,hiring_stage_type,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,hiring_stage_type,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,industry,1,id,bigint,NO,,YES,Public,
+Master data,industry,2,code,character varying(80),NO,,NO,Public,
+Master data,industry,3,display_name,character varying(150),NO,,NO,Public,
+Master data,industry,4,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,industry,5,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,industry,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,industry,7,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,industry,8,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,institution,1,id,bigint,NO,,YES,Personal,
+Profile,institution,2,name,character varying(150),NO,,NO,Personal,
+Profile,institution,3,city_id,bigint,YES,,NO,Personal,Location is not yet supplied or the entity operates remotely.
+Profile,institution,4,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,institution,5,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,institution,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,institution,7,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,institution,8,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,interview,1,id,bigint,NO,,YES,Personal,
+Jobs and Applications,interview,2,round,integer,NO,,NO,Personal,
+Jobs and Applications,interview,3,starts_at,timestamp with time zone,NO,,NO,Personal,
+Jobs and Applications,interview,4,ends_at,timestamp with time zone,YES,,NO,Personal,End time not yet scheduled or supplied.
+Jobs and Applications,interview,5,source_timezone,character varying(100),NO,'UTC'::character varying,NO,Personal,
+Jobs and Applications,interview,6,location,character varying(500),YES,,NO,Personal,Optional location has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,interview,7,meeting_url,character varying(2048),YES,,NO,Personal,Optional meeting url has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,interview,8,feedback,character varying(4000),YES,,NO,Personal,Optional feedback has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,interview,9,application_id,bigint,NO,,NO,Personal,
+Jobs and Applications,interview,10,interview_status_id,bigint,NO,,NO,Personal,
+Jobs and Applications,interview,11,interviewer_id,bigint,YES,,NO,Personal,Optional interviewer id has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,interview,12,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,interview,13,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,interview,14,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,interview,15,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,interview,16,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,interview_status,1,id,bigint,NO,,YES,Public,
+Master data,interview_status,2,code,character varying(80),NO,,NO,Public,
+Master data,interview_status,3,display_name,character varying(150),NO,,NO,Public,
+Master data,interview_status,4,active,boolean,NO,true,NO,Public,
+Master data,interview_status,5,sort_order,integer,NO,0,NO,Public,
+Master data,interview_status,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,interview_status,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,interview_status,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,interview_status,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,interview_status,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,interview_status,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,job_academic_criterion,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,job_academic_criterion,2,minimum_score,"numeric(7,3)",NO,,NO,Internal,
+Jobs and Applications,job_academic_criterion,3,maximum_score,"numeric(7,3)",NO,,NO,Internal,
+Jobs and Applications,job_academic_criterion,4,job_eligibility_policy_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_academic_criterion,5,education_level_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_academic_criterion,6,score_scale_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_academic_criterion,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_academic_criterion,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,job_academic_criterion,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_academic_criterion,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,job_academic_criterion,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,job_application_policy,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,job_application_policy,2,resume_required,boolean,NO,true,NO,Internal,
+Jobs and Applications,job_application_policy,3,withdrawal_allowed,boolean,NO,true,NO,Internal,
+Jobs and Applications,job_application_policy,4,withdrawal_requires_approval,boolean,NO,false,NO,Internal,
+Jobs and Applications,job_application_policy,5,withdrawal_deadline,timestamp with time zone,YES,,NO,Internal,Optional withdrawal deadline has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,job_application_policy,6,job_requirement_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_application_policy,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_application_policy,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,job_application_policy,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_application_policy,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,job_application_policy,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,job_attachment,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,job_attachment,2,name,character varying(150),NO,,NO,Internal,
+Jobs and Applications,job_attachment,3,private_storage_reference,character varying(2048),NO,,NO,Sensitive,
+Jobs and Applications,job_attachment,4,job_requirement_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_attachment,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_attachment,6,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,job_attachment,7,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_attachment,8,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,job_attachment,9,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,job_eligibility_policy,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,job_eligibility_policy,2,version_number,integer,NO,,NO,Internal,
+Jobs and Applications,job_eligibility_policy,3,maximum_active_backlogs,integer,YES,,NO,Internal,Optional maximum active backlogs has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,job_eligibility_policy,4,maximum_gap_months,integer,YES,,NO,Internal,Optional maximum gap months has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,job_eligibility_policy,5,valid_from,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_eligibility_policy,6,valid_until,timestamp with time zone,YES,,NO,Internal,Optional valid until has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,job_eligibility_policy,7,job_requirement_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_eligibility_policy,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_eligibility_policy,9,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,job_eligibility_policy,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_eligibility_policy,11,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,job_eligibility_policy,12,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,job_eligible_program,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,job_eligible_program,2,job_eligibility_policy_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_eligible_program,3,academic_program_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_eligible_program,4,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_eligible_program,5,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,job_eligible_program,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_eligible_program,7,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,job_eligible_program,8,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,job_event,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,job_event,2,title,character varying(150),NO,,NO,Internal,
+Jobs and Applications,job_event,3,starts_at,timestamp with time zone,NO,,NO,Internal,
+Jobs and Applications,job_event,4,ends_at,timestamp with time zone,NO,,NO,Internal,
+Jobs and Applications,job_event,5,source_timezone,character varying(100),NO,'UTC'::character varying,NO,Internal,
+Jobs and Applications,job_event,6,venue,character varying(500),YES,,NO,Internal,Optional venue has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,job_event,7,meeting_url,character varying(2048),YES,,NO,Internal,Optional meeting url has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,job_event,8,job_requirement_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_event,9,job_event_type_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_event,10,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_event,11,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,job_event,12,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_event,13,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,job_event,14,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,job_event_type,1,id,bigint,NO,,YES,Public,
+Master data,job_event_type,2,code,character varying(80),NO,,NO,Public,
+Master data,job_event_type,3,display_name,character varying(150),NO,,NO,Public,
+Master data,job_event_type,4,active,boolean,NO,true,NO,Public,
+Master data,job_event_type,5,sort_order,integer,NO,0,NO,Public,
+Master data,job_event_type,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,job_event_type,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,job_event_type,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,job_event_type,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,job_event_type,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,job_event_type,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,job_external_ats,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,job_external_ats,2,provider,character varying(150),NO,,NO,Internal,
+Jobs and Applications,job_external_ats,3,application_url,character varying(2048),NO,,NO,Internal,
+Jobs and Applications,job_external_ats,4,external_job_reference,character varying(500),YES,,NO,Internal,Optional external job reference has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,job_external_ats,5,job_requirement_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_external_ats,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_external_ats,7,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,job_external_ats,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_external_ats,9,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,job_external_ats,10,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,job_hiring_stage,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,job_hiring_stage,2,name,character varying(150),NO,,NO,Internal,
+Jobs and Applications,job_hiring_stage,3,sequence,integer,NO,,NO,Internal,
+Jobs and Applications,job_hiring_stage,4,job_requirement_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_hiring_stage,5,hiring_stage_type_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_hiring_stage,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_hiring_stage,7,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,job_hiring_stage,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_hiring_stage,9,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,job_hiring_stage,10,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,job_location,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,job_location,2,job_requirement_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_location,3,city_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_location,4,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_location,5,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,job_location,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_location,7,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,job_location,8,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,job_position,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,job_position,2,position_reference,character varying(80),NO,,NO,Internal,
+Jobs and Applications,job_position,3,filled_at,timestamp with time zone,YES,,NO,Internal,Position has not been filled.
+Jobs and Applications,job_position,4,job_requirement_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_position,5,job_position_status_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_position,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_position,7,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,job_position,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_position,9,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,job_position,10,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,job_position_status,1,id,bigint,NO,,YES,Public,
+Master data,job_position_status,2,code,character varying(80),NO,,NO,Public,
+Master data,job_position_status,3,display_name,character varying(150),NO,,NO,Public,
+Master data,job_position_status,4,active,boolean,NO,true,NO,Public,
+Master data,job_position_status,5,sort_order,integer,NO,0,NO,Public,
+Master data,job_position_status,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,job_position_status,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,job_position_status,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,job_position_status,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,job_position_status,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,job_position_status,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,job_qualification_requirement,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,job_qualification_requirement,2,job_requirement_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_qualification_requirement,3,qualification_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_qualification_requirement,4,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_qualification_requirement,5,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,job_qualification_requirement,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_qualification_requirement,7,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,job_qualification_requirement,8,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,job_requirement,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,job_requirement,2,title,character varying(150),NO,,NO,Internal,
+Jobs and Applications,job_requirement,3,description,text,YES,,NO,Internal,Optional description has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,job_requirement,4,salary_min,"numeric(18,2)",YES,,NO,Internal,"Lower salary bound undisclosed; zero is a genuine amount, not missing."
+Jobs and Applications,job_requirement,5,salary_max,"numeric(18,2)",YES,,NO,Internal,"Upper salary bound undisclosed; zero is a genuine amount, not missing."
+Jobs and Applications,job_requirement,6,deadline,timestamp with time zone,YES,,NO,Internal,Optional deadline has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,job_requirement,7,positions,integer,NO,1,NO,Internal,
+Jobs and Applications,job_requirement,8,published_at,timestamp with time zone,YES,,NO,Internal,Job has not been published.
+Jobs and Applications,job_requirement,9,open_to_consultants,boolean,NO,false,NO,Internal,
+Jobs and Applications,job_requirement,10,organisation_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_requirement,11,job_status_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_requirement,12,work_type_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_requirement,13,employment_type_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_requirement,14,currency_id,bigint,YES,,NO,Internal,Only optional when salary is undisclosed; salary CHECK requires it otherwise.
+Jobs and Applications,job_requirement,15,salary_period_id,bigint,YES,,NO,Internal,Only optional when salary is undisclosed; salary CHECK requires it otherwise.
+Jobs and Applications,job_requirement,16,language_id,bigint,YES,,NO,Internal,Language preference/content language is not yet known.
+Jobs and Applications,job_requirement,17,job_role_id,bigint,YES,,NO,Internal,Job has not been assigned to the curated role catalog.
+Jobs and Applications,job_requirement,18,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_requirement,19,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,job_requirement,20,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_requirement,21,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,job_requirement,22,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,job_role,1,id,bigint,NO,,YES,Public,
+Master data,job_role,2,code,character varying(80),NO,,NO,Public,
+Master data,job_role,3,display_name,character varying(150),NO,,NO,Public,
+Master data,job_role,4,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,job_role,5,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,job_role,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,job_role,7,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,job_role,8,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,job_shortlist,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,job_shortlist,2,shortlisted_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_shortlist,3,job_requirement_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_shortlist,4,candidate_profile_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_shortlist,5,shortlisted_by,bigint,NO,,NO,Personal,
+Jobs and Applications,job_shortlist,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_shortlist,7,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,job_shortlist,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_shortlist,9,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,job_shortlist,10,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,job_skill_requirement,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,job_skill_requirement,2,required,boolean,NO,true,NO,Internal,
+Jobs and Applications,job_skill_requirement,3,minimum_years,"numeric(4,1)",YES,,NO,Internal,Optional minimum years has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,job_skill_requirement,4,job_requirement_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_skill_requirement,5,skill_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_skill_requirement,6,proficiency_level_id,bigint,YES,,NO,Internal,No proficiency rating has been supplied.
+Jobs and Applications,job_skill_requirement,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_skill_requirement,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,job_skill_requirement,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_skill_requirement,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,job_skill_requirement,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,job_status,1,id,bigint,NO,,YES,Public,
+Master data,job_status,2,code,character varying(80),NO,,NO,Public,
+Master data,job_status,3,display_name,character varying(150),NO,,NO,Public,
+Master data,job_status,4,active,boolean,NO,true,NO,Public,
+Master data,job_status,5,sort_order,integer,NO,0,NO,Public,
+Master data,job_status,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,job_status,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,job_status,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,job_status,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,job_status,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,job_status,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,job_status_history,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,job_status_history,2,changed_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_status_history,3,reason,character varying(2000),YES,,NO,Internal,Optional reason has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,job_status_history,4,job_requirement_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_status_history,5,job_status_id,bigint,NO,,NO,Internal,
+Jobs and Applications,job_status_history,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_status_history,7,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,job_status_history,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,job_status_history,9,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,job_status_history,10,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,joining_record,1,id,bigint,NO,,YES,Personal,
+Jobs and Applications,joining_record,2,joined_on,date,NO,,NO,Personal,
+Jobs and Applications,joining_record,3,external_reference,character varying(500),YES,,NO,Personal,Optional external reference has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,joining_record,4,application_id,bigint,NO,,NO,Personal,
+Jobs and Applications,joining_record,5,offer_id,bigint,NO,,NO,Personal,
+Jobs and Applications,joining_record,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,joining_record,7,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,joining_record,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,joining_record,9,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,joining_record,10,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,language,1,id,bigint,NO,,YES,Public,
+Master data,language,2,code,character varying(35),NO,,NO,Public,
+Master data,language,3,display_name,character varying(150),NO,,NO,Public,
+Master data,language,4,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,language,5,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,language,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,language,7,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,language,8,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,offer,1,id,bigint,NO,,YES,Personal,
+Jobs and Applications,offer,2,version_number,integer,NO,,NO,Personal,
+Jobs and Applications,offer,3,amount,"numeric(18,2)",NO,,NO,Personal,
+Jobs and Applications,offer,4,issued_at,timestamp with time zone,YES,,NO,Personal,Offer remains a draft.
+Jobs and Applications,offer,5,expires_at,timestamp with time zone,YES,,NO,Personal,No expiry supplied.
+Jobs and Applications,offer,6,expected_start_date,date,YES,,NO,Personal,Optional expected start date has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,offer,7,private_storage_reference,character varying(2048),YES,,NO,Sensitive,Optional private storage reference has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Jobs and Applications,offer,8,application_id,bigint,NO,,NO,Personal,
+Jobs and Applications,offer,9,offer_status_id,bigint,NO,,NO,Personal,
+Jobs and Applications,offer,10,currency_id,bigint,NO,,NO,Personal,
+Jobs and Applications,offer,11,salary_period_id,bigint,NO,,NO,Personal,
+Jobs and Applications,offer,12,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,offer,13,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,offer,14,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Jobs and Applications,offer,15,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,offer,16,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,offer_status,1,id,bigint,NO,,YES,Public,
+Master data,offer_status,2,code,character varying(80),NO,,NO,Public,
+Master data,offer_status,3,display_name,character varying(150),NO,,NO,Public,
+Master data,offer_status,4,active,boolean,NO,true,NO,Public,
+Master data,offer_status,5,sort_order,integer,NO,0,NO,Public,
+Master data,offer_status,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,offer_status,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,offer_status,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,offer_status,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,offer_status,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,offer_status,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Shared dependency anchor,organisation,1,id,bigint,NO,,YES,Internal,
+Shared dependency anchor,organisation,2,name,character varying(150),NO,,NO,Internal,
+Shared dependency anchor,organisation,3,website_url,character varying(2048),YES,,NO,Internal,Optional website url has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Shared dependency anchor,organisation,4,city_id,bigint,YES,,NO,Internal,Location is not yet supplied or the entity operates remotely.
+Shared dependency anchor,organisation,5,industry_id,bigint,YES,,NO,Internal,Organisation has not been classified.
+Shared dependency anchor,organisation,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Shared dependency anchor,organisation,7,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Shared dependency anchor,organisation,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Shared dependency anchor,organisation,9,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Shared dependency anchor,organisation,10,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,proficiency_level,1,id,bigint,NO,,YES,Public,
+Master data,proficiency_level,2,code,character varying(80),NO,,NO,Public,
+Master data,proficiency_level,3,display_name,character varying(150),NO,,NO,Public,
+Master data,proficiency_level,4,active,boolean,NO,true,NO,Public,
+Master data,proficiency_level,5,sort_order,integer,NO,0,NO,Public,
+Master data,proficiency_level,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,proficiency_level,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,proficiency_level,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,proficiency_level,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,proficiency_level,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,proficiency_level,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,profile_completion_score,1,id,bigint,NO,,YES,Personal,
+Profile,profile_completion_score,2,score_percent,"numeric(5,2)",NO,,NO,Personal,
+Profile,profile_completion_score,3,rules_version,integer,NO,,NO,Personal,
+Profile,profile_completion_score,4,calculated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,profile_completion_score,5,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,profile_completion_score,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,profile_completion_score,7,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,profile_completion_score,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,profile_completion_score,9,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,profile_completion_score,10,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,profile_view_history,1,id,bigint,NO,,YES,Personal,
+Profile,profile_view_history,2,viewed_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,profile_view_history,3,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,profile_view_history,4,viewer_id,bigint,NO,,NO,Personal,
+Profile,profile_view_history,5,organisation_id,bigint,YES,,NO,Personal,Optional organisation id has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,profile_view_history,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,profile_view_history,7,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,profile_view_history,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,profile_view_history,9,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,profile_view_history,10,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,qualification,1,id,bigint,NO,,YES,Public,
+Master data,qualification,2,code,character varying(80),NO,,NO,Public,
+Master data,qualification,3,display_name,character varying(150),NO,,NO,Public,
+Master data,qualification,4,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,qualification,5,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,qualification,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,qualification,7,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,qualification,8,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,question,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,question,2,question_text,character varying(4000),NO,,NO,Internal,
+Jobs and Applications,question,3,required,boolean,NO,false,NO,Internal,
+Jobs and Applications,question,4,sort_order,integer,NO,0,NO,Internal,
+Jobs and Applications,question,5,questionnaire_id,bigint,NO,,NO,Internal,
+Jobs and Applications,question,6,question_type_id,bigint,NO,,NO,Internal,
+Jobs and Applications,question,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,question,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,question,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,question,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,question,11,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,question_option,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,question_option,2,option_text,character varying(2000),NO,,NO,Internal,
+Jobs and Applications,question_option,3,sort_order,integer,NO,0,NO,Internal,
+Jobs and Applications,question_option,4,question_id,bigint,NO,,NO,Internal,
+Jobs and Applications,question_option,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,question_option,6,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,question_option,7,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,question_option,8,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,question_option,9,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,question_type,1,id,bigint,NO,,YES,Public,
+Master data,question_type,2,code,character varying(80),NO,,NO,Public,
+Master data,question_type,3,display_name,character varying(150),NO,,NO,Public,
+Master data,question_type,4,active,boolean,NO,true,NO,Public,
+Master data,question_type,5,sort_order,integer,NO,0,NO,Public,
+Master data,question_type,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,question_type,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,question_type,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,question_type,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,question_type,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,question_type,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,questionnaire,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,questionnaire,2,title,character varying(150),NO,,NO,Internal,
+Jobs and Applications,questionnaire,3,version_number,integer,NO,,NO,Internal,
+Jobs and Applications,questionnaire,4,job_requirement_id,bigint,NO,,NO,Internal,
+Jobs and Applications,questionnaire,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,questionnaire,6,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,questionnaire,7,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,questionnaire,8,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,questionnaire,9,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,reference_code,1,id,bigint,NO,,YES,Public,
+Master data,reference_code,2,domain_code,character varying(80),NO,,NO,Public,
+Master data,reference_code,3,code,character varying(80),NO,,NO,Public,
+Master data,reference_code,4,display_name,character varying(150),NO,,NO,Public,
+Master data,reference_code,5,active,boolean,NO,true,NO,Public,
+Master data,reference_code,6,sort_order,integer,NO,0,NO,Public,
+Master data,reference_code,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,reference_code,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,reference_code,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,reference_code,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,reference_code,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,reference_translation,1,id,bigint,NO,,YES,Public,
+Master data,reference_translation,2,display_name,character varying(150),NO,,NO,Public,
+Master data,reference_translation,3,reference_code_id,bigint,NO,,NO,Public,
+Master data,reference_translation,4,language_id,bigint,NO,,NO,Public,
+Master data,reference_translation,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,reference_translation,6,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,reference_translation,7,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,reference_translation,8,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,reference_translation,9,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,referral_status,1,id,bigint,NO,,YES,Public,
+Master data,referral_status,2,code,character varying(80),NO,,NO,Public,
+Master data,referral_status,3,display_name,character varying(150),NO,,NO,Public,
+Master data,referral_status,4,active,boolean,NO,true,NO,Public,
+Master data,referral_status,5,sort_order,integer,NO,0,NO,Public,
+Master data,referral_status,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,referral_status,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,referral_status,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,referral_status,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,referral_status,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,referral_status,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,referral_tracking,1,id,bigint,NO,,YES,Personal,
+Profile,referral_tracking,2,referral_code,character varying(80),NO,,NO,Personal,
+Profile,referral_tracking,3,referred_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,referral_tracking,4,referrer_id,bigint,NO,,NO,Personal,
+Profile,referral_tracking,5,candidate_profile_id,bigint,YES,,NO,Personal,Optional candidate profile id has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,referral_tracking,6,referral_status_id,bigint,NO,,NO,Personal,
+Profile,referral_tracking,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,referral_tracking,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,referral_tracking,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,referral_tracking,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,referral_tracking,11,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,resume_template,1,id,bigint,NO,,YES,Personal,
+Profile,resume_template,2,name,character varying(150),NO,,NO,Personal,
+Profile,resume_template,3,template_reference,character varying(2048),NO,,NO,Personal,
+Profile,resume_template,4,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,resume_template,5,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,resume_template,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,resume_template,7,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,resume_template,8,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Profile,resume_version,1,id,bigint,NO,,YES,Personal,
+Profile,resume_version,2,version_number,integer,NO,,NO,Personal,
+Profile,resume_version,3,private_storage_reference,character varying(2048),NO,,NO,Sensitive,
+Profile,resume_version,4,content_sha256,character(64),YES,,NO,Personal,Optional content sha256 has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Profile,resume_version,5,candidate_profile_id,bigint,NO,,NO,Personal,
+Profile,resume_version,6,resume_template_id,bigint,YES,,NO,Personal,Uploaded resume may not use a platform template.
+Profile,resume_version,7,language_id,bigint,YES,,NO,Personal,Language preference/content language is not yet known.
+Profile,resume_version,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,resume_version,9,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Profile,resume_version,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Profile,resume_version,11,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Profile,resume_version,12,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,salary_period,1,id,bigint,NO,,YES,Public,
+Master data,salary_period,2,code,character varying(80),NO,,NO,Public,
+Master data,salary_period,3,display_name,character varying(150),NO,,NO,Public,
+Master data,salary_period,4,active,boolean,NO,true,NO,Public,
+Master data,salary_period,5,sort_order,integer,NO,0,NO,Public,
+Master data,salary_period,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,salary_period,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,salary_period,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,salary_period,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,salary_period,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,salary_period,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,score_scale,1,id,bigint,NO,,YES,Public,
+Master data,score_scale,2,code,character varying(80),NO,,NO,Public,
+Master data,score_scale,3,display_name,character varying(150),NO,,NO,Public,
+Master data,score_scale,4,active,boolean,NO,true,NO,Public,
+Master data,score_scale,5,sort_order,integer,NO,0,NO,Public,
+Master data,score_scale,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,score_scale,7,maximum_score,"numeric(7,3)",NO,100,NO,Public,
+Master data,score_scale,8,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,score_scale,9,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,score_scale,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,score_scale,11,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,score_scale,12,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Jobs and Applications,shortlist_history,1,id,bigint,NO,,YES,Internal,
+Jobs and Applications,shortlist_history,2,is_shortlisted,boolean,NO,true,NO,Internal,
+Jobs and Applications,shortlist_history,3,changed_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,shortlist_history,4,job_shortlist_id,bigint,NO,,NO,Internal,
+Jobs and Applications,shortlist_history,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,shortlist_history,6,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Jobs and Applications,shortlist_history,7,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Internal,
+Jobs and Applications,shortlist_history,8,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Jobs and Applications,shortlist_history,9,deleted_at,timestamp with time zone,YES,,NO,Internal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,skill,1,id,bigint,NO,,YES,Public,
+Master data,skill,2,code,character varying(80),NO,,NO,Public,
+Master data,skill,3,display_name,character varying(150),NO,,NO,Public,
+Master data,skill,4,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,skill,5,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,skill,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,skill,7,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,skill,8,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,social_platform,1,id,bigint,NO,,YES,Public,
+Master data,social_platform,2,code,character varying(80),NO,,NO,Public,
+Master data,social_platform,3,display_name,character varying(150),NO,,NO,Public,
+Master data,social_platform,4,active,boolean,NO,true,NO,Public,
+Master data,social_platform,5,sort_order,integer,NO,0,NO,Public,
+Master data,social_platform,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,social_platform,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,social_platform,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,social_platform,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,social_platform,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,social_platform,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,stage_decision,1,id,bigint,NO,,YES,Public,
+Master data,stage_decision,2,code,character varying(80),NO,,NO,Public,
+Master data,stage_decision,3,display_name,character varying(150),NO,,NO,Public,
+Master data,stage_decision,4,active,boolean,NO,true,NO,Public,
+Master data,stage_decision,5,sort_order,integer,NO,0,NO,Public,
+Master data,stage_decision,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,stage_decision,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,stage_decision,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,stage_decision,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,stage_decision,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,stage_decision,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,state,1,id,bigint,NO,,YES,Public,
+Master data,state,2,code,character varying(20),YES,,NO,Public,Optional code has not been supplied or is not applicable; these cases are not separately encoded in Phase 1.
+Master data,state,3,display_name,character varying(150),NO,,NO,Public,
+Master data,state,4,country_id,bigint,NO,,NO,Public,
+Master data,state,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,state,6,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,state,7,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,state,8,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,state,9,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,subject,1,id,bigint,NO,,YES,Public,
+Master data,subject,2,code,character varying(80),NO,,NO,Public,
+Master data,subject,3,display_name,character varying(150),NO,,NO,Public,
+Master data,subject,4,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,subject,5,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,subject,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,subject,7,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,subject,8,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,ui_translation,1,id,bigint,NO,,YES,Public,
+Master data,ui_translation,2,translation_key,character varying(160),NO,,NO,Public,
+Master data,ui_translation,3,translated_text,character varying(2000),NO,,NO,Public,
+Master data,ui_translation,4,language_id,bigint,NO,,NO,Public,
+Master data,ui_translation,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,ui_translation,6,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,ui_translation,7,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,ui_translation,8,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,ui_translation,9,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Shared dependency anchor,user_account,1,id,bigint,NO,,YES,Personal,
+Shared dependency anchor,user_account,2,full_name,character varying(150),NO,,NO,Personal,
+Shared dependency anchor,user_account,3,email,character varying(254),NO,,NO,Personal,
+Shared dependency anchor,user_account,4,neon_auth_user_id,uuid,YES,,NO,Sensitive,Profile/account anchor may precede identity linking; no automatic login provisioning.
+Shared dependency anchor,user_account,5,language_id,bigint,YES,,NO,Personal,Language preference/content language is not yet known.
+Shared dependency anchor,user_account,6,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Shared dependency anchor,user_account,7,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Shared dependency anchor,user_account,8,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Personal,
+Shared dependency anchor,user_account,9,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Shared dependency anchor,user_account,10,deleted_at,timestamp with time zone,YES,,NO,Personal,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,verification_status,1,id,bigint,NO,,YES,Public,
+Master data,verification_status,2,code,character varying(80),NO,,NO,Public,
+Master data,verification_status,3,display_name,character varying(150),NO,,NO,Public,
+Master data,verification_status,4,active,boolean,NO,true,NO,Public,
+Master data,verification_status,5,sort_order,integer,NO,0,NO,Public,
+Master data,verification_status,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,verification_status,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,verification_status,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,verification_status,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,verification_status,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,verification_status,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,withdrawal_outcome,1,id,bigint,NO,,YES,Public,
+Master data,withdrawal_outcome,2,code,character varying(80),NO,,NO,Public,
+Master data,withdrawal_outcome,3,display_name,character varying(150),NO,,NO,Public,
+Master data,withdrawal_outcome,4,active,boolean,NO,true,NO,Public,
+Master data,withdrawal_outcome,5,sort_order,integer,NO,0,NO,Public,
+Master data,withdrawal_outcome,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,withdrawal_outcome,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,withdrawal_outcome,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,withdrawal_outcome,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,withdrawal_outcome,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,withdrawal_outcome,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
+Master data,work_type,1,id,bigint,NO,,YES,Public,
+Master data,work_type,2,code,character varying(80),NO,,NO,Public,
+Master data,work_type,3,display_name,character varying(150),NO,,NO,Public,
+Master data,work_type,4,active,boolean,NO,true,NO,Public,
+Master data,work_type,5,sort_order,integer,NO,0,NO,Public,
+Master data,work_type,6,reference_code_id,bigint,NO,,NO,Public,
+Master data,work_type,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,work_type,8,created_by,bigint,YES,,NO,Personal,No human actor for seed/system creation; supplied actor must exist.
+Master data,work_type,9,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP,NO,Public,
+Master data,work_type,10,updated_by,bigint,YES,,NO,Personal,No human actor for seed/system update; supplied actor must exist.
+Master data,work_type,11,deleted_at,timestamp with time zone,YES,,NO,Public,NULL means active; append-only tables cannot be soft-deleted by ordinary update.
