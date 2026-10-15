@@ -142,7 +142,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 ### Administration & access control
 
-#### `account_role`
 
 #### `account_role`
 
@@ -163,8 +162,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `permission`
 
-#### `permission`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -178,9 +175,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | created_by | BIGINT | FK: user_account(id) | — |
 | updated_at | TIMESTAMPTZ | — | NOT NULL; DEFAULT now() |
 | updated_by | BIGINT | FK: user_account(id) | — |
-
-
-#### `role_permission`
 
 #### `role_permission`
 
@@ -198,8 +192,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 |---|---|
 | Constraint 1 | `UNIQUE (account_role_id, permission_id)` |
 
-
-#### `user_role`
 
 #### `user_role`
 
@@ -225,8 +217,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `user_credential`
 
-#### `user_credential`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -249,9 +239,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | Constraint | Definition |
 |---|---|
 | Constraint 1 | `UNIQUE (credential_type, credential_identifier)` |
-
-
-#### `identity_session`
 
 #### `identity_session`
 
@@ -282,8 +269,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `login_attempt`
 
-#### `login_attempt`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -296,9 +281,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | failure_reason_code | VARCHAR(50) | — | — |
 | correlation_id | UUID | — | — |
 | created_at | TIMESTAMPTZ | — | NOT NULL; DEFAULT now() |
-
-
-#### `consent_record`
 
 #### `consent_record`
 
@@ -325,8 +307,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `account_status_history`
 
-#### `account_status_history`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -337,8 +317,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | changed_by | BIGINT | FK: user_account(id) | — |
 | changed_at | TIMESTAMPTZ | — | NOT NULL; DEFAULT now() |
 
-
-#### `audit_event`
 
 #### `audit_event`
 
@@ -363,8 +341,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `system_error_log`
 
-#### `system_error_log`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -378,9 +354,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | occurred_at | TIMESTAMPTZ | — | NOT NULL; DEFAULT now() |
 | resolved_at | TIMESTAMPTZ | — | — |
 | resolution_note | TEXT | — | — |
-
-
-#### `user_block`
 
 #### `user_block`
 
@@ -406,8 +379,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `user_preference`
 
-#### `user_preference`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -422,8 +393,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 |---|---|
 | Constraint 1 | `UNIQUE(user_account_id, preference_key)` |
 
-
-#### `notification_preference`
 
 #### `notification_preference`
 
@@ -448,8 +417,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `notification_delivery`
 
-#### `notification_delivery`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -467,8 +434,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | retry_count | INTEGER | — | NOT NULL; DEFAULT 0; CHECK (retry_count >= 0) |
 | correlation_id | UUID | — | — |
 
-
-#### `support_ticket`
 
 #### `support_ticket`
 
@@ -492,8 +457,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `support_ticket_message`
 
-#### `support_ticket_message`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -503,8 +466,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | is_internal | BOOLEAN | — | NOT NULL; DEFAULT FALSE |
 | created_at | TIMESTAMPTZ | — | NOT NULL; DEFAULT now() |
 
-
-#### `faq_article`
 
 #### `faq_article`
 
@@ -528,8 +489,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `account_profile`
 
-#### `account_profile`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -547,8 +506,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | updated_by | BIGINT | FK: user_account(id) | — |
 | deleted_at | TIMESTAMPTZ | — | — |
 
-
-#### `account_organisation`
 
 #### `account_organisation`
 
@@ -574,8 +531,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `organisation_hierarchy`
 
-#### `organisation_hierarchy`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -594,9 +549,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | Constraint 1 | `CHECK (parent_organisation_id <> child_organisation_id)` |
 | Constraint 2 | `CHECK (valid_until IS NULL OR valid_until > valid_from)` |
 | Constraint 3 | `UNIQUE(parent_organisation_id, child_organisation_id, relationship_type)` |
-
-
-#### `organisation_location`
 
 #### `organisation_location`
 
@@ -628,9 +580,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | Constraint 1 | `CHECK (latitude IS NULL OR latitude BETWEEN -90 AND 90)` |
 | Constraint 2 | `CHECK (longitude IS NULL OR longitude BETWEEN -180 AND 180)` |
 
-
-#### `organisation_identifier`
-
 #### `organisation_identifier`
 
 | Column | Data type | Key / relationship | Constraints / default |
@@ -657,9 +606,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | Constraint 1 | `UNIQUE(country_id, identifier_type, identifier_fingerprint)` |
 | Constraint 2 | `CHECK (valid_until IS NULL OR valid_from IS NULL OR valid_until >= valid_from)` |
 
-
-#### `organisation_verification`
-
 #### `organisation_verification`
 
 | Column | Data type | Key / relationship | Constraints / default |
@@ -678,9 +624,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | review_notes | TEXT | — | — |
 | created_at | TIMESTAMPTZ | — | NOT NULL; DEFAULT now() |
 
-
-#### `organisation_verification_history`
-
 #### `organisation_verification_history`
 
 | Column | Data type | Key / relationship | Constraints / default |
@@ -693,8 +636,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | change_reason | TEXT | — | — |
 | changed_at | TIMESTAMPTZ | — | NOT NULL; DEFAULT now() |
 
-
-#### `organisation_account_admin`
 
 #### `organisation_account_admin`
 
@@ -720,8 +661,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `organisation_recruiter`
 
-#### `organisation_recruiter`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -741,9 +680,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 |---|---|
 | Constraint 1 | `CHECK (valid_until IS NULL OR valid_until > valid_from)` |
 
-
-#### `organisation_status_history`
-
 #### `organisation_status_history`
 
 | Column | Data type | Key / relationship | Constraints / default |
@@ -756,8 +692,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | reason | TEXT | — | — |
 | changed_at | TIMESTAMPTZ | — | NOT NULL; DEFAULT now() |
 
-
-#### `organisation_external_system`
 
 #### `organisation_external_system`
 
@@ -785,8 +719,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `gig_worker_profile`
 
-#### `gig_worker_profile`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -806,8 +738,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | updated_by | BIGINT | FK: user_account(id) | — |
 | deleted_at | TIMESTAMPTZ | — | — |
 
-
-#### `gig_service`
 
 #### `gig_service`
 
@@ -837,8 +767,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `gig_service_skill`
 
-#### `gig_service_skill`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -853,8 +781,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 |---|---|
 | Constraint 1 | `UNIQUE(gig_service_id, skill_id)` |
 
-
-#### `gig_worker_availability`
 
 #### `gig_worker_availability`
 
@@ -877,8 +803,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 |---|---|
 | Constraint 1 | `CHECK (available_until > available_from)` |
 
-
-#### `gig_request`
 
 #### `gig_request`
 
@@ -925,8 +849,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `gig_request_skill`
 
-#### `gig_request_skill`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -942,8 +864,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 |---|---|
 | Constraint 1 | `UNIQUE(gig_request_id, skill_id)` |
 
-
-#### `gig_application`
 
 #### `gig_application`
 
@@ -978,8 +898,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `gig_application_status_history`
 
-#### `gig_application_status_history`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -990,8 +908,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | reason | TEXT | — | — |
 | changed_at | TIMESTAMPTZ | — | NOT NULL; DEFAULT now() |
 
-
-#### `gig_assignment`
 
 #### `gig_assignment`
 
@@ -1025,8 +941,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `gig_fulfilment_handoff`
 
-#### `gig_fulfilment_handoff`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -1049,8 +963,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 |---|---|
 | Constraint 1 | `UNIQUE(external_system_code, external_handoff_reference)` |
 
-
-#### `gig_earnings_reconciliation`
 
 #### `gig_earnings_reconciliation`
 
@@ -1083,8 +995,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `gig_worker_list`
 
-#### `gig_worker_list`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -1102,8 +1012,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 |---|---|
 | Constraint 1 | `CHECK (list_type IN ('FAVOURITE', 'BLACKLIST'))` |
 
-
-#### `gig_worker_list_entry`
 
 #### `gig_worker_list_entry`
 
@@ -1126,8 +1034,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `gig_rating`
 
-#### `gig_rating`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -1143,8 +1049,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | rated_at | TIMESTAMPTZ | — | NOT NULL; DEFAULT now() |
 | created_at | TIMESTAMPTZ | — | NOT NULL; DEFAULT now() |
 
-
-#### `gig_event`
 
 #### `gig_event`
 
@@ -1168,8 +1072,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 
 ### Plans, licences, devices & finance
-
-#### `product_plan`
 
 #### `product_plan`
 
@@ -1201,8 +1103,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 |---|---|
 | Constraint 1 | `CHECK (effective_until IS NULL OR effective_until > effective_from)` |
 
-
-#### `account_subscription`
 
 #### `account_subscription`
 
@@ -1238,8 +1138,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `subscription_status_history`
 
-#### `subscription_status_history`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -1250,8 +1148,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | changed_by | BIGINT | FK: user_account(id) | — |
 | changed_at | TIMESTAMPTZ | — | NOT NULL; DEFAULT now() |
 
-
-#### `licence_pool`
 
 #### `licence_pool`
 
@@ -1282,8 +1178,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `licence_assignment`
 
-#### `licence_assignment`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -1302,8 +1196,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 |---|---|
 | Constraint 1 | `CHECK (revoked_at IS NULL OR revoked_at >= assigned_at)` |
 
-
-#### `registered_device`
 
 #### `registered_device`
 
@@ -1332,8 +1224,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `wallet_account`
 
-#### `wallet_account`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -1358,7 +1248,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `wallet_transaction`
 
-#### `wallet_transaction`
 
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
@@ -1378,8 +1267,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | created_by | BIGINT | FK: user_account(id) | — |
 | metadata | JSONB | — | NOT NULL; DEFAULT '{}'::jsonb |
 
-
-#### `financial_ledger_entry`
 
 #### `financial_ledger_entry`
 
@@ -1410,7 +1297,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `billing_invoice`
 
-#### `billing_invoice`
 
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
@@ -1441,8 +1327,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `billing_invoice_line`
 
-#### `billing_invoice_line`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -1466,7 +1350,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `payment_transaction`
 
-#### `payment_transaction`
 
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
@@ -1497,8 +1380,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 
 #### `payout_request`
 
-#### `payout_request`
-
 | Column | Data type | Key / relationship | Constraints / default |
 |---|---|---|---|
 | id | BIGINT | PK | — |
@@ -1517,8 +1398,6 @@ These tables were present in the supplied schema inventory. Their columns and co
 | requested_by | BIGINT | FK: user_account(id) | — |
 | processed_by | BIGINT | FK: user_account(id) | — |
 
-
-#### `financial_transaction_history`
 
 #### `financial_transaction_history`
 
