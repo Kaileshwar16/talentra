@@ -1,12 +1,12 @@
 {
-  "result": {
-    "content": [
-      {
-        "type": "text",
-        "text": "[]"
-      }
-    ]
-  },
-  "jsonrpc": "2.0",
-  "id": 2
+  "phase": 1,
+  "migrations": [
+    {
+      "file": "phase1/migrations/001_connected_er.sql",
+      "sha256": "3d2810e3311402e2755771e8af06872daa55c4a7faeffc31e5cf9871c23692a4",
+      "status": "APPLIED_AND_VERIFIED"
+    }
+  ],
+  "environment": "Neon PostgreSQL 18 Disposable Test Branch",
+  "verified_at_utc": "2026-10-15T19:41:55.688338+00:00"
 }
