@@ -1,6 +1,13 @@
 # Talentra Database Design — Production Engineering Deliverable
 ### Comprehensive PostgreSQL 18 Architecture Across Phases 1–4 (Modules 1–11)
 
+**Phase 5 production seed (2026-10-16):** 250,000 candidates, 25,000 jobs,
+and 1,250,000 applications were verified on the Neon production branch. The
+1 GiB branch limit prevents loading the docket's full laptop scale while
+keeping operating headroom. See [Phase 5 status and validation](phase5/README.md)
+for exact results, seed scripts, and remaining work. Production's Phase 2
+compatibility views differ from the physical test-branch schema described below.
+
 > **Database Platform**: PostgreSQL 18 on Neon  
 > **Neon Project**: `jolly-pond-45332483`  
 > **Target Database**: `neondb`  

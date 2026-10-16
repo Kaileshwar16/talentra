@@ -1,0 +1,74 @@
+{
+  "observed_at_utc": "2026-10-16T06:47:36Z",
+  "project_id": "jolly-pond-45332483",
+  "branch_id": "br-jolly-dawn-azv4gh54",
+  "branch_name": "production",
+  "database": "neondb",
+  "source_main_commit": "77efaba6cf7c87edcc4d40c1dc093f5ac8734666",
+  "pre_promotion_snapshot_id": "snap-plain-glitter-az2q3ztg",
+  "schema_promoted": [
+    "phase3/migrations/004_phase3.sql",
+    "phase4/migrations/005_phase4.sql",
+    "phase3/migrations/006_phase3_gap_closure.sql"
+  ],
+  "seed": {
+    "accounts": 100,
+    "organisations": 100,
+    "users": 250000,
+    "candidates": 250000,
+    "jobs": 25000,
+    "applications": 1250000,
+    "application_status_counts": {
+      "1": 178571,
+      "2": 178570,
+      "3": 178571,
+      "4": 178572,
+      "5": 178572,
+      "6": 178572,
+      "7": 178572
+    },
+    "recruiter_mappings": 20,
+    "gig_workers": 100,
+    "gig_requests": 100,
+    "gig_assignments": 100,
+    "subscriptions": 10,
+    "payments": 10,
+    "refunds": 5,
+    "profile_downloads": 10,
+    "notification_deliveries": 1000,
+    "consents": 100,
+    "blocks": 10,
+    "credential_records": 20,
+    "seed_audit_events": 1
+  },
+  "reference_counts": {
+    "language": 5,
+    "state": 4,
+    "city": 4,
+    "industry": 5,
+    "skill": 6,
+    "job_role": 4,
+    "qualification": 3
+  },
+  "checks": {
+    "orphan_applications": 0,
+    "duplicate_candidate_job_pairs": 0,
+    "unvalidated_constraints": 0,
+    "jobs_with_both_salary_bounds_null": 6250,
+    "multilingual_names_each_script": 25000
+  },
+  "capacity": {
+    "configured_branch_limit_bytes": 1073741824,
+    "pg_database_size_bytes": 843079680,
+    "note": "pg_database_size is a database-size indicator, not a current Neon branch logical-size reading"
+  },
+  "status": "partial_milestone_19",
+  "remaining": [
+    "full_docket_scale_requires_more_capacity",
+    "complete_reference_taxonomies_and_candidate_detail_data",
+    "gig_overlap_attempt_validation",
+    "refresh_and_validate_analytics_after_final_bulk_seed",
+    "reconcile_production_phase2_views_with_physical_schema",
+    "phase5_milestones_20_to_23"
+  ]
+}
