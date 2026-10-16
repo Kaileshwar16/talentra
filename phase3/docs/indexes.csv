@@ -10,15 +10,27 @@ public,account_subscription,idx_account_sub_account,"CREATE INDEX idx_account_su
 public,consultant_request,consultant_request_pkey,CREATE UNIQUE INDEX consultant_request_pkey ON public.consultant_request USING btree (id)
 public,consultant_request,idx_consultant_req_job,CREATE INDEX idx_consultant_req_job ON public.consultant_request USING btree (job_requirement_id)
 public,consultant_request,idx_consultant_req_org,CREATE INDEX idx_consultant_req_org ON public.consultant_request USING btree (consultant_organisation_id)
+public,consultant_request_decision,consultant_request_decision_pkey,CREATE UNIQUE INDEX consultant_request_decision_pkey ON public.consultant_request_decision USING btree (id)
+public,consultant_request_decision,idx_crd_request,"CREATE INDEX idx_crd_request ON public.consultant_request_decision USING btree (consultant_request_id, effective_at)"
 public,device_session,device_session_pkey,CREATE UNIQUE INDEX device_session_pkey ON public.device_session USING btree (id)
 public,device_session,device_session_session_token_hash_key,CREATE UNIQUE INDEX device_session_session_token_hash_key ON public.device_session USING btree (session_token_hash)
 public,device_session,idx_device_session_user,"CREATE INDEX idx_device_session_user ON public.device_session USING btree (user_account_id, is_active)"
+public,device_session,idx_device_session_user_device,CREATE INDEX idx_device_session_user_device ON public.device_session USING btree (user_device_id) WHERE (user_device_id IS NOT NULL)
 public,device_session,idx_session_token,CREATE INDEX idx_session_token ON public.device_session USING btree (session_token_hash)
 public,device_session,idx_session_user,CREATE INDEX idx_session_user ON public.device_session USING btree (user_account_id)
+public,invoice,idx_invoice_account,"CREATE INDEX idx_invoice_account ON public.invoice USING btree (account_profile_id, invoice_status)"
+public,invoice,idx_invoice_payment_tx,CREATE INDEX idx_invoice_payment_tx ON public.invoice USING btree (payment_transaction_id) WHERE (payment_transaction_id IS NOT NULL)
+public,invoice,invoice_pkey,CREATE UNIQUE INDEX invoice_pkey ON public.invoice USING btree (id)
+public,invoice,uq_invoice_number,CREATE UNIQUE INDEX uq_invoice_number ON public.invoice USING btree (invoice_number)
 public,licence_seat_assignment,idx_licence_seat_user,CREATE INDEX idx_licence_seat_user ON public.licence_seat_assignment USING btree (user_account_id)
 public,licence_seat_assignment,idx_seat_assign_user,CREATE INDEX idx_seat_assign_user ON public.licence_seat_assignment USING btree (user_account_id)
 public,licence_seat_assignment,licence_seat_assignment_pkey,CREATE UNIQUE INDEX licence_seat_assignment_pkey ON public.licence_seat_assignment USING btree (id)
-public,licence_seat_assignment,uq_licence_seat,"CREATE UNIQUE INDEX uq_licence_seat ON public.licence_seat_assignment USING btree (account_licence_id, user_account_id)"
+public,licence_seat_assignment,uq_licence_seat_active,"CREATE UNIQUE INDEX uq_licence_seat_active ON public.licence_seat_assignment USING btree (account_licence_id, user_account_id) WHERE (is_active = true)"
+public,payment_refund,idx_payment_refund_account,CREATE INDEX idx_payment_refund_account ON public.payment_refund USING btree (account_profile_id)
+public,payment_refund,idx_payment_refund_tx,"CREATE INDEX idx_payment_refund_tx ON public.payment_refund USING btree (payment_transaction_id, refund_status)"
+public,payment_refund,payment_refund_pkey,CREATE UNIQUE INDEX payment_refund_pkey ON public.payment_refund USING btree (id)
+public,payment_refund,uq_payment_refund_gateway,CREATE UNIQUE INDEX uq_payment_refund_gateway ON public.payment_refund USING btree (gateway_refund_id)
+public,payment_refund,uq_payment_refund_idempotency,CREATE UNIQUE INDEX uq_payment_refund_idempotency ON public.payment_refund USING btree (idempotency_key)
 public,payment_transaction,idx_payment_trans_account,"CREATE INDEX idx_payment_trans_account ON public.payment_transaction USING btree (account_profile_id, payment_status)"
 public,payment_transaction,payment_transaction_gateway_transaction_id_key,CREATE UNIQUE INDEX payment_transaction_gateway_transaction_id_key ON public.payment_transaction USING btree (gateway_transaction_id)
 public,payment_transaction,payment_transaction_idempotency_key_key,CREATE UNIQUE INDEX payment_transaction_idempotency_key_key ON public.payment_transaction USING btree (idempotency_key)
@@ -29,6 +41,12 @@ public,profile_download_event,idx_download_event_org,CREATE INDEX idx_download_e
 public,profile_download_event,idx_download_event_time,CREATE INDEX idx_download_event_time ON public.profile_download_event USING btree (downloaded_at)
 public,profile_download_event,idx_profile_download_candidate,CREATE INDEX idx_profile_download_candidate ON public.profile_download_event USING btree (candidate_profile_id)
 public,profile_download_event,profile_download_event_pkey,CREATE UNIQUE INDEX profile_download_event_pkey ON public.profile_download_event USING btree (id)
+public,sourcing_outreach_batch,idx_sob_pool_status,"CREATE INDEX idx_sob_pool_status ON public.sourcing_outreach_batch USING btree (sourcing_pool_id, batch_status) WHERE (deleted_at IS NULL)"
+public,sourcing_outreach_batch,sourcing_outreach_batch_pkey,CREATE UNIQUE INDEX sourcing_outreach_batch_pkey ON public.sourcing_outreach_batch USING btree (id)
+public,sourcing_outreach_recipient,idx_sor_batch,"CREATE INDEX idx_sor_batch ON public.sourcing_outreach_recipient USING btree (outreach_batch_id, delivery_status)"
+public,sourcing_outreach_recipient,idx_sor_candidate,CREATE INDEX idx_sor_candidate ON public.sourcing_outreach_recipient USING btree (candidate_profile_id)
+public,sourcing_outreach_recipient,sourcing_outreach_recipient_pkey,CREATE UNIQUE INDEX sourcing_outreach_recipient_pkey ON public.sourcing_outreach_recipient USING btree (id)
+public,sourcing_outreach_recipient,uq_sor_batch_candidate,"CREATE UNIQUE INDEX uq_sor_batch_candidate ON public.sourcing_outreach_recipient USING btree (outreach_batch_id, candidate_profile_id)"
 public,sourcing_pool,idx_sourcing_pool_org,CREATE INDEX idx_sourcing_pool_org ON public.sourcing_pool USING btree (organisation_id)
 public,sourcing_pool,sourcing_pool_pkey,CREATE UNIQUE INDEX sourcing_pool_pkey ON public.sourcing_pool USING btree (id)
 public,sourcing_pool_candidate,idx_pool_cand_cand,CREATE INDEX idx_pool_cand_cand ON public.sourcing_pool_candidate USING btree (candidate_profile_id)
@@ -39,6 +57,10 @@ public,subscription_plan,idx_sub_plan_code,CREATE INDEX idx_sub_plan_code ON pub
 public,subscription_plan,idx_subscription_plan_tier,"CREATE INDEX idx_subscription_plan_tier ON public.subscription_plan USING btree (tier_level, is_active)"
 public,subscription_plan,subscription_plan_code_key,CREATE UNIQUE INDEX subscription_plan_code_key ON public.subscription_plan USING btree (code)
 public,subscription_plan,subscription_plan_pkey,CREATE UNIQUE INDEX subscription_plan_pkey ON public.subscription_plan USING btree (id)
+public,user_device,idx_user_device_licence,CREATE INDEX idx_user_device_licence ON public.user_device USING btree (account_licence_id) WHERE (account_licence_id IS NOT NULL)
+public,user_device,idx_user_device_user,"CREATE INDEX idx_user_device_user ON public.user_device USING btree (user_account_id, revoked_at) WHERE (revoked_at IS NULL)"
+public,user_device,uq_user_device_fingerprint,"CREATE UNIQUE INDEX uq_user_device_fingerprint ON public.user_device USING btree (user_account_id, device_fingerprint)"
+public,user_device,user_device_pkey,CREATE UNIQUE INDEX user_device_pkey ON public.user_device USING btree (id)
 public,wallet_account,idx_wallet_acc_account,CREATE INDEX idx_wallet_acc_account ON public.wallet_account USING btree (account_profile_id)
 public,wallet_account,wallet_account_account_profile_id_key,CREATE UNIQUE INDEX wallet_account_account_profile_id_key ON public.wallet_account USING btree (account_profile_id)
 public,wallet_account,wallet_account_pkey,CREATE UNIQUE INDEX wallet_account_pkey ON public.wallet_account USING btree (id)

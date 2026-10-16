@@ -13,12 +13,23 @@ public,consultant_request,consultant_request_consultant_user_account_id_fkey,pub
 public,consultant_request,consultant_request_created_by_fkey,public,user_account,FOREIGN KEY (created_by) REFERENCES user_account(id)
 public,consultant_request,consultant_request_job_requirement_id_fkey,public,job_requirement,FOREIGN KEY (job_requirement_id) REFERENCES job_requirement(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,consultant_request,consultant_request_updated_by_fkey,public,user_account,FOREIGN KEY (updated_by) REFERENCES user_account(id)
+public,consultant_request_decision,consultant_request_decision_consultant_request_id_fkey,public,consultant_request,FOREIGN KEY (consultant_request_id) REFERENCES consultant_request(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,consultant_request_decision,consultant_request_decision_decided_by_user_id_fkey,public,user_account,FOREIGN KEY (decided_by_user_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,device_session,device_session_user_account_id_fkey,public,user_account,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,device_session,device_session_user_device_id_fkey,public,user_device,FOREIGN KEY (user_device_id) REFERENCES user_device(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,invoice,invoice_account_profile_id_fkey,public,account_profile,FOREIGN KEY (account_profile_id) REFERENCES account_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,invoice,invoice_account_subscription_id_fkey,public,account_subscription,FOREIGN KEY (account_subscription_id) REFERENCES account_subscription(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,invoice,invoice_currency_id_fkey,public,currency,FOREIGN KEY (currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,invoice,invoice_payment_transaction_id_fkey,public,payment_transaction,FOREIGN KEY (payment_transaction_id) REFERENCES payment_transaction(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,licence_seat_assignment,licence_seat_assignment_account_licence_id_fkey,public,account_licence,FOREIGN KEY (account_licence_id) REFERENCES account_licence(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,licence_seat_assignment,licence_seat_assignment_assigned_by_fkey,public,user_account,FOREIGN KEY (assigned_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,licence_seat_assignment,licence_seat_assignment_created_by_fkey,public,user_account,FOREIGN KEY (created_by) REFERENCES user_account(id)
 public,licence_seat_assignment,licence_seat_assignment_updated_by_fkey,public,user_account,FOREIGN KEY (updated_by) REFERENCES user_account(id)
 public,licence_seat_assignment,licence_seat_assignment_user_account_id_fkey,public,user_account,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,payment_refund,payment_refund_account_profile_id_fkey,public,account_profile,FOREIGN KEY (account_profile_id) REFERENCES account_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,payment_refund,payment_refund_currency_id_fkey,public,currency,FOREIGN KEY (currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,payment_refund,payment_refund_initiated_by_user_id_fkey,public,user_account,FOREIGN KEY (initiated_by_user_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,payment_refund,payment_refund_payment_transaction_id_fkey,public,payment_transaction,FOREIGN KEY (payment_transaction_id) REFERENCES payment_transaction(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,payment_transaction,payment_transaction_account_profile_id_fkey,public,account_profile,FOREIGN KEY (account_profile_id) REFERENCES account_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,payment_transaction,payment_transaction_currency_id_fkey,public,currency,FOREIGN KEY (currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,payment_transaction,payment_transaction_subscription_plan_id_fkey,public,subscription_plan,FOREIGN KEY (subscription_plan_id) REFERENCES subscription_plan(id) ON UPDATE RESTRICT ON DELETE RESTRICT
@@ -29,6 +40,10 @@ public,profile_download_event,profile_download_event_organisation_id_fkey,public
 public,profile_download_event,profile_download_event_recruiter_user_account_id_fkey,public,user_account,FOREIGN KEY (recruiter_user_account_id) REFERENCES user_account(id)
 public,profile_download_event,profile_download_event_resume_version_id_fkey,public,resume_version,FOREIGN KEY (resume_version_id) REFERENCES resume_version(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,profile_download_event,profile_download_event_wallet_transaction_id_fkey,public,wallet_transaction_ledger,FOREIGN KEY (wallet_transaction_id) REFERENCES wallet_transaction_ledger(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,sourcing_outreach_batch,sourcing_outreach_batch_created_by_user_id_fkey,public,user_account,FOREIGN KEY (created_by_user_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,sourcing_outreach_batch,sourcing_outreach_batch_sourcing_pool_id_fkey,public,sourcing_pool,FOREIGN KEY (sourcing_pool_id) REFERENCES sourcing_pool(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,sourcing_outreach_recipient,sourcing_outreach_recipient_candidate_profile_id_fkey,public,candidate_profile,FOREIGN KEY (candidate_profile_id) REFERENCES candidate_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,sourcing_outreach_recipient,sourcing_outreach_recipient_outreach_batch_id_fkey,public,sourcing_outreach_batch,FOREIGN KEY (outreach_batch_id) REFERENCES sourcing_outreach_batch(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,sourcing_pool,sourcing_pool_created_by_fkey,public,user_account,FOREIGN KEY (created_by) REFERENCES user_account(id)
 public,sourcing_pool,sourcing_pool_organisation_id_fkey,public,organisation,FOREIGN KEY (organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,sourcing_pool,sourcing_pool_updated_by_fkey,public,user_account,FOREIGN KEY (updated_by) REFERENCES user_account(id)
@@ -39,6 +54,8 @@ public,sourcing_pool_candidate,sourcing_pool_candidate_sourcing_pool_id_fkey,pub
 public,subscription_plan,subscription_plan_created_by_fkey,public,user_account,FOREIGN KEY (created_by) REFERENCES user_account(id)
 public,subscription_plan,subscription_plan_currency_id_fkey,public,currency,FOREIGN KEY (currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,subscription_plan,subscription_plan_updated_by_fkey,public,user_account,FOREIGN KEY (updated_by) REFERENCES user_account(id)
+public,user_device,user_device_account_licence_id_fkey,public,account_licence,FOREIGN KEY (account_licence_id) REFERENCES account_licence(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,user_device,user_device_user_account_id_fkey,public,user_account,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,wallet_account,wallet_account_account_profile_id_fkey,public,account_profile,FOREIGN KEY (account_profile_id) REFERENCES account_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,wallet_account,wallet_account_created_by_fkey,public,user_account,FOREIGN KEY (created_by) REFERENCES user_account(id)
 public,wallet_account,wallet_account_currency_id_fkey,public,currency,FOREIGN KEY (currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT

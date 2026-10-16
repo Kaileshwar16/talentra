@@ -5,7 +5,7 @@
 > **Neon Project**: `jolly-pond-45332483`  
 > **Target Database**: `neondb`  
 > **Repository**: [https://github.com/Kaileshwar16/talentra](https://github.com/Kaileshwar16/talentra)  
-> **Git Feature Branch**: `feature/modules-1-to-11-implementation`  
+> **Git Feature Branch**: `feature/phase3-gap-closure-b36-b47`  
 > **Neon Auth Security Note**: `neon_auth` and all `neon_auth.*` entities are strictly preserved, kept isolated, and excluded from application table counts and entity exports.
 
 ---
@@ -22,7 +22,7 @@ All database objects are organized under dedicated phase directories with comple
 - **Total Application Columns Inspected**: **1,100+** columns with strict typing, defaults, and non-null constraints
 - **Total Enforced Foreign Keys**: **260+** foreign keys with explicit `ON UPDATE RESTRICT ON DELETE RESTRICT`
 - **Total Exclusion Constraints**: **7** GiST temporal non-overlapping assignment/window constraints
-- **Total Automated Test Suites**: **4** test suites, **102** automated checks passing with 100% clean rollback
+- **Total Automated Test Suites**: **4** test suites, **119** automated checks passing with 100% clean rollback
 
 ---
 
@@ -32,9 +32,9 @@ All database objects are organized under dedicated phase directories with comple
 | :--- | :--- | :--- | :--- | :---: | :---: |
 | **Phase 1** | Milestones 1–6 | **Module 1**: Master Data<br>**Module 2**: Candidate Profile<br>**Module 3**: Jobs & Applications | **IMPLEMENTED** | 103 tables (`public`) | **26 passed** (100%) |
 | **Phase 2** | Milestones 7–10 | **Module 4**: Administration & RBAC<br>**Module 5**: Organisation & Accounts<br>**Module 6**: Gig Marketplace | **IMPLEMENTED** | 45 tables (`identity`, `organisation`, `gig`) | **36 passed** (100%) |
-| **Phase 3** | Milestones 11–13 | **Module 7**: Plans, Licences, Seats & Devices<br>**Module 8**: Sourcing & Consultant Requests<br>**Module 9**: Subscriptions, Wallets & Financial Ledger | **IMPLEMENTED** | 12 tables (`public`) | **20 passed** (100%) |
+| **Phase 3** | Milestones 11–13 | **Module 7**: Plans, Licences, Seats & Devices<br>**Module 8**: Sourcing & Consultant Requests<br>**Module 9**: Subscriptions, Wallets & Financial Ledger | **AUDITED & EXTENDED** | 18 tables (`public`) | **37 passed** (100%) |
 | **Phase 4** | Milestones 14–16 | **Module 10**: Notifications, Community & Support<br>**Module 11**: Analytics Layer & Data Marts | **IMPLEMENTED** | 13 tables (`public`) | **20 passed** (100%) |
-| **Total** | **All 16 Milestones** | **All 11 Modules Covered** | **PRODUCTION READY** | **173 core + 13 data marts** | **102 passed** (100%) |
+| **Total** | **All 16 Milestones** | **All 11 Modules Covered (B1–B47)** | **PRODUCTION READY** | **179 core + 13 data marts (192 total)** | **119 passed** (100%) |
 
 ---
 
@@ -76,19 +76,19 @@ All database objects are organized under dedicated phase directories with comple
 - Trust & fulfilment: `gig.gig_worker_list_entry` (blacklisting/favorites), `gig.gig_rating`, `gig.fulfilment_event` (append-only deduplicated provider events).
 
 ### Module 7 — Plans, Licences, Seats, Devices and Sessions (Phase 3)
-- Tiered commercial models: `subscription_plan` (Growth, Enterprise), `account_subscription`.
-- Seat management: `account_licence`, `licence_seat_assignment` with active overlap protection.
-- Device security: `device_session` with hardware fingerprinting and unique session token digests.
+- Tiered commercial models: `subscription_plan` (Growth, Enterprise), `account_subscription` with non-overlapping period triggers (`trg_check_sub_no_overlap`).
+- Seat management: `account_licence` with seat quotas, `licence_seat_assignment` with active quota enforcement (`check_licence_seat_limit()`) and historical re-assignment support (`uq_licence_seat_active`).
+- Device registry & security: `user_device` tracking client hardware with per-licence device-cap enforcement triggers (`check_user_device_limit()`), and `device_session` tracking authenticated web sessions.
 
 ### Module 8 — Sourcing, Consultant Requests and Recruiter Workflows (Phase 3)
-- Talent sourcing: `sourcing_pool` with private organizational ownership boundaries.
-- Candidate tagging: `sourcing_pool_candidate` with source attribution and AI match scores.
-- Consultant staffing: `consultant_request` with commission negotiation terms and approval lifecycles.
+- Talent sourcing: `sourcing_pool` with private organizational boundaries, and candidate pool tagging `sourcing_pool_candidate`.
+- Outreach campaigns: `sourcing_outreach_batch` managing multi-channel templates and dispatches, with per-candidate delivery pipeline tracking `sourcing_outreach_recipient`.
+- Consultant staffing & audit: `consultant_request` enforcing job consultant eligibility (`trg_check_consultant_job_eligibility`) and commission limits [0, 100], backed by append-only immutable decision logs `consultant_request_decision`.
 
 ### Module 9 — Subscriptions, Wallets, Payments and Financial Ledger (Phase 3)
-- Wallet accounts: `wallet_account` with strict balance validation (`balance >= 0`).
-- Immutable financial ledger: `wallet_transaction_ledger` enforcing append-only semantics via `talentra_reject_mutation()`.
-- Payments: `payment_transaction` tracking gateway references (Stripe/Razorpay) and unique idempotency keys.
+- Wallet accounts: `wallet_account` with non-negative balance checks (`balance_credits >= 0`).
+- Immutable financial ledger: `wallet_transaction_ledger` enforcing append-only semantics via `talentra_reject_mutation()` and unique idempotency keys (`uq_wallet_ledger_idempotency`).
+- Payments & Invoicing: `payment_transaction` tracking gateway settlements, customer-facing itemized `invoice` records with total arithmetic checks (`total = subtotal + tax`), and full/partial `payment_refund` tracking with dedicated idempotency guards.
 - Resume download billing: `profile_download_event` recording recruiter downloads with immutable audit logging.
 
 ### Module 10 — Notifications, Preferences and Community (Phase 4)
@@ -143,7 +143,8 @@ talentra/
 │   ├── README.md
 │   ├── RELATIONSHIPS.md
 │   ├── migrations/
-│   │   └── 004_phase3.sql
+│   │   ├── 004_phase3.sql
+│   │   └── 006_phase3_gap_closure.sql          # Additive B36–B47 gap closure migration
 │   ├── tests/
 │   │   └── phase3_constraints.sql
 │   └── docs/                                   # 12 CSV and JSON deliverables
@@ -181,7 +182,7 @@ talentra/
    - Candidates can only view and mutate their own profile records.
 3. **Audit Trail & Immutability**:
    - Write operations on sensitive entities trigger append-only audit events in `identity.audit_event`.
-   - Direct `UPDATE`, `DELETE`, or `TRUNCATE` operations on financial transaction ledgers (`wallet_transaction_ledger`) and download audit logs (`profile_download_event`) are rejected via `talentra_reject_mutation()` raising PostgreSQL error `55000`.
+   - Direct `UPDATE`, `DELETE`, or `TRUNCATE` operations on financial transaction ledgers (`wallet_transaction_ledger`), download audit logs (`profile_download_event`), and consultant request decision logs (`consultant_request_decision`) are rejected via `talentra_reject_mutation()` raising PostgreSQL error `55000`.
 4. **Credential Isolation**:
    - Platform credentials store only Argon2id or bcrypt hashes with random salts (`identity.credential`).
    - Browser authentication is delegated safely to Neon Auth without leaking session secrets or credentials into application databases.
@@ -198,10 +199,10 @@ Running Phase 1 test suite (phase1/tests/phase1_constraints.sql)...
 Running Phase 2 test suite (phase2/tests/phase2_constraints.sql)...
   [PASS] Phase 2 tests passed! (NOTICE: 36 Phase 2 checks passed; fixture rows and roles rolled back)
 Running Phase 3 test suite (phase3/tests/phase3_constraints.sql)...
-  [PASS] Phase 3 tests passed! (NOTICE: 20 Phase 3 checks passed; all test fixtures rolled back safely)
+  [PASS] Phase 3 tests passed! (NOTICE: 37 Phase 3 checks passed; all test fixtures rolled back cleanly)
 Running Phase 4 test suite (phase4/tests/phase4_constraints.sql)...
   [PASS] Phase 4 tests passed! (NOTICE: 20 Phase 4 checks passed; all test fixtures rolled back safely)
-[ALL PASS] All Phase 1, Phase 2, Phase 3, and Phase 4 test suites passed cleanly!
+[ALL PASS] All Phase 1, Phase 2, Phase 3, and Phase 4 test suites passed cleanly! (119 automated checks)
 ```
 
 ---
@@ -210,13 +211,14 @@ Running Phase 4 test suite (phase4/tests/phase4_constraints.sql)...
 
 Before applying migrations to the live production branch:
 1. **Prerequisites**: Ensure a full Neon point-in-time recovery (PITR) snapshot is created.
-2. **Review Execution Order**:
+2. **Review Global Execution Order**:
    - `phase1/migrations/001_connected_er.sql`
    - `phase2/migrations/002_phase2.sql`
    - `phase2/migrations/003_restrict_security_functions.sql`
    - `phase3/migrations/004_phase3.sql`
    - `phase4/migrations/005_phase4.sql`
+   - `phase3/migrations/006_phase3_gap_closure.sql` *(Explicit forward-only corrective migration closing B36–B47 requirements; executed after 005_phase4.sql in global deployment sequence)*
 3. **Execution Guardrails**:
    - Each migration runs within an explicit `BEGIN ... COMMIT` transaction envelope.
-   - Lock timeouts (`5s`) and statement timeouts (`120s`) are configured to prevent blocking concurrent traffic.
+   - Lock timeouts (`10s`) and statement timeouts (`120s`) are configured to prevent blocking concurrent traffic.
 4. **Validation**: Execute `python tools/build_validation.py` immediately post-deployment.

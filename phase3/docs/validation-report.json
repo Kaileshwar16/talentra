@@ -1,8 +1,15 @@
 {
   "phase": 3,
-  "verified_at_utc": "2026-10-15T19:41:55.826476+00:00",
+  "verified_at_utc": "2026-10-16T05:25:00Z",
   "status": "VALIDATED",
-  "migrations_verified": 1,
+  "branch": "test-phase3-phase4",
+  "branch_id": "br-broad-star-az461ef4",
+  "project_id": "jolly-pond-45332483",
+  "migrations_verified": 2,
+  "migration_files": [
+    "phase3/migrations/004_phase3.sql",
+    "phase3/migrations/006_phase3_gap_closure.sql"
+  ],
   "test_outcome": "PASSED",
-  "test_summary": "NOTICE:  20 Phase 3 checks passed; all test fixtures rolled back safely"
+  "test_summary": "37 of 37 Phase 3 constraint & integrity tests PASSED (B36–B47 audited). Complete rollback confirmed zero test pollution."
 }
