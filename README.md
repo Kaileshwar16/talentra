@@ -5,7 +5,7 @@
 > **Neon Project**: `jolly-pond-45332483`  
 > **Target Database**: `neondb`  
 > **Repository**: [https://github.com/Kaileshwar16/talentra](https://github.com/Kaileshwar16/talentra)  
-> **Git Feature Branch**: `feature/modules-1-to-11-implementation`  
+> **Git Feature Branch**: `feature/phase3-gap-closure-b36-b47`  
 > **Neon Auth Security Note**: `neon_auth` and all `neon_auth.*` entities are strictly preserved, kept isolated, and excluded from application table counts and entity exports.
 
 ---
@@ -22,7 +22,7 @@ All database objects are organized under dedicated phase directories with comple
 - **Total Application Columns Inspected**: **1,100+** columns with strict typing, defaults, and non-null constraints
 - **Total Enforced Foreign Keys**: **260+** foreign keys with explicit `ON UPDATE RESTRICT ON DELETE RESTRICT`
 - **Total Exclusion Constraints**: **7** GiST temporal non-overlapping assignment/window constraints
-- **Total Automated Test Suites**: **4** test suites, **102** automated checks passing with 100% clean rollback
+- **Total Automated Test Suites**: **4** test suites, **119** automated checks passing with 100% clean rollback
 
 ---
 
@@ -76,19 +76,19 @@ All database objects are organized under dedicated phase directories with comple
 - Trust & fulfilment: `gig.gig_worker_list_entry` (blacklisting/favorites), `gig.gig_rating`, `gig.fulfilment_event` (append-only deduplicated provider events).
 
 ### Module 7 — Plans, Licences, Seats, Devices and Sessions (Phase 3)
-- Tiered commercial models: `subscription_plan` (Growth, Enterprise), `account_subscription`.
-- Seat management: `account_licence`, `licence_seat_assignment` with active overlap protection.
-- Device security: `device_session` with hardware fingerprinting and unique session token digests.
+- Tiered commercial models: `subscription_plan` (Growth, Enterprise), `account_subscription` with non-overlapping period triggers (`trg_check_sub_no_overlap`).
+- Seat management: `account_licence` with seat quotas, `licence_seat_assignment` with active quota enforcement (`check_licence_seat_limit()`) and historical re-assignment support (`uq_licence_seat_active`).
+- Device registry & security: `user_device` tracking client hardware with per-licence device-cap enforcement triggers (`check_user_device_limit()`), and `device_session` tracking authenticated web sessions.
 
 ### Module 8 — Sourcing, Consultant Requests and Recruiter Workflows (Phase 3)
-- Talent sourcing: `sourcing_pool` with private organizational ownership boundaries.
-- Candidate tagging: `sourcing_pool_candidate` with source attribution and AI match scores.
-- Consultant staffing: `consultant_request` with commission negotiation terms and approval lifecycles.
+- Talent sourcing: `sourcing_pool` with private organizational boundaries, and candidate pool tagging `sourcing_pool_candidate`.
+- Outreach campaigns: `sourcing_outreach_batch` managing multi-channel templates and dispatches, with per-candidate delivery pipeline tracking `sourcing_outreach_recipient`.
+- Consultant staffing & audit: `consultant_request` enforcing job consultant eligibility (`trg_check_consultant_job_eligibility`) and commission limits [0, 100], backed by append-only immutable decision logs `consultant_request_decision`.
 
 ### Module 9 — Subscriptions, Wallets, Payments and Financial Ledger (Phase 3)
-- Wallet accounts: `wallet_account` with strict balance validation (`balance >= 0`).
-- Immutable financial ledger: `wallet_transaction_ledger` enforcing append-only semantics via `talentra_reject_mutation()`.
-- Payments: `payment_transaction` tracking gateway references (Stripe/Razorpay) and unique idempotency keys.
+- Wallet accounts: `wallet_account` with non-negative balance checks (`balance_credits >= 0`).
+- Immutable financial ledger: `wallet_transaction_ledger` enforcing append-only semantics via `talentra_reject_mutation()` and unique idempotency keys (`uq_wallet_ledger_idempotency`).
+- Payments & Invoicing: `payment_transaction` tracking gateway settlements, customer-facing itemized `invoice` records with total arithmetic checks (`total = subtotal + tax`), and full/partial `payment_refund` tracking with dedicated idempotency guards.
 - Resume download billing: `profile_download_event` recording recruiter downloads with immutable audit logging.
 
 ### Module 10 — Notifications, Preferences and Community (Phase 4)
