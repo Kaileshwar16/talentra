@@ -1,0 +1,13 @@
+{
+  "phase": 4,
+  "test_file": "phase4/tests/phase4_constraints.sql",
+  "executed_at_utc": "2026-10-15T19:41:55.873214+00:00",
+  "status": "PASSED",
+  "notices": [
+    "NOTICE:  26 Phase 1 checks passed; test data rolled back",
+    "NOTICE:  36 Phase 2 checks passed; fixture rows and roles rolled back",
+    "NOTICE:  20 Phase 3 checks passed; all test fixtures rolled back safely",
+    "NOTICE:  20 Phase 4 checks passed; all test fixtures rolled back safely"
+  ],
+  "error": null
+}

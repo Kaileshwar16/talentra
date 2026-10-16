@@ -1,12 +1,17 @@
 {
-  "result": {
-    "content": [
-      {
-        "type": "text",
-        "text": "[]"
-      }
-    ]
-  },
-  "jsonrpc": "2.0",
-  "id": 2
+  "phase": 2,
+  "migrations": [
+    {
+      "file": "phase2/migrations/002_phase2.sql",
+      "sha256": "d3c2175ef051035c7cf3217fbe9db575141d9bf0a35be9b8b38e9baa7284328f",
+      "status": "APPLIED_AND_VERIFIED"
+    },
+    {
+      "file": "phase2/migrations/003_restrict_security_functions.sql",
+      "sha256": "114b184dcc920a09fb5ee4af72af1e91b38eb4debaec92c62bf5db6cf52a6647",
+      "status": "APPLIED_AND_VERIFIED"
+    }
+  ],
+  "environment": "Neon PostgreSQL 18 Disposable Test Branch",
+  "verified_at_utc": "2026-10-15T19:41:55.780398+00:00"
 }

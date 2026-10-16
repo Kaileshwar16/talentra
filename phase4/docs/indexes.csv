@@ -1,0 +1,39 @@
+schema,table_name,index_name,index_definition
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_pkey,CREATE UNIQUE INDEX analytics_application_funnel_daily_pkey ON public.analytics_application_funnel_daily USING btree (id)
+public,analytics_application_funnel_daily,idx_funnel_daily_org,"CREATE INDEX idx_funnel_daily_org ON public.analytics_application_funnel_daily USING btree (organisation_id, report_date)"
+public,analytics_application_funnel_daily,uq_funnel_daily,"CREATE UNIQUE INDEX uq_funnel_daily ON public.analytics_application_funnel_daily USING btree (report_date, job_requirement_id)"
+public,analytics_recruiter_velocity,analytics_recruiter_velocity_pkey,CREATE UNIQUE INDEX analytics_recruiter_velocity_pkey ON public.analytics_recruiter_velocity USING btree (id)
+public,analytics_recruiter_velocity,idx_recruiter_velocity_rec,"CREATE INDEX idx_recruiter_velocity_rec ON public.analytics_recruiter_velocity USING btree (recruiter_user_account_id, report_month)"
+public,analytics_recruiter_velocity,uq_recruiter_velocity_month,"CREATE UNIQUE INDEX uq_recruiter_velocity_month ON public.analytics_recruiter_velocity USING btree (report_month, recruiter_user_account_id, organisation_id)"
+public,analytics_refresh_log,analytics_refresh_log_pkey,CREATE UNIQUE INDEX analytics_refresh_log_pkey ON public.analytics_refresh_log USING btree (id)
+public,analytics_refresh_log,idx_analytics_refresh_mart,"CREATE INDEX idx_analytics_refresh_mart ON public.analytics_refresh_log USING btree (mart_name, refreshed_at)"
+public,analytics_sourcing_efficiency,analytics_sourcing_efficiency_pkey,CREATE UNIQUE INDEX analytics_sourcing_efficiency_pkey ON public.analytics_sourcing_efficiency USING btree (id)
+public,analytics_sourcing_efficiency,idx_sourcing_eff_org,"CREATE INDEX idx_sourcing_eff_org ON public.analytics_sourcing_efficiency USING btree (organisation_id, report_date)"
+public,analytics_sourcing_efficiency,uq_sourcing_efficiency,"CREATE UNIQUE INDEX uq_sourcing_efficiency ON public.analytics_sourcing_efficiency USING btree (report_date, organisation_id, sourcing_channel)"
+public,analytics_wallet_reconciliation_summary,analytics_wallet_reconciliation_summary_pkey,CREATE UNIQUE INDEX analytics_wallet_reconciliation_summary_pkey ON public.analytics_wallet_reconciliation_summary USING btree (id)
+public,analytics_wallet_reconciliation_summary,analytics_wallet_reconciliation_summary_reconciliation_date_key,CREATE UNIQUE INDEX analytics_wallet_reconciliation_summary_reconciliation_date_key ON public.analytics_wallet_reconciliation_summary USING btree (reconciliation_date)
+public,analytics_wallet_reconciliation_summary,idx_wallet_recon_date,CREATE INDEX idx_wallet_recon_date ON public.analytics_wallet_reconciliation_summary USING btree (reconciliation_date)
+public,community_comment,community_comment_pkey,CREATE UNIQUE INDEX community_comment_pkey ON public.community_comment USING btree (id)
+public,community_comment,idx_comm_comment_disc,CREATE INDEX idx_comm_comment_disc ON public.community_comment USING btree (discussion_id)
+public,community_discussion,community_discussion_pkey,CREATE UNIQUE INDEX community_discussion_pkey ON public.community_discussion USING btree (id)
+public,community_discussion,idx_comm_disc_author,CREATE INDEX idx_comm_disc_author ON public.community_discussion USING btree (author_user_account_id)
+public,faq_article,faq_article_pkey,CREATE UNIQUE INDEX faq_article_pkey ON public.faq_article USING btree (id)
+public,faq_article,idx_faq_article_cat,"CREATE INDEX idx_faq_article_cat ON public.faq_article USING btree (category, is_published)"
+public,faq_article,idx_faq_cat,CREATE INDEX idx_faq_cat ON public.faq_article USING btree (category)
+public,notification_delivery,idx_notif_delivery_status,CREATE INDEX idx_notif_delivery_status ON public.notification_delivery USING btree (delivery_status)
+public,notification_delivery,idx_notif_delivery_user,"CREATE INDEX idx_notif_delivery_user ON public.notification_delivery USING btree (user_account_id, queued_at)"
+public,notification_delivery,notification_delivery_pkey,CREATE UNIQUE INDEX notification_delivery_pkey ON public.notification_delivery USING btree (id)
+public,notification_delivery,uq_notification_delivery_idempotency,CREATE UNIQUE INDEX uq_notification_delivery_idempotency ON public.notification_delivery USING btree (idempotency_key) WHERE (idempotency_key IS NOT NULL)
+public,notification_preference,idx_notif_pref_user,CREATE INDEX idx_notif_pref_user ON public.notification_preference USING btree (user_account_id)
+public,notification_preference,notification_preference_pkey,CREATE UNIQUE INDEX notification_preference_pkey ON public.notification_preference USING btree (id)
+public,notification_preference,uq_notif_pref,"CREATE UNIQUE INDEX uq_notif_pref ON public.notification_preference USING btree (user_account_id, notification_category, channel_code)"
+public,notification_template,notification_template_pkey,CREATE UNIQUE INDEX notification_template_pkey ON public.notification_template USING btree (id)
+public,notification_template,notification_template_template_code_key,CREATE UNIQUE INDEX notification_template_template_code_key ON public.notification_template USING btree (template_code)
+public,support_ticket,idx_support_ticket_status,CREATE INDEX idx_support_ticket_status ON public.support_ticket USING btree (status)
+public,support_ticket,idx_support_ticket_user,CREATE INDEX idx_support_ticket_user ON public.support_ticket USING btree (requester_user_account_id)
+public,support_ticket,support_ticket_pkey,CREATE UNIQUE INDEX support_ticket_pkey ON public.support_ticket USING btree (id)
+public,support_ticket,support_ticket_ticket_number_key,CREATE UNIQUE INDEX support_ticket_ticket_number_key ON public.support_ticket USING btree (ticket_number)
+public,support_ticket,uq_support_ticket_reference,CREATE UNIQUE INDEX uq_support_ticket_reference ON public.support_ticket USING btree (ticket_reference) WHERE (ticket_reference IS NOT NULL)
+public,support_ticket_message,idx_support_msg_ticket,CREATE INDEX idx_support_msg_ticket ON public.support_ticket_message USING btree (support_ticket_id)
+public,support_ticket_message,idx_ticket_msg_ticket,CREATE INDEX idx_ticket_msg_ticket ON public.support_ticket_message USING btree (support_ticket_id)
+public,support_ticket_message,support_ticket_message_pkey,CREATE UNIQUE INDEX support_ticket_message_pkey ON public.support_ticket_message USING btree (id)

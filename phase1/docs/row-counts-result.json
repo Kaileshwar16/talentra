@@ -1,12 +1,629 @@
 {
-  "result": {
-    "content": [
-      {
-        "type": "text",
-        "text": "[\n  {\n    \"table_name\": \"job_status\",\n    \"row_count\": \"5\"\n  },\n  {\n    \"table_name\": \"work_type\",\n    \"row_count\": \"3\"\n  },\n  {\n    \"table_name\": \"employment_type\",\n    \"row_count\": \"6\"\n  },\n  {\n    \"table_name\": \"proficiency_level\",\n    \"row_count\": \"5\"\n  },\n  {\n    \"table_name\": \"question_type\",\n    \"row_count\": \"7\"\n  },\n  {\n    \"table_name\": \"application_status\",\n    \"row_count\": \"7\"\n  },\n  {\n    \"table_name\": \"interview_status\",\n    \"row_count\": \"4\"\n  },\n  {\n    \"table_name\": \"offer_status\",\n    \"row_count\": \"6\"\n  },\n  {\n    \"table_name\": \"activity_type\",\n    \"row_count\": \"5\"\n  },\n  {\n    \"table_name\": \"experience_type\",\n    \"row_count\": \"4\"\n  },\n  {\n    \"table_name\": \"verification_status\",\n    \"row_count\": \"3\"\n  },\n  {\n    \"table_name\": \"accomplishment_type\",\n    \"row_count\": \"5\"\n  },\n  {\n    \"table_name\": \"social_platform\",\n    \"row_count\": \"4\"\n  },\n  {\n    \"table_name\": \"job_event_type\",\n    \"row_count\": \"5\"\n  },\n  {\n    \"table_name\": \"hiring_stage_type\",\n    \"row_count\": \"5\"\n  },\n  {\n    \"table_name\": \"education_level\",\n    \"row_count\": \"6\"\n  },\n  {\n    \"table_name\": \"score_scale\",\n    \"row_count\": \"3\"\n  },\n  {\n    \"table_name\": \"eligibility_decision\",\n    \"row_count\": \"3\"\n  },\n  {\n    \"table_name\": \"stage_decision\",\n    \"row_count\": \"4\"\n  },\n  {\n    \"table_name\": \"withdrawal_outcome\",\n    \"row_count\": \"4\"\n  },\n  {\n    \"table_name\": \"document_type\",\n    \"row_count\": \"5\"\n  },\n  {\n    \"table_name\": \"salary_period\",\n    \"row_count\": \"5\"\n  },\n  {\n    \"table_name\": \"course_enrolment_status\",\n    \"row_count\": \"4\"\n  },\n  {\n    \"table_name\": \"candidate_activity_type\",\n    \"row_count\": \"4\"\n  },\n  {\n    \"table_name\": \"referral_status\",\n    \"row_count\": \"4\"\n  },\n  {\n    \"table_name\": \"job_position_status\",\n    \"row_count\": \"3\"\n  },\n  {\n    \"table_name\": \"country\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"state\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"city\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"language\",\n    \"row_count\": \"1\"\n  },\n  {\n    \"table_name\": \"currency\",\n    \"row_count\": \"2\"\n  },\n  {\n    \"table_name\": \"qualification\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"skill\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"subject\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"organisation\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"user_account\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"institution\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"academic_program\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_profile\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"resume_template\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_skill\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_education\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_volunteer_experience\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_extracurricular_activity\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_experience\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_project\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_language\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_social_link\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_contact\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_accomplishment\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"resume_version\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"education_verification\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_subject\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_backlog\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_academic_result\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_document\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"job_requirement\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"job_location\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"job_status_history\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"job_qualification_requirement\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"job_skill_requirement\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"job_application_policy\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"job_event\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"job_attachment\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"job_external_ats\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"job_eligibility_policy\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"job_hiring_stage\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"job_academic_criterion\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"job_eligible_program\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"questionnaire\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"question\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"question_option\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_job_eligibility_check\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"eligibility_check_result\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"application\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"application_stage_result\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"application_withdrawal\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"application_profile_snapshot\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"application_status_history\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"interview\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"offer\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"joining_record\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"application_document\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"application_answer\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"industry\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"job_role\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"reference_code\",\n    \"row_count\": \"119\"\n  },\n  {\n    \"table_name\": \"reference_translation\",\n    \"row_count\": \"119\"\n  },\n  {\n    \"table_name\": \"ui_translation\",\n    \"row_count\": \"3\"\n  },\n  {\n    \"table_name\": \"assessment\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"assessment_result\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"course\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"course_enrolment\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"profile_completion_score\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"profile_view_history\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_activity_log\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_bookmark\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_bookmark_history\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"referral_tracking\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"job_position\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"job_shortlist\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"shortlist_history\",\n    \"row_count\": \"0\"\n  },\n  {\n    \"table_name\": \"candidate_job_search_history\",\n    \"row_count\": \"0\"\n  }\n]"
-      }
-    ]
-  },
-  "jsonrpc": "2.0",
-  "id": 2
+  "captured_at_utc": "2026-10-15T19:41:40.070780+00:00",
+  "row_counts": [
+    {
+      "schema": "public",
+      "table_name": "academic_program",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "accomplishment_type",
+      "type": "BASE TABLE",
+      "row_count": 5
+    },
+    {
+      "schema": "public",
+      "table_name": "activity_type",
+      "type": "BASE TABLE",
+      "row_count": 5
+    },
+    {
+      "schema": "public",
+      "table_name": "application",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "application_answer",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "application_document",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "application_profile_snapshot",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "application_stage_result",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "application_status",
+      "type": "BASE TABLE",
+      "row_count": 7
+    },
+    {
+      "schema": "public",
+      "table_name": "application_status_history",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "application_withdrawal",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "assessment",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "assessment_result",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_academic_result",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_accomplishment",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_activity_log",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_activity_type",
+      "type": "BASE TABLE",
+      "row_count": 4
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_backlog",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_bookmark",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_bookmark_history",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_contact",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_document",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_education",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_experience",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_extracurricular_activity",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_identity_document",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_job_eligibility_check",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_job_search_history",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_language",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_profile",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_project",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_skill",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_social_link",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_subject",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "candidate_volunteer_experience",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "city",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "country",
+      "type": "BASE TABLE",
+      "row_count": 8
+    },
+    {
+      "schema": "public",
+      "table_name": "course",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "course_enrolment",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "course_enrolment_status",
+      "type": "BASE TABLE",
+      "row_count": 4
+    },
+    {
+      "schema": "public",
+      "table_name": "currency",
+      "type": "BASE TABLE",
+      "row_count": 6
+    },
+    {
+      "schema": "public",
+      "table_name": "document_type",
+      "type": "BASE TABLE",
+      "row_count": 10
+    },
+    {
+      "schema": "public",
+      "table_name": "education_level",
+      "type": "BASE TABLE",
+      "row_count": 6
+    },
+    {
+      "schema": "public",
+      "table_name": "education_verification",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "eligibility_check_result",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "eligibility_decision",
+      "type": "BASE TABLE",
+      "row_count": 3
+    },
+    {
+      "schema": "public",
+      "table_name": "employment_type",
+      "type": "BASE TABLE",
+      "row_count": 6
+    },
+    {
+      "schema": "public",
+      "table_name": "experience_type",
+      "type": "BASE TABLE",
+      "row_count": 4
+    },
+    {
+      "schema": "public",
+      "table_name": "hiring_stage_type",
+      "type": "BASE TABLE",
+      "row_count": 5
+    },
+    {
+      "schema": "public",
+      "table_name": "industry",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "institution",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "interview",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "interview_status",
+      "type": "BASE TABLE",
+      "row_count": 4
+    },
+    {
+      "schema": "public",
+      "table_name": "job_academic_criterion",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "job_application_policy",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "job_attachment",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "job_eligibility_policy",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "job_eligible_program",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "job_event",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "job_event_type",
+      "type": "BASE TABLE",
+      "row_count": 5
+    },
+    {
+      "schema": "public",
+      "table_name": "job_external_ats",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "job_hiring_stage",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "job_location",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "job_position",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "job_position_status",
+      "type": "BASE TABLE",
+      "row_count": 3
+    },
+    {
+      "schema": "public",
+      "table_name": "job_qualification_requirement",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "job_requirement",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "job_role",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "job_shortlist",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "job_skill_requirement",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "job_status",
+      "type": "BASE TABLE",
+      "row_count": 5
+    },
+    {
+      "schema": "public",
+      "table_name": "job_status_history",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "joining_record",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "language",
+      "type": "BASE TABLE",
+      "row_count": 1
+    },
+    {
+      "schema": "public",
+      "table_name": "offer",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "offer_status",
+      "type": "BASE TABLE",
+      "row_count": 6
+    },
+    {
+      "schema": "public",
+      "table_name": "organisation",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "proficiency_level",
+      "type": "BASE TABLE",
+      "row_count": 5
+    },
+    {
+      "schema": "public",
+      "table_name": "profile_completion_score",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "profile_view_history",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "qualification",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "question",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "question_option",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "question_type",
+      "type": "BASE TABLE",
+      "row_count": 7
+    },
+    {
+      "schema": "public",
+      "table_name": "questionnaire",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "reference_code",
+      "type": "BASE TABLE",
+      "row_count": 221
+    },
+    {
+      "schema": "public",
+      "table_name": "reference_translation",
+      "type": "BASE TABLE",
+      "row_count": 179
+    },
+    {
+      "schema": "public",
+      "table_name": "referral_status",
+      "type": "BASE TABLE",
+      "row_count": 4
+    },
+    {
+      "schema": "public",
+      "table_name": "referral_tracking",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "resume_template",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "resume_version",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "salary_period",
+      "type": "BASE TABLE",
+      "row_count": 5
+    },
+    {
+      "schema": "public",
+      "table_name": "score_scale",
+      "type": "BASE TABLE",
+      "row_count": 3
+    },
+    {
+      "schema": "public",
+      "table_name": "shortlist_history",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "skill",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "social_platform",
+      "type": "BASE TABLE",
+      "row_count": 4
+    },
+    {
+      "schema": "public",
+      "table_name": "stage_decision",
+      "type": "BASE TABLE",
+      "row_count": 4
+    },
+    {
+      "schema": "public",
+      "table_name": "state",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "subject",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "ui_translation",
+      "type": "BASE TABLE",
+      "row_count": 3
+    },
+    {
+      "schema": "public",
+      "table_name": "user_account",
+      "type": "BASE TABLE",
+      "row_count": 0
+    },
+    {
+      "schema": "public",
+      "table_name": "verification_status",
+      "type": "BASE TABLE",
+      "row_count": 7
+    },
+    {
+      "schema": "public",
+      "table_name": "withdrawal_outcome",
+      "type": "BASE TABLE",
+      "row_count": 4
+    },
+    {
+      "schema": "public",
+      "table_name": "work_type",
+      "type": "BASE TABLE",
+      "row_count": 3
+    }
+  ]
 }

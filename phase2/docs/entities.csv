@@ -1,49 +1,46 @@
-module,schema,table_name,owner_in_docket,source,lifecycle,row_count
-Gig marketplace,gig,application_status,Member C,Phase 2 docket B24-B35,soft-delete,4
-Gig marketplace,gig,assignment_status,Member C,Phase 2 docket B24-B35,soft-delete,6
-Gig marketplace,gig,availability_status,Member C,Phase 2 docket B24-B35,soft-delete,2
-Gig marketplace,gig,fulfilment_event,Member C,Phase 2 docket B24-B35,append-only,0
-Gig marketplace,gig,gig_application,Member C,Phase 2 docket B24-B35,soft-delete,0
-Gig marketplace,gig,gig_assignment,Member C,Phase 2 docket B24-B35,soft-delete,0
-Gig marketplace,gig,gig_availability,Member C,Phase 2 docket B24-B35,soft-delete,0
-Gig marketplace,gig,gig_rating,Member C,Phase 2 docket B24-B35,soft-delete,0
-Gig marketplace,gig,gig_request,Member C,Phase 2 docket B24-B35,soft-delete,0
-Gig marketplace,gig,gig_service,Member C,Phase 2 docket B24-B35,soft-delete,0
-Gig marketplace,gig,gig_worker_list_entry,Member C,Phase 2 docket B24-B35,soft-delete,0
-Gig marketplace,gig,gig_worker_profile,Member C,Phase 2 docket B24-B35,soft-delete,0
-Gig marketplace,gig,pricing_model,Member C,Phase 2 docket B24-B35,soft-delete,3
-Gig marketplace,gig,rate_unit,Member C,Phase 2 docket B24-B35,soft-delete,3
-Gig marketplace,gig,request_status,Member C,Phase 2 docket B24-B35,soft-delete,6
-Gig marketplace,gig,worker_list_type,Member C,Phase 2 docket B24-B35,soft-delete,2
-Gig marketplace,gig,worker_project,Member C,Phase 2 docket B24-B35,soft-delete,0
-Administration,identity,account_status,Member A,Phase 2 docket B24-B35,soft-delete,4
-Administration,identity,app_role,Member A,Phase 2 docket B24-B35,soft-delete,9
-Administration,identity,audit_event,Member A,Phase 2 docket B24-B35,append-only,0
-Administration,identity,consent_type,Member A,Phase 2 docket B24-B35,soft-delete,4
-Administration,identity,credential,Member A,Phase 2 docket B24-B35,soft-delete,0
-Administration,identity,credential_type,Member A,Phase 2 docket B24-B35,soft-delete,3
-Administration,identity,db_principal,Member A,Phase 2 docket B24-B35,soft-delete,0
-Administration,identity,hash_algorithm,Member A,Phase 2 docket B24-B35,soft-delete,3
-Administration,identity,permission,Member A,Phase 2 docket B24-B35,soft-delete,16
-Administration,identity,role_permission,Member A,Phase 2 docket B24-B35,soft-delete,57
-Administration,identity,session_record,Member A,Phase 2 docket B24-B35,soft-delete,0
-Administration,identity,session_status,Member A,Phase 2 docket B24-B35,soft-delete,3
-Administration,identity,system_error_log,Member A,Phase 2 docket B24-B35,append-only,0
-Administration,identity,user_block,Member A,Phase 2 docket B24-B35,soft-delete,0
-Administration,identity,user_consent,Member A,Phase 2 docket B24-B35,append-only,0
-Administration,identity,user_role,Member A,Phase 2 docket B24-B35,soft-delete,0
-Organisation and account,organisation,account_administrator,Member B,Phase 2 docket B24-B35,soft-delete,0
-Organisation and account,organisation,account_profile,Member B,Phase 2 docket B24-B35,soft-delete,0
-Organisation and account,organisation,account_status,Member B,Phase 2 docket B24-B35,soft-delete,4
-Organisation and account,organisation,identifier_type,Member B,Phase 2 docket B24-B35,soft-delete,5
-Organisation and account,organisation,job_recruiter_assignment,Member B,Phase 2 docket B24-B35,soft-delete,0
-Organisation and account,organisation,organisation_identifier,Member B,Phase 2 docket B24-B35,soft-delete,0
-Organisation and account,organisation,organisation_location,Member B,Phase 2 docket B24-B35,soft-delete,0
-Organisation and account,organisation,organisation_member,Member B,Phase 2 docket B24-B35,soft-delete,0
-Organisation and account,organisation,organisation_recruiter,Member B,Phase 2 docket B24-B35,soft-delete,0
-Organisation and account,organisation,organisation_type,Member B,Phase 2 docket B24-B35,soft-delete,4
-Organisation and account,organisation,verification_record,Member B,Phase 2 docket B24-B35,soft-delete,0
-Organisation and account,organisation,verification_type,Member B,Phase 2 docket B24-B35,soft-delete,4
-Administration,public,user_account,Shared Phase 1 anchor,Expanded in Phase 2,soft-delete,See Phase 1 rows
-Organisation and account,public,organisation,Shared Phase 1 anchor,Expanded in Phase 2,soft-delete,See Phase 1 rows
-Phase 1 anchor extended by Phase 2,public,job_requirement,Shared Phase 1 anchor,Expanded in Phase 2,soft-delete,See Phase 1 rows
+module,schema,table_name,type,origin,lifecycle,status,source_migration
+Module 4 — Administration and Access Control,gig,application_status,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,gig,assignment_status,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,gig,availability_status,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,gig,fulfilment_event,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,gig,gig_application,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,gig,gig_assignment,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,gig,gig_availability,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,gig,gig_rating,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,gig,gig_request,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,gig,gig_service,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,gig,gig_worker_list_entry,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,gig,gig_worker_profile,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,gig,pricing_model,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,gig,rate_unit,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,gig,request_status,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,gig,worker_list_type,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,gig,worker_project,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,identity,account_status,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,identity,app_role,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,identity,audit_event,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,identity,consent_type,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,identity,credential,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,identity,credential_type,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,identity,db_principal,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,identity,hash_algorithm,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,identity,permission,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,identity,role_permission,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,identity,session_record,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,identity,session_status,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,identity,system_error_log,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,identity,user_block,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,identity,user_consent,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,identity,user_role,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,organisation,account_administrator,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,organisation,account_profile,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,organisation,account_status,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,organisation,identifier_type,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,organisation,job_recruiter_assignment,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,organisation,organisation_identifier,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,organisation,organisation_location,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,organisation,organisation_member,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,organisation,organisation_recruiter,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,organisation,organisation_type,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,organisation,verification_record,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002
+Module 4 — Administration and Access Control,organisation,verification_type,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,002

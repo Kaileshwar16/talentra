@@ -1,0 +1,151 @@
+schema,table_name,constraint_name,constraint_type,definition
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_applied_count_not_null,n,NOT NULL applied_count
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_calculated_at_not_null,n,NOT NULL calculated_at
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_id_not_null,n,NOT NULL id
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_interviewing_count_not_null,n,NOT NULL interviewing_count
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_job_requirement_id_fkey,f,FOREIGN KEY (job_requirement_id) REFERENCES job_requirement(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_job_requirement_id_not_null,n,NOT NULL job_requirement_id
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_joined_count_not_null,n,NOT NULL joined_count
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_offered_count_not_null,n,NOT NULL offered_count
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_organisation_id_fkey,f,FOREIGN KEY (organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_organisation_id_not_null,n,NOT NULL organisation_id
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_pkey,p,PRIMARY KEY (id)
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_rejected_count_not_null,n,NOT NULL rejected_count
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_report_date_not_null,n,NOT NULL report_date
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_shortlisted_count_not_null,n,NOT NULL shortlisted_count
+public,analytics_application_funnel_daily,analytics_application_funnel_daily_withdrawn_count_not_null,n,NOT NULL withdrawn_count
+public,analytics_application_funnel_daily,uq_funnel_daily,u,"UNIQUE (report_date, job_requirement_id)"
+public,analytics_recruiter_velocity,analytics_recruiter_velocit_total_applications_reviewe_not_null,n,NOT NULL total_applications_reviewed
+public,analytics_recruiter_velocity,analytics_recruiter_velocity_id_not_null,n,NOT NULL id
+public,analytics_recruiter_velocity,analytics_recruiter_velocity_organisation_id_fkey,f,FOREIGN KEY (organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,analytics_recruiter_velocity,analytics_recruiter_velocity_organisation_id_not_null,n,NOT NULL organisation_id
+public,analytics_recruiter_velocity,analytics_recruiter_velocity_pkey,p,PRIMARY KEY (id)
+public,analytics_recruiter_velocity,analytics_recruiter_velocity_recruiter_user_account_id_fkey,f,FOREIGN KEY (recruiter_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,analytics_recruiter_velocity,analytics_recruiter_velocity_recruiter_user_account_id_not_null,n,NOT NULL recruiter_user_account_id
+public,analytics_recruiter_velocity,analytics_recruiter_velocity_refreshed_at_not_null,n,NOT NULL refreshed_at
+public,analytics_recruiter_velocity,analytics_recruiter_velocity_report_month_not_null,n,NOT NULL report_month
+public,analytics_recruiter_velocity,analytics_recruiter_velocity_total_jobs_managed_not_null,n,NOT NULL total_jobs_managed
+public,analytics_recruiter_velocity,analytics_recruiter_velocity_total_offers_accepted_not_null,n,NOT NULL total_offers_accepted
+public,analytics_recruiter_velocity,analytics_recruiter_velocity_total_offers_extended_not_null,n,NOT NULL total_offers_extended
+public,analytics_refresh_log,analytics_refresh_log_id_not_null,n,NOT NULL id
+public,analytics_refresh_log,analytics_refresh_log_mart_name_not_null,n,NOT NULL mart_name
+public,analytics_refresh_log,analytics_refresh_log_period_end_not_null,n,NOT NULL period_end
+public,analytics_refresh_log,analytics_refresh_log_period_start_not_null,n,NOT NULL period_start
+public,analytics_refresh_log,analytics_refresh_log_pkey,p,PRIMARY KEY (id)
+public,analytics_refresh_log,analytics_refresh_log_refresh_status_not_null,n,NOT NULL refresh_status
+public,analytics_refresh_log,analytics_refresh_log_refreshed_at_not_null,n,NOT NULL refreshed_at
+public,analytics_refresh_log,analytics_refresh_log_rows_processed_not_null,n,NOT NULL rows_processed
+public,analytics_sourcing_efficiency,analytics_sourcing_efficiency_candidates_applied_not_null,n,NOT NULL candidates_applied
+public,analytics_sourcing_efficiency,analytics_sourcing_efficiency_candidates_hired_not_null,n,NOT NULL candidates_hired
+public,analytics_sourcing_efficiency,analytics_sourcing_efficiency_candidates_sourced_not_null,n,NOT NULL candidates_sourced
+public,analytics_sourcing_efficiency,analytics_sourcing_efficiency_id_not_null,n,NOT NULL id
+public,analytics_sourcing_efficiency,analytics_sourcing_efficiency_organisation_id_fkey,f,FOREIGN KEY (organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,analytics_sourcing_efficiency,analytics_sourcing_efficiency_organisation_id_not_null,n,NOT NULL organisation_id
+public,analytics_sourcing_efficiency,analytics_sourcing_efficiency_pkey,p,PRIMARY KEY (id)
+public,analytics_sourcing_efficiency,analytics_sourcing_efficiency_refreshed_at_not_null,n,NOT NULL refreshed_at
+public,analytics_sourcing_efficiency,analytics_sourcing_efficiency_report_date_not_null,n,NOT NULL report_date
+public,analytics_sourcing_efficiency,analytics_sourcing_efficiency_sourcing_channel_not_null,n,NOT NULL sourcing_channel
+public,analytics_wallet_reconciliation_summary,analytics_wallet_reconciliat_net_active_wallet_balance_not_null,n,NOT NULL net_active_wallet_balance
+public,analytics_wallet_reconciliation_summary,analytics_wallet_reconciliati_total_resumes_downloaded_not_null,n,NOT NULL total_resumes_downloaded
+public,analytics_wallet_reconciliation_summary,analytics_wallet_reconciliatio_total_credits_purchased_not_null,n,NOT NULL total_credits_purchased
+public,analytics_wallet_reconciliation_summary,analytics_wallet_reconciliation__total_credits_granted_not_null,n,NOT NULL total_credits_granted
+public,analytics_wallet_reconciliation_summary,analytics_wallet_reconciliation_su_reconciliation_date_not_null,n,NOT NULL reconciliation_date
+public,analytics_wallet_reconciliation_summary,analytics_wallet_reconciliation_summ_discrepancy_count_not_null,n,NOT NULL discrepancy_count
+public,analytics_wallet_reconciliation_summary,analytics_wallet_reconciliation_summary_id_not_null,n,NOT NULL id
+public,analytics_wallet_reconciliation_summary,analytics_wallet_reconciliation_summary_pkey,p,PRIMARY KEY (id)
+public,analytics_wallet_reconciliation_summary,analytics_wallet_reconciliation_summary_reconciled_at_not_null,n,NOT NULL reconciled_at
+public,analytics_wallet_reconciliation_summary,analytics_wallet_reconciliation_summary_reconciliation_date_key,u,UNIQUE (reconciliation_date)
+public,analytics_wallet_reconciliation_summary,analytics_wallet_reconciliation_total_credits_consumed_not_null,n,NOT NULL total_credits_consumed
+public,analytics_wallet_reconciliation_summary,analytics_wallet_reconciliation_total_credits_refunded_not_null,n,NOT NULL total_credits_refunded
+public,community_comment,community_comment_author_user_account_id_fkey,f,FOREIGN KEY (author_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,community_comment,community_comment_author_user_account_id_not_null,n,NOT NULL author_user_account_id
+public,community_comment,community_comment_body_not_null,n,NOT NULL body
+public,community_comment,community_comment_created_at_not_null,n,NOT NULL created_at
+public,community_comment,community_comment_discussion_id_fkey,f,FOREIGN KEY (discussion_id) REFERENCES community_discussion(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,community_comment,community_comment_discussion_id_not_null,n,NOT NULL discussion_id
+public,community_comment,community_comment_id_not_null,n,NOT NULL id
+public,community_comment,community_comment_is_moderated_not_null,n,NOT NULL is_moderated
+public,community_comment,community_comment_parent_comment_id_fkey,f,FOREIGN KEY (parent_comment_id) REFERENCES community_comment(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,community_comment,community_comment_pkey,p,PRIMARY KEY (id)
+public,community_comment,community_comment_updated_at_not_null,n,NOT NULL updated_at
+public,community_comment,community_comment_upvotes_check,c,CHECK ((upvotes >= 0))
+public,community_comment,community_comment_upvotes_not_null,n,NOT NULL upvotes
+public,community_discussion,community_discussion_author_user_account_id_fkey,f,FOREIGN KEY (author_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,community_discussion,community_discussion_author_user_account_id_not_null,n,NOT NULL author_user_account_id
+public,community_discussion,community_discussion_body_not_null,n,NOT NULL body
+public,community_discussion,community_discussion_category_not_null,n,NOT NULL category
+public,community_discussion,community_discussion_created_at_not_null,n,NOT NULL created_at
+public,community_discussion,community_discussion_id_not_null,n,NOT NULL id
+public,community_discussion,community_discussion_is_locked_not_null,n,NOT NULL is_locked
+public,community_discussion,community_discussion_is_moderated_not_null,n,NOT NULL is_moderated
+public,community_discussion,community_discussion_is_pinned_not_null,n,NOT NULL is_pinned
+public,community_discussion,community_discussion_pkey,p,PRIMARY KEY (id)
+public,community_discussion,community_discussion_title_not_null,n,NOT NULL title
+public,community_discussion,community_discussion_updated_at_not_null,n,NOT NULL updated_at
+public,community_discussion,community_discussion_view_count_check,c,CHECK ((view_count >= 0))
+public,community_discussion,community_discussion_view_count_not_null,n,NOT NULL view_count
+public,faq_article,faq_article_category_not_null,n,NOT NULL category
+public,faq_article,faq_article_created_at_not_null,n,NOT NULL created_at
+public,faq_article,faq_article_id_not_null,n,NOT NULL id
+public,faq_article,faq_article_is_published_not_null,n,NOT NULL is_published
+public,faq_article,faq_article_pkey,p,PRIMARY KEY (id)
+public,faq_article,faq_article_question_not_null,n,NOT NULL question
+public,faq_article,faq_article_sort_order_not_null,n,NOT NULL sort_order
+public,faq_article,faq_article_updated_at_not_null,n,NOT NULL updated_at
+public,notification_delivery,notification_delivery_channel_code_check,c,"CHECK (((channel_code)::text = ANY ((ARRAY['EMAIL'::character varying, 'SMS'::character varying, 'PUSH'::character varying, 'IN_APP'::character varying])::text[])))"
+public,notification_delivery,notification_delivery_delivery_status_check,c,"CHECK (((delivery_status)::text = ANY ((ARRAY['QUEUED'::character varying, 'SENT'::character varying, 'DELIVERED'::character varying, 'FAILED'::character varying])::text[])))"
+public,notification_delivery,notification_delivery_delivery_status_not_null,n,NOT NULL delivery_status
+public,notification_delivery,notification_delivery_id_not_null,n,NOT NULL id
+public,notification_delivery,notification_delivery_pkey,p,PRIMARY KEY (id)
+public,notification_delivery,notification_delivery_queued_at_not_null,n,NOT NULL queued_at
+public,notification_delivery,notification_delivery_retry_count_check,c,CHECK ((retry_count >= 0))
+public,notification_delivery,notification_delivery_retry_count_not_null,n,NOT NULL retry_count
+public,notification_delivery,notification_delivery_template_id_fkey,f,FOREIGN KEY (template_id) REFERENCES notification_template(id)
+public,notification_delivery,notification_delivery_user_account_id_fkey,f,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,notification_delivery,notification_delivery_user_account_id_not_null,n,NOT NULL user_account_id
+public,notification_preference,notification_preference_channel_code_check,c,"CHECK (((channel_code)::text = ANY ((ARRAY['EMAIL'::character varying, 'SMS'::character varying, 'PUSH'::character varying, 'IN_APP'::character varying])::text[])))"
+public,notification_preference,notification_preference_created_at_not_null,n,NOT NULL created_at
+public,notification_preference,notification_preference_id_not_null,n,NOT NULL id
+public,notification_preference,notification_preference_is_enabled_not_null,n,NOT NULL is_enabled
+public,notification_preference,notification_preference_pkey,p,PRIMARY KEY (id)
+public,notification_preference,notification_preference_updated_at_not_null,n,NOT NULL updated_at
+public,notification_preference,notification_preference_user_account_id_fkey,f,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,notification_preference,notification_preference_user_account_id_not_null,n,NOT NULL user_account_id
+public,notification_preference,uq_notif_pref,u,"UNIQUE (user_account_id, notification_category, channel_code)"
+public,notification_template,notification_template_body_template_not_null,n,NOT NULL body_template
+public,notification_template,notification_template_category_not_null,n,NOT NULL category
+public,notification_template,notification_template_created_at_not_null,n,NOT NULL created_at
+public,notification_template,notification_template_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,notification_template,notification_template_id_not_null,n,NOT NULL id
+public,notification_template,notification_template_is_active_not_null,n,NOT NULL is_active
+public,notification_template,notification_template_pkey,p,PRIMARY KEY (id)
+public,notification_template,notification_template_subject_template_not_null,n,NOT NULL subject_template
+public,notification_template,notification_template_supported_channels_not_null,n,NOT NULL supported_channels
+public,notification_template,notification_template_template_code_key,u,UNIQUE (template_code)
+public,notification_template,notification_template_template_code_not_null,n,NOT NULL template_code
+public,notification_template,notification_template_updated_at_not_null,n,NOT NULL updated_at
+public,notification_template,notification_template_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,support_ticket,support_ticket_assigned_admin_user_id_fkey,f,FOREIGN KEY (assigned_admin_user_id) REFERENCES user_account(id)
+public,support_ticket,support_ticket_assigned_to_user_account_id_fkey,f,FOREIGN KEY (assigned_to_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,support_ticket,support_ticket_category_not_null,n,NOT NULL category
+public,support_ticket,support_ticket_created_at_not_null,n,NOT NULL created_at
+public,support_ticket,support_ticket_id_not_null,n,NOT NULL id
+public,support_ticket,support_ticket_pkey,p,PRIMARY KEY (id)
+public,support_ticket,support_ticket_priority_check,c,"CHECK (((priority)::text = ANY ((ARRAY['LOW'::character varying, 'MEDIUM'::character varying, 'HIGH'::character varying, 'URGENT'::character varying])::text[])))"
+public,support_ticket,support_ticket_priority_not_null,n,NOT NULL priority
+public,support_ticket,support_ticket_requester_user_account_id_fkey,f,FOREIGN KEY (requester_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,support_ticket,support_ticket_status_check,c,"CHECK (((status)::text = ANY ((ARRAY['OPEN'::character varying, 'IN_PROGRESS'::character varying, 'RESOLVED'::character varying, 'CLOSED'::character varying])::text[])))"
+public,support_ticket,support_ticket_status_not_null,n,NOT NULL status
+public,support_ticket,support_ticket_subject_not_null,n,NOT NULL subject
+public,support_ticket,support_ticket_ticket_number_key,u,UNIQUE (ticket_number)
+public,support_ticket,support_ticket_updated_at_not_null,n,NOT NULL updated_at
+public,support_ticket,support_ticket_user_account_id_fkey,f,FOREIGN KEY (user_account_id) REFERENCES user_account(id)
+public,support_ticket_message,support_ticket_message_author_user_account_id_fkey,f,FOREIGN KEY (author_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,support_ticket_message,support_ticket_message_created_at_not_null,n,NOT NULL created_at
+public,support_ticket_message,support_ticket_message_id_not_null,n,NOT NULL id
+public,support_ticket_message,support_ticket_message_is_internal_note_not_null,n,NOT NULL is_internal_note
+public,support_ticket_message,support_ticket_message_message_body_not_null,n,NOT NULL message_body
+public,support_ticket_message,support_ticket_message_pkey,p,PRIMARY KEY (id)
+public,support_ticket_message,support_ticket_message_sender_user_account_id_fkey,f,FOREIGN KEY (sender_user_account_id) REFERENCES user_account(id)
+public,support_ticket_message,support_ticket_message_support_ticket_id_fkey,f,FOREIGN KEY (support_ticket_id) REFERENCES support_ticket(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,support_ticket_message,support_ticket_message_support_ticket_id_not_null,n,NOT NULL support_ticket_id

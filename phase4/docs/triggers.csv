@@ -1,0 +1,4 @@
+schema,table_name,trigger_name,timing,event,statement
+public,faq_article,set_updated_at,BEFORE,UPDATE,EXECUTE FUNCTION talentra_set_updated_at()
+public,notification_preference,set_updated_at,BEFORE,UPDATE,EXECUTE FUNCTION talentra_set_updated_at()
+public,support_ticket,set_updated_at,BEFORE,UPDATE,EXECUTE FUNCTION talentra_set_updated_at()

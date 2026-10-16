@@ -1,0 +1,38 @@
+{
+  "generated_at_utc": "2026-10-15T19:41:55.875228+00:00",
+  "all_phases_passed": true,
+  "phases": {
+    "phase_1": {
+      "phase": 1,
+      "verified_at_utc": "2026-10-15T19:41:55.688338+00:00",
+      "status": "VALIDATED",
+      "migrations_verified": 1,
+      "test_outcome": "PASSED",
+      "test_summary": "NOTICE:  26 Phase 1 checks passed; test data rolled back"
+    },
+    "phase_2": {
+      "phase": 2,
+      "verified_at_utc": "2026-10-15T19:41:55.780398+00:00",
+      "status": "VALIDATED",
+      "migrations_verified": 2,
+      "test_outcome": "PASSED",
+      "test_summary": "NOTICE:  36 Phase 2 checks passed; fixture rows and roles rolled back"
+    },
+    "phase_3": {
+      "phase": 3,
+      "verified_at_utc": "2026-10-15T19:41:55.826476+00:00",
+      "status": "VALIDATED",
+      "migrations_verified": 1,
+      "test_outcome": "PASSED",
+      "test_summary": "NOTICE:  20 Phase 3 checks passed; all test fixtures rolled back safely"
+    },
+    "phase_4": {
+      "phase": 4,
+      "verified_at_utc": "2026-10-15T19:41:55.873214+00:00",
+      "status": "VALIDATED",
+      "migrations_verified": 1,
+      "test_outcome": "PASSED",
+      "test_summary": "NOTICE:  20 Phase 4 checks passed; all test fixtures rolled back safely"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+schema,table_name,trigger_name,timing,event,statement
+public,account_licence,set_updated_at,BEFORE,UPDATE,EXECUTE FUNCTION talentra_set_updated_at()
+public,account_subscription,set_updated_at,BEFORE,UPDATE,EXECUTE FUNCTION talentra_set_updated_at()
+public,profile_download_event,reject_mutation,BEFORE,DELETE,EXECUTE FUNCTION talentra_reject_mutation()
+public,profile_download_event,reject_mutation,BEFORE,UPDATE,EXECUTE FUNCTION talentra_reject_mutation()
+public,sourcing_pool,set_updated_at,BEFORE,UPDATE,EXECUTE FUNCTION talentra_set_updated_at()
+public,subscription_plan,set_updated_at,BEFORE,UPDATE,EXECUTE FUNCTION talentra_set_updated_at()
+public,wallet_account,set_updated_at,BEFORE,UPDATE,EXECUTE FUNCTION talentra_set_updated_at()
+public,wallet_transaction_ledger,reject_mutation,BEFORE,UPDATE,EXECUTE FUNCTION talentra_reject_mutation()
+public,wallet_transaction_ledger,reject_mutation,BEFORE,DELETE,EXECUTE FUNCTION talentra_reject_mutation()

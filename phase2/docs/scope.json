@@ -1,0 +1,22 @@
+{
+  "phase": 2,
+  "phase_title": "Administration, Organisations and Gig Marketplace",
+  "modules": [
+    "Module 4 \u2014 Administration and Access Control",
+    "Module 5 \u2014 Organisation and Account Management",
+    "Module 6 \u2014 Gig Marketplace"
+  ],
+  "target_schemas": [
+    "identity",
+    "organisation",
+    "gig"
+  ],
+  "target_tables_count": 45,
+  "deployed_tables_count": 45,
+  "status": "IMPLEMENTED",
+  "docket_milestones": "Milestones for Phase 2",
+  "exclusions": [
+    "neon_auth",
+    "neon_auth.*"
+  ]
+}

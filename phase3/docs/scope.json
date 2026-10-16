@@ -1,0 +1,20 @@
+{
+  "phase": 3,
+  "phase_title": "Commercial Access and Sourcing",
+  "modules": [
+    "Module 7 \u2014 Plans, Licences, Seats, Devices and Sessions",
+    "Module 8 \u2014 Sourcing, Consultant Requests and Recruiter Workflows",
+    "Module 9 \u2014 Subscriptions, Wallets, Payments, Finance and Download History"
+  ],
+  "target_schemas": [
+    "public"
+  ],
+  "target_tables_count": 12,
+  "deployed_tables_count": 12,
+  "status": "IMPLEMENTED",
+  "docket_milestones": "Milestones for Phase 3",
+  "exclusions": [
+    "neon_auth",
+    "neon_auth.*"
+  ]
+}

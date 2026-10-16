@@ -1,0 +1,183 @@
+schema,table_name,ordinal_position,column_name,data_type,is_nullable,default_value
+public,account_licence,1,id,bigint,NO,
+public,account_licence,2,account_profile_id,bigint,NO,
+public,account_licence,3,licence_key,character varying,NO,
+public,account_licence,4,max_seats,integer,NO,5
+public,account_licence,5,max_devices_per_user,integer,NO,3
+public,account_licence,6,starts_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,account_licence,7,expires_at,timestamp with time zone,YES,
+public,account_licence,8,is_active,boolean,NO,true
+public,account_licence,9,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,account_licence,10,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,account_licence,11,subscription_plan_id,bigint,YES,
+public,account_licence,12,allocated_seats,integer,YES,1
+public,account_licence,13,licence_status,character varying,YES,'ACTIVE'::character varying
+public,account_licence,14,valid_from,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,account_licence,15,valid_to,timestamp with time zone,YES,
+public,account_licence,16,created_by,bigint,YES,
+public,account_licence,17,updated_by,bigint,YES,
+public,account_licence,18,deleted_at,timestamp with time zone,YES,
+public,account_subscription,1,id,bigint,NO,
+public,account_subscription,2,account_profile_id,bigint,NO,
+public,account_subscription,3,subscription_plan_id,bigint,NO,
+public,account_subscription,4,subscription_status,character varying,NO,'ACTIVE'::character varying
+public,account_subscription,5,starts_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,account_subscription,6,renews_at,timestamp with time zone,YES,
+public,account_subscription,7,ends_at,timestamp with time zone,YES,
+public,account_subscription,8,cancelled_at,timestamp with time zone,YES,
+public,account_subscription,9,external_provider_subscription_id,character varying,YES,
+public,account_subscription,10,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,account_subscription,11,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,account_subscription,12,started_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,account_subscription,13,current_period_starts_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,account_subscription,14,current_period_ends_at,timestamp with time zone,YES,
+public,account_subscription,15,auto_renew,boolean,YES,true
+public,account_subscription,16,payment_method_token,character varying,YES,
+public,account_subscription,17,created_by,bigint,YES,
+public,account_subscription,18,updated_by,bigint,YES,
+public,account_subscription,19,deleted_at,timestamp with time zone,YES,
+public,consultant_request,1,id,bigint,NO,
+public,consultant_request,2,job_requirement_id,bigint,NO,
+public,consultant_request,3,consultant_organisation_id,bigint,NO,
+public,consultant_request,4,request_status,character varying,NO,'REQUESTED'::character varying
+public,consultant_request,5,commission_terms,text,YES,
+public,consultant_request,6,requested_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,consultant_request,7,decided_at,timestamp with time zone,YES,
+public,consultant_request,8,consultant_user_account_id,bigint,YES,
+public,consultant_request,9,commission_rate_percent,numeric,YES,
+public,consultant_request,10,approved_by_user_id,bigint,YES,
+public,consultant_request,11,approved_at,timestamp with time zone,YES,
+public,consultant_request,12,valid_until,timestamp with time zone,YES,
+public,consultant_request,13,notes,text,YES,
+public,consultant_request,14,created_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,consultant_request,15,created_by,bigint,YES,
+public,consultant_request,16,updated_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,consultant_request,17,updated_by,bigint,YES,
+public,consultant_request,18,deleted_at,timestamp with time zone,YES,
+public,device_session,1,id,bigint,NO,
+public,device_session,2,user_account_id,bigint,NO,
+public,device_session,3,session_token_hash,character varying,NO,
+public,device_session,4,device_fingerprint,character varying,YES,
+public,device_session,5,device_type,character varying,YES,
+public,device_session,6,ip_address,inet,YES,
+public,device_session,7,user_agent,text,YES,
+public,device_session,8,started_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,device_session,9,last_activity_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,device_session,10,expires_at,timestamp with time zone,NO,
+public,device_session,11,revoked_at,timestamp with time zone,YES,
+public,device_session,12,device_name,character varying,YES,
+public,device_session,13,client_ip,inet,YES,
+public,device_session,14,is_active,boolean,YES,true
+public,device_session,15,last_seen_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,device_session,16,revocation_reason,character varying,YES,
+public,device_session,17,created_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,device_session,18,updated_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,licence_seat_assignment,1,id,bigint,NO,
+public,licence_seat_assignment,2,account_licence_id,bigint,NO,
+public,licence_seat_assignment,3,user_account_id,bigint,NO,
+public,licence_seat_assignment,4,assigned_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,licence_seat_assignment,5,assigned_by,bigint,YES,
+public,licence_seat_assignment,6,seat_role,character varying,YES,'RECRUITER'::character varying
+public,licence_seat_assignment,7,valid_from,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,licence_seat_assignment,8,valid_to,timestamp with time zone,YES,
+public,licence_seat_assignment,9,is_active,boolean,YES,true
+public,licence_seat_assignment,10,created_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,licence_seat_assignment,11,created_by,bigint,YES,
+public,licence_seat_assignment,12,updated_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,licence_seat_assignment,13,updated_by,bigint,YES,
+public,licence_seat_assignment,14,deleted_at,timestamp with time zone,YES,
+public,payment_transaction,1,id,bigint,NO,
+public,payment_transaction,2,account_profile_id,bigint,NO,
+public,payment_transaction,3,wallet_account_id,bigint,YES,
+public,payment_transaction,4,subscription_plan_id,bigint,YES,
+public,payment_transaction,5,amount,numeric,NO,
+public,payment_transaction,6,currency_id,bigint,NO,
+public,payment_transaction,7,payment_status,character varying,NO,'INITIATED'::character varying
+public,payment_transaction,8,payment_gateway,character varying,NO,'STRIPE'::character varying
+public,payment_transaction,9,gateway_transaction_id,character varying,NO,
+public,payment_transaction,10,idempotency_key,character varying,NO,
+public,payment_transaction,11,occurred_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,payment_transaction,12,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,payment_transaction,13,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,profile_download_event,1,id,bigint,NO,
+public,profile_download_event,2,candidate_profile_id,bigint,NO,
+public,profile_download_event,3,downloader_user_account_id,bigint,YES,
+public,profile_download_event,4,organisation_id,bigint,YES,
+public,profile_download_event,5,credits_deducted,integer,NO,1
+public,profile_download_event,6,wallet_transaction_id,bigint,YES,
+public,profile_download_event,7,resume_version_id,bigint,YES,
+public,profile_download_event,8,downloaded_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,profile_download_event,9,ip_address,inet,YES,
+public,profile_download_event,10,recruiter_user_account_id,bigint,YES,
+public,profile_download_event,11,download_format,character varying,YES,'PDF'::character varying
+public,profile_download_event,12,user_agent,text,YES,
+public,profile_download_event,13,occurred_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,sourcing_pool,1,id,bigint,NO,
+public,sourcing_pool,2,organisation_id,bigint,NO,
+public,sourcing_pool,3,name,character varying,YES,
+public,sourcing_pool,4,description,text,YES,
+public,sourcing_pool,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,sourcing_pool,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,sourcing_pool,7,pool_name,character varying,YES,
+public,sourcing_pool,8,pool_description,text,YES,
+public,sourcing_pool,9,target_role,character varying,YES,
+public,sourcing_pool,10,is_private,boolean,YES,true
+public,sourcing_pool,11,created_by,bigint,YES,
+public,sourcing_pool,12,updated_by,bigint,YES,
+public,sourcing_pool,13,deleted_at,timestamp with time zone,YES,
+public,sourcing_pool_candidate,1,id,bigint,NO,
+public,sourcing_pool_candidate,2,sourcing_pool_id,bigint,NO,
+public,sourcing_pool_candidate,3,candidate_profile_id,bigint,NO,
+public,sourcing_pool_candidate,4,added_by_user_id,bigint,YES,
+public,sourcing_pool_candidate,5,notes,text,YES,
+public,sourcing_pool_candidate,6,added_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,sourcing_pool_candidate,7,added_by_recruiter_id,bigint,YES,
+public,sourcing_pool_candidate,8,sourcing_channel,character varying,YES,'TALENT_POOL'::character varying
+public,sourcing_pool_candidate,9,candidate_match_score,numeric,YES,
+public,sourcing_pool_candidate,10,updated_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,subscription_plan,1,id,bigint,NO,
+public,subscription_plan,2,code,character varying,NO,
+public,subscription_plan,3,name,character varying,NO,
+public,subscription_plan,4,description,text,YES,
+public,subscription_plan,5,price,numeric,NO,0
+public,subscription_plan,6,currency_id,bigint,NO,
+public,subscription_plan,7,billing_interval,character varying,NO,'MONTHLY'::character varying
+public,subscription_plan,8,candidate_download_credits,integer,NO,0
+public,subscription_plan,9,job_posting_limit,integer,NO,5
+public,subscription_plan,10,max_seats,integer,NO,1
+public,subscription_plan,11,active,boolean,NO,true
+public,subscription_plan,12,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,subscription_plan,13,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,subscription_plan,14,plan_code,character varying,YES,
+public,subscription_plan,15,plan_name,character varying,YES,
+public,subscription_plan,16,tier_level,integer,YES,1
+public,subscription_plan,17,billing_period,character varying,YES,'MONTHLY'::character varying
+public,subscription_plan,18,price_amount,numeric,YES,0.00
+public,subscription_plan,19,max_devices_per_seat,integer,YES,3
+public,subscription_plan,20,is_active,boolean,YES,true
+public,subscription_plan,21,created_by,bigint,YES,
+public,subscription_plan,22,updated_by,bigint,YES,
+public,subscription_plan,23,deleted_at,timestamp with time zone,YES,
+public,wallet_account,1,id,bigint,NO,
+public,wallet_account,2,account_profile_id,bigint,NO,
+public,wallet_account,3,credit_balance,integer,NO,0
+public,wallet_account,4,currency_id,bigint,NO,
+public,wallet_account,5,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,wallet_account,6,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,wallet_account,7,balance_credits,integer,YES,0
+public,wallet_account,8,wallet_status,character varying,YES,'ACTIVE'::character varying
+public,wallet_account,9,created_by,bigint,YES,
+public,wallet_account,10,updated_by,bigint,YES,
+public,wallet_account,11,deleted_at,timestamp with time zone,YES,
+public,wallet_transaction_ledger,1,id,bigint,NO,
+public,wallet_transaction_ledger,2,wallet_account_id,bigint,NO,
+public,wallet_transaction_ledger,3,transaction_type,character varying,NO,
+public,wallet_transaction_ledger,4,credits_delta,integer,YES,
+public,wallet_transaction_ledger,5,balance_after,integer,NO,
+public,wallet_transaction_ledger,6,reference_id,character varying,YES,
+public,wallet_transaction_ledger,7,description,character varying,YES,
+public,wallet_transaction_ledger,8,recorded_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,wallet_transaction_ledger,9,credit_amount,integer,YES,
+public,wallet_transaction_ledger,10,idempotency_key,character varying,YES,
+public,wallet_transaction_ledger,11,reference_order_id,character varying,YES,
+public,wallet_transaction_ledger,12,occurred_at,timestamp with time zone,YES,CURRENT_TIMESTAMP

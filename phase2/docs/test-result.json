@@ -1,12 +1,11 @@
 {
-  "result": {
-    "content": [
-      {
-        "type": "text",
-        "text": "[]"
-      }
-    ]
-  },
-  "jsonrpc": "2.0",
-  "id": 2
+  "phase": 2,
+  "test_file": "phase2/tests/phase2_constraints.sql",
+  "executed_at_utc": "2026-10-15T19:41:55.780398+00:00",
+  "status": "PASSED",
+  "notices": [
+    "NOTICE:  26 Phase 1 checks passed; test data rolled back",
+    "NOTICE:  36 Phase 2 checks passed; fixture rows and roles rolled back"
+  ],
+  "error": null
 }
