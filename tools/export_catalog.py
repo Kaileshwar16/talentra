@@ -22,7 +22,7 @@ def sanitize_url(url: str) -> str:
 def get_connection():
     db_url = os.environ.get("DATABASE_URL")
     if not db_url:
-        db_url = "postgresql://neondb_owner:npg_4Oz2JYNZKXAM@ep-winter-hall-azl2bqdm-pooler.c-3.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
+        db_url = "postgresql://neondb_owner:npg_4Oz2JYNZKXAM@ep-winter-hall-azl2bqdm.c-3.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
     try:
         conn = psycopg2.connect(db_url)
         conn.autocommit = True
