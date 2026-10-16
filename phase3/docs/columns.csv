@@ -54,6 +54,13 @@ public,consultant_request,15,created_by,bigint,YES,
 public,consultant_request,16,updated_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
 public,consultant_request,17,updated_by,bigint,YES,
 public,consultant_request,18,deleted_at,timestamp with time zone,YES,
+public,consultant_request_decision,1,id,bigint,NO,
+public,consultant_request_decision,2,consultant_request_id,bigint,NO,
+public,consultant_request_decision,3,decided_by_user_id,bigint,NO,
+public,consultant_request_decision,4,decision,character varying,NO,
+public,consultant_request_decision,5,decision_reason,text,YES,
+public,consultant_request_decision,6,effective_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,consultant_request_decision,7,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
 public,device_session,1,id,bigint,NO,
 public,device_session,2,user_account_id,bigint,NO,
 public,device_session,3,session_token_hash,character varying,NO,
@@ -72,6 +79,23 @@ public,device_session,15,last_seen_at,timestamp with time zone,YES,CURRENT_TIMES
 public,device_session,16,revocation_reason,character varying,YES,
 public,device_session,17,created_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
 public,device_session,18,updated_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,device_session,19,user_device_id,bigint,YES,
+public,invoice,1,id,bigint,NO,
+public,invoice,2,account_profile_id,bigint,NO,
+public,invoice,3,account_subscription_id,bigint,YES,
+public,invoice,4,payment_transaction_id,bigint,YES,
+public,invoice,5,invoice_number,character varying,NO,
+public,invoice,6,invoice_status,character varying,NO,'DRAFT'::character varying
+public,invoice,7,subtotal_amount,numeric,NO,
+public,invoice,8,tax_amount,numeric,NO,0.00
+public,invoice,9,total_amount,numeric,NO,
+public,invoice,10,currency_id,bigint,NO,
+public,invoice,11,issued_at,timestamp with time zone,YES,
+public,invoice,12,due_at,timestamp with time zone,YES,
+public,invoice,13,paid_at,timestamp with time zone,YES,
+public,invoice,14,notes,text,YES,
+public,invoice,15,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,invoice,16,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
 public,licence_seat_assignment,1,id,bigint,NO,
 public,licence_seat_assignment,2,account_licence_id,bigint,NO,
 public,licence_seat_assignment,3,user_account_id,bigint,NO,
@@ -86,6 +110,20 @@ public,licence_seat_assignment,11,created_by,bigint,YES,
 public,licence_seat_assignment,12,updated_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
 public,licence_seat_assignment,13,updated_by,bigint,YES,
 public,licence_seat_assignment,14,deleted_at,timestamp with time zone,YES,
+public,payment_refund,1,id,bigint,NO,
+public,payment_refund,2,payment_transaction_id,bigint,NO,
+public,payment_refund,3,account_profile_id,bigint,NO,
+public,payment_refund,4,refund_amount,numeric,NO,
+public,payment_refund,5,currency_id,bigint,NO,
+public,payment_refund,6,refund_status,character varying,NO,'PENDING'::character varying
+public,payment_refund,7,refund_reason,character varying,YES,
+public,payment_refund,8,refund_type,character varying,NO,'PARTIAL'::character varying
+public,payment_refund,9,gateway_refund_id,character varying,YES,
+public,payment_refund,10,idempotency_key,character varying,NO,
+public,payment_refund,11,initiated_by_user_id,bigint,YES,
+public,payment_refund,12,processed_at,timestamp with time zone,YES,
+public,payment_refund,13,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,payment_refund,14,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
 public,payment_transaction,1,id,bigint,NO,
 public,payment_transaction,2,account_profile_id,bigint,NO,
 public,payment_transaction,3,wallet_account_id,bigint,YES,
@@ -112,6 +150,32 @@ public,profile_download_event,10,recruiter_user_account_id,bigint,YES,
 public,profile_download_event,11,download_format,character varying,YES,'PDF'::character varying
 public,profile_download_event,12,user_agent,text,YES,
 public,profile_download_event,13,occurred_at,timestamp with time zone,YES,CURRENT_TIMESTAMP
+public,sourcing_outreach_batch,1,id,bigint,NO,
+public,sourcing_outreach_batch,2,sourcing_pool_id,bigint,NO,
+public,sourcing_outreach_batch,3,created_by_user_id,bigint,NO,
+public,sourcing_outreach_batch,4,batch_name,character varying,NO,
+public,sourcing_outreach_batch,5,outreach_channel,character varying,NO,'EMAIL'::character varying
+public,sourcing_outreach_batch,6,subject_template,text,YES,
+public,sourcing_outreach_batch,7,body_template,text,YES,
+public,sourcing_outreach_batch,8,batch_status,character varying,NO,'DRAFT'::character varying
+public,sourcing_outreach_batch,9,scheduled_at,timestamp with time zone,YES,
+public,sourcing_outreach_batch,10,sent_at,timestamp with time zone,YES,
+public,sourcing_outreach_batch,11,total_recipients,integer,NO,0
+public,sourcing_outreach_batch,12,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,sourcing_outreach_batch,13,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,sourcing_outreach_batch,14,deleted_at,timestamp with time zone,YES,
+public,sourcing_outreach_recipient,1,id,bigint,NO,
+public,sourcing_outreach_recipient,2,outreach_batch_id,bigint,NO,
+public,sourcing_outreach_recipient,3,candidate_profile_id,bigint,NO,
+public,sourcing_outreach_recipient,4,delivery_status,character varying,NO,'PENDING'::character varying
+public,sourcing_outreach_recipient,5,delivered_at,timestamp with time zone,YES,
+public,sourcing_outreach_recipient,6,opened_at,timestamp with time zone,YES,
+public,sourcing_outreach_recipient,7,responded_at,timestamp with time zone,YES,
+public,sourcing_outreach_recipient,8,candidate_response,character varying,YES,
+public,sourcing_outreach_recipient,9,failure_reason,text,YES,
+public,sourcing_outreach_recipient,10,external_message_id,character varying,YES,
+public,sourcing_outreach_recipient,11,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,sourcing_outreach_recipient,12,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
 public,sourcing_pool,1,id,bigint,NO,
 public,sourcing_pool,2,organisation_id,bigint,NO,
 public,sourcing_pool,3,name,character varying,YES,
@@ -158,6 +222,21 @@ public,subscription_plan,20,is_active,boolean,YES,true
 public,subscription_plan,21,created_by,bigint,YES,
 public,subscription_plan,22,updated_by,bigint,YES,
 public,subscription_plan,23,deleted_at,timestamp with time zone,YES,
+public,user_device,1,id,bigint,NO,
+public,user_device,2,user_account_id,bigint,NO,
+public,user_device,3,account_licence_id,bigint,YES,
+public,user_device,4,device_fingerprint,character varying,NO,
+public,user_device,5,device_name,character varying,YES,
+public,user_device,6,device_type,character varying,NO,'BROWSER'::character varying
+public,user_device,7,os_name,character varying,YES,
+public,user_device,8,browser_name,character varying,YES,
+public,user_device,9,registered_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,user_device,10,last_seen_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,user_device,11,is_trusted,boolean,NO,false
+public,user_device,12,revoked_at,timestamp with time zone,YES,
+public,user_device,13,revocation_reason,character varying,YES,
+public,user_device,14,created_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
+public,user_device,15,updated_at,timestamp with time zone,NO,CURRENT_TIMESTAMP
 public,wallet_account,1,id,bigint,NO,
 public,wallet_account,2,account_profile_id,bigint,NO,
 public,wallet_account,3,credit_balance,integer,NO,0

@@ -1,77 +1,28 @@
 {
-  "captured_at_utc": "2026-10-15T19:41:43.432378+00:00",
-  "row_counts": [
-    {
-      "schema": "public",
-      "table_name": "account_licence",
-      "type": "BASE TABLE",
-      "row_count": 0
-    },
-    {
-      "schema": "public",
-      "table_name": "account_subscription",
-      "type": "BASE TABLE",
-      "row_count": 0
-    },
-    {
-      "schema": "public",
-      "table_name": "consultant_request",
-      "type": "BASE TABLE",
-      "row_count": 0
-    },
-    {
-      "schema": "public",
-      "table_name": "device_session",
-      "type": "BASE TABLE",
-      "row_count": 0
-    },
-    {
-      "schema": "public",
-      "table_name": "licence_seat_assignment",
-      "type": "BASE TABLE",
-      "row_count": 0
-    },
-    {
-      "schema": "public",
-      "table_name": "payment_transaction",
-      "type": "BASE TABLE",
-      "row_count": 0
-    },
-    {
-      "schema": "public",
-      "table_name": "profile_download_event",
-      "type": "BASE TABLE",
-      "row_count": 0
-    },
-    {
-      "schema": "public",
-      "table_name": "sourcing_pool",
-      "type": "BASE TABLE",
-      "row_count": 0
-    },
-    {
-      "schema": "public",
-      "table_name": "sourcing_pool_candidate",
-      "type": "BASE TABLE",
-      "row_count": 0
-    },
-    {
-      "schema": "public",
-      "table_name": "subscription_plan",
-      "type": "BASE TABLE",
-      "row_count": 0
-    },
-    {
-      "schema": "public",
-      "table_name": "wallet_account",
-      "type": "BASE TABLE",
-      "row_count": 0
-    },
-    {
-      "schema": "public",
-      "table_name": "wallet_transaction_ledger",
-      "type": "BASE TABLE",
-      "row_count": 0
-    }
-  ]
+  "phase": 3,
+  "captured_at_utc": "2026-10-16T05:22:14Z",
+  "branch": "test-phase3-phase4",
+  "branch_id": "br-broad-star-az461ef4",
+  "project_id": "jolly-pond-45332483",
+  "counts": {
+    "public.account_licence": 0,
+    "public.account_subscription": 0,
+    "public.consultant_request": 0,
+    "public.consultant_request_decision": 0,
+    "public.device_session": 0,
+    "public.invoice": 0,
+    "public.licence_seat_assignment": 0,
+    "public.payment_refund": 0,
+    "public.payment_transaction": 0,
+    "public.profile_download_event": 0,
+    "public.sourcing_outreach_batch": 0,
+    "public.sourcing_outreach_recipient": 0,
+    "public.sourcing_pool": 0,
+    "public.sourcing_pool_candidate": 0,
+    "public.subscription_plan": 0,
+    "public.user_device": 0,
+    "public.wallet_account": 0,
+    "public.wallet_transaction_ledger": 0
+  },
+  "note": "Zero rows verified; complete transactional rollback preserves clean database state across test executions."
 }

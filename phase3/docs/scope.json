@@ -1,18 +1,26 @@
 {
   "phase": 3,
-  "phase_title": "Commercial Access and Sourcing",
+  "phase_title": "Commercial Access, Sourcing and Subscriptions",
   "modules": [
-    "Module 7 \u2014 Plans, Licences, Seats, Devices and Sessions",
-    "Module 8 \u2014 Sourcing, Consultant Requests and Recruiter Workflows",
-    "Module 9 \u2014 Subscriptions, Wallets, Payments, Finance and Download History"
+    "Module 7 — Plans, Licences, Seats, Devices and Sessions",
+    "Module 8 — Sourcing, Consultant Requests and Recruiter Workflows",
+    "Module 9 — Subscriptions, Wallets, Payments, Finance and Download History"
   ],
   "target_schemas": [
     "public"
   ],
-  "target_tables_count": 12,
-  "deployed_tables_count": 12,
-  "status": "IMPLEMENTED",
-  "docket_milestones": "Milestones for Phase 3",
+  "target_tables_count": 18,
+  "deployed_tables_count": 18,
+  "status": "IMPLEMENTED_AND_AUDITED",
+  "docket_milestones": "Milestones B36–B47 for Phase 3",
+  "new_gap_closure_entities": [
+    "public.user_device",
+    "public.sourcing_outreach_batch",
+    "public.sourcing_outreach_recipient",
+    "public.consultant_request_decision",
+    "public.invoice",
+    "public.payment_refund"
+  ],
   "exclusions": [
     "neon_auth",
     "neon_auth.*"

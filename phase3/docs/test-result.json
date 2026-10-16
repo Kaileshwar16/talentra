@@ -1,12 +1,65 @@
 {
   "phase": 3,
   "test_file": "phase3/tests/phase3_constraints.sql",
-  "executed_at_utc": "2026-10-15T19:41:55.826476+00:00",
+  "executed_at_utc": "2026-10-16T05:10:42Z",
+  "branch": "test-phase3-phase4",
+  "branch_id": "br-broad-star-az461ef4",
+  "project_id": "jolly-pond-45332483",
   "status": "PASSED",
+  "tests_count": 37,
+  "tests_passed": 37,
+  "test_groups": [
+    {
+      "group": "Module 7: Plans, Licences, Seats, Devices (B36, B37)",
+      "assertions": [
+        "Plan creation and unique code enforcement",
+        "Valid subscription period creation",
+        "Inverted period rejection (ends_at < starts_at)",
+        "Overlapping active subscription rejection (B47)",
+        "Licence creation with max_devices_per_user cap",
+        "Seat assignment and historical re-assignment after deactivation",
+        "Device registration within device cap (B36/B37)",
+        "Active device cap overflow rejection (B37 trigger)",
+        "Device revocation and slot freeing (B37)",
+        "Device type enum validation",
+        "Device session token uniqueness and link to user_device"
+      ]
+    },
+    {
+      "group": "Module 8: Sourcing, Outreach Campaigns and Consultant Mandates (B38, B39, B40, B46)",
+      "assertions": [
+        "Sourcing pool creation and candidate membership",
+        "Sourcing outreach batch creation with template and channels (B38)",
+        "Per-candidate outreach delivery tracking (B39)",
+        "Duplicate outreach batch recipient rejection",
+        "Consultant request rejection for jobs not open to consultants (B46)",
+        "Consultant request creation for jobs open to consultants",
+        "Commission percentage range enforcement [0, 100] (B46)",
+        "Append-only consultant_request_decision creation (B40)",
+        "Immutability check: consultant_request_decision UPDATE rejected",
+        "Immutability check: consultant_request_decision DELETE rejected"
+      ]
+    },
+    {
+      "group": "Module 9: Billing, Invoices, Refunds and Wallet Immutability (B41-B47)",
+      "assertions": [
+        "Wallet account creation and unique account constraint",
+        "Wallet transaction ledger append",
+        "Ledger idempotency key uniqueness enforcement (B43)",
+        "Immutability check: wallet_transaction_ledger UPDATE rejected (B44)",
+        "Payment transaction creation with positive amount check (B46)",
+        "Payment transaction negative/zero amount rejection",
+        "Customer-facing invoice creation with subtotal + tax = total check (B41)",
+        "Invoice arithmetic mismatch rejection",
+        "Invoice number uniqueness enforcement",
+        "Payment refund creation against payment transaction (B42)",
+        "Payment refund duplicate idempotency key rejection",
+        "Profile download event append and immutability check (B45)"
+      ]
+    }
+  ],
   "notices": [
-    "NOTICE:  26 Phase 1 checks passed; test data rolled back",
-    "NOTICE:  36 Phase 2 checks passed; fixture rows and roles rolled back",
-    "NOTICE:  20 Phase 3 checks passed; all test fixtures rolled back safely"
+    "NOTICE: SUCCESS: 37 of 37 Phase 3 constraint & integrity tests PASSED. All test fixtures rolled back cleanly."
   ],
   "error": null
 }

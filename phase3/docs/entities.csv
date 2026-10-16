@@ -1,13 +1,19 @@
 module,schema,table_name,type,origin,lifecycle,status,source_migration
-"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,account_licence,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
-"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,account_subscription,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
-"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,consultant_request,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
-"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,device_session,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
-"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,licence_seat_assignment,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
-"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,payment_transaction,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
-"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,profile_download_event,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
-"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,sourcing_pool,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
-"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,sourcing_pool_candidate,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
-"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,subscription_plan,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
-"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,wallet_account,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
-"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,wallet_transaction_ledger,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,003
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,account_licence,BASE TABLE,deployed,soft-delete/audit,IMPLEMENTED,004_phase3.sql
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,account_subscription,BASE TABLE,deployed,temporal-period/state-machine,IMPLEMENTED,004_phase3.sql
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,device_session,BASE TABLE,deployed,token-expiry/session-track,IMPLEMENTED,004_phase3.sql
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,licence_seat_assignment,BASE TABLE,deployed,temporal/seat-quota,IMPLEMENTED,004_phase3.sql
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,subscription_plan,BASE TABLE,deployed,catalogue/pricing-tier,IMPLEMENTED,004_phase3.sql
+"Module 7 — Plans, Licences, Seats, Devices and Sessions",public,user_device,BASE TABLE,deployed,device-registry/revocable,IMPLEMENTED,006_phase3_gap_closure.sql
+"Module 8 — Sourcing, Consultant Requests and Recruiter Workflows",public,consultant_request,BASE TABLE,deployed,workflow/commission-mandate,IMPLEMENTED,004_phase3.sql
+"Module 8 — Sourcing, Consultant Requests and Recruiter Workflows",public,consultant_request_decision,BASE TABLE,deployed,append-only/decision-log,IMPLEMENTED,006_phase3_gap_closure.sql
+"Module 8 — Sourcing, Consultant Requests and Recruiter Workflows",public,sourcing_outreach_batch,BASE TABLE,deployed,campaign/scheduled-batch,IMPLEMENTED,006_phase3_gap_closure.sql
+"Module 8 — Sourcing, Consultant Requests and Recruiter Workflows",public,sourcing_outreach_recipient,BASE TABLE,deployed,delivery-event/engagement,IMPLEMENTED,006_phase3_gap_closure.sql
+"Module 8 — Sourcing, Consultant Requests and Recruiter Workflows",public,sourcing_pool,BASE TABLE,deployed,soft-delete/talent-pool,IMPLEMENTED,004_phase3.sql
+"Module 8 — Sourcing, Consultant Requests and Recruiter Workflows",public,sourcing_pool_candidate,BASE TABLE,deployed,pool-membership/candidate-rank,IMPLEMENTED,004_phase3.sql
+"Module 9 — Subscriptions, Wallets, Payments, Finance and Download History",public,invoice,BASE TABLE,deployed,billing-document/itemized,IMPLEMENTED,006_phase3_gap_closure.sql
+"Module 9 — Subscriptions, Wallets, Payments, Finance and Download History",public,payment_refund,BASE TABLE,deployed,refund/gateway-idempotent,IMPLEMENTED,006_phase3_gap_closure.sql
+"Module 9 — Subscriptions, Wallets, Payments, Finance and Download History",public,payment_transaction,BASE TABLE,deployed,monetary/settlement-event,IMPLEMENTED,004_phase3.sql
+"Module 9 — Subscriptions, Wallets, Payments, Finance and Download History",public,profile_download_event,BASE TABLE,deployed,append-only/download-audit,IMPLEMENTED,004_phase3.sql
+"Module 9 — Subscriptions, Wallets, Payments, Finance and Download History",public,wallet_account,BASE TABLE,deployed,credit-balance/ledger-backed,IMPLEMENTED,004_phase3.sql
+"Module 9 — Subscriptions, Wallets, Payments, Finance and Download History",public,wallet_transaction_ledger,BASE TABLE,deployed,append-only/immutable-ledger,IMPLEMENTED,004_phase3.sql

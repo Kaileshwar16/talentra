@@ -7,16 +7,16 @@ public,account_licence,account_licence_id_not_null,n,NOT NULL id
 public,account_licence,account_licence_is_active_not_null,n,NOT NULL is_active
 public,account_licence,account_licence_licence_key_key,u,UNIQUE (licence_key)
 public,account_licence,account_licence_licence_key_not_null,n,NOT NULL licence_key
-public,account_licence,account_licence_max_devices_per_user_check,c,CHECK ((max_devices_per_user > 0))
+public,account_licence,account_licence_max_devices_per_user_check,c,CHECK (max_devices_per_user > 0)
 public,account_licence,account_licence_max_devices_per_user_not_null,n,NOT NULL max_devices_per_user
-public,account_licence,account_licence_max_seats_check,c,CHECK ((max_seats > 0))
+public,account_licence,account_licence_max_seats_check,c,CHECK (max_seats > 0)
 public,account_licence,account_licence_max_seats_not_null,n,NOT NULL max_seats
 public,account_licence,account_licence_pkey,p,PRIMARY KEY (id)
 public,account_licence,account_licence_starts_at_not_null,n,NOT NULL starts_at
 public,account_licence,account_licence_subscription_plan_id_fkey,f,FOREIGN KEY (subscription_plan_id) REFERENCES subscription_plan(id)
 public,account_licence,account_licence_updated_at_not_null,n,NOT NULL updated_at
 public,account_licence,account_licence_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id)
-public,account_licence,chk_licence_dates,c,CHECK (((expires_at IS NULL) OR (expires_at >= starts_at)))
+public,account_licence,chk_licence_dates,c,CHECK (expires_at IS NULL OR expires_at >= starts_at)
 public,account_subscription,account_subscription_account_profile_id_fkey,f,FOREIGN KEY (account_profile_id) REFERENCES account_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,account_subscription,account_subscription_account_profile_id_not_null,n,NOT NULL account_profile_id
 public,account_subscription,account_subscription_created_at_not_null,n,NOT NULL created_at
@@ -26,11 +26,13 @@ public,account_subscription,account_subscription_pkey,p,PRIMARY KEY (id)
 public,account_subscription,account_subscription_starts_at_not_null,n,NOT NULL starts_at
 public,account_subscription,account_subscription_subscription_plan_id_fkey,f,FOREIGN KEY (subscription_plan_id) REFERENCES subscription_plan(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,account_subscription,account_subscription_subscription_plan_id_not_null,n,NOT NULL subscription_plan_id
-public,account_subscription,account_subscription_subscription_status_check,c,"CHECK (((subscription_status)::text = ANY ((ARRAY['TRIAL'::character varying, 'ACTIVE'::character varying, 'PAST_DUE'::character varying, 'CANCELLED'::character varying, 'EXPIRED'::character varying])::text[])))"
+public,account_subscription,account_subscription_subscription_status_check,c,"CHECK (subscription_status::text = ANY (ARRAY['TRIAL'::character varying, 'ACTIVE'::character varying, 'PAST_DUE'::character varying, 'CANCELLED'::character varying, 'EXPIRED'::character varying]::text[]))"
 public,account_subscription,account_subscription_subscription_status_not_null,n,NOT NULL subscription_status
 public,account_subscription,account_subscription_updated_at_not_null,n,NOT NULL updated_at
 public,account_subscription,account_subscription_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id)
-public,account_subscription,chk_sub_timing,c,CHECK (((ends_at IS NULL) OR (ends_at >= starts_at)))
+public,account_subscription,chk_sub_current_period_timing,c,CHECK (current_period_ends_at IS NULL OR current_period_starts_at IS NULL OR current_period_ends_at >= current_period_starts_at)
+public,account_subscription,chk_sub_timing,c,CHECK (ends_at IS NULL OR ends_at >= starts_at)
+public,consultant_request,chk_cr_commission_rate,c,CHECK (commission_rate_percent IS NULL OR commission_rate_percent >= 0::numeric AND commission_rate_percent <= 100::numeric)
 public,consultant_request,consultant_request_approved_by_user_id_fkey,f,FOREIGN KEY (approved_by_user_id) REFERENCES user_account(id)
 public,consultant_request,consultant_request_consultant_organisation_id_fkey,f,FOREIGN KEY (consultant_organisation_id) REFERENCES organisation(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,consultant_request,consultant_request_consultant_organisation_id_not_null,n,NOT NULL consultant_organisation_id
@@ -40,10 +42,20 @@ public,consultant_request,consultant_request_id_not_null,n,NOT NULL id
 public,consultant_request,consultant_request_job_requirement_id_fkey,f,FOREIGN KEY (job_requirement_id) REFERENCES job_requirement(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,consultant_request,consultant_request_job_requirement_id_not_null,n,NOT NULL job_requirement_id
 public,consultant_request,consultant_request_pkey,p,PRIMARY KEY (id)
-public,consultant_request,consultant_request_request_status_check,c,"CHECK (((request_status)::text = ANY ((ARRAY['REQUESTED'::character varying, 'ACCEPTED'::character varying, 'DECLINED'::character varying, 'TERMINATED'::character varying])::text[])))"
+public,consultant_request,consultant_request_request_status_check,c,"CHECK (request_status::text = ANY (ARRAY['REQUESTED'::character varying, 'ACCEPTED'::character varying, 'DECLINED'::character varying, 'TERMINATED'::character varying]::text[]))"
 public,consultant_request,consultant_request_request_status_not_null,n,NOT NULL request_status
 public,consultant_request,consultant_request_requested_at_not_null,n,NOT NULL requested_at
 public,consultant_request,consultant_request_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id)
+public,consultant_request_decision,chk_crd_decision,c,"CHECK (decision::text = ANY (ARRAY['ACCEPTED'::character varying, 'DECLINED'::character varying, 'REVOKED'::character varying, 'REINSTATED'::character varying]::text[]))"
+public,consultant_request_decision,consultant_request_decision_consultant_request_id_fkey,f,FOREIGN KEY (consultant_request_id) REFERENCES consultant_request(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,consultant_request_decision,consultant_request_decision_consultant_request_id_not_null,n,NOT NULL consultant_request_id
+public,consultant_request_decision,consultant_request_decision_created_at_not_null,n,NOT NULL created_at
+public,consultant_request_decision,consultant_request_decision_decided_by_user_id_fkey,f,FOREIGN KEY (decided_by_user_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,consultant_request_decision,consultant_request_decision_decided_by_user_id_not_null,n,NOT NULL decided_by_user_id
+public,consultant_request_decision,consultant_request_decision_decision_not_null,n,NOT NULL decision
+public,consultant_request_decision,consultant_request_decision_effective_at_not_null,n,NOT NULL effective_at
+public,consultant_request_decision,consultant_request_decision_id_not_null,n,NOT NULL id
+public,consultant_request_decision,consultant_request_decision_pkey,p,PRIMARY KEY (id)
 public,device_session,device_session_expires_at_not_null,n,NOT NULL expires_at
 public,device_session,device_session_id_not_null,n,NOT NULL id
 public,device_session,device_session_last_activity_at_not_null,n,NOT NULL last_activity_at
@@ -53,6 +65,28 @@ public,device_session,device_session_session_token_hash_not_null,n,NOT NULL sess
 public,device_session,device_session_started_at_not_null,n,NOT NULL started_at
 public,device_session,device_session_user_account_id_fkey,f,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,device_session,device_session_user_account_id_not_null,n,NOT NULL user_account_id
+public,device_session,device_session_user_device_id_fkey,f,FOREIGN KEY (user_device_id) REFERENCES user_device(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,invoice,chk_inv_status,c,"CHECK (invoice_status::text = ANY (ARRAY['DRAFT'::character varying, 'ISSUED'::character varying, 'PAID'::character varying, 'VOID'::character varying, 'OVERDUE'::character varying]::text[]))"
+public,invoice,chk_inv_subtotal,c,CHECK (subtotal_amount >= 0::numeric)
+public,invoice,chk_inv_tax,c,CHECK (tax_amount >= 0::numeric)
+public,invoice,chk_inv_total,c,CHECK (total_amount >= 0::numeric)
+public,invoice,chk_inv_total_eq_sum,c,CHECK (total_amount = (subtotal_amount + tax_amount))
+public,invoice,invoice_account_profile_id_fkey,f,FOREIGN KEY (account_profile_id) REFERENCES account_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,invoice,invoice_account_profile_id_not_null,n,NOT NULL account_profile_id
+public,invoice,invoice_account_subscription_id_fkey,f,FOREIGN KEY (account_subscription_id) REFERENCES account_subscription(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,invoice,invoice_created_at_not_null,n,NOT NULL created_at
+public,invoice,invoice_currency_id_fkey,f,FOREIGN KEY (currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,invoice,invoice_currency_id_not_null,n,NOT NULL currency_id
+public,invoice,invoice_id_not_null,n,NOT NULL id
+public,invoice,invoice_invoice_number_not_null,n,NOT NULL invoice_number
+public,invoice,invoice_invoice_status_not_null,n,NOT NULL invoice_status
+public,invoice,invoice_payment_transaction_id_fkey,f,FOREIGN KEY (payment_transaction_id) REFERENCES payment_transaction(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,invoice,invoice_pkey,p,PRIMARY KEY (id)
+public,invoice,invoice_subtotal_amount_not_null,n,NOT NULL subtotal_amount
+public,invoice,invoice_tax_amount_not_null,n,NOT NULL tax_amount
+public,invoice,invoice_total_amount_not_null,n,NOT NULL total_amount
+public,invoice,invoice_updated_at_not_null,n,NOT NULL updated_at
+public,invoice,uq_invoice_number,u,UNIQUE (invoice_number)
 public,licence_seat_assignment,licence_seat_assignment_account_licence_id_fkey,f,FOREIGN KEY (account_licence_id) REFERENCES account_licence(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,licence_seat_assignment,licence_seat_assignment_account_licence_id_not_null,n,NOT NULL account_licence_id
 public,licence_seat_assignment,licence_seat_assignment_assigned_at_not_null,n,NOT NULL assigned_at
@@ -63,10 +97,29 @@ public,licence_seat_assignment,licence_seat_assignment_pkey,p,PRIMARY KEY (id)
 public,licence_seat_assignment,licence_seat_assignment_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id)
 public,licence_seat_assignment,licence_seat_assignment_user_account_id_fkey,f,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,licence_seat_assignment,licence_seat_assignment_user_account_id_not_null,n,NOT NULL user_account_id
-public,licence_seat_assignment,uq_licence_seat,u,"UNIQUE (account_licence_id, user_account_id)"
+public,payment_refund,chk_pr_amount,c,CHECK (refund_amount > 0::numeric)
+public,payment_refund,chk_pr_status,c,"CHECK (refund_status::text = ANY (ARRAY['PENDING'::character varying, 'SUCCEEDED'::character varying, 'FAILED'::character varying, 'CANCELLED'::character varying]::text[]))"
+public,payment_refund,chk_pr_type,c,"CHECK (refund_type::text = ANY (ARRAY['FULL'::character varying, 'PARTIAL'::character varying]::text[]))"
+public,payment_refund,payment_refund_account_profile_id_fkey,f,FOREIGN KEY (account_profile_id) REFERENCES account_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,payment_refund,payment_refund_account_profile_id_not_null,n,NOT NULL account_profile_id
+public,payment_refund,payment_refund_created_at_not_null,n,NOT NULL created_at
+public,payment_refund,payment_refund_currency_id_fkey,f,FOREIGN KEY (currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,payment_refund,payment_refund_currency_id_not_null,n,NOT NULL currency_id
+public,payment_refund,payment_refund_id_not_null,n,NOT NULL id
+public,payment_refund,payment_refund_idempotency_key_not_null,n,NOT NULL idempotency_key
+public,payment_refund,payment_refund_initiated_by_user_id_fkey,f,FOREIGN KEY (initiated_by_user_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,payment_refund,payment_refund_payment_transaction_id_fkey,f,FOREIGN KEY (payment_transaction_id) REFERENCES payment_transaction(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,payment_refund,payment_refund_payment_transaction_id_not_null,n,NOT NULL payment_transaction_id
+public,payment_refund,payment_refund_pkey,p,PRIMARY KEY (id)
+public,payment_refund,payment_refund_refund_amount_not_null,n,NOT NULL refund_amount
+public,payment_refund,payment_refund_refund_status_not_null,n,NOT NULL refund_status
+public,payment_refund,payment_refund_refund_type_not_null,n,NOT NULL refund_type
+public,payment_refund,payment_refund_updated_at_not_null,n,NOT NULL updated_at
+public,payment_refund,uq_payment_refund_gateway,u,UNIQUE (gateway_refund_id)
+public,payment_refund,uq_payment_refund_idempotency,u,UNIQUE (idempotency_key)
 public,payment_transaction,payment_transaction_account_profile_id_fkey,f,FOREIGN KEY (account_profile_id) REFERENCES account_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,payment_transaction,payment_transaction_account_profile_id_not_null,n,NOT NULL account_profile_id
-public,payment_transaction,payment_transaction_amount_check,c,CHECK ((amount > (0)::numeric))
+public,payment_transaction,payment_transaction_amount_check,c,CHECK (amount > 0::numeric)
 public,payment_transaction,payment_transaction_amount_not_null,n,NOT NULL amount
 public,payment_transaction,payment_transaction_created_at_not_null,n,NOT NULL created_at
 public,payment_transaction,payment_transaction_currency_id_fkey,f,FOREIGN KEY (currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT
@@ -85,7 +138,7 @@ public,payment_transaction,payment_transaction_updated_at_not_null,n,NOT NULL up
 public,payment_transaction,payment_transaction_wallet_account_id_fkey,f,FOREIGN KEY (wallet_account_id) REFERENCES wallet_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,profile_download_event,profile_download_event_candidate_profile_id_fkey,f,FOREIGN KEY (candidate_profile_id) REFERENCES candidate_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,profile_download_event,profile_download_event_candidate_profile_id_not_null,n,NOT NULL candidate_profile_id
-public,profile_download_event,profile_download_event_credits_deducted_check,c,CHECK ((credits_deducted >= 0))
+public,profile_download_event,profile_download_event_credits_deducted_check,c,CHECK (credits_deducted >= 0)
 public,profile_download_event,profile_download_event_credits_deducted_not_null,n,NOT NULL credits_deducted
 public,profile_download_event,profile_download_event_downloaded_at_not_null,n,NOT NULL downloaded_at
 public,profile_download_event,profile_download_event_downloader_user_account_id_fkey,f,FOREIGN KEY (downloader_user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
@@ -95,6 +148,33 @@ public,profile_download_event,profile_download_event_pkey,p,PRIMARY KEY (id)
 public,profile_download_event,profile_download_event_recruiter_user_account_id_fkey,f,FOREIGN KEY (recruiter_user_account_id) REFERENCES user_account(id)
 public,profile_download_event,profile_download_event_resume_version_id_fkey,f,FOREIGN KEY (resume_version_id) REFERENCES resume_version(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,profile_download_event,profile_download_event_wallet_transaction_id_fkey,f,FOREIGN KEY (wallet_transaction_id) REFERENCES wallet_transaction_ledger(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,sourcing_outreach_batch,chk_sob_channel,c,"CHECK (outreach_channel::text = ANY (ARRAY['EMAIL'::character varying, 'SMS'::character varying, 'IN_APP'::character varying, 'LINKEDIN'::character varying, 'WHATSAPP'::character varying]::text[]))"
+public,sourcing_outreach_batch,chk_sob_status,c,"CHECK (batch_status::text = ANY (ARRAY['DRAFT'::character varying, 'SCHEDULED'::character varying, 'IN_PROGRESS'::character varying, 'COMPLETED'::character varying, 'CANCELLED'::character varying]::text[]))"
+public,sourcing_outreach_batch,chk_sob_total_recipients,c,CHECK (total_recipients >= 0)
+public,sourcing_outreach_batch,sourcing_outreach_batch_batch_name_not_null,n,NOT NULL batch_name
+public,sourcing_outreach_batch,sourcing_outreach_batch_batch_status_not_null,n,NOT NULL batch_status
+public,sourcing_outreach_batch,sourcing_outreach_batch_created_at_not_null,n,NOT NULL created_at
+public,sourcing_outreach_batch,sourcing_outreach_batch_created_by_user_id_fkey,f,FOREIGN KEY (created_by_user_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,sourcing_outreach_batch,sourcing_outreach_batch_created_by_user_id_not_null,n,NOT NULL created_by_user_id
+public,sourcing_outreach_batch,sourcing_outreach_batch_id_not_null,n,NOT NULL id
+public,sourcing_outreach_batch,sourcing_outreach_batch_outreach_channel_not_null,n,NOT NULL outreach_channel
+public,sourcing_outreach_batch,sourcing_outreach_batch_pkey,p,PRIMARY KEY (id)
+public,sourcing_outreach_batch,sourcing_outreach_batch_sourcing_pool_id_fkey,f,FOREIGN KEY (sourcing_pool_id) REFERENCES sourcing_pool(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,sourcing_outreach_batch,sourcing_outreach_batch_sourcing_pool_id_not_null,n,NOT NULL sourcing_pool_id
+public,sourcing_outreach_batch,sourcing_outreach_batch_total_recipients_not_null,n,NOT NULL total_recipients
+public,sourcing_outreach_batch,sourcing_outreach_batch_updated_at_not_null,n,NOT NULL updated_at
+public,sourcing_outreach_recipient,chk_sor_delivery_status,c,"CHECK (delivery_status::text = ANY (ARRAY['PENDING'::character varying, 'SENT'::character varying, 'DELIVERED'::character varying, 'BOUNCED'::character varying, 'OPENED'::character varying, 'CLICKED'::character varying, 'REPLIED'::character varying, 'OPT_OUT'::character varying, 'FAILED'::character varying]::text[]))"
+public,sourcing_outreach_recipient,chk_sor_response,c,"CHECK (candidate_response IS NULL OR (candidate_response::text = ANY (ARRAY['INTERESTED'::character varying, 'NOT_INTERESTED'::character varying, 'MAYBE'::character varying, 'NO_RESPONSE'::character varying]::text[])))"
+public,sourcing_outreach_recipient,sourcing_outreach_recipient_candidate_profile_id_fkey,f,FOREIGN KEY (candidate_profile_id) REFERENCES candidate_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,sourcing_outreach_recipient,sourcing_outreach_recipient_candidate_profile_id_not_null,n,NOT NULL candidate_profile_id
+public,sourcing_outreach_recipient,sourcing_outreach_recipient_created_at_not_null,n,NOT NULL created_at
+public,sourcing_outreach_recipient,sourcing_outreach_recipient_delivery_status_not_null,n,NOT NULL delivery_status
+public,sourcing_outreach_recipient,sourcing_outreach_recipient_id_not_null,n,NOT NULL id
+public,sourcing_outreach_recipient,sourcing_outreach_recipient_outreach_batch_id_fkey,f,FOREIGN KEY (outreach_batch_id) REFERENCES sourcing_outreach_batch(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,sourcing_outreach_recipient,sourcing_outreach_recipient_outreach_batch_id_not_null,n,NOT NULL outreach_batch_id
+public,sourcing_outreach_recipient,sourcing_outreach_recipient_pkey,p,PRIMARY KEY (id)
+public,sourcing_outreach_recipient,sourcing_outreach_recipient_updated_at_not_null,n,NOT NULL updated_at
+public,sourcing_outreach_recipient,uq_sor_batch_candidate,u,"UNIQUE (outreach_batch_id, candidate_profile_id)"
 public,sourcing_pool,sourcing_pool_created_at_not_null,n,NOT NULL created_at
 public,sourcing_pool,sourcing_pool_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id)
 public,sourcing_pool,sourcing_pool_id_not_null,n,NOT NULL id
@@ -114,9 +194,9 @@ public,sourcing_pool_candidate,sourcing_pool_candidate_sourcing_pool_id_fkey,f,F
 public,sourcing_pool_candidate,sourcing_pool_candidate_sourcing_pool_id_not_null,n,NOT NULL sourcing_pool_id
 public,sourcing_pool_candidate,uq_sourcing_pool_cand,u,"UNIQUE (sourcing_pool_id, candidate_profile_id)"
 public,subscription_plan,subscription_plan_active_not_null,n,NOT NULL active
-public,subscription_plan,subscription_plan_billing_interval_check,c,"CHECK (((billing_interval)::text = ANY ((ARRAY['MONTHLY'::character varying, 'QUARTERLY'::character varying, 'ANNUAL'::character varying])::text[])))"
+public,subscription_plan,subscription_plan_billing_interval_check,c,"CHECK (billing_interval::text = ANY (ARRAY['MONTHLY'::character varying, 'QUARTERLY'::character varying, 'ANNUAL'::character varying]::text[]))"
 public,subscription_plan,subscription_plan_billing_interval_not_null,n,NOT NULL billing_interval
-public,subscription_plan,subscription_plan_candidate_download_credits_check,c,CHECK ((candidate_download_credits >= 0))
+public,subscription_plan,subscription_plan_candidate_download_credits_check,c,CHECK (candidate_download_credits >= 0)
 public,subscription_plan,subscription_plan_candidate_download_credits_not_null,n,NOT NULL candidate_download_credits
 public,subscription_plan,subscription_plan_code_key,u,UNIQUE (code)
 public,subscription_plan,subscription_plan_code_not_null,n,NOT NULL code
@@ -125,22 +205,36 @@ public,subscription_plan,subscription_plan_created_by_fkey,f,FOREIGN KEY (create
 public,subscription_plan,subscription_plan_currency_id_fkey,f,FOREIGN KEY (currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,subscription_plan,subscription_plan_currency_id_not_null,n,NOT NULL currency_id
 public,subscription_plan,subscription_plan_id_not_null,n,NOT NULL id
-public,subscription_plan,subscription_plan_job_posting_limit_check,c,CHECK ((job_posting_limit > 0))
+public,subscription_plan,subscription_plan_job_posting_limit_check,c,CHECK (job_posting_limit > 0)
 public,subscription_plan,subscription_plan_job_posting_limit_not_null,n,NOT NULL job_posting_limit
-public,subscription_plan,subscription_plan_max_seats_check,c,CHECK ((max_seats > 0))
+public,subscription_plan,subscription_plan_max_seats_check,c,CHECK (max_seats > 0)
 public,subscription_plan,subscription_plan_max_seats_not_null,n,NOT NULL max_seats
 public,subscription_plan,subscription_plan_name_not_null,n,NOT NULL name
 public,subscription_plan,subscription_plan_pkey,p,PRIMARY KEY (id)
-public,subscription_plan,subscription_plan_price_check,c,CHECK ((price >= (0)::numeric))
+public,subscription_plan,subscription_plan_price_check,c,CHECK (price >= 0::numeric)
 public,subscription_plan,subscription_plan_price_not_null,n,NOT NULL price
 public,subscription_plan,subscription_plan_updated_at_not_null,n,NOT NULL updated_at
 public,subscription_plan,subscription_plan_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id)
+public,user_device,chk_ud_device_type,c,"CHECK (device_type::text = ANY (ARRAY['BROWSER'::character varying, 'MOBILE_ANDROID'::character varying, 'MOBILE_IOS'::character varying, 'DESKTOP_WIN'::character varying, 'DESKTOP_MAC'::character varying, 'DESKTOP_LINUX'::character varying, 'OTHER'::character varying]::text[]))"
+public,user_device,uq_user_device_fingerprint,u,"UNIQUE (user_account_id, device_fingerprint)"
+public,user_device,user_device_account_licence_id_fkey,f,FOREIGN KEY (account_licence_id) REFERENCES account_licence(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,user_device,user_device_created_at_not_null,n,NOT NULL created_at
+public,user_device,user_device_device_fingerprint_not_null,n,NOT NULL device_fingerprint
+public,user_device,user_device_device_type_not_null,n,NOT NULL device_type
+public,user_device,user_device_id_not_null,n,NOT NULL id
+public,user_device,user_device_is_trusted_not_null,n,NOT NULL is_trusted
+public,user_device,user_device_last_seen_at_not_null,n,NOT NULL last_seen_at
+public,user_device,user_device_pkey,p,PRIMARY KEY (id)
+public,user_device,user_device_registered_at_not_null,n,NOT NULL registered_at
+public,user_device,user_device_updated_at_not_null,n,NOT NULL updated_at
+public,user_device,user_device_user_account_id_fkey,f,FOREIGN KEY (user_account_id) REFERENCES user_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+public,user_device,user_device_user_account_id_not_null,n,NOT NULL user_account_id
 public,wallet_account,wallet_account_account_profile_id_fkey,f,FOREIGN KEY (account_profile_id) REFERENCES account_profile(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,wallet_account,wallet_account_account_profile_id_key,u,UNIQUE (account_profile_id)
 public,wallet_account,wallet_account_account_profile_id_not_null,n,NOT NULL account_profile_id
 public,wallet_account,wallet_account_created_at_not_null,n,NOT NULL created_at
 public,wallet_account,wallet_account_created_by_fkey,f,FOREIGN KEY (created_by) REFERENCES user_account(id)
-public,wallet_account,wallet_account_credit_balance_check,c,CHECK ((credit_balance >= 0))
+public,wallet_account,wallet_account_credit_balance_check,c,CHECK (credit_balance >= 0)
 public,wallet_account,wallet_account_credit_balance_not_null,n,NOT NULL credit_balance
 public,wallet_account,wallet_account_currency_id_fkey,f,FOREIGN KEY (currency_id) REFERENCES currency(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,wallet_account,wallet_account_currency_id_not_null,n,NOT NULL currency_id
@@ -148,12 +242,12 @@ public,wallet_account,wallet_account_id_not_null,n,NOT NULL id
 public,wallet_account,wallet_account_pkey,p,PRIMARY KEY (id)
 public,wallet_account,wallet_account_updated_at_not_null,n,NOT NULL updated_at
 public,wallet_account,wallet_account_updated_by_fkey,f,FOREIGN KEY (updated_by) REFERENCES user_account(id)
-public,wallet_transaction_ledger,wallet_transaction_ledger_balance_after_check,c,CHECK ((balance_after >= 0))
+public,wallet_transaction_ledger,wallet_transaction_ledger_balance_after_check,c,CHECK (balance_after >= 0)
 public,wallet_transaction_ledger,wallet_transaction_ledger_balance_after_not_null,n,NOT NULL balance_after
 public,wallet_transaction_ledger,wallet_transaction_ledger_id_not_null,n,NOT NULL id
 public,wallet_transaction_ledger,wallet_transaction_ledger_pkey,p,PRIMARY KEY (id)
 public,wallet_transaction_ledger,wallet_transaction_ledger_recorded_at_not_null,n,NOT NULL recorded_at
-public,wallet_transaction_ledger,wallet_transaction_ledger_transaction_type_check,c,"CHECK (((transaction_type)::text = ANY ((ARRAY['PURCHASE'::character varying, 'PLAN_GRANT'::character varying, 'PROFILE_DOWNLOAD'::character varying, 'REFUND'::character varying, 'CORRECTION'::character varying, 'EXPIRY'::character varying])::text[])))"
+public,wallet_transaction_ledger,wallet_transaction_ledger_transaction_type_check,c,"CHECK (transaction_type::text = ANY (ARRAY['PURCHASE'::character varying, 'PLAN_GRANT'::character varying, 'PROFILE_DOWNLOAD'::character varying, 'REFUND'::character varying, 'CORRECTION'::character varying, 'EXPIRY'::character varying]::text[]))"
 public,wallet_transaction_ledger,wallet_transaction_ledger_transaction_type_not_null,n,NOT NULL transaction_type
 public,wallet_transaction_ledger,wallet_transaction_ledger_wallet_account_id_fkey,f,FOREIGN KEY (wallet_account_id) REFERENCES wallet_account(id) ON UPDATE RESTRICT ON DELETE RESTRICT
 public,wallet_transaction_ledger,wallet_transaction_ledger_wallet_account_id_not_null,n,NOT NULL wallet_account_id
