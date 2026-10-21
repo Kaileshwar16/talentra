@@ -1,0 +1,1565 @@
+{
+  "observed_at_utc": "2026-10-17T15:21:10.399Z",
+  "project_id": "jolly-pond-45332483",
+  "branch_id": "br-jolly-dawn-azv4gh54",
+  "database": "neondb",
+  "method": "Neon MCP run_sql and explain_sql_statement with analyze=false",
+  "queries": [
+    {
+      "id": "Q01",
+      "name": "Candidate profile lookup",
+      "kind": "lookup",
+      "sql": "SELECT id, user_account_id, headline, city_id FROM public.candidate_profile WHERE id = 46 AND deleted_at IS NULL",
+      "rows": [
+        {
+          "id": "46",
+          "user_account_id": "251",
+          "headline": "Synthetic candidate 00000180",
+          "city_id": null
+        }
+      ],
+      "plan": [
+        {
+          "QUERY PLAN": [
+            {
+              "Plan": {
+                "Node Type": "Index Scan",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Scan Direction": "Forward",
+                "Index Name": "candidate_profile_pkey",
+                "Relation Name": "candidate_profile",
+                "Schema": "public",
+                "Alias": "candidate_profile",
+                "Startup Cost": 0.42,
+                "Total Cost": 8.44,
+                "Plan Rows": 1,
+                "Plan Width": 53,
+                "Disabled": false,
+                "Output": [
+                  "id",
+                  "user_account_id",
+                  "headline",
+                  "city_id"
+                ],
+                "Index Cond": "(candidate_profile.id = 46)",
+                "Filter": "(candidate_profile.deleted_at IS NULL)"
+              },
+              "Query Identifier": -7264117544241099000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Q02",
+      "name": "Recent published jobs",
+      "kind": "lookup",
+      "sql": "SELECT id, organisation_id, title, published_at FROM public.job_requirement WHERE published_at IS NOT NULL AND deleted_at IS NULL ORDER BY published_at DESC, id DESC LIMIT 20",
+      "rows": [
+        {
+          "id": "25028",
+          "organisation_id": "132",
+          "title": "Phase 5 Job 025000",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25027",
+          "organisation_id": "131",
+          "title": "Phase 5 Job 024999",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25026",
+          "organisation_id": "130",
+          "title": "Phase 5 Job 024998",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25025",
+          "organisation_id": "129",
+          "title": "Phase 5 Job 024997",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25024",
+          "organisation_id": "128",
+          "title": "Phase 5 Job 024996",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25023",
+          "organisation_id": "127",
+          "title": "Phase 5 Job 024995",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25022",
+          "organisation_id": "126",
+          "title": "Phase 5 Job 024994",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25021",
+          "organisation_id": "125",
+          "title": "Phase 5 Job 024993",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25020",
+          "organisation_id": "124",
+          "title": "Phase 5 Job 024992",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25019",
+          "organisation_id": "123",
+          "title": "Phase 5 Job 024991",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25018",
+          "organisation_id": "122",
+          "title": "Phase 5 Job 024990",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25017",
+          "organisation_id": "121",
+          "title": "Phase 5 Job 024989",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25016",
+          "organisation_id": "120",
+          "title": "Phase 5 Job 024988",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25015",
+          "organisation_id": "119",
+          "title": "Phase 5 Job 024987",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25014",
+          "organisation_id": "118",
+          "title": "Phase 5 Job 024986",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25013",
+          "organisation_id": "117",
+          "title": "Phase 5 Job 024985",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25012",
+          "organisation_id": "116",
+          "title": "Phase 5 Job 024984",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25011",
+          "organisation_id": "115",
+          "title": "Phase 5 Job 024983",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25010",
+          "organisation_id": "114",
+          "title": "Phase 5 Job 024982",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        },
+        {
+          "id": "25009",
+          "organisation_id": "113",
+          "title": "Phase 5 Job 024981",
+          "published_at": "2026-10-16T06:42:56.254Z"
+        }
+      ],
+      "plan": [
+        {
+          "QUERY PLAN": [
+            {
+              "Plan": {
+                "Node Type": "Limit",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 1540.24,
+                "Total Cost": 1540.29,
+                "Plan Rows": 20,
+                "Plan Width": 43,
+                "Disabled": false,
+                "Output": [
+                  "id",
+                  "organisation_id",
+                  "title",
+                  "published_at"
+                ],
+                "Plans": [
+                  {
+                    "Node Type": "Sort",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Startup Cost": 1540.24,
+                    "Total Cost": 1602.74,
+                    "Plan Rows": 25000,
+                    "Plan Width": 43,
+                    "Disabled": false,
+                    "Output": [
+                      "id",
+                      "organisation_id",
+                      "title",
+                      "published_at"
+                    ],
+                    "Sort Key": [
+                      "job_requirement.published_at DESC",
+                      "job_requirement.id DESC"
+                    ],
+                    "Plans": [
+                      {
+                        "Node Type": "Seq Scan",
+                        "Parent Relationship": "Outer",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Relation Name": "job_requirement",
+                        "Schema": "public",
+                        "Alias": "job_requirement",
+                        "Startup Cost": 0,
+                        "Total Cost": 875,
+                        "Plan Rows": 25000,
+                        "Plan Width": 43,
+                        "Disabled": false,
+                        "Output": [
+                          "id",
+                          "organisation_id",
+                          "title",
+                          "published_at"
+                        ],
+                        "Filter": "((job_requirement.published_at IS NOT NULL) AND (job_requirement.deleted_at IS NULL))"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "Query Identifier": -3444052901456215000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Q03",
+      "name": "Candidate application history",
+      "kind": "functional",
+      "sql": "SELECT a.id, a.job_requirement_id, s.code AS status, a.applied_at FROM public.application a JOIN public.application_status s ON s.id = a.application_status_id WHERE a.candidate_profile_id = 46 AND a.deleted_at IS NULL ORDER BY a.applied_at DESC, a.id DESC LIMIT 20",
+      "rows": [
+        {
+          "id": "218",
+          "job_requirement_id": "433",
+          "status": "withdrawn",
+          "applied_at": "2026-10-15T06:30:48.327Z"
+        },
+        {
+          "id": "1218",
+          "job_requirement_id": "813",
+          "status": "applied",
+          "applied_at": "2026-10-14T06:30:48.327Z"
+        },
+        {
+          "id": "2218",
+          "job_requirement_id": "738",
+          "status": "shortlisted",
+          "applied_at": "2026-10-13T06:30:48.327Z"
+        },
+        {
+          "id": "3218",
+          "job_requirement_id": "538",
+          "status": "interviewing",
+          "applied_at": "2026-10-12T06:30:48.327Z"
+        },
+        {
+          "id": "4218",
+          "job_requirement_id": "350",
+          "status": "offered",
+          "applied_at": "2026-10-11T06:30:48.327Z"
+        }
+      ],
+      "plan": [
+        {
+          "QUERY PLAN": [
+            {
+              "Plan": {
+                "Node Type": "Limit",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 21.17,
+                "Total Cost": 21.18,
+                "Plan Rows": 5,
+                "Plan Width": 202,
+                "Disabled": false,
+                "Output": [
+                  "a.id",
+                  "a.job_requirement_id",
+                  "s.code",
+                  "a.applied_at"
+                ],
+                "Plans": [
+                  {
+                    "Node Type": "Sort",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Startup Cost": 21.17,
+                    "Total Cost": 21.18,
+                    "Plan Rows": 5,
+                    "Plan Width": 202,
+                    "Disabled": false,
+                    "Output": [
+                      "a.id",
+                      "a.job_requirement_id",
+                      "s.code",
+                      "a.applied_at"
+                    ],
+                    "Sort Key": [
+                      "a.applied_at DESC",
+                      "a.id DESC"
+                    ],
+                    "Plans": [
+                      {
+                        "Node Type": "Hash Join",
+                        "Parent Relationship": "Outer",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Join Type": "Inner",
+                        "Startup Cost": 8.63,
+                        "Total Cost": 21.11,
+                        "Plan Rows": 5,
+                        "Plan Width": 202,
+                        "Disabled": false,
+                        "Output": [
+                          "a.id",
+                          "a.job_requirement_id",
+                          "s.code",
+                          "a.applied_at"
+                        ],
+                        "Inner Unique": false,
+                        "Hash Cond": "(s.id = a.application_status_id)",
+                        "Plans": [
+                          {
+                            "Node Type": "Seq Scan",
+                            "Parent Relationship": "Outer",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Relation Name": "application_status",
+                            "Schema": "public",
+                            "Alias": "s",
+                            "Startup Cost": 0,
+                            "Total Cost": 11.3,
+                            "Plan Rows": 130,
+                            "Plan Width": 186,
+                            "Disabled": false,
+                            "Output": [
+                              "s.id",
+                              "s.code",
+                              "s.display_name",
+                              "s.active",
+                              "s.sort_order",
+                              "s.reference_code_id",
+                              "s.created_at",
+                              "s.created_by",
+                              "s.updated_at",
+                              "s.updated_by",
+                              "s.deleted_at"
+                            ]
+                          },
+                          {
+                            "Node Type": "Hash",
+                            "Parent Relationship": "Inner",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Startup Cost": 8.56,
+                            "Total Cost": 8.56,
+                            "Plan Rows": 5,
+                            "Plan Width": 32,
+                            "Disabled": false,
+                            "Output": [
+                              "a.id",
+                              "a.job_requirement_id",
+                              "a.applied_at",
+                              "a.application_status_id"
+                            ],
+                            "Plans": [
+                              {
+                                "Node Type": "Index Scan",
+                                "Parent Relationship": "Outer",
+                                "Parallel Aware": false,
+                                "Async Capable": false,
+                                "Scan Direction": "Forward",
+                                "Index Name": "idx_application_candidate_profile_id",
+                                "Relation Name": "application",
+                                "Schema": "public",
+                                "Alias": "a",
+                                "Startup Cost": 0.43,
+                                "Total Cost": 8.56,
+                                "Plan Rows": 5,
+                                "Plan Width": 32,
+                                "Disabled": false,
+                                "Output": [
+                                  "a.id",
+                                  "a.job_requirement_id",
+                                  "a.applied_at",
+                                  "a.application_status_id"
+                                ],
+                                "Index Cond": "(a.candidate_profile_id = 46)",
+                                "Filter": "(a.deleted_at IS NULL)"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "Query Identifier": -2858296532751796700
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Q04",
+      "name": "Job pipeline counts",
+      "kind": "analytics",
+      "sql": "SELECT s.code AS status, count(*) AS applications FROM public.application a JOIN public.application_status s ON s.id = a.application_status_id WHERE a.job_requirement_id = 29 AND a.deleted_at IS NULL GROUP BY s.code ORDER BY s.code",
+      "rows": [
+        {
+          "status": "applied",
+          "applications": "16"
+        },
+        {
+          "status": "interviewing",
+          "applications": "14"
+        },
+        {
+          "status": "joined",
+          "applications": "16"
+        },
+        {
+          "status": "offered",
+          "applications": "16"
+        },
+        {
+          "status": "rejected",
+          "applications": "15"
+        },
+        {
+          "status": "shortlisted",
+          "applications": "17"
+        },
+        {
+          "status": "withdrawn",
+          "applications": "14"
+        }
+      ],
+      "plan": [
+        {
+          "QUERY PLAN": [
+            {
+              "Plan": {
+                "Node Type": "Aggregate",
+                "Strategy": "Sorted",
+                "Partial Mode": "Simple",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 20.39,
+                "Total Cost": 21.4,
+                "Plan Rows": 58,
+                "Plan Width": 186,
+                "Disabled": false,
+                "Output": [
+                  "s.code",
+                  "count(*)"
+                ],
+                "Group Key": [
+                  "s.code"
+                ],
+                "Plans": [
+                  {
+                    "Node Type": "Sort",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Startup Cost": 20.39,
+                    "Total Cost": 20.53,
+                    "Plan Rows": 58,
+                    "Plan Width": 178,
+                    "Disabled": false,
+                    "Output": [
+                      "s.code"
+                    ],
+                    "Sort Key": [
+                      "s.code"
+                    ],
+                    "Plans": [
+                      {
+                        "Node Type": "Nested Loop",
+                        "Parent Relationship": "Outer",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Join Type": "Inner",
+                        "Startup Cost": 0.58,
+                        "Total Cost": 18.69,
+                        "Plan Rows": 58,
+                        "Plan Width": 178,
+                        "Disabled": false,
+                        "Output": [
+                          "s.code"
+                        ],
+                        "Inner Unique": true,
+                        "Plans": [
+                          {
+                            "Node Type": "Index Only Scan",
+                            "Parent Relationship": "Outer",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Scan Direction": "Forward",
+                            "Index Name": "idx_application_pipeline",
+                            "Relation Name": "application",
+                            "Schema": "public",
+                            "Alias": "a",
+                            "Startup Cost": 0.43,
+                            "Total Cost": 9.44,
+                            "Plan Rows": 58,
+                            "Plan Width": 8,
+                            "Disabled": false,
+                            "Output": [
+                              "a.job_requirement_id",
+                              "a.application_status_id",
+                              "a.applied_at"
+                            ],
+                            "Index Cond": "(a.job_requirement_id = 29)"
+                          },
+                          {
+                            "Node Type": "Memoize",
+                            "Parent Relationship": "Inner",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Startup Cost": 0.15,
+                            "Total Cost": 1,
+                            "Plan Rows": 1,
+                            "Plan Width": 186,
+                            "Disabled": false,
+                            "Output": [
+                              "s.code",
+                              "s.id"
+                            ],
+                            "Cache Key": "a.application_status_id",
+                            "Cache Mode": "logical",
+                            "Plans": [
+                              {
+                                "Node Type": "Index Scan",
+                                "Parent Relationship": "Outer",
+                                "Parallel Aware": false,
+                                "Async Capable": false,
+                                "Scan Direction": "Forward",
+                                "Index Name": "application_status_pkey",
+                                "Relation Name": "application_status",
+                                "Schema": "public",
+                                "Alias": "s",
+                                "Startup Cost": 0.14,
+                                "Total Cost": 0.99,
+                                "Plan Rows": 1,
+                                "Plan Width": 186,
+                                "Disabled": false,
+                                "Output": [
+                                  "s.code",
+                                  "s.id"
+                                ],
+                                "Index Cond": "(s.id = a.application_status_id)"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "Query Identifier": 167956703073624830
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Q05",
+      "name": "Recruiter assignments",
+      "kind": "security/lookup",
+      "sql": "SELECT o.id AS mapping_id, o.organisation_id, o.recruiter_user_account_id, count(jra.id) AS assigned_jobs FROM public.organisation_recruiter o LEFT JOIN public.job_recruiter_assignment jra ON jra.organisation_recruiter_id = o.id WHERE o.recruiter_user_account_id = 10092 GROUP BY o.id, o.organisation_id, o.recruiter_user_account_id",
+      "rows": [
+        {
+          "mapping_id": "1",
+          "organisation_id": "33",
+          "recruiter_user_account_id": "10092",
+          "assigned_jobs": "0"
+        }
+      ],
+      "plan": [
+        {
+          "QUERY PLAN": [
+            {
+              "Plan": {
+                "Node Type": "Aggregate",
+                "Strategy": "Sorted",
+                "Partial Mode": "Simple",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 37.94,
+                "Total Cost": 38.03,
+                "Plan Rows": 4,
+                "Plan Width": 32,
+                "Disabled": false,
+                "Output": [
+                  "o.id",
+                  "o.organisation_id",
+                  "o.recruiter_user_account_id",
+                  "count(jra.id)"
+                ],
+                "Group Key": [
+                  "o.id"
+                ],
+                "Plans": [
+                  {
+                    "Node Type": "Sort",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Startup Cost": 37.94,
+                    "Total Cost": 37.96,
+                    "Plan Rows": 6,
+                    "Plan Width": 32,
+                    "Disabled": false,
+                    "Output": [
+                      "o.id",
+                      "o.organisation_id",
+                      "o.recruiter_user_account_id",
+                      "jra.id"
+                    ],
+                    "Sort Key": [
+                      "o.id"
+                    ],
+                    "Plans": [
+                      {
+                        "Node Type": "Hash Join",
+                        "Parent Relationship": "Outer",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Join Type": "Right",
+                        "Startup Cost": 12.69,
+                        "Total Cost": 37.86,
+                        "Plan Rows": 6,
+                        "Plan Width": 32,
+                        "Disabled": false,
+                        "Output": [
+                          "o.id",
+                          "o.organisation_id",
+                          "o.recruiter_user_account_id",
+                          "jra.id"
+                        ],
+                        "Inner Unique": true,
+                        "Hash Cond": "(jra.organisation_recruiter_id = o.id)",
+                        "Plans": [
+                          {
+                            "Node Type": "Seq Scan",
+                            "Parent Relationship": "Outer",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Relation Name": "job_recruiter_assignment",
+                            "Schema": "public",
+                            "Alias": "jra",
+                            "Startup Cost": 0,
+                            "Total Cost": 22,
+                            "Plan Rows": 1200,
+                            "Plan Width": 16,
+                            "Disabled": false,
+                            "Output": [
+                              "jra.id",
+                              "jra.job_requirement_id",
+                              "jra.organisation_recruiter_id",
+                              "jra.assigned_at",
+                              "jra.assigned_by"
+                            ]
+                          },
+                          {
+                            "Node Type": "Hash",
+                            "Parent Relationship": "Inner",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Startup Cost": 12.64,
+                            "Total Cost": 12.64,
+                            "Plan Rows": 4,
+                            "Plan Width": 24,
+                            "Disabled": false,
+                            "Output": [
+                              "o.id",
+                              "o.organisation_id",
+                              "o.recruiter_user_account_id"
+                            ],
+                            "Plans": [
+                              {
+                                "Node Type": "Bitmap Heap Scan",
+                                "Parent Relationship": "Outer",
+                                "Parallel Aware": false,
+                                "Async Capable": false,
+                                "Relation Name": "organisation_recruiter",
+                                "Schema": "public",
+                                "Alias": "o",
+                                "Startup Cost": 4.18,
+                                "Total Cost": 12.64,
+                                "Plan Rows": 4,
+                                "Plan Width": 24,
+                                "Disabled": false,
+                                "Output": [
+                                  "o.id",
+                                  "o.organisation_id",
+                                  "o.recruiter_user_account_id"
+                                ],
+                                "Recheck Cond": "(o.recruiter_user_account_id = 10092)",
+                                "Plans": [
+                                  {
+                                    "Node Type": "Bitmap Index Scan",
+                                    "Parent Relationship": "Outer",
+                                    "Parallel Aware": false,
+                                    "Async Capable": false,
+                                    "Index Name": "idx_org_recruiter_user",
+                                    "Startup Cost": 0,
+                                    "Total Cost": 4.18,
+                                    "Plan Rows": 4,
+                                    "Plan Width": 0,
+                                    "Disabled": false,
+                                    "Index Cond": "(o.recruiter_user_account_id = 10092)"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "Query Identifier": 2854270115338848000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Q06",
+      "name": "Gig assignment status",
+      "kind": "functional",
+      "sql": "SELECT r.id AS request_id, r.status AS request_status, ga.assignment_status, ga.scheduled_start_at FROM public.gig_request r LEFT JOIN public.gig_assignment ga ON ga.gig_request_id = r.id WHERE r.id BETWEEN 1 AND 20 ORDER BY r.id, ga.id",
+      "rows": [
+        {
+          "request_id": "1",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "2",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "3",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "4",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "5",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "6",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "7",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "8",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "9",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "10",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "11",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "12",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "13",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "14",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "15",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "16",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "17",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "18",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "19",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        },
+        {
+          "request_id": "20",
+          "request_status": "OPEN",
+          "assignment_status": "ACCEPTED",
+          "scheduled_start_at": "2026-10-23T06:33:44.900Z"
+        }
+      ],
+      "plan": [
+        {
+          "QUERY PLAN": [
+            {
+              "Plan": {
+                "Node Type": "Sort",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 7.41,
+                "Total Cost": 7.46,
+                "Plan Rows": 19,
+                "Plan Width": 38,
+                "Disabled": false,
+                "Output": [
+                  "r.id",
+                  "r.status",
+                  "ga.assignment_status",
+                  "ga.scheduled_start_at",
+                  "ga.id"
+                ],
+                "Sort Key": [
+                  "r.id",
+                  "ga.id"
+                ],
+                "Plans": [
+                  {
+                    "Node Type": "Hash Join",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Join Type": "Right",
+                    "Startup Cost": 3.74,
+                    "Total Cost": 7.01,
+                    "Plan Rows": 19,
+                    "Plan Width": 38,
+                    "Disabled": false,
+                    "Output": [
+                      "r.id",
+                      "r.status",
+                      "ga.assignment_status",
+                      "ga.scheduled_start_at",
+                      "ga.id"
+                    ],
+                    "Inner Unique": true,
+                    "Hash Cond": "(ga.gig_request_id = r.id)",
+                    "Plans": [
+                      {
+                        "Node Type": "Seq Scan",
+                        "Parent Relationship": "Outer",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Relation Name": "gig_assignment",
+                        "Schema": "public",
+                        "Alias": "ga",
+                        "Startup Cost": 0,
+                        "Total Cost": 3,
+                        "Plan Rows": 100,
+                        "Plan Width": 33,
+                        "Disabled": false,
+                        "Output": [
+                          "ga.id",
+                          "ga.gig_application_id",
+                          "ga.gig_request_id",
+                          "ga.gig_worker_profile_id",
+                          "ga.assignment_status",
+                          "ga.scheduled_start_at",
+                          "ga.scheduled_end_at",
+                          "ga.agreed_amount",
+                          "ga.currency_id",
+                          "ga.accepted_at",
+                          "ga.completed_at",
+                          "ga.cancelled_at",
+                          "ga.created_at",
+                          "ga.updated_at"
+                        ]
+                      },
+                      {
+                        "Node Type": "Hash",
+                        "Parent Relationship": "Inner",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Startup Cost": 3.5,
+                        "Total Cost": 3.5,
+                        "Plan Rows": 19,
+                        "Plan Width": 13,
+                        "Disabled": false,
+                        "Output": [
+                          "r.id",
+                          "r.status"
+                        ],
+                        "Plans": [
+                          {
+                            "Node Type": "Seq Scan",
+                            "Parent Relationship": "Outer",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Relation Name": "gig_request",
+                            "Schema": "public",
+                            "Alias": "r",
+                            "Startup Cost": 0,
+                            "Total Cost": 3.5,
+                            "Plan Rows": 19,
+                            "Plan Width": 13,
+                            "Disabled": false,
+                            "Output": [
+                              "r.id",
+                              "r.status"
+                            ],
+                            "Filter": "((r.id >= 1) AND (r.id <= 20))"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "Query Identifier": 7037376493461087000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Q07",
+      "name": "Consultant requests and eligible jobs",
+      "kind": "business rule",
+      "sql": "SELECT cr.id, cr.request_status, j.id AS job_id, j.open_to_consultants FROM public.consultant_request cr JOIN public.job_requirement j ON j.id = cr.job_requirement_id WHERE cr.id <= 20 ORDER BY cr.id",
+      "rows": [
+        {
+          "id": "1",
+          "request_status": "REQUESTED",
+          "job_id": "187",
+          "open_to_consultants": true
+        }
+      ],
+      "plan": [
+        {
+          "QUERY PLAN": [
+            {
+              "Plan": {
+                "Node Type": "Sort",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 603.75,
+                "Total Cost": 603.97,
+                "Plan Rows": 90,
+                "Plan Width": 95,
+                "Disabled": false,
+                "Output": [
+                  "cr.id",
+                  "cr.request_status",
+                  "j.id",
+                  "j.open_to_consultants"
+                ],
+                "Sort Key": [
+                  "cr.id"
+                ],
+                "Plans": [
+                  {
+                    "Node Type": "Nested Loop",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Join Type": "Inner",
+                    "Startup Cost": 0.29,
+                    "Total Cost": 600.83,
+                    "Plan Rows": 90,
+                    "Plan Width": 95,
+                    "Disabled": false,
+                    "Output": [
+                      "cr.id",
+                      "cr.request_status",
+                      "j.id",
+                      "j.open_to_consultants"
+                    ],
+                    "Inner Unique": true,
+                    "Plans": [
+                      {
+                        "Node Type": "Seq Scan",
+                        "Parent Relationship": "Outer",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Relation Name": "consultant_request",
+                        "Schema": "public",
+                        "Alias": "cr",
+                        "Startup Cost": 0,
+                        "Total Cost": 13.38,
+                        "Plan Rows": 90,
+                        "Plan Width": 94,
+                        "Disabled": false,
+                        "Output": [
+                          "cr.id",
+                          "cr.request_status",
+                          "cr.job_requirement_id"
+                        ],
+                        "Filter": "(cr.id <= 20)"
+                      },
+                      {
+                        "Node Type": "Index Scan",
+                        "Parent Relationship": "Inner",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Scan Direction": "Forward",
+                        "Index Name": "job_requirement_pkey",
+                        "Relation Name": "job_requirement",
+                        "Schema": "public",
+                        "Alias": "j",
+                        "Startup Cost": 0.29,
+                        "Total Cost": 6.53,
+                        "Plan Rows": 1,
+                        "Plan Width": 9,
+                        "Disabled": false,
+                        "Output": [
+                          "j.id",
+                          "j.title",
+                          "j.description",
+                          "j.salary_min",
+                          "j.salary_max",
+                          "j.deadline",
+                          "j.positions",
+                          "j.published_at",
+                          "j.open_to_consultants",
+                          "j.organisation_id",
+                          "j.job_status_id",
+                          "j.work_type_id",
+                          "j.employment_type_id",
+                          "j.currency_id",
+                          "j.salary_period_id",
+                          "j.language_id",
+                          "j.job_role_id",
+                          "j.created_at",
+                          "j.created_by",
+                          "j.updated_at",
+                          "j.updated_by",
+                          "j.deleted_at"
+                        ],
+                        "Index Cond": "(j.id = cr.job_requirement_id)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "Query Identifier": 15814718331864120
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Q08",
+      "name": "Wallet and ledger",
+      "kind": "transactional",
+      "sql": "SELECT w.id, w.balance_credits, count(l.id) AS ledger_entries, coalesce(sum(l.credit_amount),0) AS ledger_credits FROM public.wallet_account w LEFT JOIN public.wallet_transaction_ledger l ON l.wallet_account_id = w.id WHERE w.id = 1 GROUP BY w.id, w.balance_credits",
+      "rows": [
+        {
+          "id": "1",
+          "balance_credits": 0,
+          "ledger_entries": "1",
+          "ledger_credits": "0"
+        }
+      ],
+      "plan": [
+        {
+          "QUERY PLAN": [
+            {
+              "Plan": {
+                "Node Type": "Aggregate",
+                "Strategy": "Sorted",
+                "Partial Mode": "Simple",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 0.29,
+                "Total Cost": 16.35,
+                "Plan Rows": 1,
+                "Plan Width": 28,
+                "Disabled": false,
+                "Output": [
+                  "w.id",
+                  "w.balance_credits",
+                  "count(l.id)",
+                  "COALESCE(sum(l.credit_amount), '0'::bigint)"
+                ],
+                "Plans": [
+                  {
+                    "Node Type": "Nested Loop",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Join Type": "Left",
+                    "Startup Cost": 0.29,
+                    "Total Cost": 16.33,
+                    "Plan Rows": 1,
+                    "Plan Width": 24,
+                    "Disabled": false,
+                    "Output": [
+                      "w.id",
+                      "w.balance_credits",
+                      "l.id",
+                      "l.credit_amount"
+                    ],
+                    "Inner Unique": false,
+                    "Plans": [
+                      {
+                        "Node Type": "Index Scan",
+                        "Parent Relationship": "Outer",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Scan Direction": "Forward",
+                        "Index Name": "wallet_account_pkey",
+                        "Relation Name": "wallet_account",
+                        "Schema": "public",
+                        "Alias": "w",
+                        "Startup Cost": 0.15,
+                        "Total Cost": 8.17,
+                        "Plan Rows": 1,
+                        "Plan Width": 12,
+                        "Disabled": false,
+                        "Output": [
+                          "w.id",
+                          "w.balance_credits"
+                        ],
+                        "Index Cond": "(w.id = 1)"
+                      },
+                      {
+                        "Node Type": "Index Scan",
+                        "Parent Relationship": "Inner",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Scan Direction": "Forward",
+                        "Index Name": "idx_wallet_ledger_wallet",
+                        "Relation Name": "wallet_transaction_ledger",
+                        "Schema": "public",
+                        "Alias": "l",
+                        "Startup Cost": 0.14,
+                        "Total Cost": 8.16,
+                        "Plan Rows": 1,
+                        "Plan Width": 20,
+                        "Disabled": false,
+                        "Output": [
+                          "l.id",
+                          "l.credit_amount",
+                          "l.wallet_account_id"
+                        ],
+                        "Index Cond": "(l.wallet_account_id = 1)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "Query Identifier": -4066258940053920000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Q09",
+      "name": "Outreach delivery counts",
+      "kind": "functional",
+      "sql": "SELECT b.id, b.batch_status, count(r.id) AS recipients, count(*) FILTER (WHERE r.delivery_status = 'DELIVERED') AS delivered FROM public.sourcing_outreach_batch b LEFT JOIN public.sourcing_outreach_recipient r ON r.outreach_batch_id = b.id WHERE b.id <= 20 GROUP BY b.id, b.batch_status ORDER BY b.id",
+      "rows": [
+        {
+          "id": "1",
+          "batch_status": "COMPLETED",
+          "recipients": "1",
+          "delivered": "1"
+        },
+        {
+          "id": "2",
+          "batch_status": "COMPLETED",
+          "recipients": "1",
+          "delivered": "1"
+        },
+        {
+          "id": "3",
+          "batch_status": "COMPLETED",
+          "recipients": "1",
+          "delivered": "1"
+        },
+        {
+          "id": "4",
+          "batch_status": "COMPLETED",
+          "recipients": "1",
+          "delivered": "1"
+        },
+        {
+          "id": "5",
+          "batch_status": "COMPLETED",
+          "recipients": "1",
+          "delivered": "1"
+        },
+        {
+          "id": "6",
+          "batch_status": "COMPLETED",
+          "recipients": "1",
+          "delivered": "1"
+        },
+        {
+          "id": "7",
+          "batch_status": "COMPLETED",
+          "recipients": "1",
+          "delivered": "1"
+        },
+        {
+          "id": "8",
+          "batch_status": "COMPLETED",
+          "recipients": "1",
+          "delivered": "1"
+        },
+        {
+          "id": "9",
+          "batch_status": "COMPLETED",
+          "recipients": "1",
+          "delivered": "1"
+        },
+        {
+          "id": "10",
+          "batch_status": "COMPLETED",
+          "recipients": "1",
+          "delivered": "1"
+        }
+      ],
+      "plan": [
+        {
+          "QUERY PLAN": [
+            {
+              "Plan": {
+                "Node Type": "Aggregate",
+                "Strategy": "Sorted",
+                "Partial Mode": "Simple",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 23.77,
+                "Total Cost": 24.51,
+                "Plan Rows": 33,
+                "Plan Width": 102,
+                "Disabled": false,
+                "Output": [
+                  "b.id",
+                  "b.batch_status",
+                  "count(r.id)",
+                  "count(*) FILTER (WHERE ((r.delivery_status)::text = 'DELIVERED'::text))"
+                ],
+                "Group Key": [
+                  "b.id"
+                ],
+                "Plans": [
+                  {
+                    "Node Type": "Sort",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Startup Cost": 23.77,
+                    "Total Cost": 23.85,
+                    "Plan Rows": 33,
+                    "Plan Width": 172,
+                    "Disabled": false,
+                    "Output": [
+                      "b.id",
+                      "b.batch_status",
+                      "r.id",
+                      "r.delivery_status"
+                    ],
+                    "Sort Key": [
+                      "b.id"
+                    ],
+                    "Plans": [
+                      {
+                        "Node Type": "Hash Join",
+                        "Parent Relationship": "Outer",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Join Type": "Right",
+                        "Startup Cost": 11.66,
+                        "Total Cost": 22.94,
+                        "Plan Rows": 33,
+                        "Plan Width": 172,
+                        "Disabled": false,
+                        "Output": [
+                          "b.id",
+                          "b.batch_status",
+                          "r.id",
+                          "r.delivery_status"
+                        ],
+                        "Inner Unique": true,
+                        "Hash Cond": "(r.outreach_batch_id = b.id)",
+                        "Plans": [
+                          {
+                            "Node Type": "Seq Scan",
+                            "Parent Relationship": "Outer",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Relation Name": "sourcing_outreach_recipient",
+                            "Schema": "public",
+                            "Alias": "r",
+                            "Startup Cost": 0,
+                            "Total Cost": 11,
+                            "Plan Rows": 100,
+                            "Plan Width": 94,
+                            "Disabled": false,
+                            "Output": [
+                              "r.id",
+                              "r.outreach_batch_id",
+                              "r.candidate_profile_id",
+                              "r.delivery_status",
+                              "r.delivered_at",
+                              "r.opened_at",
+                              "r.responded_at",
+                              "r.candidate_response",
+                              "r.failure_reason",
+                              "r.external_message_id",
+                              "r.created_at",
+                              "r.updated_at"
+                            ]
+                          },
+                          {
+                            "Node Type": "Hash",
+                            "Parent Relationship": "Inner",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Startup Cost": 11.25,
+                            "Total Cost": 11.25,
+                            "Plan Rows": 33,
+                            "Plan Width": 86,
+                            "Disabled": false,
+                            "Output": [
+                              "b.id",
+                              "b.batch_status"
+                            ],
+                            "Plans": [
+                              {
+                                "Node Type": "Seq Scan",
+                                "Parent Relationship": "Outer",
+                                "Parallel Aware": false,
+                                "Async Capable": false,
+                                "Relation Name": "sourcing_outreach_batch",
+                                "Schema": "public",
+                                "Alias": "b",
+                                "Startup Cost": 0,
+                                "Total Cost": 11.25,
+                                "Plan Rows": 33,
+                                "Plan Width": 86,
+                                "Disabled": false,
+                                "Output": [
+                                  "b.id",
+                                  "b.batch_status"
+                                ],
+                                "Filter": "(b.id <= 20)"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "Query Identifier": 2507585233547238000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Q10",
+      "name": "Notification delivery summary",
+      "kind": "analytics",
+      "sql": "SELECT delivery_status, count(*) AS deliveries FROM public.notification_delivery GROUP BY delivery_status ORDER BY delivery_status",
+      "rows": [
+        {
+          "delivery_status": "DELIVERED",
+          "deliveries": "900"
+        },
+        {
+          "delivery_status": "FAILED",
+          "deliveries": "100"
+        }
+      ],
+      "plan": [
+        {
+          "QUERY PLAN": [
+            {
+              "Plan": {
+                "Node Type": "Sort",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 36.03,
+                "Total Cost": 36.04,
+                "Plan Rows": 2,
+                "Plan Width": 17,
+                "Disabled": false,
+                "Output": [
+                  "delivery_status",
+                  "(count(*))"
+                ],
+                "Sort Key": [
+                  "notification_delivery.delivery_status"
+                ],
+                "Plans": [
+                  {
+                    "Node Type": "Aggregate",
+                    "Strategy": "Hashed",
+                    "Partial Mode": "Simple",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Startup Cost": 36,
+                    "Total Cost": 36.02,
+                    "Plan Rows": 2,
+                    "Plan Width": 17,
+                    "Disabled": false,
+                    "Output": [
+                      "delivery_status",
+                      "count(*)"
+                    ],
+                    "Group Key": [
+                      "notification_delivery.delivery_status"
+                    ],
+                    "Planned Partitions": 0,
+                    "Plans": [
+                      {
+                        "Node Type": "Seq Scan",
+                        "Parent Relationship": "Outer",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Relation Name": "notification_delivery",
+                        "Schema": "public",
+                        "Alias": "notification_delivery",
+                        "Startup Cost": 0,
+                        "Total Cost": 31,
+                        "Plan Rows": 1000,
+                        "Plan Width": 9,
+                        "Disabled": false,
+                        "Output": [
+                          "delivery_status"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "Query Identifier": -854067846230441700
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Q11",
+      "name": "Funnel mart freshness",
+      "kind": "analytics",
+      "sql": "SELECT count(*) AS mart_rows, max(report_date) AS latest_report_date, sum(coalesce(applied_count,0)) AS mart_applied FROM public.analytics_application_funnel_daily",
+      "rows": [
+        {
+          "mart_rows": "10",
+          "latest_report_date": "2026-10-16T00:00:00.000Z",
+          "mart_applied": "500"
+        }
+      ],
+      "plan": null
+    },
+    {
+      "id": "Q12",
+      "name": "Application integrity sample and total",
+      "kind": "quality",
+      "sql": "SELECT count(*) AS applications, count(*) FILTER (WHERE candidate_profile_id IS NULL) AS missing_candidate, count(*) FILTER (WHERE job_requirement_id IS NULL) AS missing_job FROM public.application",
+      "rows": [
+        {
+          "applications": "1250000",
+          "missing_candidate": "0",
+          "missing_job": "0"
+        }
+      ],
+      "plan": null
+    }
+  ]
+}

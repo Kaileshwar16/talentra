@@ -1,0 +1,127 @@
+{
+  "observed_at_utc": "2026-10-17T15:23:46.637Z",
+  "project_id": "jolly-pond-45332483",
+  "branch_id": "br-jolly-dawn-azv4gh54",
+  "database": "neondb",
+  "method": "Neon MCP read-only run_sql; DQ04 transport failure succeeded on one retry",
+  "checks": [
+    {
+      "id": "DQ01",
+      "name": "Seed volume and detail coverage",
+      "sql": "SELECT (SELECT count(*) FROM public.candidate_profile) AS candidates, (SELECT count(*) FROM public.job_requirement) AS jobs, (SELECT count(*) FROM public.application) AS applications, (SELECT count(*) FROM public.candidate_education) AS education_rows, (SELECT count(*) FROM public.candidate_experience) AS experience_rows, (SELECT count(*) FROM public.candidate_skill) AS skill_rows, (SELECT count(*) FROM public.candidate_language) AS language_rows, (SELECT count(*) FROM public.resume_version) AS resume_rows, (SELECT count(*) FROM public.job_recruiter_assignment) AS recruiter_job_assignments",
+      "rows": [
+        {
+          "candidates": "250000",
+          "jobs": "25000",
+          "applications": "1250000",
+          "education_rows": "0",
+          "experience_rows": "0",
+          "skill_rows": "0",
+          "language_rows": "0",
+          "resume_rows": "0",
+          "recruiter_job_assignments": "0"
+        }
+      ]
+    },
+    {
+      "id": "DQ02",
+      "name": "Account and contact format",
+      "sql": "SELECT (SELECT count(*) FROM public.user_account WHERE email IS NOT NULL AND email <> lower(email)) AS mixed_case_emails, (SELECT count(*) FROM public.user_account WHERE email IS NOT NULL AND email !~ '^[^[:space:]@]+@[^[:space:]@]+[.][^[:space:]@]+$') AS malformed_emails, (SELECT count(*) FROM (SELECT lower(email) FROM public.user_account WHERE email IS NOT NULL GROUP BY lower(email) HAVING count(*) > 1) d) AS duplicate_normalized_emails, (SELECT count(*) FROM public.candidate_contact WHERE phone_e164 IS NOT NULL AND phone_e164 !~ '^\\+[1-9][0-9]{1,14}$') AS invalid_e164_phones",
+      "rows": [
+        {
+          "mixed_case_emails": "0",
+          "malformed_emails": "0",
+          "duplicate_normalized_emails": "0",
+          "invalid_e164_phones": "0"
+        }
+      ]
+    },
+    {
+      "id": "DQ03",
+      "name": "Range, salary and money checks",
+      "sql": "SELECT (SELECT count(*) FROM public.candidate_education WHERE end_date < start_date) AS reversed_education_dates, (SELECT count(*) FROM public.candidate_experience WHERE end_date < start_date) AS reversed_experience_dates, (SELECT count(*) FROM public.job_requirement WHERE salary_min IS NOT NULL AND salary_max IS NOT NULL AND salary_min > salary_max) AS reversed_salary_bounds, (SELECT count(*) FROM public.job_requirement WHERE (salary_min IS NOT NULL OR salary_max IS NOT NULL) AND currency_id IS NULL) AS salary_without_currency, (SELECT count(*) FROM public.payment_transaction WHERE amount < 0) AS negative_payments, (SELECT count(*) FROM public.wallet_account WHERE balance_credits < 0) AS negative_wallet_balances",
+      "rows": [
+        {
+          "reversed_education_dates": "0",
+          "reversed_experience_dates": "0",
+          "reversed_salary_bounds": "0",
+          "salary_without_currency": "0",
+          "negative_payments": "0",
+          "negative_wallet_balances": "0"
+        }
+      ]
+    },
+    {
+      "id": "DQ04",
+      "name": "Application relationship integrity",
+      "sql": "SELECT count(*) FILTER (WHERE c.id IS NULL) AS missing_candidate_fk, count(*) FILTER (WHERE j.id IS NULL) AS missing_job_fk, count(*) FILTER (WHERE s.id IS NULL) AS missing_status_fk, count(*) AS applications_checked FROM public.application a LEFT JOIN public.candidate_profile c ON c.id=a.candidate_profile_id LEFT JOIN public.job_requirement j ON j.id=a.job_requirement_id LEFT JOIN public.application_status s ON s.id=a.application_status_id",
+      "rows": [
+        {
+          "missing_candidate_fk": "0",
+          "missing_job_fk": "0",
+          "missing_status_fk": "0",
+          "applications_checked": "1250000"
+        }
+      ]
+    },
+    {
+      "id": "DQ05",
+      "name": "Constraint validation",
+      "sql": "SELECT count(*) FILTER (WHERE NOT convalidated) AS unvalidated_constraints, count(*) AS all_constraints FROM pg_constraint WHERE connamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('public','identity','organisation','gig'))",
+      "rows": [
+        {
+          "unvalidated_constraints": "0",
+          "all_constraints": "2571"
+        }
+      ]
+    },
+    {
+      "id": "DQ06",
+      "name": "Gig assignment overlap",
+      "sql": "SELECT count(*) AS overlapping_pairs FROM public.gig_assignment a JOIN public.gig_assignment b ON a.id < b.id AND a.gig_worker_profile_id=b.gig_worker_profile_id AND a.scheduled_start_at < b.scheduled_end_at AND b.scheduled_start_at < a.scheduled_end_at WHERE a.assignment_status NOT IN ('CANCELLED','REJECTED') AND b.assignment_status NOT IN ('CANCELLED','REJECTED')",
+      "rows": [
+        {
+          "overlapping_pairs": "0"
+        }
+      ]
+    },
+    {
+      "id": "DQ07",
+      "name": "Mart source comparison",
+      "sql": "SELECT (SELECT count(*) FROM public.application) AS source_applications, (SELECT coalesce(sum(applied_count),0) FROM public.analytics_application_funnel_daily) AS mart_applied_count, (SELECT max(report_date) FROM public.analytics_application_funnel_daily) AS latest_report_date, (SELECT count(*) FROM public.analytics_application_funnel_daily) AS mart_rows",
+      "rows": [
+        {
+          "source_applications": "1250000",
+          "mart_applied_count": "500",
+          "latest_report_date": "2026-10-16T00:00:00.000Z",
+          "mart_rows": "10"
+        }
+      ]
+    },
+    {
+      "id": "DQ08",
+      "name": "Non-null coverage denominators",
+      "sql": "SELECT (SELECT count(*) FROM public.user_account WHERE email IS NOT NULL) AS emails_present, (SELECT count(*) FROM public.candidate_contact WHERE phone_e164 IS NOT NULL) AS phones_present, (SELECT count(*) FROM public.job_requirement WHERE salary_min IS NOT NULL OR salary_max IS NOT NULL) AS jobs_with_salary, (SELECT count(*) FROM public.job_requirement WHERE salary_min IS NULL AND salary_max IS NULL) AS jobs_without_salary, (SELECT count(*) FROM public.payment_transaction) AS payments, (SELECT count(*) FROM public.wallet_account) AS wallets",
+      "rows": [
+        {
+          "emails_present": "250040",
+          "phones_present": "0",
+          "jobs_with_salary": "18750",
+          "jobs_without_salary": "6250",
+          "payments": "10",
+          "wallets": "10"
+        }
+      ]
+    },
+    {
+      "id": "DQ09",
+      "name": "Duplicate candidate-job pairs",
+      "sql": "SELECT count(*) AS duplicate_candidate_job_pairs FROM (SELECT candidate_profile_id, job_requirement_id FROM public.application GROUP BY candidate_profile_id, job_requirement_id HAVING count(*) > 1) d",
+      "rows": [
+        {
+          "duplicate_candidate_job_pairs": "0"
+        }
+      ]
+    }
+  ]
+}

@@ -16,7 +16,7 @@ BEGIN
   CREATE ROLE talentra_p2_recruiter LOGIN;
   CREATE ROLE talentra_p2_outsider LOGIN;
   GRANT talentra_runtime TO talentra_p2_candidate, talentra_p2_employer, talentra_p2_recruiter, talentra_p2_outsider;
-  GRANT talentra_p2_candidate, talentra_p2_employer, talentra_p2_recruiter, talentra_p2_outsider TO neondb_owner;
+  EXECUTE format('GRANT talentra_p2_candidate, talentra_p2_employer, talentra_p2_recruiter, talentra_p2_outsider TO %I', current_user);
   INSERT INTO public.user_account(full_name,email) VALUES('Phase 2 Candidate','p2-candidate@example.invalid') RETURNING id INTO candidate_id;
   INSERT INTO public.user_account(full_name,email) VALUES('Phase 2 Employer','p2-employer@example.invalid') RETURNING id INTO employer_id;
   INSERT INTO public.user_account(full_name,email) VALUES('Phase 2 Recruiter','p2-recruiter@example.invalid') RETURNING id INTO recruiter_id;

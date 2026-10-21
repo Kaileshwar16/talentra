@@ -1,6 +1,8 @@
 # Talentra Database Design — Production Engineering Deliverable
 ### Comprehensive PostgreSQL 18 Architecture Across Phases 1–4 (Modules 1–11)
 
+**Data-driven continuation (2026-10-17):** The [lifecycle track](lifecycle/README.md) applies the newly supplied playbook and student notes to the docket. Its [discovery pack](lifecycle/01-discover/README.md) contains source-traced requirements, actors, goals, feature comparison, measurable NFRs, workflows, test-case graph, decisions and open gates. Existing phase test results are historical evidence; see the track for current Neon observations and remaining sign-off work.
+
 **Phase 5 production seed (2026-10-16):** 250,000 candidates, 25,000 jobs,
 and 1,250,000 applications were verified on the Neon production branch. The
 1 GiB branch limit prevents loading the docket's full laptop scale while

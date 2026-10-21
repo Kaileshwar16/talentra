@@ -1,5 +1,9 @@
 # Phase 5 — production seed status
 
+For the separate local PostgreSQL container and DBeaver connection, see
+[local/README.md](local/README.md). Its physical Phase 2 schema requires
+local-only compatibility SQL; local row counts are independent of Neon.
+
 This directory contains the synthetic seed used for Milestone 19 (B60–B64) of
 the [docket](../sources/Talentra-Database-Design-Hackathon-Docket.pdf). The
 production target is Neon project `jolly-pond-45332483`, branch
@@ -57,6 +61,8 @@ records have conflict or existence guards.
 
 ## Remaining Phase 5 work
 
+**Milestone 20 update (2026-10-17):** [B65 fixed queries](queries/b65_fixed_queries.sql), [outputs and top-ten plans](docs/b65-query-results.json), and [query report](docs/b65-query-report.md) are available for the current partial production seed. The [B66 seed validation report](docs/b66-seed-validation.md) records measured quality checks and the gap register. [B67–B69 module validation](docs/b67-b69-module-validation.md) records module-specific results and missing fixtures. [Production Phase 2 reconciliation](docs/production-phase2-reconciliation.md) records catalog-level access gaps and the blocked role test. Milestone 20 artifacts exist but the seed and access gaps prevent sign-off; B65 plans are not latency measurements.
+
 - B60/B61: The full 1M / 100K / 5M scale needs more capacity. The reference
   set is representative, not a complete taxonomy. Candidate profiles currently
   have names and headlines, with no large-scale education, skills, or resumes.
@@ -64,8 +70,10 @@ records have conflict or existence guards.
   was not exercised as part of this production seed.
 - B64: The analytics rows are small synthetic examples created before the last
   core expansion. Refresh and validate marts before using them for reporting.
-- Milestones 20–23: Full query set, performance baselines, security review,
-  recovery exercise, and final handoff remain separate work.
+- Milestone 20: B65–B69 query and validation artifacts exist for the partial
+  seed, but the listed coverage gaps prevent milestone sign-off.
+- Milestones 21–23: Performance baselines, security review, recovery exercise,
+  and final handoff remain separate work.
 
 Production has the Phase 3–4 migrations `004_phase3.sql`, `005_phase4.sql`, and
 `006_phase3_gap_closure.sql`. Its Phase 2 `identity`, `organisation`, and `gig`

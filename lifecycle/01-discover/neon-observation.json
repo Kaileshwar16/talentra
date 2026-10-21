@@ -1,0 +1,21 @@
+{
+  "project_id": "jolly-pond-45332483",
+  "branch_id": "br-jolly-dawn-azv4gh54",
+  "database": "neondb",
+  "first_query_observed_at_utc": "2026-10-17T15:07:56.435Z",
+  "candidates": 250000,
+  "jobs": 25000,
+  "applications": 1250000,
+  "pg_database_size_bytes": 843079680,
+  "neon_branch_logical_size_bytes": 867188736,
+  "neon_branch_limit_bytes": 1073741824,
+  "identity_base_tables": 1,
+  "identity_views": 15,
+  "funnel_rows": 10,
+  "latest_funnel_date": "2026-10-16",
+  "notification_deliveries": 1000,
+  "applications_with_null_candidate": 0,
+  "applications_with_null_job": 0,
+  "method": "Neon MCP list_branches and read-only run_sql; see neon-observation.sql",
+  "note": "Two different size metrics; observation is a snapshot, not a full validation"
+}

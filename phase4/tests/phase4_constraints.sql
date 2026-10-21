@@ -129,18 +129,17 @@ BEGIN
 
     -- Test 8: Create support_ticket_message
     INSERT INTO public.support_ticket_message (
-      support_ticket_id, author_user_account_id, sender_user_account_id, is_staff_reply, message_body
+      support_ticket_id, sender_user_account_id, is_staff_reply, message_body
     ) VALUES (
-      v_ticket_id, v_user_a, v_user_a, FALSE, 'Here are my payment gateway transaction IDs for reconciliation.'
+      v_ticket_id, v_user_a, FALSE, 'Here are my payment gateway transaction IDs for reconciliation.'
     ) RETURNING id INTO v_msg_id;
     passed := passed + 1;
 
     -- Test 9: Create FAQ article
     INSERT INTO public.faq_article (
-      category, question, answer, answer_markdown, is_published, sort_order
+      category, question, answer_markdown, is_published, sort_order
     ) VALUES (
       'BILLING', 'How are candidate profile download credits deducted?',
-      'Credits are deducted automatically upon successful PDF resume export.',
       'Credits are deducted automatically upon successful PDF resume export.', TRUE, 1
     ) RETURNING id INTO v_faq_id;
     passed := passed + 1;
@@ -235,14 +234,14 @@ BEGIN
       total_credits_consumed, total_credits_refunded, net_active_wallet_balance,
       total_resumes_downloaded, discrepancy_count
     ) VALUES (
-      CURRENT_DATE, 5000, 1200, 3100, 50, 3050, 62, 0
+      CURRENT_DATE - 365, 5000, 1200, 3100, 50, 3050, 62, 0
     ) RETURNING id INTO v_recon_id;
     passed := passed + 1;
 
     -- Test 19: Reject duplicate wallet reconciliation for same date
     BEGIN
       INSERT INTO public.analytics_wallet_reconciliation_summary (reconciliation_date)
-      VALUES (CURRENT_DATE);
+      VALUES (CURRENT_DATE - 365);
       RAISE EXCEPTION 'Test failed: duplicate reconciliation_date was accepted';
     EXCEPTION WHEN unique_violation THEN
       passed := passed + 1;

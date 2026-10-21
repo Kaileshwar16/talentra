@@ -1,0 +1,138 @@
+{
+  "observed_at_utc": "2026-10-17T15:25:58.847Z",
+  "project_id": "jolly-pond-45332483",
+  "branch_id": "br-jolly-dawn-azv4gh54",
+  "database": "neondb",
+  "method": "Neon MCP read-only run_sql; M67A corrected to physical public.user_credential; M69H transport retry succeeded",
+  "checks": [
+    {
+      "id": "M67A",
+      "scope": "administration",
+      "sql": "SELECT (SELECT count(*) FROM public.app_role) AS roles, (SELECT count(*) FROM public.role_permission) AS role_permissions, (SELECT count(*) FROM public.user_role_assignment) AS user_role_assignments, (SELECT count(*) FROM public.user_credential) AS credentials, (SELECT count(*) FROM public.audit_event) AS audit_events, (SELECT count(*) FROM public.user_block) AS blocks",
+      "rows": [
+        {
+          "roles": "5",
+          "role_permissions": "0",
+          "user_role_assignments": "0",
+          "credentials": "20",
+          "audit_events": "1",
+          "blocks": "10"
+        }
+      ]
+    },
+    {
+      "id": "M67O",
+      "scope": "organisation",
+      "sql": "SELECT (SELECT count(*) FROM public.organisation) AS organisations, (SELECT count(*) FROM public.organisation_recruiter) AS recruiter_mappings, (SELECT count(*) FROM public.job_recruiter_assignment) AS assigned_jobs, (SELECT count(*) FROM public.organisation_recruiter WHERE valid_to IS NOT NULL AND valid_to <= valid_from) AS invalid_mapping_windows",
+      "rows": [
+        {
+          "organisations": "100",
+          "recruiter_mappings": "20",
+          "assigned_jobs": "0",
+          "invalid_mapping_windows": "0"
+        }
+      ]
+    },
+    {
+      "id": "M67G",
+      "scope": "gig",
+      "sql": "SELECT (SELECT count(*) FROM public.gig_worker_profile) AS workers, (SELECT count(*) FROM public.gig_request) AS requests, (SELECT count(*) FROM public.gig_application) AS applications, (SELECT count(*) FROM public.gig_assignment) AS assignments, (SELECT count(*) FROM public.gig_assignment a LEFT JOIN public.gig_application g ON g.id=a.gig_application_id WHERE g.id IS NULL) AS assignments_without_application, (SELECT count(*) FROM public.gig_fulfilment_handoff) AS handoffs",
+      "rows": [
+        {
+          "workers": "100",
+          "requests": "100",
+          "applications": "100",
+          "assignments": "100",
+          "assignments_without_application": "0",
+          "handoffs": "0"
+        }
+      ]
+    },
+    {
+      "id": "M68L",
+      "scope": "licences_devices",
+      "sql": "SELECT (SELECT count(*) FROM public.account_licence) AS licences, (SELECT count(*) FROM public.licence_seat_assignment) AS seats, (SELECT count(*) FROM public.user_device) AS devices, (SELECT count(*) FROM public.device_session) AS sessions, (SELECT count(*) FROM public.device_session WHERE revoked_at IS NOT NULL AND is_active IS TRUE) AS revoked_but_active_sessions",
+      "rows": [
+        {
+          "licences": "10",
+          "seats": "0",
+          "devices": "0",
+          "sessions": "20",
+          "revoked_but_active_sessions": "0"
+        }
+      ]
+    },
+    {
+      "id": "M68S",
+      "scope": "sourcing_consultants",
+      "sql": "SELECT (SELECT count(*) FROM public.sourcing_pool) AS pools, (SELECT count(*) FROM public.sourcing_outreach_batch) AS outreach_batches, (SELECT count(*) FROM public.sourcing_outreach_recipient) AS recipients, (SELECT count(*) FROM public.consultant_request) AS consultant_requests, (SELECT count(*) FROM public.consultant_request cr JOIN public.job_requirement j ON j.id=cr.job_requirement_id WHERE j.open_to_consultants IS DISTINCT FROM TRUE) AS consultant_requests_on_closed_jobs",
+      "rows": [
+        {
+          "pools": "10",
+          "outreach_batches": "10",
+          "recipients": "10",
+          "consultant_requests": "1",
+          "consultant_requests_on_closed_jobs": "0"
+        }
+      ]
+    },
+    {
+      "id": "M68F",
+      "scope": "subscriptions_finance",
+      "sql": "SELECT (SELECT count(*) FROM public.account_subscription) AS subscriptions, (SELECT count(*) FROM public.wallet_account) AS wallets, (SELECT count(*) FROM public.wallet_transaction_ledger) AS ledger_entries, (SELECT count(*) FROM public.payment_transaction) AS payments, (SELECT count(*) FROM public.payment_refund) AS refunds, (SELECT count(*) FROM public.invoice) AS invoices, (SELECT count(*) FROM public.invoice WHERE total_amount IS DISTINCT FROM subtotal_amount + tax_amount) AS invoice_total_mismatches",
+      "rows": [
+        {
+          "subscriptions": "10",
+          "wallets": "10",
+          "ledger_entries": "10",
+          "payments": "10",
+          "refunds": "5",
+          "invoices": "10",
+          "invoice_total_mismatches": "0"
+        }
+      ]
+    },
+    {
+      "id": "M69N",
+      "scope": "notifications_community",
+      "sql": "SELECT (SELECT count(*) FROM public.notification_delivery) AS deliveries, (SELECT count(*) FROM public.notification_preference) AS preferences, (SELECT count(*) FROM public.community_discussion) AS discussions, (SELECT count(*) FROM public.support_ticket) AS support_tickets, (SELECT count(*) FROM public.notification_delivery WHERE delivery_status='FAILED') AS failed_deliveries",
+      "rows": [
+        {
+          "deliveries": "1000",
+          "preferences": "100",
+          "discussions": "10",
+          "support_tickets": "0",
+          "failed_deliveries": "100"
+        }
+      ]
+    },
+    {
+      "id": "M69A",
+      "scope": "analytics",
+      "sql": "SELECT (SELECT count(*) FROM public.analytics_application_funnel_daily) AS funnel_rows, (SELECT count(*) FROM public.analytics_recruiter_velocity) AS recruiter_velocity_rows, (SELECT count(*) FROM public.analytics_sourcing_efficiency) AS sourcing_efficiency_rows, (SELECT count(*) FROM public.analytics_wallet_reconciliation_summary) AS wallet_reconciliation_rows, (SELECT count(*) FROM public.analytics_refresh_log) AS refresh_logs",
+      "rows": [
+        {
+          "funnel_rows": "10",
+          "recruiter_velocity_rows": "20",
+          "sourcing_efficiency_rows": "10",
+          "wallet_reconciliation_rows": "1",
+          "refresh_logs": "0"
+        }
+      ]
+    },
+    {
+      "id": "M69H",
+      "scope": "shared_identity",
+      "sql": "SELECT (SELECT count(*) FROM public.consent_record) AS consents, (SELECT count(*) FROM public.identity_session) AS identity_sessions, (SELECT count(*) FROM public.user_block) AS blocks, (SELECT count(*) FROM public.audit_event) AS audit_events, (SELECT count(*) FROM public.user_block WHERE blocked_user_account_id IS NULL AND blocked_organisation_id IS NULL) AS blocks_without_target",
+      "rows": [
+        {
+          "consents": "100",
+          "identity_sessions": "0",
+          "blocks": "10",
+          "audit_events": "1",
+          "blocks_without_target": "0"
+        }
+      ]
+    }
+  ]
+}

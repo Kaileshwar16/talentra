@@ -72,8 +72,8 @@ BEGIN
     SELECT 'Phase Three Suite Org Account', id FROM organisation.account_status WHERE code = 'active'
     RETURNING id INTO v_account_org;
 
-    INSERT INTO public.account_profile (account_name, account_status_id)
-    SELECT 'Phase Three Suite Billing Account', id FROM organisation.account_status WHERE code = 'active'
+    INSERT INTO public.account_profile (account_code, account_name, account_status)
+    VALUES ('P3-SUITE-BILLING', 'Phase Three Suite Billing Account', 'ACTIVE')
     RETURNING id INTO v_account_billing;
 
     INSERT INTO public.organisation (name, account_profile_id, organisation_type_id, verification_status_id)
@@ -269,15 +269,15 @@ BEGIN
 
     -- Test 16: Create sourcing_pool and candidate member
     INSERT INTO public.sourcing_pool (
-      organisation_id, name, pool_name, pool_description, target_role, is_private
+      organisation_id, pool_name, pool_description, target_role, is_private
     ) VALUES (
-      v_org_a, 'P3 Cloud SRE Pool', 'P3 Cloud SRE Pool', 'Cloud Reliability Engineers', 'SRE', TRUE
+      v_org_a, 'P3 Cloud SRE Pool', 'Cloud Reliability Engineers', 'SRE', TRUE
     ) RETURNING id INTO v_pool_id;
 
     INSERT INTO public.sourcing_pool_candidate (
-      sourcing_pool_id, candidate_profile_id, added_by_user_id, added_by_recruiter_id, sourcing_channel
+      sourcing_pool_id, candidate_profile_id, added_by_recruiter_id, sourcing_channel
     ) VALUES (
-      v_pool_id, v_candidate_a, v_user_b, v_user_b, 'DIRECT_SEARCH'
+      v_pool_id, v_candidate_a, v_user_b, 'DIRECT_SEARCH'
     ) RETURNING id INTO v_pool_cand_id;
     passed := passed + 1;
 
@@ -388,10 +388,10 @@ BEGIN
 
     -- Test 27: Append-only wallet_transaction_ledger
     INSERT INTO public.wallet_transaction_ledger (
-      wallet_account_id, transaction_type, credit_amount, credits_delta, balance_after,
+      wallet_account_id, transaction_type, credit_amount, balance_after,
       description, idempotency_key
     ) VALUES (
-      v_wallet_id, 'PLAN_GRANT', 500, 500, 500,
+      v_wallet_id, 'PLAN_GRANT', 500, 500,
       'Annual enterprise credit allocation', 'tx-idemp-p3-suite-001'
     ) RETURNING id INTO v_ledger_id;
     passed := passed + 1;
@@ -399,10 +399,10 @@ BEGIN
     -- Test 28: Reject duplicate ledger idempotency_key
     BEGIN
       INSERT INTO public.wallet_transaction_ledger (
-        wallet_account_id, transaction_type, credit_amount, credits_delta, balance_after,
+        wallet_account_id, transaction_type, credit_amount, balance_after,
         idempotency_key
       ) VALUES (
-        v_wallet_id, 'PURCHASE', 100, 100, 600, 'tx-idemp-p3-suite-001'
+        v_wallet_id, 'PURCHASE', 100, 600, 'tx-idemp-p3-suite-001'
       );
       RAISE EXCEPTION 'Test 28 failed: duplicate ledger idempotency_key accepted';
     EXCEPTION WHEN unique_violation THEN
@@ -501,10 +501,10 @@ BEGIN
 
     -- Test 37: Record profile_download_event & verify immutability
     INSERT INTO public.profile_download_event (
-      candidate_profile_id, downloader_user_account_id, recruiter_user_account_id, wallet_transaction_id,
+      candidate_profile_id, recruiter_user_account_id, wallet_transaction_id,
       download_format, ip_address
     ) VALUES (
-      v_candidate_a, v_user_b, v_user_b, v_ledger_id,
+      v_candidate_a, v_user_b, v_ledger_id,
       'PDF', '10.0.0.42'::inet
     ) RETURNING id INTO v_download_id;
 

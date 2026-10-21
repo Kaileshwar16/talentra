@@ -215,7 +215,7 @@ END;
 BEGIN
   DELETE FROM public.user_account WHERE id = user_a;
   RAISE EXCEPTION 'Test failed: source user deletion restricted was accepted';
-EXCEPTION WHEN SQLSTATE '23001' THEN
+EXCEPTION WHEN SQLSTATE '23503' THEN
   passed := passed + 1;
 END;
 

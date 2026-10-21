@@ -87,6 +87,9 @@ ALTER TABLE public.notification_delivery
     ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP;
 
 CREATE INDEX IF NOT EXISTS idx_notif_delivery_user ON public.notification_delivery(user_account_id, delivery_status);
+CREATE UNIQUE INDEX IF NOT EXISTS uq_notification_delivery_idempotency
+    ON public.notification_delivery(idempotency_key)
+    WHERE idempotency_key IS NOT NULL;
 
 -- 4. support_ticket
 CREATE TABLE IF NOT EXISTS public.support_ticket (
@@ -115,6 +118,9 @@ ALTER TABLE public.support_ticket
     ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMPTZ;
 
 CREATE INDEX IF NOT EXISTS idx_support_ticket_user ON public.support_ticket(user_account_id);
+CREATE UNIQUE INDEX IF NOT EXISTS uq_support_ticket_reference
+    ON public.support_ticket(ticket_reference)
+    WHERE ticket_reference IS NOT NULL;
 
 -- 5. support_ticket_message
 CREATE TABLE IF NOT EXISTS public.support_ticket_message (
@@ -255,6 +261,8 @@ CREATE TABLE IF NOT EXISTS public.analytics_recruiter_velocity (
 );
 
 CREATE INDEX IF NOT EXISTS idx_recruiter_velocity_rec ON public.analytics_recruiter_velocity(recruiter_user_account_id, report_month);
+CREATE UNIQUE INDEX IF NOT EXISTS uq_recruiter_velocity_period
+    ON public.analytics_recruiter_velocity(report_month, recruiter_user_account_id, organisation_id);
 
 -- 12. analytics_sourcing_efficiency
 CREATE TABLE IF NOT EXISTS public.analytics_sourcing_efficiency (
@@ -270,6 +278,8 @@ CREATE TABLE IF NOT EXISTS public.analytics_sourcing_efficiency (
 );
 
 CREATE INDEX IF NOT EXISTS idx_sourcing_eff_org ON public.analytics_sourcing_efficiency(organisation_id, report_date);
+CREATE UNIQUE INDEX IF NOT EXISTS uq_sourcing_eff_period
+    ON public.analytics_sourcing_efficiency(report_date, organisation_id, sourcing_channel);
 
 -- 13. analytics_wallet_reconciliation_summary
 CREATE TABLE IF NOT EXISTS public.analytics_wallet_reconciliation_summary (
