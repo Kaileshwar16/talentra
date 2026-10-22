@@ -3,7 +3,7 @@
 | ID | Decision / assumption | Reason and evidence | Consequence or owner |
 | --- | --- | --- | --- |
 | DEC-01 | Use PostgreSQL 18 on Neon for this assignment. | Docket allows PostgreSQL/MySQL; existing migrations and Neon project use PostgreSQL 18. | Keep SQL portable only where useful; PostgreSQL constraints are authoritative. |
-| DEC-02 | Keep gig work separate from core job/application records, joined in reporting. | Different actors, availability windows, bid direction and external fulfilment (§2); existing `gig` schema reflects this. | Define cross-domain KPI mapping; enforce gig integrity separately. |
+| DEC-02 | Keep gig work separate from core job/application records, joined in reporting. | Different actors, availability windows, bid direction and external fulfilment (section 2); existing `gig` schema reflects this. | Define cross-domain KPI mapping; enforce gig integrity separately. |
 | DEC-03 | Treat source docket as obligations and playbook/student notes as method. | Their phase numbering and example scales differ. | Do not replace docket targets with teaching examples. |
 | DEC-04 | Treat production seed and test-branch schema as distinct evidence. | [Phase 5 status](../../phase5/README.md) reports compatibility views; live Neon read found 1 `identity` base table and 15 views on production. | Reconcile Phase 2 design before claiming production RLS equivalence. |
 | DEC-05 | Keep proposed service targets unapproved. | Docket gives scale and measurement deliverables but no accepted p95, RTO or retention durations. | Product/security owner must decide NFR-06–10. |

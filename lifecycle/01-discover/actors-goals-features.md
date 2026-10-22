@@ -1,6 +1,6 @@
 # Actors, goals and feature discovery
 
-The docket §3 names nine human roles. ACT-10 and ACT-11 make the system boundaries explicit; their permissions are proposed for review, not claims about current production grants.
+Section 3 of the docket names nine human roles. The actor IDs below separate its three administrator roles and add gig, audit, support and system boundaries. Their permissions are proposed for review, not claims about current production grants.
 
 | ID | Actor | Goal | Allowed data/action boundary | Frequency or trigger |
 | --- | --- | --- | --- | --- |
@@ -11,10 +11,15 @@ The docket §3 names nine human roles. ACT-10 and ACT-11 make the system boundar
 | ACT-05 | Placement officer (TPO) | Support campus hiring | Scoped campus candidate/job relationships; exact grants to define | Campus campaign |
 | ACT-06 | Gig worker | Offer services and apply to gigs | Own profile, availability, bids and assignments | Gig opportunity |
 | ACT-07 | Guest | Discover permitted public information | Published public data only | Anonymous search |
-| ACT-08 | Super Admin / Admin / Account Admin | Govern platform or assigned account | Separate platform, system and account scopes; every sensitive act audited | Administration and incident response |
+| ACT-08 | Account Admin | Govern one customer account | Account-scoped seats, subscriptions and mappings; sensitive acts audited | Onboarding and account changes |
 | ACT-09 | Security reviewer / auditor | Verify access, audit and recovery | Read evidence; access to personal data only under explicit control | Review or incident |
 | ACT-10 | External provider | Return payment, verification, fulfilment or delivery result | Idempotent boundary events, no direct candidate access | Callback/reconciliation |
 | ACT-11 | Scheduled worker | Refresh marts and reconcile status | Narrow service principal and job-specific permissions | Schedule |
+| ACT-12 | Support staff | Resolve account, payment and delivery tickets | Case-scoped metadata; no default candidate contact or payment secrets | Ticket or incident |
+| ACT-13 | Regulator / data-protection authority | Review lawful complaint or compliance response | Approved evidence export through privacy owner; no standing production login | Complaint or formal request |
+| ACT-14 | Admin | Resolve platform support and operating incidents | Ticketed, time-limited action; no default broad candidate read | Incident or support escalation |
+| ACT-15 | Super Admin | Govern global policy and exceptional access | Platform policy; logged elevation for sensitive data | Policy change or exceptional incident |
+| ACT-16 | Database engineer / evidence runner | Build the model and produce reproducible proof | Development/test environment and approved migration path; no default production personal-data read | Migration, seed, test or restore exercise |
 
 The TPO, guest and account-admin grants require explicit authorization design. There are no employer sub-roles in this docket version. No role should inherit unrestricted candidate contact access from a broad account grant.
 

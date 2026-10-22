@@ -1,0 +1,3340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Talentra · Discovery documents</title>
+  <style>
+    :root { --ink:#172640; --muted:#52647e; --line:#d3dfeb; --blue:#1769aa; --paper:#f5f8fc; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.58 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+    a { color:#0b609c; text-underline-offset:3px; }
+    a:focus-visible { outline:3px solid #e4a12b; outline-offset:3px; }
+    .shell { display:grid; grid-template-columns:280px minmax(0,1fr); min-height:100vh; }
+    .sidebar { background:#172640; color:white; padding:24px 16px; overflow:auto; max-height:100vh; position:sticky; top:0; }
+    .brand { display:block; color:white; text-decoration:none; font-weight:850; letter-spacing:.02em; font-size:1.15rem; padding:5px 8px 18px; }
+    .return { display:block; padding:10px 12px; margin:0 5px 24px; border-radius:9px; background:#315577; color:white; text-decoration:none; font-weight:700; }
+    .return:hover { background:#3a678f; }
+    .nav-group { margin:0 0 18px; }
+    .nav-group h2 { margin:0 0 6px; padding:0 8px; color:#d5e4f5; font-size:.86rem; line-height:1.35; }
+    .nav-group h2 span { display:inline-block; color:#8fc4f0; margin-right:4px; }
+    .sidebar a[data-doc-link] { display:block; padding:7px 9px; margin:2px 0; color:#dbeafa; text-decoration:none; border-radius:8px; font-size:.88rem; }
+    .sidebar a[data-doc-link] b { display:inline-grid; place-items:center; width:21px; height:21px; margin-right:5px; border-radius:5px; background:#44627e; color:white; font-size:.72rem; }
+    .sidebar a[data-doc-link]:hover, .sidebar a[data-doc-link].selected { background:#355f87; color:white; }
+    .support { border-top:1px solid #49627d; padding-top:17px; }
+    .main { min-width:0; padding:26px 34px 70px; }
+    .toolbar { max-width:1060px; margin:0 auto 17px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .crumb { color:var(--muted); font-size:.89rem; font-weight:750; }
+    .top-actions a { display:inline-block; padding:7px 10px; border:1px solid var(--line); border-radius:8px; background:white; text-decoration:none; font-weight:700; font-size:.85rem; }
+    .document { max-width:1060px; margin:auto; padding:32px clamp(20px,4vw,54px); background:white; border:1px solid var(--line); border-radius:16px; box-shadow:0 10px 30px rgba(28,49,75,.07); }
+    .doc-kicker { font-size:.77rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:#1769aa; }
+    .prose h1 { margin:6px 0 18px; font-size:clamp(1.6rem,3.1vw,2.4rem); line-height:1.17; letter-spacing:-.025em; }
+    .prose h2 { margin:34px 0 12px; padding-bottom:7px; border-bottom:2px solid #e8eef5; font-size:1.35rem; }
+    .prose h3 { margin:25px 0 9px; font-size:1.1rem; }
+    .prose p { margin:12px 0; max-width:85ch; }
+    .prose li { margin:5px 0; }
+    .prose ul, .prose ol { padding-left:23px; }
+    .prose table { display:block; overflow-x:auto; width:100%; border-collapse:collapse; margin:17px 0 26px; font-size:.92rem; }
+    .prose th, .prose td { min-width:105px; border:1px solid var(--line); padding:9px 10px; text-align:left; vertical-align:top; }
+    .prose th { background:#eaf2f9; color:#254968; font-weight:800; }
+    .prose tbody tr:nth-child(even) { background:#f8fbfe; }
+    .prose code { padding:1px 4px; border-radius:4px; background:#ecf2f8; font-size:.88em; }
+    .prose pre { overflow:auto; padding:15px; border-radius:10px; background:#172640; color:#eaf4ff; font-size:.85rem; line-height:1.5; }
+    .prose pre code { padding:0; color:inherit; background:none; }
+    .prose blockquote { margin:18px 0; padding:2px 15px; border-left:4px solid #68a2ce; background:#f5f9fd; color:#34516b; }
+    .prose .diagram-source { margin:20px 0; padding:13px 16px; border:1px solid var(--line); border-radius:10px; background:#f7fafd; }
+    .prose .diagram-source summary { cursor:pointer; color:#165b92; font-weight:800; }
+    .doc-footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; margin-top:30px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:.83rem; }
+    .doc-footer a { font-weight:750; }
+    @media(max-width:830px) { .shell { display:block; } .sidebar { max-height:none; position:static; } .nav-group { display:inline-block; width:45%; vertical-align:top; } .main { padding:15px 10px 45px; } .document { padding:22px 17px; } }
+    @media(max-width:520px) { .nav-group { width:100%; } .toolbar { padding:0 5px; } }
+    @media print { body { background:white; } .shell { display:block; } .sidebar,.toolbar,.doc-footer { display:none; } .main { padding:0; } .document { border:0; box-shadow:none; max-width:none; padding:0; } .document[hidden] { display:none!important; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Discovery document navigation">
+      <a class="brand" href="discovery-visual.html">TALENTRA / DISCOVERY</a>
+      <a class="return" id="return-map" href="discovery-visual.html">← Back to five-step visual</a>
+      <section class="nav-group"><h2><span>01</span> Requirement analysis</h2><a data-doc-link="01-requirements/output-schema.md" href="?doc=01-requirements%2Foutput-schema.md"><b>A</b> Output schema</a><a data-doc-link="01-requirements/schema-rating-scorecard.md" href="?doc=01-requirements%2Fschema-rating-scorecard.md"><b>B</b> Scorecard</a><a data-doc-link="01-requirements/output-document.md" href="?doc=01-requirements%2Foutput-document.md"><b>C</b> Output document</a></section><section class="nav-group"><h2><span>02</span> Stakeholders and roles</h2><a data-doc-link="02-stakeholders/output-schema.md" href="?doc=02-stakeholders%2Foutput-schema.md"><b>A</b> Output schema</a><a data-doc-link="02-stakeholders/schema-rating-scorecard.md" href="?doc=02-stakeholders%2Fschema-rating-scorecard.md"><b>B</b> Scorecard</a><a data-doc-link="02-stakeholders/output-document.md" href="?doc=02-stakeholders%2Foutput-document.md"><b>C</b> Output document</a></section><section class="nav-group"><h2><span>03</span> Feature discovery</h2><a data-doc-link="03-features/output-schema.md" href="?doc=03-features%2Foutput-schema.md"><b>A</b> Output schema</a><a data-doc-link="03-features/schema-rating-scorecard.md" href="?doc=03-features%2Fschema-rating-scorecard.md"><b>B</b> Scorecard</a><a data-doc-link="03-features/output-document.md" href="?doc=03-features%2Foutput-document.md"><b>C</b> Output document</a></section><section class="nav-group"><h2><span>04</span> NFR discovery</h2><a data-doc-link="04-nfr/output-schema.md" href="?doc=04-nfr%2Foutput-schema.md"><b>A</b> Output schema</a><a data-doc-link="04-nfr/schema-rating-scorecard.md" href="?doc=04-nfr%2Fschema-rating-scorecard.md"><b>B</b> Scorecard</a><a data-doc-link="04-nfr/output-document.md" href="?doc=04-nfr%2Foutput-document.md"><b>C</b> Output document</a></section><section class="nav-group"><h2><span>05</span> Workflow analysis</h2><a data-doc-link="05-workflows/output-schema.md" href="?doc=05-workflows%2Foutput-schema.md"><b>A</b> Output schema</a><a data-doc-link="05-workflows/schema-rating-scorecard.md" href="?doc=05-workflows%2Fschema-rating-scorecard.md"><b>B</b> Scorecard</a><a data-doc-link="05-workflows/output-document.md" href="?doc=05-workflows%2Foutput-document.md"><b>C</b> Output document</a></section>
+      <section class="nav-group support"><h2>Supporting records</h2><a data-doc-link="presenter-notes.md" href="?doc=presenter-notes.md">Presenter notes</a><a data-doc-link="dbeaver-hierarchy.md" href="?doc=dbeaver-hierarchy.md">DBeaver schema walkthrough</a><a data-doc-link="requirements.md" href="?doc=requirements.md">Requirements register</a><a data-doc-link="actors-goals-features.md" href="?doc=actors-goals-features.md">Actors and features</a><a data-doc-link="nfr-workflows.md" href="?doc=nfr-workflows.md">NFR and workflow registers</a><a data-doc-link="test-case-graph.md" href="?doc=test-case-graph.md">Test-case graph</a><a data-doc-link="decisions-and-gaps.md" href="?doc=decisions-and-gaps.md">Decisions and G1 gate</a><a data-doc-link="../../phase5/local/validation-report.md" href="?doc=..%2F..%2Fphase5%2Flocal%2Fvalidation-report.md">Local seed validation</a></section>
+    </aside>
+    <main class="main">
+      <div class="toolbar"><span class="crumb" id="current-label">Discovery document</span><div class="top-actions"><a id="toolbar-map" href="discovery-visual.html">Visual map</a> <a href="requirement-graph.html">Requirement graph</a> <a href="schema-hierarchy.html">Graphical schema</a></div></div>
+      <article class="document" data-doc="01-requirements/output-schema.md" hidden><div class="doc-kicker">Step 01 · Requirement analysis / Output schema</div><div class="prose"><h1>01 Output schema definition — Requirement Analysis Docket</h1>
+<p>The output is a versioned requirements docket, not a database table. Each requirement is one record; related actors, features, workflows, rules and tests are linked by stable IDs rather than repeated prose.</p>
+<table>
+<thead>
+<tr>
+<th>Field / section</th>
+<th>Type and rule</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>problem</code></td>
+<td>One statement naming the current failure and desired outcome</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>scope.in</code> / <code>scope.out</code></td>
+<td>Explicit sourced boundaries; every exclusion has an ID <code>OS-##</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>requirements[]</code></td>
+<td>Unique <code>REQ-##</code>, atomic statement, source section, <code>M/E/S</code> priority, at least one actor ID, acceptance intent, ambiguity, evidence state</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>business_rules[]</code></td>
+<td>Unique rule ID, trigger, condition, allowed/denied outcome, owning requirement</td>
+<td>Yes where the docket states a rule</td>
+</tr>
+<tr>
+<td><code>data_domains[]</code></td>
+<td>Domain, tier, owning requirement, missing-field question</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>questions[]</code></td>
+<td>Unique <code>Q-##</code>, impact rank, decision owner, deadline/next action, affected requirement IDs</td>
+<td>Yes for unresolved items</td>
+</tr>
+<tr>
+<td><code>trace[]</code></td>
+<td>Source section → requirement or explicit out-of-scope ID; requirement → actor/feature/workflow/test intent</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>decisions[]</code></td>
+<td>ID, choice, reason, source, status (<code>proposed/accepted/rejected</code>) and owner</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Validation: IDs are unique; no mandatory requirement lacks source, actor or acceptance intent; no assumption is presented as a docket fact; Tier 1, Tier 2 and rule groups are checked against the PDF. Exit check: every substantive brief statement maps to a requirement or exclusion, and high-impact questions have named decision owners. See <a href="?doc=01-requirements%2Foutput-document.md">the output</a>.</p>
+<p><strong>Filled example:</strong> The docket's recruiter company rule is <code>REQ-03</code>, source section 3, priority M, actor ACT-03, feature FEAT-03 and workflow WF-03. The acceptance intent is to allow an assigned job at the recruiter's company and deny the same recruiter's request for another company's job. The remaining ambiguity is where the production read path enforces the rule. This is the level of detail each docket row should support; the sentence-level audit remains open.</p>
+</div><footer class="doc-footer"><a href="01-requirements/output-schema.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="01-requirements/schema-rating-scorecard.md" hidden><div class="doc-kicker">Step 01 · Requirement analysis / Scorecard</div><div class="prose"><h1>01 Schema rating scorecard</h1>
+<p>Rubric fixed before rating: each criterion earns 0 (missing), 1 (partial), or 2 (clear and reviewable); 8/10 is an internal green threshold, not a playbook rule. This is a team self-review, not stakeholder acceptance.</p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th style="text-align:right">Score</th>
+<th>Evidence / correction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Covers problem, scope, requirements, rules and questions</td>
+<td style="text-align:right">2</td>
+<td>Separate required sections and IDs</td>
+</tr>
+<tr>
+<td>Source-to-requirement trace</td>
+<td style="text-align:right">2</td>
+<td>REQ-03 points to section 3 and OS-01–04 record excluded work; sentence-level audit is still open</td>
+</tr>
+<tr>
+<td>Actor and downstream links</td>
+<td style="text-align:right">2</td>
+<td>Recruiter rule links ACT-03 → FEAT-03 → WF-03 → two-account test intent</td>
+</tr>
+<tr>
+<td>Ambiguity and decisions</td>
+<td style="text-align:right">2</td>
+<td>Question impact, owner and decision status explicit</td>
+</tr>
+<tr>
+<td>Mechanical and human validation</td>
+<td style="text-align:right">1</td>
+<td>Invariants defined; sentence-level source audit still needs a reviewer</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td style="text-align:right"><strong>9/10</strong></td>
+<td>Schema is usable; output acceptance is a separate decision</td>
+</tr>
+</tbody>
+</table>
+<p>Challenge to the rubric: a source-section pointer may hide multiple obligations in one paragraph. Reviewers must inspect the docket sentence by sentence before G1, not merely count IDs.</p>
+</div><footer class="doc-footer"><a href="01-requirements/schema-rating-scorecard.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="01-requirements/output-document.md" hidden><div class="doc-kicker">Step 01 · Requirement analysis / Output document</div><div class="prose"><h1>01 Output document — Requirement Analysis Docket</h1>
+<p>This is the working problem statement and requirements docket for the database assignment. It is written from the <a href="../../sources/Talentra-Database-Design-Hackathon-Docket.pdf">12-page Talentra source docket</a>, not from the existing schema alone. The detailed <a href="?doc=requirements.md">ID register</a> holds downstream links and implementation evidence. <strong>Status: prepared for domain review; source-sentence sign-off is still open.</strong></p>
+<h2>The problem in plain language</h2>
+<p>Northbridge has candidate profiles, job requirements and applications in several legacy systems with inconsistent formats. Candidates do not stay engaged on the existing channels, and staff cannot see one reliable hiring pipeline. Talentra needs a connected operational and analytical <strong>database</strong> for the hiring, gig, account and financial flows described in the docket. Success means the team can explain where each record belongs, enforce access and business rules, and demonstrate the design with realistic data and measured queries. The assignment does not itself build the user interface or live provider integrations.</p>
+<h2>Goals, scope and assumptions</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Decision in this discovery pack</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal GOAL-01</td>
+<td>One consistent candidate, job and application record model</td>
+<td>Avoid duplicates, broken references and incompatible status values.</td>
+</tr>
+<tr>
+<td>Goal GOAL-02</td>
+<td>A traceable hiring pipeline</td>
+<td>Count and explain applications from applied through joined, rejected or withdrawn.</td>
+</tr>
+<tr>
+<td>Goal GOAL-03</td>
+<td>Support better retention decisions</td>
+<td>Define retention cohorts and engagement signals before claiming improvement. The source gives no numeric retention uplift target.</td>
+</tr>
+<tr>
+<td>Goal GOAL-04</td>
+<td>Safe account-scoped access</td>
+<td>A recruiter, consultant or blocked employer must see only permitted records.</td>
+</tr>
+<tr>
+<td>Goal GOAL-05</td>
+<td>Reconcile gig and financial events</td>
+<td>Keep provider handoffs, wallet changes, refunds and audit history explainable.</td>
+</tr>
+<tr>
+<td>In scope</td>
+<td>Logical/physical schema, synthetic seed, access design, analytics model, licences/devices, payments/subscriptions, multilingual data, performance and panel evidence</td>
+<td>These are the database assignment deliverables in docket section 1.</td>
+</tr>
+<tr>
+<td>Out of scope OS-01</td>
+<td>UI implementation and live provider integration</td>
+<td>Store integration references and failure states, but do not claim a live service is connected.</td>
+</tr>
+<tr>
+<td>Out of scope OS-02</td>
+<td>Loading 10 million profiles on the laptop</td>
+<td>Load 1 million locally; extrapolate to 10 million profiles, 1 million jobs and 100 million applications.</td>
+</tr>
+<tr>
+<td>Out of scope OS-03</td>
+<td>Legacy ETL and migration implementation</td>
+<td>Define field ownership and conflicts; loading old data is a separate requirement.</td>
+</tr>
+<tr>
+<td>Out of scope OS-04</td>
+<td>Employer sub-roles within an organisation</td>
+<td>Keep an extension path for posting/interview/pipeline sub-roles.</td>
+</tr>
+<tr>
+<td>Assumption A-01</td>
+<td>PostgreSQL is the chosen engine</td>
+<td>Existing phased migrations and the local/Neon environments use PostgreSQL; the docket allowed PostgreSQL or MySQL.</td>
+</tr>
+<tr>
+<td>Assumption A-02</td>
+<td>Gig work is a separate data subsystem linked for reporting</td>
+<td>Its one-way bid, time window and external fulfilment rules differ from permanent-job applications.</td>
+</tr>
+<tr>
+<td>Assumption A-03</td>
+<td>Proposed latency, availability and retention values are review candidates</td>
+<td>The source requires measurement but does not supply accepted numbers for all service qualities.</td>
+</tr>
+</tbody>
+</table>
+<h2>Requirements docket</h2>
+<p><code>M</code> means mandatory source obligation, <code>E</code> means expected Tier 2 coverage or justified omission, and <code>S</code> means optional stretch. The ambiguity column names a question that affects design; it does not weaken the source requirement. All rows have an actor in the <a href="?doc=requirements.md">actor trace</a>.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Statement in human terms</th>
+<th>Source</th>
+<th style="text-align:center">Priority</th>
+<th>Ambiguity to resolve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>REQ-01</td>
+<td>A candidate controls one profile, contact/education/work/skill/language details and resume history.</td>
+<td>section 2; section 4 Tier 1</td>
+<td style="text-align:center">M</td>
+<td>Consent and retention policy.</td>
+</tr>
+<tr>
+<td>REQ-02</td>
+<td>An employer publishes a job with positions and questions; a candidate applies and the complete status history remains explainable.</td>
+<td>section 2; section 4 Tier 1</td>
+<td style="text-align:center">M</td>
+<td>Allowed stage transitions.</td>
+</tr>
+<tr>
+<td>REQ-03</td>
+<td>Enforce role permissions below the interface; a recruiter acts only on assigned jobs of their company.</td>
+<td>section 3</td>
+<td style="text-align:center">M</td>
+<td>Mapping expiry and production read path.</td>
+</tr>
+<tr>
+<td>REQ-04</td>
+<td>A consultant works only on consultant-open jobs; a candidate's block hides them from the blocked employer/recruiter/consultant.</td>
+<td>section 3</td>
+<td style="text-align:center">M</td>
+<td>Historic visibility after a block.</td>
+</tr>
+<tr>
+<td>REQ-05</td>
+<td>Recruiters may contact candidates but cannot register them; sensitive actions are audited.</td>
+<td>section 3</td>
+<td style="text-align:center">M</td>
+<td>Complete audit-action list.</td>
+</tr>
+<tr>
+<td>REQ-06</td>
+<td>Store verified organisations, account hierarchy, administrators and dated recruiter mappings.</td>
+<td>section 4 Tier 1</td>
+<td style="text-align:center">M</td>
+<td>Verification authority and account scope.</td>
+</tr>
+<tr>
+<td>REQ-07</td>
+<td>Keep gig worker profiles, one-way applications, pricing/windows, assignment, external handoff, earnings reference and ratings.</td>
+<td>section 2; section 4 Tier 1</td>
+<td style="text-align:center">M</td>
+<td>Timeout and earnings reconciliation owner.</td>
+</tr>
+<tr>
+<td>REQ-08</td>
+<td>Record sourcing requests, consultant decisions, shortlists and bulk outreach.</td>
+<td>section 2; section 4 Tier 1</td>
+<td style="text-align:center">M</td>
+<td>Consent and recipient deduplication.</td>
+</tr>
+<tr>
+<td>REQ-09</td>
+<td>Enforce positive seat/device limits and active-session caps at login, including concurrent attempts and revocation.</td>
+<td>sections 4–5</td>
+<td style="text-align:center">M</td>
+<td>Exact cap and session expiry policy.</td>
+</tr>
+<tr>
+<td>REQ-10</td>
+<td>Keep plans, payments, refunds, wallet credits/debits, invoices and download history as precise, append-only events.</td>
+<td>sections 4–5</td>
+<td style="text-align:center">M</td>
+<td>Refund and provider reconciliation timing.</td>
+</tr>
+<tr>
+<td>REQ-11</td>
+<td>Keep notification preferences, deliveries, support/community data and language settings.</td>
+<td>section 2; section 4 Tier 1</td>
+<td style="text-align:center">M</td>
+<td>Opt-out and message retention rules.</td>
+</tr>
+<tr>
+<td>REQ-12</td>
+<td>Produce reconcilable hiring, sourcing and financial analytics.</td>
+<td>section 4; B49/B58</td>
+<td style="text-align:center">M</td>
+<td>KPI denominator and refresh frequency.</td>
+</tr>
+<tr>
+<td>REQ-13</td>
+<td>Define what each external boundary stores, owns, retries and audits.</td>
+<td>section 6</td>
+<td style="text-align:center">M</td>
+<td>Per-provider source of truth and idempotency key.</td>
+</tr>
+<tr>
+<td>REQ-14</td>
+<td>Demonstrate the design with competitor comparison, seed, query plans, timings, scale projection, access and restore evidence.</td>
+<td>section 4 benchmark; B60–B82</td>
+<td style="text-align:center">M</td>
+<td>Exact acceptance workload and reviewer.</td>
+</tr>
+<tr>
+<td>REQ-15</td>
+<td>Model Tier 2 histories, assessment, learning, support and referral data, or justify each omission.</td>
+<td>section 4 Tier 2</td>
+<td style="text-align:center">E</td>
+<td>Which omissions are acceptable?</td>
+</tr>
+<tr>
+<td>REQ-16</td>
+<td>Treat salary benchmarks, company ratings, trends, aggregates and flags as explicitly selected stretch scope.</td>
+<td>section 4 Tier 3</td>
+<td style="text-align:center">S</td>
+<td>No implementation promise yet.</td>
+</tr>
+<tr>
+<td>REQ-17</td>
+<td>Follow ten data-standard rule groups or document each deviation, reason and risk.</td>
+<td>section 5</td>
+<td style="text-align:center">M</td>
+<td>Per-rule compliance audit.</td>
+</tr>
+<tr>
+<td>REQ-18</td>
+<td>Produce and validate entities, relationships, columns and constraints in the specified milestone order.</td>
+<td>section 7 B1–B59</td>
+<td style="text-align:center">M</td>
+<td>Backlog-to-artifact sign-off.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example trace:</strong> the docket's sentence that recruiters may only act on assigned jobs of their own company becomes <code>REQ-03</code>; recruiter <code>ACT-03</code> is the actor; access control <code>FEAT-03</code> is the feature; <code>WF-03</code> is the decision flow; the test must try an assigned job and a different-company job with separate principals.</p>
+<h2>What the ten mandatory data rules mean here</h2>
+<p>All ten groups come from docket section 5 and are covered by REQ-17. This table turns their long text into a concrete review question; it is a <strong>requirement interpretation</strong>, not a completed compliance audit.</p>
+<table>
+<thead>
+<tr>
+<th>Rule group</th>
+<th>Concrete Talentra decision or check</th>
+<th>Evidence still needed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 Naming</td>
+<td>Singular <code>snake_case</code> table names, <code>id</code> primary keys, named foreign keys and consistent index/unique names; check reserved words for the chosen engine</td>
+<td>Physical catalog audit and documented exceptions</td>
+</tr>
+<tr>
+<td>2 Keys and constraints</td>
+<td>Surrogate IDs; natural identifiers unique; FKs with update/delete policy; date and salary checks; seat/device limits enforced transactionally</td>
+<td>Catalog and concurrent-login tests</td>
+</tr>
+<tr>
+<td>3 Standard domains</td>
+<td>Names up to 150 UTF-8 characters; email up to 254 and lowercase; E.164 phone; decimal money with currency; UTC timestamps; lookup-backed enums and translated labels</td>
+<td>Column-by-column dictionary review</td>
+</tr>
+<tr>
+<td>4 Audit and lifecycle</td>
+<td>Creator/updater fields on business tables; declared soft/hard deletion; append-only audit; candidate retention per entity</td>
+<td>Table inventory, audit mutation denial and approved retention periods</td>
+</tr>
+<tr>
+<td>5 Nullability</td>
+<td>Explain each nullable field; distinguish unknown from not applicable; do not use zero, <code>NA</code> or empty string as missing</td>
+<td>Nullability inventory and seed-quality checks</td>
+</tr>
+<tr>
+<td>6 Sensitive classes</td>
+<td>Mark every column Public, Internal, Personal or Sensitive; encrypt, tokenize or mask sensitive values</td>
+<td>Data dictionary and access/security tests</td>
+</tr>
+<tr>
+<td>7 Multilingual</td>
+<td>UTF-8 end to end; translation key/language rows and fallback; user content stored once with language where known</td>
+<td>Translation coverage and non-ASCII tests</td>
+</tr>
+<tr>
+<td>8 Physical objects</td>
+<td>State patterns for partitions/views/materialized views and prefix analytical objects</td>
+<td>Physical catalog inspection</td>
+</tr>
+<tr>
+<td>9 Licences/devices</td>
+<td>Positive seat/device caps, active sessions with device and timestamps, revoked/expired sessions excluded; denied login audited</td>
+<td>Concurrent-login and revocation tests</td>
+</tr>
+<tr>
+<td>10 Money/history</td>
+<td>Append-only wallet/payment correction, non-overlapping subscription periods, immutable view/download history with actor and credit deduction</td>
+<td>Ledger replay, overlap and history mutation tests</td>
+</tr>
+</tbody>
+</table>
+<h2>External systems: what this database owns</h2>
+<p>Section 6 of the docket lists nine boundaries. REQ-13 requires a source-of-truth, stored/reference, failure, idempotency and audit decision for each. The intended default is to keep a local <strong>reference and outcome</strong>, not the provider's private internals. These are working design decisions requiring integration-owner review.</p>
+<table>
+<thead>
+<tr>
+<th>Boundary</th>
+<th>Store or reference locally</th>
+<th>On timeout or duplicate</th>
+<th>Review point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Payment gateway</td>
+<td>Order, provider transaction ID, amount, currency and status; no card or bank details</td>
+<td>Keep pending, reconcile by provider ID; apply credit once</td>
+<td>Refund/settlement source of truth</td>
+</tr>
+<tr>
+<td>Identity verification</td>
+<td>Token, outcome and timestamp; no clear-text national ID</td>
+<td>Pending verification; same request key prevents duplicate result</td>
+<td>Token retention and allowed use</td>
+</tr>
+<tr>
+<td>Company/tax verification</td>
+<td>Lookup identifiers and verification result</td>
+<td>Keep company unverified until confirmed</td>
+<td>Identifier masking and recheck interval</td>
+</tr>
+<tr>
+<td>Gig fulfilment</td>
+<td>Handoff reference, assignment status and reconciled earnings reference</td>
+<td>Pending handoff with retry key; no duplicate assignment</td>
+<td>Who resolves disputed earnings</td>
+</tr>
+<tr>
+<td>Legacy job/candidate systems</td>
+<td>Source IDs, field provenance and sync/conflict metadata; no migration execution in this assignment</td>
+<td>Flag unresolved conflict rather than silently overwriting</td>
+<td>Per-field sync direction and precedence</td>
+</tr>
+<tr>
+<td>Messaging providers</td>
+<td>Preference, delivery reference, attempt and status; minimal message content</td>
+<td>Retry with stable key and stop at opt-out</td>
+<td>Retention of delivery metadata</td>
+</tr>
+<tr>
+<td>Social sharing</td>
+<td>Outbound share event and link reference; no external post body</td>
+<td>Record failed outbound attempt; avoid repeated event count</td>
+<td>Link expiry/privacy</td>
+</tr>
+<tr>
+<td>Maps/geolocation</td>
+<td>Optional coordinates/place reference and source</td>
+<td>Preserve entered location; mark enrichment pending</td>
+<td>Precision and source trust</td>
+</tr>
+<tr>
+<td>Company review/salary data</td>
+<td>Source attribution, retrieved date and reference value if selected</td>
+<td>Keep dated stale marker; do not present as fresh</td>
+<td>Optional Tier 3 scope and refresh policy</td>
+</tr>
+</tbody>
+</table>
+<p>This resolves the apparent tension between “legacy sync direction” in section 6 and “ETL implementation out of scope” in section 1: the design must say which source wins and how conflicts appear, while the assignment does not run a migration pipeline.</p>
+<h2>Review map</h2>
+<table>
+<thead>
+<tr>
+<th>Docket area</th>
+<th>Requirement IDs</th>
+<th>Review focus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Candidate, job and application data</td>
+<td>REQ-01–02, REQ-15</td>
+<td>Tier 1/2 field coverage, state history and privacy</td>
+</tr>
+<tr>
+<td>Access, organisation and gig</td>
+<td>REQ-03–07</td>
+<td>Recruiter scope, blocking, audit, external gig boundary</td>
+</tr>
+<tr>
+<td>Commercial and shared modules</td>
+<td>REQ-08–13</td>
+<td>Sourcing, seat/device caps, financial ledger, notifications, analytics, integrations</td>
+</tr>
+<tr>
+<td>Proof, standards and optional scope</td>
+<td>REQ-14, REQ-16–18</td>
+<td>Seed, timings, security, recovery, rule compliance, milestone trace and stretch exclusions</td>
+</tr>
+</tbody>
+</table>
+<h2>Source coverage and ambiguity review</h2>
+<p>These IDs map source blocks at the level available in this pack. A block can contain multiple sentences, so this is a <strong>review index</strong>, not completed sentence-level proof. The owner must annotate each sentence and every B1–B82 backlog row before G1 acceptance.</p>
+<table>
+<thead>
+<tr>
+<th>Docket source</th>
+<th>Routed IDs</th>
+<th>Ambiguity or pending check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>section 1 purpose, problem, scope</td>
+<td>REQ-01–02, REQ-12, REQ-14, OS-01–03</td>
+<td>Retention and pipeline success measures absent</td>
+</tr>
+<tr>
+<td>section 2 categories, gig rules, core workflows</td>
+<td>REQ-01–02, REQ-07–11, REQ-13</td>
+<td>Central versus secondary workflows, external handoff owner</td>
+</tr>
+<tr>
+<td>section 3 actors and access rules</td>
+<td>REQ-03–05, OS-04</td>
+<td>TPO and exceptional-admin grants; blocked-party semantics</td>
+</tr>
+<tr>
+<td>section 4 Tier 1 domains</td>
+<td>REQ-01–13</td>
+<td>Field-level coverage and missing domains need audit</td>
+</tr>
+<tr>
+<td>section 4 Tier 2 and Tier 3</td>
+<td>REQ-15–16</td>
+<td>Each Tier 2 omission needs explicit justification</td>
+</tr>
+<tr>
+<td>section 4 competitor benchmark</td>
+<td>REQ-14, FEAT-01–12</td>
+<td>Field-level match/exceed/fall-short remains open</td>
+</tr>
+<tr>
+<td>section 5 ten rule groups and compliance table</td>
+<td>REQ-09–10, REQ-17</td>
+<td>Per-rule compliance and deviation evidence open</td>
+</tr>
+<tr>
+<td>section 6 nine integration boundaries</td>
+<td>REQ-13</td>
+<td>Source of truth, failure and idempotency by boundary open</td>
+</tr>
+<tr>
+<td>section 6 sizing and seed</td>
+<td>REQ-14, NFR-01–03, OS-02</td>
+<td>Full-scale extrapolation requires measured basis</td>
+</tr>
+<tr>
+<td>section 7 B1–B59 design backlogs</td>
+<td>REQ-18</td>
+<td>Backlog-by-backlog artifact trace open</td>
+</tr>
+<tr>
+<td>section 7 B60–B82 validation backlogs</td>
+<td>REQ-14</td>
+<td>Query, performance, access, backup and sign-off evidence open</td>
+</tr>
+</tbody>
+</table>
+<p>The docket PDF in this repository ends after section 7/B82, although some backlog text refers to later sections. Any acceptance value said to be in an unavailable section remains unresolved until the missing source is supplied.</p>
+<h2>Open questions ranked by design impact</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Rank</th>
+<th>Question</th>
+<th>Why the answer changes the design</th>
+<th>Decision owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td>Q-01: What per-entity retention periods, deletion exceptions and accepted response/recovery targets apply?</td>
+<td>Determines lifecycle columns, scheduled deletion, backup handling, partitions and capacity.</td>
+<td>Product, privacy/security and operations owners</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td>Q-02: Will production use physical Phase 2 tables or compatibility views with equivalent access behavior?</td>
+<td>Changes where RLS, triggers and cross-schema foreign keys can be enforced.</td>
+<td>Database/security owners</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td>Q-04: What counts as an active/retained candidate and a pipeline conversion?</td>
+<td>Changes source events, mart dimensions and KPI denominators.</td>
+<td>Product/analytics owners</td>
+</tr>
+<tr>
+<td style="text-align:right">Resolved locally</td>
+<td>Q-03: Which environment holds the laptop-scale proof?</td>
+<td>The existing local PostgreSQL seed reached the core counts; it does not settle production compatibility.</td>
+<td>Delivery owner</td>
+</tr>
+</tbody>
+</table>
+<p>The words “fast” and “many” are not useful acceptance criteria. In the <a href="?doc=nfr-workflows.md">NFR register</a>, scale is expressed as row counts; a <strong>proposed</strong> lookup target is p95 ≤500 ms under a <strong>proposed</strong> 60-read/second workload. The workload assumptions and service target need approval. The <a href="?doc=..%2F..%2Fphase5%2Flocal%2Fvalidation-report.md">local seed evidence</a> proves row counts, not that performance target.</p>
+<p><strong>Gate decision:</strong> the docket is ready for domain review, but G1 stays open until a reviewer signs the sentence-level source trace, Tier 2 omissions and ten-rule compliance audit. The <a href="?doc=decisions-and-gaps.md">gate register</a> names the other review items.</p>
+</div><footer class="doc-footer"><a href="01-requirements/output-document.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="02-stakeholders/output-schema.md" hidden><div class="doc-kicker">Step 02 · Stakeholders and roles / Output schema</div><div class="prose"><h1>02 Output schema definition — Stakeholders, Personas and Roles</h1>
+<table>
+<thead>
+<tr>
+<th>Field / section</th>
+<th>Type and rule</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>actors[]</code></td>
+<td>Unique <code>ACT-##</code>, human/system classification, source, frequency/trigger, requirement IDs</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>personas[]</code></td>
+<td>Actor ID, goal, context, top task, pain/failure, data needed, constraint, success signal</td>
+<td>One per materially distinct actor</td>
+</tr>
+<tr>
+<td><code>role_permissions[]</code></td>
+<td>Role, resource, action, scope predicate, allow/deny, enforcing layer, audit expectation</td>
+<td>Yes for every docket privilege</td>
+</tr>
+<tr>
+<td><code>interactions[]</code></td>
+<td>Initiator, other actor, workflow ID, handoff and failure owner</td>
+<td>Yes for cross-actor flows</td>
+</tr>
+<tr>
+<td><code>review_questions[]</code></td>
+<td>Ambiguous privilege, risk, proposed resolution, owner and acceptance status</td>
+<td>Yes where undecided</td>
+</tr>
+</tbody>
+</table>
+<p>Validation: every mandatory requirement has at least one actor; each permission has an explicit scope and enforcement owner; guest, auditor, support, regulator and service actors are included; candidates own their registration; recruiter permissions never imply registering a candidate; blocked-party and same-company rules appear as denials. A proposed permission is not labeled implemented. See <a href="?doc=02-stakeholders%2Foutput-document.md">the output</a>.</p>
+<p><strong>Filled example:</strong> ACT-03 is a recruiter who sources candidates for assigned company jobs. The matrix grants candidate contact only when the job belongs to the recruiter's company, an active mapping exists and the candidate has not blocked that party. It denies candidate registration. WF-03 tests the allow and deny paths, and an auditor ACT-09 reviews the denial evidence. The rule still needs to be tested under actual production principals.</p>
+</div><footer class="doc-footer"><a href="02-stakeholders/output-schema.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="02-stakeholders/schema-rating-scorecard.md" hidden><div class="doc-kicker">Step 02 · Stakeholders and roles / Scorecard</div><div class="prose"><h1>02 Schema rating scorecard</h1>
+<p>Rubric: 0 missing, 1 partial, 2 clear and reviewable per criterion; 8/10 is an internal green threshold. Self-review only.</p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th style="text-align:right">Score</th>
+<th>Evidence / correction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>All human and edge actors</td>
+<td style="text-align:right">2</td>
+<td>ACT-01–16 includes split administrator roles, gig worker, auditor, provider, scheduled worker, support, regulator and engineer</td>
+</tr>
+<tr>
+<td>Persona task, pain and success</td>
+<td style="text-align:right">2</td>
+<td>Required card fields connect role to real workflow</td>
+</tr>
+<tr>
+<td>Explicit permission scope</td>
+<td style="text-align:right">2</td>
+<td>ACT-03 requires same-company active assignment and no block; candidate registration is denied</td>
+</tr>
+<tr>
+<td>Requirement and workflow links</td>
+<td style="text-align:right">2</td>
+<td>Actor IDs and interaction IDs mandatory</td>
+</tr>
+<tr>
+<td>Independent privilege review</td>
+<td style="text-align:right">1</td>
+<td>Questions capture disputed grants; product/security owner still needed</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td style="text-align:right"><strong>9/10</strong></td>
+<td>Schema ready for owner review</td>
+</tr>
+</tbody>
+</table>
+<p>Challenge to the rubric: a compact matrix can obscure read-time filters. The reviewer must test actual candidate visibility, including blocks and expired recruiter mappings, before claiming deployed access control.</p>
+</div><footer class="doc-footer"><a href="02-stakeholders/schema-rating-scorecard.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="02-stakeholders/output-document.md" hidden><div class="doc-kicker">Step 02 · Stakeholders and roles / Output document</div><div class="prose"><h1>02 Output document — Stakeholders, Personas and Roles</h1>
+<p>The database serves people who look for work, people who hire, staff who operate the platform, and systems that send or receive events. This document says <strong>who each actor is, what they need, how often they act, and where access stops</strong>. The <a href="?doc=actors-goals-features.md">actor register</a> carries the stable ACT IDs. Permissions below are proposed policy for review; they are not proof of current production grants.</p>
+<h2>Actor roster: goals, access and frequency</h2>
+<p>Frequency describes a normal trigger, not a measured usage statistic. A person may hold more than one role, but permissions must be checked for the active role and account context on each action.</p>
+<table>
+<thead>
+<tr>
+<th>ID / actor</th>
+<th>Goal</th>
+<th>Proposed permission boundary</th>
+<th>Typical frequency or trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACT-01 Candidate</td>
+<td>Find work and control their profile</td>
+<td>Own profile, applications, preferences and blocks</td>
+<td>At registration, then each search/application/status check</td>
+</tr>
+<tr>
+<td>ACT-02 Employer/client</td>
+<td>Fill jobs and approve gig work</td>
+<td>Own verified organisation, its postings and scoped applicants</td>
+<td>Each hiring campaign</td>
+</tr>
+<tr>
+<td>ACT-03 Recruiter</td>
+<td>Source and contact candidates</td>
+<td>Only active assigned jobs of the recruiter’s own company; no candidate registration</td>
+<td>Each assigned sourcing campaign</td>
+</tr>
+<tr>
+<td>ACT-04 Consultant</td>
+<td>Source for an approved request</td>
+<td>Only consultant-open jobs after employer approval</td>
+<td>Per request or shortlist</td>
+</tr>
+<tr>
+<td>ACT-05 Placement officer/TPO</td>
+<td>Coordinate campus candidates</td>
+<td>Campus-linked data only after ownership and consent rules are approved</td>
+<td>Campus drives and placement periods</td>
+</tr>
+<tr>
+<td>ACT-06 Gig worker</td>
+<td>Offer services, bid and track work</td>
+<td>Own gig profile, availability, bids and earnings reference</td>
+<td>Per opportunity or assignment</td>
+</tr>
+<tr>
+<td>ACT-07 Guest</td>
+<td>Discover public jobs</td>
+<td>Published public listings only</td>
+<td>Anonymous visit</td>
+</tr>
+<tr>
+<td>ACT-08 Account Admin</td>
+<td>Operate one customer account</td>
+<td>Seats, subscriptions, mappings and account-scoped records</td>
+<td>Onboarding and account changes</td>
+</tr>
+<tr>
+<td>ACT-14 Admin</td>
+<td>Resolve incidents and support escalations</td>
+<td>Ticketed, time-limited action</td>
+<td>Incident or support escalation</td>
+</tr>
+<tr>
+<td>ACT-15 Super Admin</td>
+<td>Govern platform policy</td>
+<td>Logged exceptional elevation and platform policy</td>
+<td>Policy change or exceptional incident</td>
+</tr>
+<tr>
+<td>ACT-16 Database engineer</td>
+<td>Build and prove the database design</td>
+<td>Development/test access; production changes through an approved path</td>
+<td>Migration, seed, test or restore run</td>
+</tr>
+<tr>
+<td>ACT-09 Auditor/security reviewer</td>
+<td>Verify controls and evidence</td>
+<td>Read audit/test evidence; no standing personal-data access</td>
+<td>Audit cycle or incident</td>
+</tr>
+<tr>
+<td>ACT-10 External provider</td>
+<td>Return payment, verification, fulfilment or delivery result</td>
+<td>Authenticated callback/reference only; no direct candidate table access</td>
+<td>Provider callback or reconciliation</td>
+</tr>
+<tr>
+<td>ACT-11 Scheduled worker</td>
+<td>Refresh marts and reconcile states</td>
+<td>Narrow service principal for one scheduled task</td>
+<td>Daily or configured schedule</td>
+</tr>
+<tr>
+<td>ACT-12 Support staff</td>
+<td>Resolve a user ticket</td>
+<td>Ticket-scoped metadata; personal data requires approved elevation</td>
+<td>Per support case</td>
+</tr>
+<tr>
+<td>ACT-13 Regulator/data-protection authority</td>
+<td>Review a formal request</td>
+<td>Approved evidence export through privacy owner; no standing database login</td>
+<td>Complaint or lawful request</td>
+</tr>
+</tbody>
+</table>
+<p>The source docket explicitly names nine platform roles. Gig worker, auditor, provider, scheduled worker, support, regulator and database engineer are additional actors needed to explain the work and its boundaries; listing them does not grant access.</p>
+<h2>Persona cards</h2>
+<table>
+<thead>
+<tr>
+<th>Persona / actor</th>
+<th>Trigger and main task</th>
+<th>Pain or risk</th>
+<th>Success signal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Candidate (ACT-01)</td>
+<td>Register, control profile, apply and track</td>
+<td>Duplicate identity, unwanted contact, opaque status</td>
+<td>One owned profile and visible application history</td>
+</tr>
+<tr>
+<td>Employer (ACT-02)</td>
+<td>Verify company, post job, decide applicants</td>
+<td>Fragmented pipeline and wrong-company access</td>
+<td>Own jobs and candidates reviewed within policy</td>
+</tr>
+<tr>
+<td>Recruiter (ACT-03)</td>
+<td>Source/contact for assigned company jobs</td>
+<td>Stale mapping or blocked candidate</td>
+<td>Authorized outreach with audit; no candidate registration</td>
+</tr>
+<tr>
+<td>Consultant (ACT-04)</td>
+<td>Accept request and source for an open job</td>
+<td>Job not open to consultants, revoked approval</td>
+<td>Scoped sourcing with commission decision recorded</td>
+</tr>
+<tr>
+<td>Placement officer / TPO (ACT-05)</td>
+<td>Coordinate campus candidates and roles</td>
+<td>Campus ownership and consent ambiguity</td>
+<td>Campus-scoped access approved and logged</td>
+</tr>
+<tr>
+<td>Guest (ACT-07)</td>
+<td>Browse permitted public jobs</td>
+<td>Accidental personal-data exposure</td>
+<td>Published jobs only, no private candidate records</td>
+</tr>
+<tr>
+<td>Account Admin (ACT-08)</td>
+<td>Maintain one account, seats and recruiters</td>
+<td>Scope leakage to another account</td>
+<td>Account-scoped changes with audit trail</td>
+</tr>
+<tr>
+<td>Admin (ACT-14)</td>
+<td>Resolve support and operating issues</td>
+<td>Excessive access to identity/payment data</td>
+<td>Ticket-scoped action and sensitive-action log</td>
+</tr>
+<tr>
+<td>Super Admin (ACT-15)</td>
+<td>Govern platform-wide policy</td>
+<td>Privilege misuse</td>
+<td>Controlled elevation and independent audit</td>
+</tr>
+<tr>
+<td>Database engineer (ACT-16)</td>
+<td>Run migration, seed, tests and restore</td>
+<td>Test credentials accidentally used for live data</td>
+<td>Reproducible evidence from the named environment</td>
+</tr>
+<tr>
+<td>Gig worker (ACT-06)</td>
+<td>Publish availability, bid, complete gig</td>
+<td>Overlap, duplicate bid, external handoff failure</td>
+<td>One valid assignment and reconciled status</td>
+</tr>
+<tr>
+<td>Security reviewer (ACT-09)</td>
+<td>Review access, recovery and audit evidence</td>
+<td>Owner-level access masks policy defects</td>
+<td>Separate-role test evidence</td>
+</tr>
+<tr>
+<td>External provider (ACT-10)</td>
+<td>Return payment/fulfilment/delivery result</td>
+<td>Duplicate or out-of-order callback</td>
+<td>Idempotent accepted event or recorded rejection</td>
+</tr>
+<tr>
+<td>Scheduled worker (ACT-11)</td>
+<td>Refresh marts and reconcile</td>
+<td>Stale totals or overbroad service role</td>
+<td>Scoped job, timestamped refresh, source reconciliation</td>
+</tr>
+<tr>
+<td>Support staff (ACT-12)</td>
+<td>Resolve a ticket or failed transaction</td>
+<td>Excessive access while troubleshooting</td>
+<td>Case-scoped resolution and recorded access</td>
+</tr>
+<tr>
+<td>Regulator / data-protection authority (ACT-13)</td>
+<td>Review a formal complaint or evidence request</td>
+<td>Incomplete or overbroad disclosure</td>
+<td>Approved, dated and auditable evidence export</td>
+</tr>
+</tbody>
+</table>
+<h2>Actor-to-requirement trace</h2>
+<table>
+<thead>
+<tr>
+<th>Actor IDs</th>
+<th>Requirement IDs</th>
+<th>Principal workflow</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACT-01 Candidate</td>
+<td>REQ-01–02, REQ-04–05, REQ-11, REQ-15–16</td>
+<td>WF-01–03, WF-09</td>
+</tr>
+<tr>
+<td>ACT-02 Employer/client</td>
+<td>REQ-02, REQ-06–08, REQ-10–12, REQ-15–16</td>
+<td>WF-02, WF-04–06, WF-08–10</td>
+</tr>
+<tr>
+<td>ACT-03 Recruiter</td>
+<td>REQ-02–06, REQ-08</td>
+<td>WF-02–04, WF-06</td>
+</tr>
+<tr>
+<td>ACT-04 Consultant</td>
+<td>REQ-04, REQ-08</td>
+<td>WF-03, WF-06</td>
+</tr>
+<tr>
+<td>ACT-05 TPO</td>
+<td>REQ-01–02</td>
+<td>WF-01–02, pending campus permission decision</td>
+</tr>
+<tr>
+<td>ACT-06 Gig worker</td>
+<td>REQ-07</td>
+<td>WF-05</td>
+</tr>
+<tr>
+<td>ACT-07 Guest</td>
+<td>REQ-02–03</td>
+<td>WF-02–03, public view only</td>
+</tr>
+<tr>
+<td>ACT-08 Account Admin</td>
+<td>REQ-06, REQ-09–10</td>
+<td>WF-04, WF-07–08</td>
+</tr>
+<tr>
+<td>ACT-14 Admin</td>
+<td>REQ-03, REQ-05, REQ-11–14, REQ-17–18</td>
+<td>WF-03, WF-09–12</td>
+</tr>
+<tr>
+<td>ACT-15 Super Admin</td>
+<td>REQ-03, REQ-05, REQ-14, REQ-17–18</td>
+<td>WF-03, WF-12</td>
+</tr>
+<tr>
+<td>ACT-16 Database engineer</td>
+<td>REQ-14, REQ-17–18</td>
+<td>WF-12</td>
+</tr>
+<tr>
+<td>ACT-09 Auditor/security reviewer</td>
+<td>REQ-09, REQ-14, REQ-17–18</td>
+<td>WF-12</td>
+</tr>
+<tr>
+<td>ACT-10 Provider</td>
+<td>REQ-10–11, REQ-13</td>
+<td>WF-08–09, WF-11</td>
+</tr>
+<tr>
+<td>ACT-11 Scheduled worker</td>
+<td>REQ-12–13</td>
+<td>WF-10–11</td>
+</tr>
+<tr>
+<td>ACT-12 Support staff</td>
+<td>REQ-11</td>
+<td>WF-09</td>
+</tr>
+<tr>
+<td>ACT-13 Regulator</td>
+<td>REQ-14</td>
+<td>WF-12, evidence export only</td>
+</tr>
+</tbody>
+</table>
+<p>The table identifies affected actors beyond the minimum actor named on each requirement. Scope and permissions are proposed until access tests and owner review complete.</p>
+<h2>Proposed role–permission matrix</h2>
+<p><code>Own</code>, <code>account</code>, <code>assignment</code> and <code>public</code> are scope predicates, not blanket grants. <code>Review</code> means no access rule can be finalized without the owner.</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Profile write</th>
+<th>Candidate read/contact</th>
+<th>Job create/decide</th>
+<th>Gig apply/decide</th>
+<th>Admin/finance/audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Guest</td>
+<td>Deny</td>
+<td>Deny</td>
+<td>Public published read only</td>
+<td>Public listing only</td>
+<td>Deny</td>
+</tr>
+<tr>
+<td>Candidate</td>
+<td>Own</td>
+<td>Own; block others</td>
+<td>Apply/withdraw own</td>
+<td>Review if also gig worker</td>
+<td>Deny</td>
+</tr>
+<tr>
+<td>Gig worker</td>
+<td>Own gig profile</td>
+<td>Own</td>
+<td>Deny</td>
+<td>Own bid; requester decides</td>
+<td>Own earnings reference</td>
+</tr>
+<tr>
+<td>Employer</td>
+<td>Deny</td>
+<td>Scoped applicants, blocked-party filter</td>
+<td>Own organisation</td>
+<td>Requester on own gig</td>
+<td>Own account invoices</td>
+</tr>
+<tr>
+<td>Recruiter</td>
+<td><strong>Deny registration</strong></td>
+<td>Contact only if assignment + same company + no block</td>
+<td>Assigned jobs only</td>
+<td>Deny unless separately authorized</td>
+<td>Deny financial admin</td>
+</tr>
+<tr>
+<td>Consultant</td>
+<td>Deny</td>
+<td>Approved request + no block</td>
+<td>Consultant-open job only</td>
+<td>Deny</td>
+<td>Own commission record</td>
+</tr>
+<tr>
+<td>TPO</td>
+<td>Deny candidate edits</td>
+<td>Deny until campus link and candidate consent are verified; then campus scope only</td>
+<td>Campus-approved job read</td>
+<td>Deny</td>
+<td>Deny</td>
+</tr>
+<tr>
+<td>Account Admin</td>
+<td>Deny</td>
+<td>No candidate contact by default; own-account applicant access only under approved policy</td>
+<td>Own account governance</td>
+<td>Own account governance</td>
+<td>Own seats/subscriptions; audit</td>
+</tr>
+<tr>
+<td>Admin</td>
+<td>Deny by default</td>
+<td>Ticketed, time-limited case elevation</td>
+<td>Ticketed support action</td>
+<td>Ticketed support action</td>
+<td>Task-scoped audit</td>
+</tr>
+<tr>
+<td>Super Admin</td>
+<td>Logged exceptional elevation</td>
+<td>Logged, time-limited exceptional access</td>
+<td>Platform governance</td>
+<td>Platform governance</td>
+<td>Platform audit/policy</td>
+</tr>
+<tr>
+<td>Provider / worker</td>
+<td>Deny</td>
+<td>Deny</td>
+<td>Narrow callback/job only</td>
+<td>Narrow callback/job only</td>
+<td>Idempotent event/refresh only</td>
+</tr>
+<tr>
+<td>Support staff</td>
+<td>Deny</td>
+<td>Case-scoped metadata only; personal data requires elevation</td>
+<td>Ticket-linked correction only</td>
+<td>Ticket-linked correction only</td>
+<td>Case-scoped support and audit read</td>
+</tr>
+<tr>
+<td>Regulator</td>
+<td>Deny</td>
+<td>No standing access; approved export only</td>
+<td>No standing access</td>
+<td>No standing access</td>
+<td>Approved evidence export only</td>
+</tr>
+<tr>
+<td>Database engineer</td>
+<td>Development/test only</td>
+<td>No default production read</td>
+<td>Migration under approved path</td>
+<td>Migration under approved path</td>
+<td>Seed, plan, constraint and restore evidence</td>
+</tr>
+</tbody>
+</table>
+<p>The enforcing layer for each allowed row must be database RLS/constraints or an authenticated access-layer operation; the UI alone is insufficient. Product/security review is open for TPO, guest, account-admin and exceptional administrator access. Test intents <a href="?doc=test-case-graph.md">TC-08</a> and <a href="?doc=nfr-workflows.md">WF-03/WF-04</a> cover same-company scope, blocked parties and audit.</p>
+<h2>What the matrix means in a real decision</h2>
+<p>Suppose Recruiter R works for Company A and opens Job J owned by Company B. The access layer resolves R’s active company and assignment before loading J; the result must be <strong>denied and audited</strong>, even if R knows J’s ID. If Company A owns J but the assignment expired yesterday, the same denial applies. If Candidate C has blocked R or Company A, C must not appear in R’s candidate search or contact action. A user-interface filter alone would leave the data exposed to direct queries, so the database policy or authenticated service operation must enforce the predicate.</p>
+<p>An auditor can inspect the denial record and policy test result without receiving Candidate C’s contact details. Support can see the related ticket and a masked identifier; a temporary personal-data view requires an approved case and its own audit event. This is the intended boundary to test, not an assertion that every production role already behaves this way.</p>
+<h2>Handoffs that need owners</h2>
+<table>
+<thead>
+<tr>
+<th>Handoff</th>
+<th>Sender → receiver</th>
+<th>Record produced</th>
+<th>Failure owner / proposed response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Candidate application</td>
+<td>Candidate → employer/recruiter</td>
+<td>Application and stage event</td>
+<td>Product owner defines retry, duplicate and withdrawal rules</td>
+</tr>
+<tr>
+<td>Consultant sourcing request</td>
+<td>Consultant → employer</td>
+<td>Request decision and shortlist</td>
+<td>Employer decides; rejected/expired request blocks further sourcing</td>
+</tr>
+<tr>
+<td>Gig assignment</td>
+<td>Requester → fulfilment provider</td>
+<td>Handoff reference and status</td>
+<td>Operations reconciles timeout with a stable idempotency key</td>
+</tr>
+<tr>
+<td>Payment confirmation</td>
+<td>Gateway → account/ledger worker</td>
+<td>One payment event and ledger entry</td>
+<td>Finance/operations reconciles duplicate or missing callbacks</td>
+</tr>
+<tr>
+<td>Complaint/evidence request</td>
+<td>Support/privacy owner → regulator</td>
+<td>Approved export and disclosure log</td>
+<td>Privacy owner checks lawful scope and redaction</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Decision still needed:</strong> the domain and security owners must sign off the TPO, guest, support and exceptional-admin predicates, then run two-account tests using separate principals. The presence of an ACT ID or a table is not a deployed permission test.</p>
+</div><footer class="doc-footer"><a href="02-stakeholders/output-document.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="03-features/output-schema.md" hidden><div class="doc-kicker">Step 03 · Feature discovery / Output schema</div><div class="prose"><h1>03 Output schema definition — Feature Discovery</h1>
+<p>The output is a feature inventory that a product owner can use to decide scope. Each row must say who benefits, what changes for them, why the source calls for it, and how a reviewer will recognize it. The priority values are <code>Must</code>, <code>Should</code> and <code>Differentiator hypothesis</code>; a mixed row must state which detail belongs to which class.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required content</th>
+<th>Example from this pack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>feature_id</code> and name</td>
+<td>Unique stable <code>FEAT-##</code> and plain-language capability</td>
+<td><code>FEAT-08 — Subscription, wallet and refund ledger</code></td>
+</tr>
+<tr>
+<td><code>outcome</code> and actor</td>
+<td>User-visible reason and <code>ACT-##</code></td>
+<td>Employer sees one explainable balance; ACT-02</td>
+</tr>
+<tr>
+<td><code>priority</code> and source</td>
+<td>Class plus <code>REQ-##</code> and docket section</td>
+<td>Must; REQ-10, sections 4–5</td>
+</tr>
+<tr>
+<td><code>workflow</code> and dependencies</td>
+<td><code>WF-##</code> and required earlier records</td>
+<td>WF-08; identity, account, provider reference</td>
+</tr>
+<tr>
+<td><code>acceptance</code></td>
+<td>Observable allow, deny and recovery behavior</td>
+<td>Duplicate payment callback creates no second credit</td>
+</tr>
+<tr>
+<td><code>evidence_state</code> and question</td>
+<td>Designed, locally tested or unverified; owner of open choice</td>
+<td>Refund timing still needs finance owner</td>
+</tr>
+</tbody>
+</table>
+<p>Every in-scope requirement must be represented by a feature or a stated structural obligation. Every Must feature must appear in a workflow and a test intent. Optional insights must keep a source or be marked <code>NEW-INSIGHT</code> until approved.</p>
+<p>The competitor matrix must show at least Naukri, Monster and LinkedIn, an official page for each claimed capability, a direct Talentra comparison and an evidence limit. <code>Unverified</code> means the inspected public material did not establish the capability; it never means the competitor lacks it. Validate ID uniqueness, referenced REQ/ACT/WF IDs, Must coverage and source dates before review.</p>
+</div><footer class="doc-footer"><a href="03-features/output-schema.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="03-features/schema-rating-scorecard.md" hidden><div class="doc-kicker">Step 03 · Feature discovery / Scorecard</div><div class="prose"><h1>03 Schema rating scorecard</h1>
+<p>Team self-review, not stakeholder approval. Each criterion scores 0 missing, 1 partial, or 2 reviewable. Internal threshold: 8/10.</p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th style="text-align:right">Score</th>
+<th>Evidence / gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stable feature IDs and required fields</td>
+<td style="text-align:right">2</td>
+<td>FEAT-01–12 and field contract</td>
+</tr>
+<tr>
+<td>Requirement, actor and workflow trace</td>
+<td style="text-align:right">2</td>
+<td>FEAT-08 links REQ-10, ACT-02/08/10/12 and WF-08; all twelve cards name a workflow</td>
+</tr>
+<tr>
+<td>Priority and scope distinction</td>
+<td style="text-align:right">2</td>
+<td>Must, Should (Tier 2) and Differentiator hypothesis are explained in the output; the shared register retains source-tier labels</td>
+</tr>
+<tr>
+<td>Three-competitor evidence with limits</td>
+<td style="text-align:right">2</td>
+<td>Naukri Resdex/posting, Monster applicant management and LinkedIn profile/company pages; unverified cells are explicit</td>
+</tr>
+<tr>
+<td>Testable acceptance and dependency detail</td>
+<td style="text-align:right">1</td>
+<td>Duplicate payment callback and blocked-party examples are testable; exact product acceptance and competitor field audit need owners</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td style="text-align:right"><strong>9/10</strong></td>
+<td>Schema ready for review; feature behavior is not signed off</td>
+</tr>
+</tbody>
+</table>
+<p>Coverage and source links should be checked against the docket before G1. A comparison of public materials does not establish the competitors' internal schemas.</p>
+</div><footer class="doc-footer"><a href="03-features/schema-rating-scorecard.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="03-features/output-document.md" hidden><div class="doc-kicker">Step 03 · Feature discovery / Output document</div><div class="prose"><h1>03 Output document — Feature Discovery</h1>
+<h2>What the product needs to do</h2>
+<p>Talentra needs a dependable record of a person looking for work, an organisation offering work, and what happened between them. A candidate should be able to build a profile and apply once to an open job. The employer should see only the applications it is entitled to see. Recruiters and consultants need narrower, time-bound access. Gigs, payments and provider callbacks add separate state changes that must remain explainable after a retry, cancellation or refund. The feature list below turns those needs into reviewable capabilities. It describes the intended data and behavior; it does not claim that every capability already works.</p>
+<p><strong>Priority rule.</strong> “Must” comes from a mandatory docket rule or Tier 1 domain. “Should” is the reader-friendly name for the shared register's <code>Expected</code> Tier 2 detail, subject to owner review. “Differentiator hypothesis” is an opportunity to test, not a promise; the shared register calls optional domains <code>Stretch</code>. The full <a href="?doc=actors-goals-features.md">feature register</a> keeps the shared IDs and source links.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Capability and user benefit</th>
+<th>Priority</th>
+<th>Trace</th>
+<th>What a reviewer should see</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FEAT-01</td>
+<td>Candidate profile, skills, resume versions and history: the candidate can present current information without losing the previous record</td>
+<td>Must; Tier 2 history should</td>
+<td>REQ-01, REQ-15; ACT-01; WF-01</td>
+<td>One candidate identity, versioned resume reference and explicit consent/visibility state</td>
+</tr>
+<tr>
+<td>FEAT-02</td>
+<td>Jobs, questions and applications: employer and candidate share one understandable hiring status</td>
+<td>Must</td>
+<td>REQ-02; ACT-01/02; WF-02</td>
+<td>Published/open job accepts one active application per candidate; every stage change is traceable</td>
+</tr>
+<tr>
+<td>FEAT-03</td>
+<td>Access, blocking, consent and audit: candidate data reaches only entitled people</td>
+<td>Must</td>
+<td>REQ-03–05; ACT-01/03/04/09; WF-03</td>
+<td>A blocked company or unrelated recruiter is denied, with actor and reason recorded</td>
+</tr>
+<tr>
+<td>FEAT-04</td>
+<td>Organisation and recruiter mapping: an employer can delegate work without giving platform-wide access</td>
+<td>Must</td>
+<td>REQ-06; ACT-02/08/14; WF-04</td>
+<td>Verified organisation and dated assignment determine the recruiter's current scope</td>
+</tr>
+<tr>
+<td>FEAT-05</td>
+<td>Gig marketplace and fulfilment: short work has its own bid, assignment and completion record</td>
+<td>Must</td>
+<td>REQ-07; ACT-02/06/10; WF-05</td>
+<td>Overlapping or duplicate bids are rejected; handoff and outcome reconcile</td>
+</tr>
+<tr>
+<td>FEAT-06</td>
+<td>Sourcing and outreach: a consultant or recruiter can work only an eligible requirement</td>
+<td>Must</td>
+<td>REQ-08; ACT-02/03/04; WF-06</td>
+<td>Job openness, assignment and recipient policy checked before contact</td>
+</tr>
+<tr>
+<td>FEAT-07</td>
+<td>Licences, seats, devices and sessions: a paid account can control active access</td>
+<td>Must</td>
+<td>REQ-09; ACT-08/14; WF-07</td>
+<td>Concurrent login cannot bypass the seat cap; revocation ends access</td>
+</tr>
+<tr>
+<td>FEAT-08</td>
+<td>Subscription, wallet, invoice and refund ledger: money changes can be explained and reconciled</td>
+<td>Must</td>
+<td>REQ-10; ACT-02/08/10/12; WF-08</td>
+<td>Payment confirmation applies once; refund is a new compensating entry</td>
+</tr>
+<tr>
+<td>FEAT-09</td>
+<td>Preferences, notifications and support: people receive relevant updates with a visible failure trail</td>
+<td>Must; community detail should</td>
+<td>REQ-11; ACT-01/02/12; WF-09</td>
+<td>Opt-out suppresses delivery; attempts and final state are recorded</td>
+</tr>
+<tr>
+<td>FEAT-10</td>
+<td>Analytics and reference insights: owners can see a dated, reconciled hiring funnel</td>
+<td>Must; salary/rating insight optional</td>
+<td>REQ-12, REQ-16; ACT-08/11; WF-10</td>
+<td>Mart totals match source events and stale figures are labelled</td>
+</tr>
+<tr>
+<td>FEAT-11</td>
+<td>Provider boundaries: external payments, messages and gig status cannot silently duplicate business events</td>
+<td>Must</td>
+<td>REQ-13; ACT-10/11; WF-11</td>
+<td>Signed, keyed callbacks are accepted once or quarantined with a reason</td>
+</tr>
+<tr>
+<td>FEAT-12</td>
+<td>Seed, validation, performance and recovery evidence: reviewers can test whether the model survives realistic volume</td>
+<td>Must</td>
+<td>REQ-14; ACT-09/11; WF-12</td>
+<td>Counts, constraints, fixed query plans, access tests and restore result are reproducible</td>
+</tr>
+</tbody>
+</table>
+<p>For example, FEAT-02 is more than an <code>application</code> table: a candidate sees a clear current state, an employer can make an allowed decision, and the previous state remains in history. FEAT-08 is more than a balance column: the payment, credit use, cancellation and refund have separate records so support can explain the amount.</p>
+<h2>Delivery sequence and dependencies</h2>
+<table>
+<thead>
+<tr>
+<th>Sequence</th>
+<th>Features</th>
+<th>Reason and acceptance example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Identity and core records</td>
+<td>FEAT-01–04</td>
+<td>Candidate/job IDs, tenant mapping and blocked-party rules must exist before sourcing; test duplicate application and cross-company denial</td>
+</tr>
+<tr>
+<td>2. Operational flows</td>
+<td>FEAT-05–09, FEAT-11</td>
+<td>Gig, sourcing, sessions, ledger, alerts and provider callbacks depend on identity and scopes; test retries, refunds, revocation and handoff</td>
+</tr>
+<tr>
+<td>3. Evidence</td>
+<td>FEAT-10, FEAT-12</td>
+<td>Analytics and validation depend on stable source events; reconcile marts and prove restore/access behavior</td>
+</tr>
+</tbody>
+</table>
+<h2>Acceptance behavior by capability</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Reviewable behavior</th>
+<th>Dependency / unresolved choice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FEAT-01</td>
+<td>Candidate owns one profile and resume history; duplicate registration is rejected</td>
+<td>Identity and consent policy</td>
+</tr>
+<tr>
+<td>FEAT-02</td>
+<td>Published job accepts at most one active application per candidate; stage history is preserved</td>
+<td>Allowed status transitions</td>
+</tr>
+<tr>
+<td>FEAT-03</td>
+<td>Cross-account or blocked-party access is denied and audited</td>
+<td>Product/security access review</td>
+</tr>
+<tr>
+<td>FEAT-04</td>
+<td>Recruiter mapping is company-scoped, effective-dated and non-overlapping</td>
+<td>Organisation verification rule</td>
+</tr>
+<tr>
+<td>FEAT-05</td>
+<td>Gig bid respects availability and uniqueness; accepted work reconciles with provider</td>
+<td>Handoff ownership</td>
+</tr>
+<tr>
+<td>FEAT-06</td>
+<td>Consultant request and outreach occur only for an eligible open job</td>
+<td>Recipient and duplicate-message policy</td>
+</tr>
+<tr>
+<td>FEAT-07</td>
+<td>Seat/device/session cap holds under concurrent login and revocation</td>
+<td>Exact cap policy</td>
+</tr>
+<tr>
+<td>FEAT-08</td>
+<td>Confirmed payment creates one ledger event; refund creates a compensating entry</td>
+<td>Provider reconciliation policy</td>
+</tr>
+<tr>
+<td>FEAT-09</td>
+<td>Opt-out suppresses delivery; attempts and failures remain traceable</td>
+<td>Message retention policy</td>
+</tr>
+<tr>
+<td>FEAT-10</td>
+<td>Refresh is dated and totals reconcile to source events</td>
+<td>KPI definition and freshness target</td>
+</tr>
+<tr>
+<td>FEAT-11</td>
+<td>Duplicate or untrusted callback cannot create a second business event</td>
+<td>Provider signature/key contract</td>
+</tr>
+<tr>
+<td>FEAT-12</td>
+<td>Seed counts, constraints, timing, isolation and restore evidence are repeatable</td>
+<td>Environment and gate acceptance</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Comparison finding:</strong> official public pages document candidate profile fields and employer hiring features for <a href="https://recruit.naukri.com/recruit/resume-database-access-resdex">Naukri</a>, <a href="https://hiring.monster.com/help-center/job-postings/managing-your-jobs-and-applicants/applicant-management-with-monster/">Monster</a> and <a href="https://www.business.linkedin.com/advertise/linkedin-pages">LinkedIn</a>. Talentra's proposed schema covers those core domains and separately models gigs and ledger events. We have not measured competitor depth or shown a superior outcome; a field-level data-dictionary audit and owner review remain open.</p>
+<h2>Publicly documented competitor coverage</h2>
+<p><code>Yes</code> means the linked public product material describes the capability. <code>Unverified</code> means this review did not find reliable public evidence; it does not mean the competitor lacks it. Talentra entries are design scope, not verified product behavior.</p>
+<table>
+<thead>
+<tr>
+<th>Capability / priority</th>
+<th>Talentra</th>
+<th>Naukri</th>
+<th>Monster</th>
+<th>LinkedIn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Candidate profile, skills and resume / Must</td>
+<td>FEAT-01</td>
+<td><a href="https://recruit.naukri.com/recruit/resume-database-access-resdex">Yes</a></td>
+<td><a href="https://hiring.monster.com/help-center/job-postings/managing-your-jobs-and-applicants/applicant-management-with-monster/">Yes</a></td>
+<td><a href="https://socialimpact.linkedin.com/content/dam/me/socialimpact-linkedin-com/lifg-resources/linkedin-training-content/linkedin-profile-tip-sheet.pdf">Yes</a></td>
+</tr>
+<tr>
+<td>Employer posting and applicant pipeline / Must</td>
+<td>FEAT-02</td>
+<td><a href="https://recruit.naukri.com/recruit/job-posting">Yes</a></td>
+<td><a href="https://hiring.monster.com/help-center/job-postings/managing-your-jobs-and-applicants/applicant-management-with-monster/">Yes</a></td>
+<td><a href="https://business.linkedin.com/in/en/hire/company-career-pages/features">Yes</a></td>
+</tr>
+<tr>
+<td>Candidate block and recruiter assignment enforcement / Must</td>
+<td>FEAT-03–04</td>
+<td>Unverified</td>
+<td>Unverified</td>
+<td>Unverified</td>
+</tr>
+<tr>
+<td>Separate gig bid, handoff and earnings reference / Must</td>
+<td>FEAT-05</td>
+<td>Unverified</td>
+<td>Unverified</td>
+<td>Unverified</td>
+</tr>
+<tr>
+<td>Append-only wallet, credits and refund ledger / Must</td>
+<td>FEAT-08</td>
+<td>Unverified</td>
+<td>Unverified</td>
+<td>Unverified</td>
+</tr>
+<tr>
+<td>Community, assessments and profile history / Should-have</td>
+<td>REQ-15</td>
+<td>Unverified</td>
+<td>Unverified</td>
+<td><a href="https://socialimpact.linkedin.com/content/dam/me/socialimpact-linkedin-com/lifg-resources/linkedin-training-content/linkedin-profile-tip-sheet.pdf">Profile sections documented</a></td>
+</tr>
+<tr>
+<td>Salary benchmarks and company ratings / Differentiator candidate</td>
+<td>REQ-16, optional</td>
+<td>Unverified</td>
+<td>Unverified</td>
+<td>Unverified</td>
+</tr>
+</tbody>
+</table>
+<p>The likely opportunity is a <em>single auditable record</em> from sourcing and application through gig handoff and financial settlement. This matters because disconnected status and money records make reconciliation and candidate visibility harder. It is a design hypothesis: public pages cannot establish that competitors lack an internal integration or that Talentra has achieved the outcome.</p>
+<p>The workflow-linked acceptance intents are in <a href="?doc=nfr-workflows.md">WF-01–12</a> and <a href="?doc=test-case-graph.md">TC-01–12</a>. This document is a completed discovery artifact with explicitly unresolved product acceptance, not a claim that all features are implemented.</p>
+</div><footer class="doc-footer"><a href="03-features/output-document.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="04-nfr/output-schema.md" hidden><div class="doc-kicker">Step 04 · NFR discovery / Output schema</div><div class="prose"><h1>04 Output schema definition — NFR Discovery</h1>
+<p>The output is a testable quality register. A reader should be able to repeat the measurement and tell whether a number came from the docket or from a team proposal.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required content</th>
+<th>Example from this pack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nfr_id</code>, attribute</td>
+<td>Unique <code>NFR-##</code> and quality question</td>
+<td>NFR-13, peak read load</td>
+</tr>
+<tr>
+<td><code>metric</code>, <code>target</code>, <code>unit</code></td>
+<td>A number with denominator or time window</td>
+<td>60 reads/second for 30 minutes; p95 ≤500 ms</td>
+</tr>
+<tr>
+<td><code>workload</code>, <code>environment</code></td>
+<td>Data volume, query mix, hardware and role context</td>
+<td>1m candidates, 100k jobs, 5m applications on named local machine</td>
+</tr>
+<tr>
+<td><code>basis</code>, <code>status</code></td>
+<td>Docket section or calculation; <code>Docket</code> or <code>Proposal</code></td>
+<td>1% active/day × 50 reads × 10 peak is a proposal</td>
+</tr>
+<tr>
+<td><code>method</code>, <code>artifact</code></td>
+<td>Exact measurement and where evidence is stored</td>
+<td>Request samples with p50/p95/p99 and errors</td>
+</tr>
+<tr>
+<td><code>owner</code>, <code>decision</code></td>
+<td>Person/role who can accept or revise a proposal</td>
+<td>Product/database owner to confirm load model</td>
+</tr>
+</tbody>
+</table>
+<p>For privacy retention, the numeric completeness target is 100% of personal-data entities with an approved period. A proposed 24-month candidate inactivity review is explicitly provisional; the actual per-entity periods remain a decision. This avoids presenting an invented legal deadline as fact.</p>
+<p>Validate that each NFR has a number and test method, workload and environment where relevant, and approval owner for proposals. Local seed counts cannot prove production latency, availability or access control. A proposal is not marked met until its test is run under the accepted workload.</p>
+</div><footer class="doc-footer"><a href="04-nfr/output-schema.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="04-nfr/schema-rating-scorecard.md" hidden><div class="doc-kicker">Step 04 · NFR discovery / Scorecard</div><div class="prose"><h1>04 Schema rating scorecard</h1>
+<p>Team self-review, not acceptance. Score 0 missing, 1 partial, 2 reviewable; 8/10 is an internal threshold.</p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th style="text-align:right">Score</th>
+<th>Evidence / gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Metric, target, unit and basis</td>
+<td style="text-align:right">2</td>
+<td>NFR-01 uses docket row counts; NFR-13 shows the 60-read/s calculation; NFR-10 has 100% policy coverage and provisional 24-month review</td>
+</tr>
+<tr>
+<td>Measurement method and evidence</td>
+<td style="text-align:right">2</td>
+<td>Query, role, refresh and restore methods defined</td>
+</tr>
+<tr>
+<td>Environment and workload distinction</td>
+<td style="text-align:right">2</td>
+<td>Local laptop-scale versus full-scale model and production separated</td>
+</tr>
+<tr>
+<td>Approval and uncertainty</td>
+<td style="text-align:right">2</td>
+<td>Proposals and pending decisions are labelled</td>
+</tr>
+<tr>
+<td>Complete numeric targets</td>
+<td style="text-align:right">1</td>
+<td>Every row is numeric, but per-entity retention values and approval of RTO/RPO/latency remain open</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td style="text-align:right"><strong>9/10</strong></td>
+<td>Schema works; NFR register cannot pass target acceptance yet</td>
+</tr>
+</tbody>
+</table>
+<p>The score rates the representation and honesty of unknowns. It does not imply that all NFR targets have been accepted or met.</p>
+</div><footer class="doc-footer"><a href="04-nfr/schema-rating-scorecard.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="04-nfr/output-document.md" hidden><div class="doc-kicker">Step 04 · NFR discovery / Output document</div><div class="prose"><h1>04 Output document — NFR Discovery</h1>
+<h2>Why these targets matter</h2>
+<p>A model can have the right tables and still fail if searches slow down at realistic size, one employer sees another employer's candidates, a refund changes a balance without a trail, or a restore loses too much work. This register says what to measure and where each number came from. <strong>Docket</strong> means the source asks for it. <strong>Proposal</strong> means the team has put forward a number so it can be debated and tested. A proposed number is not a signed-off service promise.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Quality question</th>
+<th>Numeric target and basis</th>
+<th>How to measure it</th>
+<th>Current state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NFR-01</td>
+<td>Can the local model hold the required demonstration volume?</td>
+<td><strong>1m</strong> candidates, <strong>100k</strong> jobs, <strong>5m</strong> applications; docket section 6</td>
+<td>Count rows, check distributions, duplicates and orphan records after load</td>
+<td>Core counts reached locally; representativeness remains to review</td>
+</tr>
+<tr>
+<td>NFR-02</td>
+<td>Can the design be reasoned about at intended full size?</td>
+<td><strong>10m</strong> candidates, <strong>1m</strong> jobs, <strong>100m</strong> applications; docket section 6</td>
+<td>Extrapolate measured plans, index/storage size and cache behavior; name the first failing query</td>
+<td>Model target, not a full-size test</td>
+</tr>
+<tr>
+<td>NFR-03</td>
+<td>Are important queries measured repeatably?</td>
+<td><strong>12</strong> fixed query cases; <strong>top 10</strong> with plans and repeated p50/p95/p99; backlog B65/B70</td>
+<td>Save exact SQL, row counts, PostgreSQL settings, run count and timings</td>
+<td>Evidence is incomplete for sign-off</td>
+</tr>
+<tr>
+<td>NFR-04</td>
+<td>Does access isolation work?</td>
+<td><strong>0</strong> unauthorized reads/writes in the enumerated role tests; every sensitive action audited; docket section 3 and backlog B79</td>
+<td>Use separate principals and account IDs, blocked candidates and expired assignments; inspect deny and audit events</td>
+<td>Policy is documented; live role/RLS proof remains open</td>
+</tr>
+<tr>
+<td>NFR-05</td>
+<td>Are relationships trustworthy?</td>
+<td><strong>0</strong> unvalidated constraints and <strong>0</strong> orphan applications; docket section 5 and backlog B66</td>
+<td>Catalog query plus orphan and duplicate checks after seed</td>
+<td>Local constraint suites passed; production differs</td>
+</tr>
+<tr>
+<td>NFR-06</td>
+<td>Can operations recover?</td>
+<td>Proposed RTO <strong>4 hours</strong>, RPO <strong>1 hour</strong>; docket asks for recovery evidence but supplies no number</td>
+<td>Time isolated restore and compare latest recovered event with backup point</td>
+<td>Exercise and owner approval pending</td>
+</tr>
+<tr>
+<td>NFR-07</td>
+<td>Is a common lookup responsive at seed size?</td>
+<td>Proposed p95 <strong>≤500 ms</strong> for agreed candidate/job query mix at NFR-01 volume</td>
+<td>Repeated warm/cold runs under documented concurrency and hardware</td>
+<td>Query mix and measured result pending</td>
+</tr>
+<tr>
+<td>NFR-08</td>
+<td>Are reports current and correct?</td>
+<td>Proposed mart age <strong>≤24 hours</strong> and <strong>0</strong> unexplained total mismatches</td>
+<td>Check refresh timestamp and reconcile each published total to source events</td>
+<td>Post-load reconciliation pending</td>
+</tr>
+<tr>
+<td>NFR-09</td>
+<td>Is the eventual service available?</td>
+<td>Proposed <strong>99.9%</strong> monthly request availability, about <strong>43.2 minutes</strong> unavailable in a 30-day month</td>
+<td>User-visible request SLI with a defined maintenance policy</td>
+<td>Future application target; no live SLI yet</td>
+</tr>
+<tr>
+<td>NFR-10</td>
+<td>Is personal data kept for a defined time?</td>
+<td><strong>100%</strong> of personal-data entities need an approved numeric retention rule; candidate inactivity review at <strong>24 months</strong> is only a proposal</td>
+<td>Inventory entities and approved triggers/periods; dry-run expiry, exceptions and deletion</td>
+<td>Per-entity periods and exceptions unapproved</td>
+</tr>
+<tr>
+<td>NFR-11</td>
+<td>Can users understand the interface?</td>
+<td><strong>100%</strong> user-facing labels have translation key, default value and fallback; future UI proposal: WCAG <strong>2.2 AA</strong>, <strong>0</strong> critical release failures</td>
+<td>Query translation coverage; audit future UI against applicable WCAG criteria</td>
+<td>Data rule can be checked; UI is outside current build</td>
+</tr>
+<tr>
+<td>NFR-12</td>
+<td>Can a privacy request be handled predictably?</td>
+<td>Proposed <strong>100%</strong> eligible erasure decisions within <strong>30 days</strong>, and approved action within <strong>30 further days</strong></td>
+<td>Sample requests, inspect timestamps, data propagation and lawful exceptions</td>
+<td>Internal target, not a statutory deadline; owner review pending</td>
+</tr>
+<tr>
+<td>NFR-13</td>
+<td>Does the model tolerate a plausible peak?</td>
+<td>Proposed <strong>60 reads/second</strong> for <strong>30 minutes</strong>, p95 <strong>≤500 ms</strong>, errors <strong>&lt;1%</strong></td>
+<td>Replay signed-off query mix; record p50/p95/p99, errors and machine details</td>
+<td>Assumptions and load test pending</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>60 reads/second</strong> proposal is a calculation, not a measured demand: 1% of the 1m-candidate seed active per day × 50 reads per active candidate ÷ 86,400 seconds × a 10× peak factor ≈ 58, rounded to 60. Product owners need to validate the 1%, 50-read and peak assumptions. The 500 ms, recovery and availability targets come from team judgment and require acceptance; volume alone does not set a useful latency or outage budget.</p>
+<h2>Current evidence and decision queue</h2>
+<table>
+<thead>
+<tr>
+<th>NFR</th>
+<th>Present evidence</th>
+<th>Remaining acceptance work</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NFR-01, NFR-05</td>
+<td><a href="?doc=..%2F..%2Fphase5%2Flocal%2Fvalidation-report.md">Local seed validation</a> records 1m candidates, 100k jobs and 5m applications, with four constraint suites passing</td>
+<td>Review distribution, field depth and provenance before calling fixture representative</td>
+</tr>
+<tr>
+<td>NFR-02, NFR-03, NFR-07</td>
+<td>Fixed SQL and performance work exists in the repository</td>
+<td>Capture exact environment and repeated p50/p95/p99 measurements; model larger scale</td>
+</tr>
+<tr>
+<td>NFR-04</td>
+<td>Role intents and test cases defined</td>
+<td>Test actual roles and RLS with separate account principals</td>
+</tr>
+<tr>
+<td>NFR-06</td>
+<td>Restore method specified</td>
+<td>Approve RTO/RPO and time a restore exercise</td>
+</tr>
+<tr>
+<td>NFR-08</td>
+<td>Reconciliation method specified</td>
+<td>Refresh marts after final load, verify source totals and age</td>
+</tr>
+<tr>
+<td>NFR-09</td>
+<td>Proposed application SLO only</td>
+<td>Confirm whether service availability belongs in this database-stage acceptance</td>
+</tr>
+<tr>
+<td>NFR-10</td>
+<td>Retention decision documented</td>
+<td>Owner approves per-entity periods and deletion exceptions</td>
+</tr>
+<tr>
+<td>NFR-11</td>
+<td>Translation-key rule and proposed future-UI WCAG 2.2 AA target</td>
+<td>Audit every label/fallback; UI implementation is outside the docket</td>
+</tr>
+<tr>
+<td>NFR-12</td>
+<td>Proposed 30-day decision and 30-day execution targets for erasure requests</td>
+<td>Privacy owner decides applicability and tests deletion propagation</td>
+</tr>
+<tr>
+<td>NFR-13</td>
+<td>Proposed 60 reads/second, 30-minute workload derived from explicit activity assumptions</td>
+<td>Validate assumptions, then report latency/error distribution</td>
+</tr>
+</tbody>
+</table>
+<p>The <a href="?doc=decisions-and-gaps.md">decision register</a> tracks G1. A full local seed is evidence of NFR-01 counts; it is not evidence of full-scale performance, live access policy or accepted service targets.</p>
+<h2>Decision owners and measurement context</h2>
+<table>
+<thead>
+<tr>
+<th>NFR</th>
+<th>Proposed decision owner</th>
+<th>Measurement context</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01–03, 05, 07</td>
+<td>Database lead</td>
+<td>Exact PostgreSQL version, machine, indexes, row distribution, query text and repeated timings</td>
+</tr>
+<tr>
+<td>04</td>
+<td>Product/security owner</td>
+<td>Separate login roles and account IDs; blocked-party and denied-write audit</td>
+</tr>
+<tr>
+<td>06</td>
+<td>Operations owner</td>
+<td>Isolated backup and restore, measured recovery time and data loss</td>
+</tr>
+<tr>
+<td>08</td>
+<td>Analytics owner</td>
+<td>Final source events, refresh run ID, source-to-mart totals</td>
+</tr>
+<tr>
+<td>09</td>
+<td>Product/operations owner</td>
+<td>User-facing request SLI and maintenance policy, if in scope</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Privacy/product owner</td>
+<td>Per-entity retention table and deletion/exception rehearsal</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Product/accessibility owner</td>
+<td>Language-key coverage and future WCAG 2.2 AA audit</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Privacy/legal owner</td>
+<td>Request sample, decisions, deletion/exception timestamps</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Product/database owner</td>
+<td>Signed-off activity assumptions, query mix and 30-minute load run</td>
+</tr>
+</tbody>
+</table>
+<p>Owner titles identify who must decide; no individual has accepted these targets yet.</p>
+<h2>Regulatory and standard applicability</h2>
+<p>The <a href="https://www.meity.gov.in/static/uploads/2024/02/Digital-Personal-Data-Protection-Act-2023.pdf">Digital Personal Data Protection Act, 2023</a> and <a href="https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf">Digital Personal Data Protection Rules, 2025</a> are the named Indian privacy framework. Their <a href="https://www.meity.gov.in/static/uploads/2025/11/c56ceae6c383460ca69577428d36828b.pdf">commencement notification</a> phases provisions in, so the privacy owner must map processing activities and effective dates before asserting compliance. The 30-day/30-day targets are internal service goals, not legal deadlines. <a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a> is proposed for a future UI; the current database assignment can test translation data but cannot certify a UI. Payment card data is excluded by the docket's gateway boundary; future card handling needs a separate PCI DSS scope decision.</p>
+<p>NFR-13 uses the docket's 1-million-candidate seed: 1% daily active × 50 reads per active candidate ÷ 86,400 seconds × 10 peak factor ≈ 58 reads/second, rounded to 60. All usage assumptions are <strong>unverified</strong> and require product-owner review. The 500 ms p95 is likewise a proposed product target.</p>
+</div><footer class="doc-footer"><a href="04-nfr/output-document.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="05-workflows/output-schema.md" hidden><div class="doc-kicker">Step 05 · Workflow analysis / Output schema</div><div class="prose"><h1>05 Output schema definition — Business Workflow Analysis</h1>
+<p>The output is one readable card per workflow, supported by a diagram and exception catalogue. Each card must answer: who starts this, what happens next, what decision changes the route, what is saved, and what happens when it fails?</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required content</th>
+<th>Example from this pack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>workflow_id</code>, trigger</td>
+<td>Unique <code>WF-##</code> and initiating event</td>
+<td>WF-08 starts when employer subscribes or recharges</td>
+</tr>
+<tr>
+<td><code>actors</code>, preconditions</td>
+<td>ACT IDs and access/payment conditions</td>
+<td>Employer ACT-02, gateway ACT-10; verified account</td>
+</tr>
+<tr>
+<td><code>steps</code>, decision</td>
+<td>Ordered main path and branch condition</td>
+<td>Pending order → keyed confirmation → credit; was payment confirmed once?</td>
+</tr>
+<tr>
+<td><code>output</code>, records</td>
+<td>State/event and who can see it</td>
+<td>Entitlement, invoice reference and append-only ledger events</td>
+</tr>
+<tr>
+<td><code>exceptions</code>, recovery</td>
+<td>Cancel, retry, timeout, refund or denial where applicable</td>
+<td>Timeout stays pending; duplicate callback ignored; refund compensates</td>
+</tr>
+<tr>
+<td><code>feature</code>, <code>test</code></td>
+<td>FEAT ID and test intent</td>
+<td>FEAT-08; replay callback and check one credit</td>
+</tr>
+</tbody>
+</table>
+<p>The diagram is an overview, so its labels must retain WF IDs and must not replace the detailed card. Each Must feature must appear in at least one workflow. A failed external action must retain an idempotency key and a visible terminal or review state.</p>
+<p>Validate that every <code>Must</code> feature has a workflow, every workflow has at least one exception, denied actions are auditable where sensitive, retries are idempotent at external boundaries, and terminal states do not silently revert. Cross-check actors and permissions against the persona matrix.</p>
+</div><footer class="doc-footer"><a href="05-workflows/output-schema.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="05-workflows/schema-rating-scorecard.md" hidden><div class="doc-kicker">Step 05 · Workflow analysis / Scorecard</div><div class="prose"><h1>05 Schema rating scorecard</h1>
+<p>Team self-review; 0 missing, 1 partial, 2 reviewable. Internal threshold 8/10, not an official playbook band.</p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th style="text-align:right">Score</th>
+<th>Evidence / gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trigger, actor, state and outcome</td>
+<td style="text-align:right">2</td>
+<td>Twelve filled cards; WF-08 follows pending order through credit and refund</td>
+</tr>
+<tr>
+<td>Feature and requirement trace</td>
+<td style="text-align:right">2</td>
+<td>FEAT links in catalogue, REQ links through feature inventory</td>
+</tr>
+<tr>
+<td>Decision and exception coverage</td>
+<td style="text-align:right">2</td>
+<td>WF-02 duplicate/withdrawal, WF-05 timeout, WF-08 cancel/refund and WF-09 retry exhaustion</td>
+</tr>
+<tr>
+<td>External retry and authorization rules</td>
+<td style="text-align:right">2</td>
+<td>Access, ledger, provider and notification paths</td>
+</tr>
+<tr>
+<td>Independent domain review</td>
+<td style="text-align:right">1</td>
+<td>Diagrams and catalogue prepared; owner validation remains open</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td style="text-align:right"><strong>9/10</strong></td>
+<td>Schema is reviewable, workflow sign-off pending</td>
+</tr>
+</tbody>
+</table>
+</div><footer class="doc-footer"><a href="05-workflows/schema-rating-scorecard.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="05-workflows/output-document.md" hidden><div class="doc-kicker">Step 05 · Workflow analysis / Output document</div><div class="prose"><h1>05 Output document — Business Workflow Analysis</h1>
+<h2>How the work moves</h2>
+<p>The workflows follow an event from the person or system that starts it to the record or decision it produces. They are written for a reviewer who needs to ask, “What happens if this is rejected, repeated, cancelled or delayed?” The diagrams below give the overview; these cards give the operating detail. They are intended behavior, not a claim that every path is implemented.</p>
+<h3>WF-01 — Candidate creates and maintains a profile</h3>
+<p><strong>Trigger and actors:</strong> A candidate (ACT-01) registers; the identity service and scheduled privacy process participate. <strong>Steps:</strong> verify uniqueness, record the candidate's consent/visibility choice, create the profile, attach skills and resume versions, then log later edits. <strong>Decision:</strong> is identity valid and is this use of data allowed? <strong>Output:</strong> one candidate identity with dated profile history. <strong>Exceptions:</strong> reject a duplicate; suppress use after consent withdrawal; route deletion requests through the retention/exception policy. This workflow covers FEAT-01.</p>
+<h3>WF-02 — Employer posts a job and candidate applies</h3>
+<p><strong>Trigger and actors:</strong> Employer (ACT-02) publishes a job; candidate (ACT-01) searches and applies. <strong>Steps:</strong> verify job is published and open, apply eligibility rules, create one active application, then append each allowed stage event. <strong>Decision:</strong> is the job still open and is the transition allowed? <strong>Output:</strong> a current application state with a readable history for both permitted parties. <strong>Exceptions:</strong> closed job or duplicate application is rejected atomically; withdrawal is recorded as a terminal event; a late employer update must not reopen a withdrawn application by accident. This covers FEAT-02.</p>
+<h3>WF-03 — Recruiter or consultant requests access</h3>
+<p><strong>Trigger and actors:</strong> Recruiter (ACT-03) or consultant (ACT-04) requests a candidate or job record; candidate (ACT-01) may have blocked the party; auditor (ACT-09) reviews evidence. <strong>Steps:</strong> resolve company, dated assignment, consultant-open status and block/consent state before returning data or permitting outreach. <strong>Decision:</strong> do all required scope checks pass now? <strong>Output:</strong> permitted read/action or denial with reason and actor. <strong>Exceptions:</strong> expired mapping, other-company access and blocked party are denied and audited. A recruiter cannot create a candidate registration. This covers FEAT-03.</p>
+<h3>WF-04 — Organisation delegates recruiting work</h3>
+<p><strong>Trigger and actors:</strong> Employer (ACT-02) or account admin (ACT-08) creates or changes a company and recruiter assignment; platform admin (ACT-14) handles a ticketed exception. <strong>Steps:</strong> verify the organisation, check hierarchy and effective dates, then create the mapping. <strong>Decision:</strong> is the company trusted and does this assignment overlap or create a cycle? <strong>Output:</strong> a dated, company-scoped assignment. <strong>Exceptions:</strong> reject invalid hierarchy and overlap while retaining the prior valid state. This covers FEAT-04.</p>
+<h3>WF-05 — Gig request, bid and fulfilment</h3>
+<p><strong>Trigger and actors:</strong> Requester (ACT-02) posts priced work; gig worker (ACT-06) states availability and bids; provider (ACT-10) reports external fulfilment. <strong>Steps:</strong> check open request and availability, accept one bid, create assignment, send a keyed handoff and reconcile the returned status. <strong>Decision:</strong> is the bid eligible and the callback valid and new? <strong>Output:</strong> assignment, fulfilment reference and final status, with rating where allowed. <strong>Exceptions:</strong> overlapping or repeat bid is rejected; a timeout stays pending and retries with the same key; duplicate/out-of-order results are reconciled, not applied twice. Cancellation records who cancelled and whether work or money had already moved. This covers FEAT-05 and FEAT-11.</p>
+<h3>WF-06 — Sourcing request and outreach</h3>
+<p><strong>Trigger and actors:</strong> Employer (ACT-02) opens a sourcing request; consultant (ACT-04) accepts or declines; recruiter (ACT-03) sends permitted outreach. <strong>Steps:</strong> verify open requirement, assignment and recipient eligibility, record the consultant decision, then enqueue a deduplicated message. <strong>Decision:</strong> may this actor contact this candidate for this job? <strong>Output:</strong> accepted/declined request and traceable outreach state. <strong>Exceptions:</strong> closed job, expired assignment, blocked candidate or duplicate recipient stops contact; provider failure follows WF-09 retry handling. This covers FEAT-06.</p>
+<h3>WF-07 — Seat, device and session</h3>
+<p><strong>Trigger and actors:</strong> Account admin (ACT-08) allocates a licence; user signs in; scheduled worker (ACT-11) expires sessions. <strong>Steps:</strong> check paid entitlement, allocate a seat, register permitted device, start a session and release it on expiry or revocation. <strong>Decision:</strong> are the active seat/device/session limits satisfied in the same transaction? <strong>Output:</strong> active or denied session with audit evidence. <strong>Exceptions:</strong> concurrent logins at the cap cannot both succeed; revocation terminates the session; a replacement device needs an explicit transition. This covers FEAT-07.</p>
+<h3>WF-08 — Subscription, credit use, cancellation and refund</h3>
+<p><strong>Trigger and actors:</strong> Employer (ACT-02) subscribes or recharges; gateway (ACT-10) confirms payment; account admin/support (ACT-08/12) handles a dispute. <strong>Steps:</strong> create pending order, verify keyed payment result, append a credit entry, debit for permitted use and issue invoice reference. <strong>Decision:</strong> was payment confirmed once, and is balance sufficient? <strong>Output:</strong> entitlement and append-only financial trail. <strong>Exceptions:</strong> a gateway timeout leaves the order pending for reconciliation; duplicate webhook makes no second credit; low balance denies use; cancellation records its effective date; refund writes a compensating event and preserves original payment. The immediate-versus-period-end entitlement policy needs owner approval. This covers FEAT-08.</p>
+<h3>WF-09 — Preference, delivery and support</h3>
+<p><strong>Trigger and actors:</strong> Candidate or employer (ACT-01/02) changes preferences; worker (ACT-11) sends an alert; provider (ACT-10) returns delivery status; support (ACT-12) handles failure. <strong>Steps:</strong> check channel consent, queue one message, send with stable key, record attempts and final result. <strong>Decision:</strong> is delivery permitted and should a retry occur? <strong>Output:</strong> delivered, suppressed or failed status visible to support without exposing unnecessary content. <strong>Exceptions:</strong> opt-out suppresses before send; duplicate callback is ignored; retry exhaustion moves to a review queue. This covers FEAT-09.</p>
+<h3>WF-10 — Refresh and publish analytics</h3>
+<p><strong>Trigger and actors:</strong> Scheduled worker (ACT-11) runs refresh; account/platform admin (ACT-08/14) reads scoped reports. <strong>Steps:</strong> collect source events, calculate dated funnel and finance aggregates, reconcile totals and publish a refresh marker. <strong>Decision:</strong> are data age and totals inside the accepted thresholds? <strong>Output:</strong> dated metrics with source and refresh IDs. <strong>Exceptions:</strong> late event triggers recomputation; mismatch or stale mart is flagged rather than silently presented as current. This covers FEAT-10.</p>
+<h3>WF-11 — Receive an external callback</h3>
+<p><strong>Trigger and actors:</strong> Payment, message or fulfilment provider (ACT-10) sends a result; worker (ACT-11) reconciles it. <strong>Steps:</strong> verify signature and provider reference, store raw-safe audit metadata, deduplicate by stable event key, check allowed state transition, then update the relevant workflow. <strong>Decision:</strong> trusted, new and in order? <strong>Output:</strong> one applied business event or a quarantined/ignored callback. <strong>Exceptions:</strong> invalid signature is rejected; provider outage retries with backoff; out-of-order events await reconciliation. This covers FEAT-11 across WF-05, 08 and 09.</p>
+<h3>WF-12 — Build and validate evidence</h3>
+<p><strong>Trigger and actors:</strong> Database engineer (ACT-16) runs the synthetic load; auditor (ACT-09) and operations reviewers inspect results. <strong>Steps:</strong> seed the target counts, check distributions and constraints, run fixed queries, test roles under distinct principals, then restore an isolated backup. <strong>Decision:</strong> do counts, access, performance and recovery evidence meet approved criteria? <strong>Output:</strong> reproducible report or a held gate with named failures. <strong>Exceptions:</strong> capacity ceiling, skew, failed constraint, missing access proof or slow restore is recorded with exact environment and rerun steps. This covers FEAT-12; Gate G1 remains open until review.</p>
+<p>The cards cover all twelve must-have feature groups. Cancellation is explicit in WF-02, 05 and 08; refund in WF-08; retry and timeout in WF-05, 08, 09 and 11. The <a href="?doc=nfr-workflows.md">shared catalogue</a> holds the compact trace table.</p>
+<h2>Candidate, job and controlled sourcing</h2>
+<details class="diagram-source"><summary>Workflow diagram notation</summary><p>The flow and exception tables around this diagram are formatted below. Open this source when reviewing exact diagram branches.</p><pre><code>flowchart LR
+  A[WF-01 Candidate registers] --&gt; B{Identity and consent valid?}
+  B -- No --&gt; X[Reject or review; log reason]
+  B -- Yes --&gt; C[Profile and history]
+  C --&gt; D[WF-02 Search published job]
+  D --&gt; E{Open and eligible?}
+  E -- No --&gt; Y[Explain denial]
+  E -- Yes --&gt; F[Apply once; record stage event]
+  F --&gt; G[Employer decision or withdrawal]
+  H[WF-04 Verify company and recruiter mapping] --&gt; I[WF-03 Check assignment, block and scope]
+  I -- Allow --&gt; J[WF-06 Approved sourcing and outreach]
+  I -- Deny --&gt; K[Audit denial]
+  J --&gt; F
+</code></pre></details><h2>Gig, money and external handoff</h2>
+<details class="diagram-source"><summary>Workflow diagram notation</summary><p>The flow and exception tables around this diagram are formatted below. Open this source when reviewing exact diagram branches.</p><pre><code>flowchart LR
+  A[WF-05 Gig request and worker bid] --&gt; B{Available, unique, eligible?}
+  B -- No --&gt; X[Reject bid or resolve overlap]
+  B -- Yes --&gt; C[Accept assignment]
+  C --&gt; D[WF-11 Signed external handoff]
+  D --&gt; E{Callback valid and new?}
+  E -- No --&gt; Y[Quarantine, deduplicate or retry]
+  E -- Yes --&gt; F[Reconcile fulfilment status]
+  G[WF-08 Subscribe or recharge] --&gt; H{Payment confirmed?}
+  H -- No --&gt; Z[Retry or mark pending]
+  H -- Yes --&gt; I[Append ledger event and invoice]
+  I --&gt; J{Refund or reversal?}
+  J -- Yes --&gt; K[Compensating ledger entry]
+  I --&gt; L{Subscription cancelled?}
+  L -- Yes --&gt; M[Close future entitlement; preserve paid-period and ledger history]
+</code></pre></details><h2>Sessions, communications and evidence</h2>
+<details class="diagram-source"><summary>Workflow diagram notation</summary><p>The flow and exception tables around this diagram are formatted below. Open this source when reviewing exact diagram branches.</p><pre><code>flowchart LR
+  A[WF-07 Allocate seat and device] --&gt; B{Within active limit?}
+  B -- No --&gt; X[Deny and audit]
+  B -- Yes --&gt; C[Session until revoke or expiry]
+  D[WF-09 Preference and alert] --&gt; E{Consented channel?}
+  E -- No --&gt; Y[Suppress and record]
+  E -- Yes --&gt; F[Queue, deliver, reconcile]
+  G[WF-10 Refresh marts] --&gt; H{Fresh and reconciled?}
+  H -- No --&gt; Z[Flag stale or mismatched KPI]
+  H -- Yes --&gt; I[Publish metrics]
+  J[WF-12 Seed, validate and restore] --&gt; K{Constraints, access and recovery pass?}
+  K -- No --&gt; L[Hold sign-off and record defect]
+  K -- Yes --&gt; M[Evidence ready for review]
+</code></pre></details><h2>Exception catalogue and test intent</h2>
+<table>
+<thead>
+<tr>
+<th>WF</th>
+<th>Trigger or failure</th>
+<th>Response and evidence</th>
+<th>Test intent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01</td>
+<td>Duplicate identity, consent withdrawn</td>
+<td>Reject duplicate; stop disallowed processing and audit request</td>
+<td>Unique identity and consent-state test</td>
+</tr>
+<tr>
+<td>02</td>
+<td>Closed job, duplicate apply, illegal stage</td>
+<td>Reject transition atomically; preserve event history</td>
+<td>State-machine and uniqueness test</td>
+</tr>
+<tr>
+<td>03</td>
+<td>Cross-company, stale assignment, block</td>
+<td>Deny before contact; audit actor and reason</td>
+<td>Two-account/blocked-party test</td>
+</tr>
+<tr>
+<td>04</td>
+<td>Hierarchy cycle or overlapping mapping</td>
+<td>Reject invalid mapping; retain prior state</td>
+<td>Constraint and date-overlap test</td>
+</tr>
+<tr>
+<td>05</td>
+<td>Overlap, repeat bid, provider timeout</td>
+<td>Reject invalid bid; retry handoff with stable key</td>
+<td>Concurrency and idempotency test</td>
+</tr>
+<tr>
+<td>06</td>
+<td>Job closed to consultant or stale recruiter</td>
+<td>Reject sourcing/outreach; audit denial</td>
+<td>Scope and duplicate-recipient test</td>
+</tr>
+<tr>
+<td>07</td>
+<td>Seat cap race or revoked device</td>
+<td>Enforce cap transactionally; terminate revoked session</td>
+<td>Concurrent-login test</td>
+</tr>
+<tr>
+<td>08</td>
+<td>Duplicate webhook, refund, low balance</td>
+<td>Apply once; compensate with new ledger entry</td>
+<td>Replayed-callback and balance test</td>
+</tr>
+<tr>
+<td>08</td>
+<td>Subscription cancellation during paid period</td>
+<td>Stop renewal, record effective end and entitlement decision; preserve original payment and any refund as separate events</td>
+<td>Cancel-at-period-end and immediate-cancel tests</td>
+</tr>
+<tr>
+<td>09</td>
+<td>Opt-out or delivery exhaustion</td>
+<td>Suppress or dead-letter; keep privacy-safe evidence</td>
+<td>Preference and retry test</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Late source event or wrong mart total</td>
+<td>Mark stale; reconcile to source before publish</td>
+<td>Refresh/funnel reconciliation test</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Bad signature, duplicate/out-of-order callback</td>
+<td>Quarantine or ignore idempotently; reconcile provider state</td>
+<td>Callback-order and trust test</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Capacity, constraint or restore failure</td>
+<td>Hold gate and record exact environment/failure</td>
+<td>Seed quality, role and restore test</td>
+</tr>
+</tbody>
+</table>
+<p>Reviewers still need to decide who owns several exception policies and to verify diagram states against implemented contracts. The <a href="?doc=decisions-and-gaps.md">decision register</a> keeps G1 open pending that review.</p>
+</div><footer class="doc-footer"><a href="05-workflows/output-document.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="presenter-notes.md" hidden><div class="doc-kicker">Supporting evidence / Supporting evidence</div><div class="prose"><h1>Presenter notes — Stage 1 discovery</h1>
+<h2>Opening</h2>
+<p>“We used the Talentra docket as the source of obligations and organized discovery into five linked questions: what is required, who acts, what features are needed, how well they must work, and how each workflow handles success and failure.”</p>
+<p>For each step, <strong>A</strong> defines the output structure, <strong>B</strong> rates that structure in a team self-review, and <strong>C</strong> contains the actual Talentra findings. All 15 files are prepared. Gate G1 remains open for owner review.</p>
+<p>Use the <a href="requirement-graph.html">requirement graph</a> to show how one source statement becomes a requirement, actor link, feature and workflow. Use the <a href="schema-hierarchy.html">graphical schema hierarchy</a> to show the separate database structure: <code>talentra_local</code> → schema → table → columns, then switch to foreign-key relationships. The schema page is an offline snapshot of the local database catalog.</p>
+<h2>01 · Requirement Analysis</h2>
+<p>“The legacy problem is inconsistent candidate, job and application records and no unified pipeline view. We grouped the docket into 18 requirements and four explicit exclusions, each with a source, priority, actor and ambiguity note. The full-scale target is a design for 10 million candidate profiles; the laptop proof target is one million.”</p>
+<p>Show the <a href="?doc=01-requirements%2Foutput-document.md">requirement output</a>. Explain that sentence-level mapping and B1–B82 artifact trace are still open.</p>
+<h2>02 · Stakeholders and Roles</h2>
+<p>“We identified 16 actor categories, including candidates, employers, recruiters, distinct administrator roles, auditors, support staff, regulators, scheduled workers and a database engineer. The permission matrix defines allowed scopes and denials. Recruiters can only act on assigned jobs for their company, and candidate blocks must prevent visibility.”</p>
+<p>Show the <a href="?doc=02-stakeholders%2Foutput-document.md">stakeholder output</a>. State that sensitive roles still need owner approval and real role tests.</p>
+<h2>03 · Feature Discovery</h2>
+<p>“Twelve feature groups connect requirements to workflows. We compared documented candidate and employer capabilities of Naukri, Monster and LinkedIn. Talentra’s combined hiring, gig handoff and financial record is a proposed opportunity; public pages do not prove competitor absence or Talentra superiority.”</p>
+<p>Show the <a href="?doc=03-features%2Foutput-document.md">feature output</a>. Avoid an unsupported “we exceed all competitors” claim.</p>
+<h2>04 · NFR Discovery</h2>
+<p>“The local seed measures one million candidates, 100,000 jobs and five million applications. We have proposed numeric latency, load, availability, recovery, privacy and accessibility targets, with test methods. The 60-read-per-second load is derived from assumptions that the product owner must validate.”</p>
+<p>Show the <a href="?doc=04-nfr%2Foutput-document.md">NFR output</a>. Personal-data retention periods and acceptance of proposed targets remain open; local counts do not prove production speed or access control.</p>
+<h2>05 · Workflow Analysis</h2>
+<p>“Twelve workflows cover every must-have feature group. Each records a trigger, actors, decisions and output. The exception catalogue includes cancellation, refund, retry, timeout, denied access and duplicate events.”</p>
+<p>Show the <a href="?doc=05-workflows%2Foutput-document.md">workflow output</a>. Exception ownership and state transitions require domain-owner review.</p>
+<h2>Close and request</h2>
+<p>“The document set is ready for independent review. Please assign product/domain, security/privacy and database/operations reviewers. We will record their decisions in the <a href="?doc=decisions-and-gaps.md">gate register</a> and close G1 only after the outstanding checks pass.”</p>
+</div><footer class="doc-footer"><a href="presenter-notes.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="dbeaver-hierarchy.md" hidden><div class="doc-kicker">Supporting evidence / Supporting evidence</div><div class="prose"><h1>Presenting the local Talentra database in DBeaver</h1>
+<p>Use this with the read-only <code>talentra_viewer</code> connection to <code>talentra_local</code> at <code>127.0.0.1:15432</code>. This is the local synthetic database, not Neon production. The <a href="dbeaver-presentation.sql">presentation SQL</a> contains only <code>SELECT</code> statements.</p>
+<p>For a browser-friendly overview before opening DBeaver, use the <a href="schema-hierarchy.html">graphical schema hierarchy</a>. It was generated from a read-only local PostgreSQL catalog snapshot; click a table to inspect its columns and foreign-key neighbors.</p>
+<h2>The hierarchy to show</h2>
+<pre><code class="language-text">talentra_local
+├── public (195 physical tables): core profile, jobs, applications, commercial and shared modules
+│   ├── user_account → candidate_profile → application → job_requirement → organisation
+│   ├── subscriptions, wallet and wallet_transaction_ledger
+│   ├── notification_preference, notification_delivery and analytics marts
+│   └── populated gig examples: gig_request → gig_application → gig_assignment
+├── identity (16 tables): roles, credentials, consent, blocks, sessions, audit
+├── organisation (12 tables): account, verification, recruiter mapping
+├── gig (17 physical design tables): request → application → assignment → fulfilment reference
+└── neon_auth (2 local compatibility tables): foreign-key targets, not a business module
+</code></pre>
+<p>The table counts and core foreign-key links above were read from <code>talentra_local</code> on 22 October 2026. The <code>public</code> schema is large because several phased modules use it. The current <code>gig</code> physical tables have <strong>zero rows</strong>, while <code>public.gig_request</code>, <code>public.gig_application</code> and <code>public.gig_assignment</code> each have <strong>100 synthetic rows</strong>. Show <code>gig</code> for its design and <code>public</code> for gig data. Do not show all 195 public tables at once.</p>
+<h2>Five-minute live walkthrough</h2>
+<table>
+<thead>
+<tr>
+<th>Time</th>
+<th>Show in DBeaver</th>
+<th>One sentence to say</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0:00–0:30</td>
+<td>Connections → <code>talentra_local</code> → Schemas; expand <code>public</code>, <code>identity</code>, <code>organisation</code>, <code>gig</code></td>
+<td>“The database is organized by business responsibility; <code>public</code> holds the original core plus later shared modules.”</td>
+</tr>
+<tr>
+<td>0:30–1:30</td>
+<td>Core diagram: <code>user_account</code>, <code>candidate_profile</code>, <code>application</code>, <code>job_requirement</code>, <code>organisation</code></td>
+<td>“A candidate owns a profile, applies to a posted job, and the job belongs to an organisation.”</td>
+</tr>
+<tr>
+<td>1:30–2:15</td>
+<td>Open <code>application</code> Columns/Foreign Keys, then run the synthetic candidate query</td>
+<td>“These are enforced references, and we can trace one candidate through five applications.”</td>
+</tr>
+<tr>
+<td>2:15–3:00</td>
+<td>Show <code>identity</code> and <code>organisation</code> schemas; point to <code>user_block</code>, <code>audit_event</code>, <code>job_recruiter_assignment</code></td>
+<td>“Access, audit and recruiter assignment are modelled explicitly, although production-role behavior still needs separate proof.”</td>
+</tr>
+<tr>
+<td>3:00–3:45</td>
+<td>Gig design diagram: <code>gig.gig_worker_profile</code>, <code>gig.gig_request</code>, <code>gig.gig_application</code>, <code>gig.gig_assignment</code>; then populated <code>public.gig_*</code> query</td>
+<td>“Gig work has a separate physical model; this local seed's examples are in the public compatibility tables.”</td>
+</tr>
+<tr>
+<td>3:45–4:30</td>
+<td>Run core count query and show one finance/notification table</td>
+<td>“The local seed has one million candidates, 100,000 jobs and five million applications, plus smaller operational examples.”</td>
+</tr>
+<tr>
+<td>4:30–5:00</td>
+<td><a href="README.md">Stage 1 index</a> and <a href="?doc=decisions-and-gaps.md">gate register</a></td>
+<td>“These data examples support the discovery documents; G1 review and performance/security sign-off remain open.”</td>
+</tr>
+</tbody>
+</table>
+<h2>Make the hierarchy readable</h2>
+<ol>
+<li>In DBeaver <strong>Connections</strong>, expand only the current schema and use the filter bar to find the named tables. DBeaver documents the tree and filters in its <a href="https://dbeaver.com/docs/dbeaver/Database-Navigator/">Connections guide</a> and <a href="https://dbeaver.com/docs/dbeaver/Filter-Database-Objects/">filter guide</a>.</li>
+<li>Create a small custom ER diagram with <strong>File → New → DBeaver → ER Diagram</strong>. Name it <code>Talentra core hiring</code>. Add the five core tables above; create a second diagram named <code>Talentra gig</code>. DBeaver's <a href="https://dbeaver.com/docs/dbeaver/Custom-Diagrams/">custom-diagram guide</a> describes this workflow.</li>
+<li>In each diagram, right-click blank space → <strong>Show Attributes → Any keys</strong>; choose <strong>Crow's Foot</strong> notation and auto-arrange. Keep relationships visible, then export a PNG. These controls and export formats are in DBeaver's <a href="https://dbeaver.com/docs/dbeaver/How-to-use-Diagrams/">diagram guide</a>. Use <code>SVG</code> only if your DBeaver edition offers it.</li>
+<li>Keep one SQL editor open with <a href="dbeaver-presentation.sql">dbeaver-presentation.sql</a>. Run one selected query at a time. Show only a small number of rows, then switch back to the diagram.</li>
+</ol>
+<h2>Exact synthetic example</h2>
+<p>The candidate <code>seed5-00000001@talentra.example</code> currently has candidate ID <code>1</code>, the name <code>ليلى أحمد</code>, and five applications in this local database. <code>Phase 5 Job 000001</code> currently has job ID <code>1</code>. Both are synthetic; the SQL finds them by stable demo values rather than assuming every future seed preserves IDs.</p>
+<h2>Accuracy notes</h2>
+<ul>
+<li>The counts and sample IDs are local observations from 22 October 2026. Re-run the SQL before presenting if the seed changes. The physical <code>gig</code> schema currently has no sample rows.</li>
+<li>DBeaver's <code>talentra_viewer</code> bypasses row security for local inspection; this walkthrough is <strong>not</strong> a demonstration of real role isolation.</li>
+<li>Use the small diagrams to explain domain relationships. The full-schema diagram would be crowded and would obscure the main story.</li>
+</ul>
+</div><footer class="doc-footer"><a href="dbeaver-hierarchy.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="requirements.md" hidden><div class="doc-kicker">Supporting evidence / Supporting evidence</div><div class="prose"><h1>Requirement analysis docket</h1>
+<h2>Problem and scope</h2>
+<p>Legacy job, candidate and application records are inconsistent; candidate retention is low; hiring pipeline visibility is fragmented. Talentra must support operational workflows and analytics at a 10 million candidate full-scale target (docket section 1). The docket explicitly scopes <strong>database design, seed generation, performance validation, security, analytics and defence</strong>. UI implementation, live external integrations, full laptop loading of 10 million profiles, and legacy ETL are out of scope for this assignment. A later product initiative must authorize those separately.</p>
+<p>Priority: <code>M</code> mandatory docket behavior; <code>E</code> expected Tier 2 data; <code>S</code> optional stretch. These labels represent docket obligations, not implementation status. Actor IDs are defined in <a href="?doc=actors-goals-features.md">actors-goals-features.md</a>.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requirement and acceptance intent</th>
+<th>Source</th>
+<th>Priority</th>
+<th>Actors</th>
+<th>Feature / workflow</th>
+<th>Current evidence or gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>REQ-01</td>
+<td>Keep candidate identity, contact, education, experience, skills, languages and resume history, with controlled access.</td>
+<td>section 2, section 4 Tier 1</td>
+<td>M</td>
+<td>ACT-01, ACT-08</td>
+<td>FEAT-01 / WF-01</td>
+<td>Phase 1 schema; bulk seed has limited details</td>
+</tr>
+<tr>
+<td>REQ-02</td>
+<td>Store job requirements, positions, publish state, questionnaires and application status history across the full pipeline.</td>
+<td>section 2, section 4 Tier 1</td>
+<td>M</td>
+<td>ACT-01, ACT-02, ACT-03</td>
+<td>FEAT-02 / WF-02</td>
+<td>Phase 1 schema and seven seeded statuses; transition tests need mapping</td>
+</tr>
+<tr>
+<td>REQ-03</td>
+<td>Enforce actor privileges below the UI; recruiters access only assigned jobs of their own company.</td>
+<td>section 3</td>
+<td>M</td>
+<td>ACT-03, ACT-14, ACT-15</td>
+<td>FEAT-03 / WF-03</td>
+<td>Phase 2 RLS test evidence is from physical test branch; production view behavior needs validation</td>
+</tr>
+<tr>
+<td>REQ-04</td>
+<td>Consultants act only on jobs open to consultants; candidates can block employers, recruiters or consultants, making their profile invisible to blocked parties.</td>
+<td>section 3</td>
+<td>M</td>
+<td>ACT-01, ACT-03, ACT-04</td>
+<td>FEAT-03 / WF-03</td>
+<td>Consultant trigger exists; production blocked-party read test open</td>
+</tr>
+<tr>
+<td>REQ-05</td>
+<td>Recruiters may contact candidates but cannot register them; sensitive actions need an audit trail.</td>
+<td>section 3</td>
+<td>M</td>
+<td>ACT-01, ACT-03, ACT-14, ACT-15</td>
+<td>FEAT-03 / WF-03</td>
+<td>Access-layer path and comprehensive audit test open</td>
+</tr>
+<tr>
+<td>REQ-06</td>
+<td>Model employers, clients, verification, account administrators, hierarchy and effective-dated recruiter mapping.</td>
+<td>section 4 Tier 1</td>
+<td>M</td>
+<td>ACT-02, ACT-03, ACT-08</td>
+<td>FEAT-04 / WF-04</td>
+<td>Phase 2 design; production compatibility views differ</td>
+</tr>
+<tr>
+<td>REQ-07</td>
+<td>Model separate gig worker profiles, one-way applications, requester acceptance, availability, pricing, assignment, external handoff, reconciliation and ratings.</td>
+<td>section 2, section 4 Tier 1</td>
+<td>M</td>
+<td>ACT-02, ACT-06</td>
+<td>FEAT-05 / WF-05</td>
+<td>Phase 2 design and small seed; production overlap rejection untested</td>
+</tr>
+<tr>
+<td>REQ-08</td>
+<td>Model sourcing, consultant requests, candidate shortlists and bulk outreach.</td>
+<td>section 2, section 4 Tier 1</td>
+<td>M</td>
+<td>ACT-02, ACT-03, ACT-04</td>
+<td>FEAT-06 / WF-06</td>
+<td>Phase 3 schema; module query/volume proof open</td>
+</tr>
+<tr>
+<td>REQ-09</td>
+<td>Enforce licence seats, devices and active-session limits at login under concurrency; record revocation and history.</td>
+<td>sections 4–5 Tier 1</td>
+<td>M</td>
+<td>ACT-08, ACT-09</td>
+<td>FEAT-07 / WF-07</td>
+<td>Phase 3 schema; concurrent login test open</td>
+</tr>
+<tr>
+<td>REQ-10</td>
+<td>Keep subscriptions, payments, invoices, refunds and append-only wallet/download ledger with precise money and idempotency.</td>
+<td>sections 4–5 Tier 1</td>
+<td>M</td>
+<td>ACT-02, ACT-08, ACT-10</td>
+<td>FEAT-08 / WF-08</td>
+<td>Phase 3 schema; realistic reconciliation proof open</td>
+</tr>
+<tr>
+<td>REQ-11</td>
+<td>Keep notification and alert preferences, delivery status, support/community records, and language support.</td>
+<td>section 2, section 4 Tier 1</td>
+<td>M</td>
+<td>ACT-01, ACT-02, ACT-10, ACT-12, ACT-14</td>
+<td>FEAT-09 / WF-09</td>
+<td>Phase 4 schema; 1,000 deliveries seeded</td>
+</tr>
+<tr>
+<td>REQ-12</td>
+<td>Produce hiring, sourcing and financial analytics with refresh rules and measurable KPI definitions.</td>
+<td>section 4 Tier 1, B49/B58</td>
+<td>M</td>
+<td>ACT-02, ACT-08</td>
+<td>FEAT-10 / WF-10</td>
+<td>Mart structures exist; refresh after final seed open</td>
+</tr>
+<tr>
+<td>REQ-13</td>
+<td>Store external references and failure/idempotency/audit behavior for payment, verification, gig fulfilment, messaging, legacy sync and optional external data.</td>
+<td>section 6</td>
+<td>M</td>
+<td>ACT-08, ACT-10</td>
+<td>FEAT-11 / WF-11</td>
+<td>Boundary contracts incomplete; live integrations excluded</td>
+</tr>
+<tr>
+<td>REQ-14</td>
+<td>Produce the required three-platform coverage benchmark, representative seed, fixed/module query results, plans, latency distribution, extrapolation, security tests, backup/restore and sign-off.</td>
+<td>section 4 benchmark; B60–B82</td>
+<td>M</td>
+<td>ACT-09, ACT-13, ACT-14, ACT-15, ACT-16</td>
+<td>FEAT-12 / WF-12</td>
+<td>Core laptop-scale counts seeded locally; competitor depth, field quality, performance, access, recovery and sign-off open</td>
+</tr>
+<tr>
+<td>REQ-15</td>
+<td>Record profile views, candidate activity, bookmarks, referral, assessments, enrolment and completion scoring, or justify omission.</td>
+<td>section 4 Tier 2</td>
+<td>E</td>
+<td>ACT-01, ACT-02</td>
+<td>FEAT-01 / WF-01</td>
+<td>Coverage audit needed</td>
+</tr>
+<tr>
+<td>REQ-16</td>
+<td>Salary benchmarks, company ratings, trending snapshots, dashboard aggregates and feature flags may be added as separately justified stretch scope.</td>
+<td>section 4 Tier 3</td>
+<td>S</td>
+<td>ACT-01, ACT-02</td>
+<td>FEAT-10 / WF-10</td>
+<td>No promise to implement</td>
+</tr>
+<tr>
+<td>REQ-17</td>
+<td>Apply or explicitly justify deviations from all ten data-standard rule groups, including naming, keys, domains, lifecycle, nullability, sensitivity, multilingual data, physical names, sessions and money/history.</td>
+<td>section 5</td>
+<td>M</td>
+<td>ACT-09, ACT-14, ACT-15, ACT-16</td>
+<td>FEAT-12 / WF-12</td>
+<td>Per-rule compliance table and independent audit open</td>
+</tr>
+<tr>
+<td>REQ-18</td>
+<td>Produce and validate each module's entities, relationships, columns and constraints in milestone order; record provider and module/owner decisions.</td>
+<td>section 7 B1–B59</td>
+<td>M</td>
+<td>ACT-09, ACT-14, ACT-15, ACT-16</td>
+<td>FEAT-12 / WF-12</td>
+<td>Backlog-by-backlog trace open</td>
+</tr>
+</tbody>
+</table>
+<h2>Ambiguity notes by requirement</h2>
+<p>These notes complete the docket's ambiguity field without hiding unresolved points inside the statement. <code>None found</code> means no ambiguity was identified in this pass; it is not owner acceptance.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Ambiguity note or decision needed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>REQ-01</td>
+<td>Candidate retention period, consent grounds and resume-version policy need privacy review.</td>
+</tr>
+<tr>
+<td>REQ-02</td>
+<td>Valid application stage transitions and questionnaire response retention need product approval.</td>
+</tr>
+<tr>
+<td>REQ-03</td>
+<td>Assignment expiry, account hierarchy and read-time enforcement on production views need testing.</td>
+</tr>
+<tr>
+<td>REQ-04</td>
+<td>Whether block applies to historic applications and shared accounts needs a domain decision.</td>
+</tr>
+<tr>
+<td>REQ-05</td>
+<td>Define the full sensitive-action catalogue and audit payload minimization.</td>
+</tr>
+<tr>
+<td>REQ-06</td>
+<td>Verification authority, parent-child account scope and mapping ownership need approval.</td>
+</tr>
+<tr>
+<td>REQ-07</td>
+<td>Define provider timeout ownership, earnings source freshness and rating eligibility.</td>
+</tr>
+<tr>
+<td>REQ-08</td>
+<td>Define outreach recipient deduplication, consent and bulk batch limits.</td>
+</tr>
+<tr>
+<td>REQ-09</td>
+<td>Exact licence values, active-session expiry and race behavior need approval.</td>
+</tr>
+<tr>
+<td>REQ-10</td>
+<td>Refund timing, currency conversion and ledger reconciliation policy need approval.</td>
+</tr>
+<tr>
+<td>REQ-11</td>
+<td>Channel opt-out precedence, message retention and support access need approval.</td>
+</tr>
+<tr>
+<td>REQ-12</td>
+<td>Candidate-retention denominator, pipeline stage meaning and mart freshness need approval.</td>
+</tr>
+<tr>
+<td>REQ-13</td>
+<td>Source of truth, failure behavior and idempotency key for each of nine boundaries remain open.</td>
+</tr>
+<tr>
+<td>REQ-14</td>
+<td>Query workload, target environment, RTO/RPO and proof criteria need approval.</td>
+</tr>
+<tr>
+<td>REQ-15</td>
+<td>Tier 2 omissions must be listed one by one with a reason.</td>
+</tr>
+<tr>
+<td>REQ-16</td>
+<td>Optional scope only; no delivery commitment until explicitly selected.</td>
+</tr>
+<tr>
+<td>REQ-17</td>
+<td>Every rule group needs a compliance/deviation row and evidence.</td>
+</tr>
+<tr>
+<td>REQ-18</td>
+<td>B1–B59 artifact-to-backlog trace and owner validation remain open.</td>
+</tr>
+</tbody>
+</table>
+<h2>Explicit out-of-scope lines and questions</h2>
+<ul>
+<li><strong>OS-01</strong> UI and live external service integration (section 1); database and boundary contracts remain in scope.</li>
+<li><strong>OS-02</strong> Complete 10 million profile load on a laptop (section 1, sizing); measured 1 million profile laptop scale and reasoned full-scale extrapolation are in scope.</li>
+<li><strong>OS-03</strong> Legacy ETL and migration implementation (section 1); field ownership/conflict design remains in scope under section 6.</li>
+<li><strong>OS-04</strong> Employer sub-roles in this version (section 3); an extension path must be described.</li>
+<li><strong>Q-01, high impact:</strong> Who accepts numerical service, availability, privacy retention and recovery targets absent from the supplied brief?</li>
+<li><strong>Q-02, high impact:</strong> Should production's Phase 2 compatibility views be replaced by the physical Phase 2 design or kept with equivalent access contracts?</li>
+<li><strong>Q-03, resolved for laptop-scale seed:</strong> Reuse local PostgreSQL for the measured dataset because the Neon branch storage limit prevented full loading. Keep production compatibility/performance questions separate.</li>
+<li><strong>Q-04, medium impact:</strong> What are the operational definitions and sources for candidate retention and unified pipeline KPIs?</li>
+</ul>
+<p>The docket's Tier 1 domains are covered by REQ-01–14 at domain level; REQ-17 names rule groups 1–10 and REQ-18 names the module design backlogs. Field-by-field and sentence-by-sentence traceability belongs in the data dictionary and source audit. This document does not claim that audit is complete.</p>
+</div><footer class="doc-footer"><a href="requirements.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="actors-goals-features.md" hidden><div class="doc-kicker">Supporting evidence / Supporting evidence</div><div class="prose"><h1>Actors, goals and feature discovery</h1>
+<p>Section 3 of the docket names nine human roles. The actor IDs below separate its three administrator roles and add gig, audit, support and system boundaries. Their permissions are proposed for review, not claims about current production grants.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Actor</th>
+<th>Goal</th>
+<th>Allowed data/action boundary</th>
+<th>Frequency or trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACT-01</td>
+<td>Candidate</td>
+<td>Build profile, apply, track progress, control visibility</td>
+<td>Own profile/applications; block parties</td>
+<td>Registration, search, application</td>
+</tr>
+<tr>
+<td>ACT-02</td>
+<td>Employer / client</td>
+<td>Post requirements, decide on applicants and gigs</td>
+<td>Own organisation and jobs</td>
+<td>Hiring demand</td>
+</tr>
+<tr>
+<td>ACT-03</td>
+<td>Recruiter</td>
+<td>Source/contact candidates for assigned jobs</td>
+<td>Active assignments within own company; never candidate registration</td>
+<td>Sourcing campaign</td>
+</tr>
+<tr>
+<td>ACT-04</td>
+<td>Consultant</td>
+<td>Source for an open requirement</td>
+<td>Only consultant-open requirements after request approval</td>
+<td>Consultant request</td>
+</tr>
+<tr>
+<td>ACT-05</td>
+<td>Placement officer (TPO)</td>
+<td>Support campus hiring</td>
+<td>Scoped campus candidate/job relationships; exact grants to define</td>
+<td>Campus campaign</td>
+</tr>
+<tr>
+<td>ACT-06</td>
+<td>Gig worker</td>
+<td>Offer services and apply to gigs</td>
+<td>Own profile, availability, bids and assignments</td>
+<td>Gig opportunity</td>
+</tr>
+<tr>
+<td>ACT-07</td>
+<td>Guest</td>
+<td>Discover permitted public information</td>
+<td>Published public data only</td>
+<td>Anonymous search</td>
+</tr>
+<tr>
+<td>ACT-08</td>
+<td>Account Admin</td>
+<td>Govern one customer account</td>
+<td>Account-scoped seats, subscriptions and mappings; sensitive acts audited</td>
+<td>Onboarding and account changes</td>
+</tr>
+<tr>
+<td>ACT-09</td>
+<td>Security reviewer / auditor</td>
+<td>Verify access, audit and recovery</td>
+<td>Read evidence; access to personal data only under explicit control</td>
+<td>Review or incident</td>
+</tr>
+<tr>
+<td>ACT-10</td>
+<td>External provider</td>
+<td>Return payment, verification, fulfilment or delivery result</td>
+<td>Idempotent boundary events, no direct candidate access</td>
+<td>Callback/reconciliation</td>
+</tr>
+<tr>
+<td>ACT-11</td>
+<td>Scheduled worker</td>
+<td>Refresh marts and reconcile status</td>
+<td>Narrow service principal and job-specific permissions</td>
+<td>Schedule</td>
+</tr>
+<tr>
+<td>ACT-12</td>
+<td>Support staff</td>
+<td>Resolve account, payment and delivery tickets</td>
+<td>Case-scoped metadata; no default candidate contact or payment secrets</td>
+<td>Ticket or incident</td>
+</tr>
+<tr>
+<td>ACT-13</td>
+<td>Regulator / data-protection authority</td>
+<td>Review lawful complaint or compliance response</td>
+<td>Approved evidence export through privacy owner; no standing production login</td>
+<td>Complaint or formal request</td>
+</tr>
+<tr>
+<td>ACT-14</td>
+<td>Admin</td>
+<td>Resolve platform support and operating incidents</td>
+<td>Ticketed, time-limited action; no default broad candidate read</td>
+<td>Incident or support escalation</td>
+</tr>
+<tr>
+<td>ACT-15</td>
+<td>Super Admin</td>
+<td>Govern global policy and exceptional access</td>
+<td>Platform policy; logged elevation for sensitive data</td>
+<td>Policy change or exceptional incident</td>
+</tr>
+<tr>
+<td>ACT-16</td>
+<td>Database engineer / evidence runner</td>
+<td>Build the model and produce reproducible proof</td>
+<td>Development/test environment and approved migration path; no default production personal-data read</td>
+<td>Migration, seed, test or restore exercise</td>
+</tr>
+</tbody>
+</table>
+<p>The TPO, guest and account-admin grants require explicit authorization design. There are no employer sub-roles in this docket version. No role should inherit unrestricted candidate contact access from a broad account grant.</p>
+<h2>Outcome graph</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Outcome</th>
+<th>Evidence needed</th>
+<th>Related requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GOAL-01</td>
+<td>Consistent candidate and job records</td>
+<td>Duplicate/orphan checks, field quality, coverage</td>
+<td>REQ-01, REQ-02, REQ-14</td>
+</tr>
+<tr>
+<td>GOAL-02</td>
+<td>One defensible hiring pipeline</td>
+<td>Reconciled event/status counts and funnel definitions</td>
+<td>REQ-02, REQ-12</td>
+</tr>
+<tr>
+<td>GOAL-03</td>
+<td>Better retention and placement decisions</td>
+<td>Cohort retention and conversion KPI definitions plus baseline</td>
+<td>REQ-01, REQ-12</td>
+</tr>
+<tr>
+<td>GOAL-04</td>
+<td>Safe multi-tenant operations</td>
+<td>Role isolation, blocked-party, audit and recovery tests</td>
+<td>REQ-03–05, REQ-14</td>
+</tr>
+<tr>
+<td>GOAL-05</td>
+<td>Sustainable revenue and gig operations</td>
+<td>Ledger reconciliation, assignment integrity, external status matching</td>
+<td>REQ-07, REQ-10, REQ-13</td>
+</tr>
+</tbody>
+</table>
+<p>GOAL-03 has no source-defined numeric success threshold; observing a large seed is not evidence of improved retention.</p>
+<h2>Feature inventory</h2>
+<p><code>Must</code> means mandatory for the database assignment, <code>Expected</code> means Tier 2 or an explicit justification, <code>Stretch</code> means optional. The three-platform comparison below uses official public materials accessed 2026-10-17. It compares documented data coverage, not running product behavior or complete feature parity.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Capability</th>
+<th>Priority</th>
+<th>Requirement / goal</th>
+<th>Workflow</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FEAT-01</td>
+<td>Candidate profile, resumes and related history</td>
+<td>Must + Expected details</td>
+<td>REQ-01, REQ-15 / GOAL-01</td>
+<td>WF-01</td>
+</tr>
+<tr>
+<td>FEAT-02</td>
+<td>Jobs, questionnaires and application pipeline</td>
+<td>Must</td>
+<td>REQ-02 / GOAL-02</td>
+<td>WF-02</td>
+</tr>
+<tr>
+<td>FEAT-03</td>
+<td>Access, blocking, consent and audit</td>
+<td>Must</td>
+<td>REQ-03–05 / GOAL-04</td>
+<td>WF-03</td>
+</tr>
+<tr>
+<td>FEAT-04</td>
+<td>Organisation and recruiter mapping</td>
+<td>Must</td>
+<td>REQ-06 / GOAL-04</td>
+<td>WF-04</td>
+</tr>
+<tr>
+<td>FEAT-05</td>
+<td>Separate gig marketplace and fulfilment reference</td>
+<td>Must</td>
+<td>REQ-07 / GOAL-05</td>
+<td>WF-05</td>
+</tr>
+<tr>
+<td>FEAT-06</td>
+<td>Sourcing, consultant request and outreach</td>
+<td>Must</td>
+<td>REQ-08 / GOAL-02</td>
+<td>WF-06</td>
+</tr>
+<tr>
+<td>FEAT-07</td>
+<td>Seats, devices, sessions and revocation</td>
+<td>Must</td>
+<td>REQ-09 / GOAL-04</td>
+<td>WF-07</td>
+</tr>
+<tr>
+<td>FEAT-08</td>
+<td>Subscriptions, wallet, refunds and downloads</td>
+<td>Must</td>
+<td>REQ-10 / GOAL-05</td>
+<td>WF-08</td>
+</tr>
+<tr>
+<td>FEAT-09</td>
+<td>Preferences, notifications, support/community</td>
+<td>Must</td>
+<td>REQ-11 / GOAL-03</td>
+<td>WF-09</td>
+</tr>
+<tr>
+<td>FEAT-10</td>
+<td>Analytics and optional reference insights</td>
+<td>Must + Stretch domains</td>
+<td>REQ-12, REQ-16 / GOAL-02–03</td>
+<td>WF-10</td>
+</tr>
+<tr>
+<td>FEAT-11</td>
+<td>External integration reference contracts</td>
+<td>Must</td>
+<td>REQ-13 / GOAL-05</td>
+<td>WF-11</td>
+</tr>
+<tr>
+<td>FEAT-12</td>
+<td>Seed, validation, performance and recovery evidence</td>
+<td>Must</td>
+<td>REQ-14 / GOAL-01–05</td>
+<td>WF-12</td>
+</tr>
+</tbody>
+</table>
+<h3>Required competitor study: evidence register</h3>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Candidate data fields evidenced</th>
+<th>Employer data fields evidenced</th>
+<th>Talentra design comparison</th>
+<th>Evidence limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Naukri</td>
+<td><a href="https://static.naukimg.com/rstatic/docs/Naukri_Confidential_Guide_%28for_candidates%29.pdf">Profile guide</a> documents skills, employment/designation and resume; <a href="https://recruit.naukri.com/recruit/resume-database-access-resdex">Resdex</a> exposes location, industry and skill filters.</td>
+<td><a href="https://recruit.naukri.com/recruit/job-posting">Job posting</a> supports postings, applicants and CV recommendations.</td>
+<td>Talentra schema matches profile, skills, job and application domains; separate gig/ledger domains may add coverage, but comparative product depth is unproven.</td>
+<td>Public documentation does not establish Naukri's entire internal data model.</td>
+</tr>
+<tr>
+<td>Monster</td>
+<td><a href="https://hiring.monster.com/help-center/job-postings/managing-your-jobs-and-applicants/applicant-management-with-monster/">Applicant management</a> documents work experience, skills, education and resumes; <a href="https://www.monster.com/resume/upload">resume upload</a> describes visibility controls.</td>
+<td><a href="https://hiring.monster.com/help-center/job-postings/managing-your-jobs-and-applicants/applicant-management-with-monster/">Applicant management</a> shows pipeline and applicant details; <a href="https://hiring.monster.com/help-center/faqs-and-resources/monster-faqs/">FAQ</a> describes employer/company profile.</td>
+<td>Talentra schema matches core profile, resume, posting and pipeline concepts; blocked-party enforcement and gig handoff require separate behavioral comparison.</td>
+<td>Product tier and region may change available fields.</td>
+</tr>
+<tr>
+<td>LinkedIn</td>
+<td><a href="https://socialimpact.linkedin.com/content/dam/me/socialimpact-linkedin-com/lifg-resources/linkedin-training-content/linkedin-profile-tip-sheet.pdf">Profile guidance</a> documents experience, education, skills and optional sections.</td>
+<td><a href="https://www.business.linkedin.com/advertise/linkedin-pages">Company Pages</a> document company name, industry, site and description; <a href="https://business.linkedin.com/in/en/hire/company-career-pages/features">Career Pages</a> document jobs and insights.</td>
+<td>Talentra schema matches profile/organisation/job basics and adds an explicit gig and financial ledger model; LinkedIn's network/endorsement depth is outside the current core design.</td>
+<td>A public page cannot prove all stored fields or data quality.</td>
+</tr>
+</tbody>
+</table>
+<p>The docket asks Talentra to exceed competitors in the domains that matter. These sources support a <strong>coverage hypothesis</strong>, not that success claim. A field-level audit of Talentra's data dictionary and product-specific access to competing flows are needed before claiming that it exceeds any of them.</p>
+</div><footer class="doc-footer"><a href="actors-goals-features.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="nfr-workflows.md" hidden><div class="doc-kicker">Supporting evidence / Supporting evidence</div><div class="prose"><h1>NFR register and workflows</h1>
+<h2>Quality targets</h2>
+<p><code>Docket</code> targets are acceptance obligations. <code>Proposal</code> targets are measurable candidates requiring stakeholder approval; they are not presented as existing SLOs. Every metric has a measurement method.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Metric and target</th>
+<th>Basis</th>
+<th>Test method / evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NFR-01</td>
+<td>Measured laptop-scale seed: 1m candidates, 100k jobs, 5m applications</td>
+<td>Docket sizing, B60–B61</td>
+<td>Counts, distribution and quality checks after seed</td>
+</tr>
+<tr>
+<td>NFR-02</td>
+<td>Full-scale model: 10m candidates, 1m jobs, 100m applications</td>
+<td>Docket sizing, B74</td>
+<td>Extrapolate from measured query plans, index size and cache behavior; identify first failing query</td>
+</tr>
+<tr>
+<td>NFR-03</td>
+<td>12 fixed query cases, top 10 with plans and repeated p50/p95/p99 timings</td>
+<td>B65, B70</td>
+<td>Save exact SQL, run count, environment and latency samples</td>
+</tr>
+<tr>
+<td>NFR-04</td>
+<td>Zero unauthorized cross-account reads/writes in enumerated roles; every sensitive action auditable</td>
+<td>section 3, B79</td>
+<td>Role matrix tests with separate accounts, blocked-party and audit assertions</td>
+</tr>
+<tr>
+<td>NFR-05</td>
+<td>Zero unvalidated constraints and zero orphan applications in seed</td>
+<td>section 5, B66; project quality target</td>
+<td>Catalog check and FK/orphan queries after load</td>
+</tr>
+<tr>
+<td>NFR-06</td>
+<td>Restore time objective: <strong>proposed 4 hours</strong>, recovery point objective: <strong>proposed 1 hour</strong></td>
+<td>Team proposal; docket B80 requires RTO but supplies no number in available text</td>
+<td>Isolated restore exercise with start/end timestamps and recovery point comparison</td>
+</tr>
+<tr>
+<td>NFR-07</td>
+<td>Candidate/job lookup p95 <strong>proposed 500 ms</strong> at NFR-01 data size</td>
+<td>Team proposal</td>
+<td>Warm and cold measurements, concurrency and hardware documented; confirm exact query mix</td>
+</tr>
+<tr>
+<td>NFR-08</td>
+<td>Mart freshness <strong>proposed 24 hours</strong> and totals reconcile to source tables</td>
+<td>Team proposal</td>
+<td><code>max(report_date)</code>, refresh log and source-to-mart counts after final seed</td>
+</tr>
+<tr>
+<td>NFR-09</td>
+<td>Service availability <strong>proposed 99.9% monthly</strong></td>
+<td>Team proposal for eventual application, outside current database hackathon sign-off</td>
+<td>SLI from user-visible request monitoring, excluded maintenance policy defined</td>
+</tr>
+<tr>
+<td>NFR-10</td>
+<td><strong>100%</strong> of personal-data entities must have an owner-approved numeric retention period before policy sign-off. Candidate inactivity review at <strong>24 months</strong> is a provisional planning value, not an approved deletion rule.</td>
+<td>section 5 requires a per-entity policy but gives no duration; 24 months is a team proposal requiring privacy/product approval</td>
+<td>Inventory every personal-data entity; check approved period and trigger; dry-run expiry, deletion and exception handling</td>
+</tr>
+<tr>
+<td>NFR-11</td>
+<td><strong>Proposed:</strong> 100% of user-facing labels have a translation key, default-language value and fallback; any future UI targets WCAG 2.2 AA, with 0 critical accessibility failures at release</td>
+<td>Docket section 5 multilingual rule; WCAG is a proposed future-UI standard, not a database acceptance obligation</td>
+<td>Check key/translation completeness and fallback on every supported language; audit future UI against all applicable WCAG 2.2 AA criteria</td>
+</tr>
+<tr>
+<td>NFR-12</td>
+<td><strong>Proposed privacy operations:</strong> 100% of eligible erasure requests reach a recorded decision within 30 calendar days; execute approved deletion or exception within 30 more days</td>
+<td>Team service target, not a claimed statutory deadline; final per-entity retention periods remain Q-01</td>
+<td>Seed eligible/ineligible requests, measure timestamps and verify deletion propagation, backups and lawful exception evidence</td>
+</tr>
+<tr>
+<td>NFR-13</td>
+<td><strong>Proposed load:</strong> 60 read requests/second against the NFR-01 seed for 30 minutes; candidate/job lookup p95 ≤500 ms and error rate &lt;1%</td>
+<td>Planning model: 1% of 1m candidates active/day × 50 reads/day ÷ 86,400 seconds × 10 peak factor ≈58 reads/s, rounded to 60. All usage assumptions need product validation</td>
+<td>Record query mix, hardware, cache state and per-request latency/error samples; run 30-minute load and report p50/p95/p99</td>
+</tr>
+</tbody>
+</table>
+<p>The 2026-10-17 live read shows 250k candidates, 25k jobs, 1.25m applications, database size 843,079,680 bytes and a 1 GiB Neon branch limit. These are 25% of NFR-01 counts and do not validate NFR-02 or NFR-07. The physical schema differs on production, so the access tests in NFR-04 must target production behavior separately.</p>
+<p>The <a href="?doc=..%2F..%2Fphase5%2Flocal%2Fvalidation-report.md">local PostgreSQL validation</a> subsequently reached all NFR-01 core row counts in the existing container and passed four constraint suites. That result is environment-specific and does not establish field representativeness, production RLS or NFR-02/03/07 performance.</p>
+<h2>Workflow catalogue</h2>
+<p>Each row gives trigger → decisions → output and an exception path. The IDs link to every must-have feature in <a href="?doc=actors-goals-features.md">the inventory</a>.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Trigger, actors and core flow</th>
+<th>Failure/exception to test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WF-01</td>
+<td>Candidate registers (ACT-01) → consents → enters profile and resume → records history (FEAT-01)</td>
+<td>Duplicate identity, withdrawn consent, deletion request, missing optional details</td>
+</tr>
+<tr>
+<td>WF-02</td>
+<td>Employer publishes job (ACT-02) → candidate searches/applies (ACT-01) → application moves through stages (FEAT-02)</td>
+<td>Closed/unpublished job, duplicate application, illegal transition, withdrawal</td>
+</tr>
+<tr>
+<td>WF-03</td>
+<td>Recruiter/consultant requests candidate or job access (ACT-03/04) → resolve company mapping, assignment, block and openness → audit allow/deny (FEAT-03)</td>
+<td>Expired mapping, cross-company job, candidate block, attempted recruiter registration, missing audit</td>
+</tr>
+<tr>
+<td>WF-04</td>
+<td>Account admin creates/verifies organisation (ACT-08) → assigns recruiter with effective dates (FEAT-04)</td>
+<td>Hierarchy cycle, overlapping assignment, unverified/blocked company</td>
+</tr>
+<tr>
+<td>WF-05</td>
+<td>Worker offers availability (ACT-06) → requester posts priced gig (ACT-02) → worker applies → requester accepts → external handoff reconciles and rating follows (FEAT-05)</td>
+<td>Overlapping window, duplicate bid, rejected bid, provider timeout/retry, duplicate fulfilment event</td>
+</tr>
+<tr>
+<td>WF-06</td>
+<td>Employer opens sourcing request (ACT-02) → consultant accepts/declines (ACT-04) → recruiter sends outreach (ACT-03) → recipient status stored (FEAT-06)</td>
+<td>Job closed to consultants, stale mapping, duplicate recipient, provider failure</td>
+</tr>
+<tr>
+<td>WF-07</td>
+<td>Account allocates licence and seat (ACT-08) → user registers device and logs in → session counts against limit (FEAT-07)</td>
+<td>Two simultaneous logins at cap, revoked seat, device replacement, expired session release</td>
+</tr>
+<tr>
+<td>WF-08</td>
+<td>Employer subscribes/recharges (ACT-02) → gateway confirms (ACT-10) → ledger credits/debits for posting/download → invoice/refund (FEAT-08)</td>
+<td>Duplicate webhook, partial refund, gateway timeout, insufficient balance, compensating entry</td>
+</tr>
+<tr>
+<td>WF-09</td>
+<td>User chooses preferences (ACT-01/02) → worker queues alert → provider delivers → support ticket if needed (FEAT-09)</td>
+<td>Opt-out, duplicate callback, retry exhaustion, privacy-safe message retention</td>
+</tr>
+<tr>
+<td>WF-10</td>
+<td>Scheduled worker refreshes marts (ACT-11) → admin reviews funnel, sourcing and finance metrics (ACT-08) (FEAT-10)</td>
+<td>Late source events, stale mart, mismatched totals, null KPI denominator</td>
+</tr>
+<tr>
+<td>WF-11</td>
+<td>External provider responds (ACT-10) → reference, status and audit recorded (FEAT-11)</td>
+<td>Duplicate/out-of-order callback, provider outage, untrusted signature, reconciliation gap</td>
+</tr>
+<tr>
+<td>WF-12</td>
+<td>Engineer loads synthetic seed (ACT-16) → checks quality → captures plans/timings → tests access and restores snapshot → auditor (ACT-09) reviews evidence (FEAT-12)</td>
+<td>Capacity ceiling, skewed data, failed query, restore beyond RTO, incomplete evidence</td>
+</tr>
+</tbody>
+</table>
+</div><footer class="doc-footer"><a href="nfr-workflows.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="test-case-graph.md" hidden><div class="doc-kicker">Supporting evidence / Supporting evidence</div><div class="prose"><h1>Test-case graph (working schema)</h1>
+<p>The student notes recommend showing the first two levels before expanding leaves, then testing the graph against actual data. This graph is a test inventory, not a claim that cases pass. <code>TC</code> cases are intents for playbook step 15 and docket B65–B80; existing SQL suites must be mapped to them before marking coverage.</p>
+<details class="diagram-source"><summary>Workflow diagram notation</summary><p>The flow and exception tables around this diagram are formatted below. Open this source when reviewing exact diagram branches.</p><pre><code>flowchart TD
+  T[Test cases] --&gt; S[Structure &amp; naming]
+  T --&gt; I[Integrity &amp; data quality]
+  T --&gt; B[Business behavior]
+  T --&gt; P[Security &amp; privacy]
+  T --&gt; N[Nonfunctional &amp; recovery]
+  S --&gt; S1[Catalog / constraints]
+  I --&gt; I1[Seed distributions / orphans]
+  B --&gt; B1[State / money / gig rules]
+  P --&gt; P1[Role / block / audit]
+  N --&gt; N1[Plans / latency / restore]
+</code></pre></details><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Branch</th>
+<th>Requirement/NFR</th>
+<th>Representative assertion</th>
+<th>Evidence status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TC-01</td>
+<td>Structure</td>
+<td>REQ-01–13</td>
+<td>Tables, keys and constraint naming match approved model</td>
+<td>Prior phase catalog exports; full compliance audit open</td>
+</tr>
+<tr>
+<td>TC-02</td>
+<td>Integrity</td>
+<td>REQ-01/02, NFR-05</td>
+<td>Seed has no orphan applications or invalid FK constraints</td>
+<td>2026-10-16 report: 0 each; repeat after new load</td>
+</tr>
+<tr>
+<td>TC-03</td>
+<td>Integrity</td>
+<td>REQ-01, NFR-01</td>
+<td>Multilingual names and duplicates have documented distributions; detail coverage measured</td>
+<td>Partial seed report; detailed profile coverage open</td>
+</tr>
+<tr>
+<td>TC-04</td>
+<td>Behavior</td>
+<td>REQ-02</td>
+<td>Illegal application transitions rejected; all allowed transitions reachable</td>
+<td>Open</td>
+</tr>
+<tr>
+<td>TC-05</td>
+<td>Behavior</td>
+<td>REQ-07</td>
+<td>Same gig worker cannot hold overlapping accepted assignments</td>
+<td>Test-branch suite exists; production check open</td>
+</tr>
+<tr>
+<td>TC-06</td>
+<td>Behavior</td>
+<td>REQ-09</td>
+<td>Concurrent login at device cap admits only allowed sessions</td>
+<td>Open</td>
+</tr>
+<tr>
+<td>TC-07</td>
+<td>Behavior</td>
+<td>REQ-10</td>
+<td>Refund creates compensating ledger entry; duplicate webhook makes no second credit</td>
+<td>Open</td>
+</tr>
+<tr>
+<td>TC-08</td>
+<td>Security</td>
+<td>REQ-03–05, NFR-04</td>
+<td>Cross-account recruiter and blocked-party read/write denied and audited</td>
+<td>Production behavior open</td>
+</tr>
+<tr>
+<td>TC-09</td>
+<td>Security</td>
+<td>REQ-01, NFR-10</td>
+<td>Retention/deletion process removes or masks candidate data within approved period</td>
+<td>Policy and test open</td>
+</tr>
+<tr>
+<td>TC-10</td>
+<td>Nonfunctional</td>
+<td>REQ-14, NFR-03/07</td>
+<td>Twelve fixed queries run; top ten plans and p50/p95/p99 saved at declared size</td>
+<td>Open</td>
+</tr>
+<tr>
+<td>TC-11</td>
+<td>Nonfunctional</td>
+<td>REQ-12, NFR-08</td>
+<td>Mart refresh totals reconcile after final seed</td>
+<td>Open; current funnel mart only 10 rows</td>
+</tr>
+<tr>
+<td>TC-12</td>
+<td>Recovery</td>
+<td>REQ-14, NFR-06</td>
+<td>Isolated restore meets accepted RTO/RPO</td>
+<td>Target acceptance and exercise open</td>
+</tr>
+</tbody>
+</table>
+<p>Review this classification against the actual SQL suites and production catalog. Split branches only where a distinction changes test ownership or evidence; more diagram nodes alone do not prove quality.</p>
+</div><footer class="doc-footer"><a href="test-case-graph.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="decisions-and-gaps.md" hidden><div class="doc-kicker">Supporting evidence / Supporting evidence</div><div class="prose"><h1>Decisions, evidence and G1 gate</h1>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Decision / assumption</th>
+<th>Reason and evidence</th>
+<th>Consequence or owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DEC-01</td>
+<td>Use PostgreSQL 18 on Neon for this assignment.</td>
+<td>Docket allows PostgreSQL/MySQL; existing migrations and Neon project use PostgreSQL 18.</td>
+<td>Keep SQL portable only where useful; PostgreSQL constraints are authoritative.</td>
+</tr>
+<tr>
+<td>DEC-02</td>
+<td>Keep gig work separate from core job/application records, joined in reporting.</td>
+<td>Different actors, availability windows, bid direction and external fulfilment (section 2); existing <code>gig</code> schema reflects this.</td>
+<td>Define cross-domain KPI mapping; enforce gig integrity separately.</td>
+</tr>
+<tr>
+<td>DEC-03</td>
+<td>Treat source docket as obligations and playbook/student notes as method.</td>
+<td>Their phase numbering and example scales differ.</td>
+<td>Do not replace docket targets with teaching examples.</td>
+</tr>
+<tr>
+<td>DEC-04</td>
+<td>Treat production seed and test-branch schema as distinct evidence.</td>
+<td><a href="../../phase5/README.md">Phase 5 status</a> reports compatibility views; live Neon read found 1 <code>identity</code> base table and 15 views on production.</td>
+<td>Reconcile Phase 2 design before claiming production RLS equivalence.</td>
+</tr>
+<tr>
+<td>DEC-05</td>
+<td>Keep proposed service targets unapproved.</td>
+<td>Docket gives scale and measurement deliverables but no accepted p95, RTO or retention durations.</td>
+<td>Product/security owner must decide NFR-06–10.</td>
+</tr>
+<tr>
+<td>DEC-06</td>
+<td>Use the existing local PostgreSQL container for the laptop-scale seed.</td>
+<td><a href="?doc=..%2F..%2Fphase5%2Flocal%2Fvalidation-report.md">Local validation</a> records the full core counts and constraint-suite results; Neon branch capacity blocked the same load there.</td>
+<td>Preserve Neon production as separate evidence; local counts do not establish production RLS or performance.</td>
+</tr>
+</tbody>
+</table>
+<h2>Live Neon observation</h2>
+<p>Read-only query on 2026-10-17 15:07:56 UTC, project <code>jolly-pond-45332483</code>, branch <code>br-jolly-dawn-azv4gh54</code>, database <code>neondb</code>: 250,000 candidate profiles; 25,000 jobs; 1,250,000 applications; <code>pg_database_size</code> 843,079,680 bytes. Branch listing reported 867,188,736 logical bytes against 1,073,741,824 limit, a different metric from <code>pg_database_size</code>. A second read found 10 <code>analytics_application_funnel_daily</code> rows (latest <code>report_date</code> 2026-10-16), 1,000 notification deliveries, and zero applications with null candidate/job IDs. <a href="neon-observation.sql">Query</a> and <a href="neon-observation.json">result</a> preserve the observation. These are observations, not a complete quality audit.</p>
+<h2>Gate register</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Status</th>
+<th>Closure evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Docket problem, scope and core requirements</td>
+<td>Reviewable artifacts prepared</td>
+<td>Domain owner checks sentence-level mapping, especially Tier 2 and rule groups</td>
+</tr>
+<tr>
+<td>Actor linkage and feature/workflow linkage</td>
+<td>Reviewable artifacts prepared</td>
+<td>Product/security review of TPO, guest, account-admin and blocked-party semantics</td>
+</tr>
+<tr>
+<td>Three-platform feature benchmark</td>
+<td>Reviewable artifact prepared</td>
+<td>Official-source comparison exists; validate field-level Talentra coverage and avoid an unsupported exceed claim</td>
+</tr>
+<tr>
+<td>Numeric NFR targets</td>
+<td>Partial</td>
+<td>Accept or replace proposed latency, availability, RTO/RPO, retention and freshness targets</td>
+</tr>
+<tr>
+<td>Independent challenge/review</td>
+<td>Open</td>
+<td>Named reviewer comments on schema, field meaning, omissions and actual sample data; record resolution</td>
+</tr>
+<tr>
+<td>G1 Problem understood</td>
+<td><strong>Open</strong></td>
+<td>All above closed; every requirement has actor, every accepted NFR has metric/test, each must-have feature has workflow</td>
+</tr>
+</tbody>
+</table>
+<p>Next work after G1: complete the playbook model dictionary/privacy register against current tables, map existing SQL tests to <code>TC</code> IDs, then execute remaining Phase 5 validation against the local full-scale seed and separately confirm production compatibility on Neon. Do not apply the old <a href="../../sources/talentra_schema.sql">all-module draft</a> to production.</p>
+</div><footer class="doc-footer"><a href="decisions-and-gaps.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article><article class="document" data-doc="../../phase5/local/validation-report.md" hidden><div class="doc-kicker">Supporting evidence / Supporting evidence</div><div class="prose"><h1>Local seed validation — 2026-10-21</h1>
+<p>Target: existing <code>queryparity-postgres-1</code> container, PostgreSQL 17.11,
+database <code>talentra_local</code> on <code>127.0.0.1:15432</code>. These results are local and
+do not describe the Neon production branch.</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th style="text-align:right">Observed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Candidate profiles</td>
+<td style="text-align:right">1,000,000</td>
+</tr>
+<tr>
+<td>Job requirements</td>
+<td style="text-align:right">100,000</td>
+</tr>
+<tr>
+<td>Applications</td>
+<td style="text-align:right">5,000,000</td>
+</tr>
+<tr>
+<td>Application statuses represented</td>
+<td style="text-align:right">7 of 7</td>
+</tr>
+<tr>
+<td>Non-ASCII synthetic names</td>
+<td style="text-align:right">400,000</td>
+</tr>
+<tr>
+<td>Orphan applications</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td>PostgreSQL database size after all examples</td>
+<td style="text-align:right">5,473 MB</td>
+</tr>
+<tr>
+<td>Host free space after load</td>
+<td style="text-align:right">about 3.6 GiB</td>
+</tr>
+</tbody>
+</table>
+<p>Additional examples: 100 gig workers, 100 gig requests, 100 assignments,
+10 licences, 10 subscriptions, 10 payments, five refunds, ten outreach
+recipients, 1,000 notification deliveries, ten community discussions,
+one audit event and ten application funnel rows. Exact current counts can
+be checked with <a href="../../phase5/local/validate.sql">validate.sql</a>.</p>
+<p>Rollback-only validation on this seeded database passed:</p>
+<table>
+<thead>
+<tr>
+<th>Suite</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Phase 1 constraints</td>
+<td>26/26</td>
+</tr>
+<tr>
+<td>Phase 2 constraints</td>
+<td>36/36</td>
+</tr>
+<tr>
+<td>Phase 3 constraints</td>
+<td>37/37</td>
+</tr>
+<tr>
+<td>Phase 4 constraints</td>
+<td>20/20</td>
+</tr>
+</tbody>
+</table>
+<p>The DBeaver login <code>talentra_viewer</code> was tested over localhost: it sees the
+1,000,000 candidate rows and 100 gig requests, with <code>SELECT</code> on the latter
+and no <code>INSERT</code> privilege on <code>candidate_profile</code>. The password is in the
+ignored, mode-600 <code>phase5/local/.env</code> file.</p>
+<p>This proves the laptop-scale core row counts and selected integrity checks.
+It does not prove all reference lookups or profile detail are populated,
+that analytics marts reconcile after the final load, or that the performance,
+security and recovery gates are complete. The local schema combines physical
+Phase 2 tables with required legacy public tables for the Phase 5 examples;
+it is not a byte-for-byte copy of Neon production.</p>
+</div><footer class="doc-footer"><a href="../../phase5/local/validation-report.md">View original Markdown source</a><span>All status claims retain the source document’s evidence limits.</span></footer></article>
+    </main>
+  </div>
+  <script>
+    const pages = [...document.querySelectorAll('.document')];
+    const links = [...document.querySelectorAll('[data-doc-link]')];
+    const allowed = new Set(pages.map(page => page.dataset.doc));
+    function showDocument(key) {
+      const selected = allowed.has(key) ? key : '01-requirements/output-document.md';
+      pages.forEach(page => { page.hidden = page.dataset.doc !== selected; });
+      links.forEach(link => { link.classList.toggle('selected', link.dataset.docLink === selected); });
+      document.getElementById('current-label').textContent = selected.replaceAll('/', ' / ').replace('.md', '');
+      document.title = 'Talentra · ' + selected.split('/').pop().replace('.md', '');
+      const step = selected.match(/^0([1-5])-/)?.[1];
+      const mapHref = 'discovery-visual.html' + (step ? '#step-' + step : '');
+      document.getElementById('return-map').href = mapHref;
+      document.getElementById('toolbar-map').href = mapHref;
+      window.scrollTo(0, 0);
+    }
+    showDocument(new URLSearchParams(location.search).get('doc'));
+    window.addEventListener('popstate', () => showDocument(new URLSearchParams(location.search).get('doc')));
+    document.addEventListener('click', event => {
+      const anchor = event.target.closest('a[data-doc-link], .prose a[href^="?doc="]');
+      if (!anchor || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      const href = anchor.getAttribute('href');
+      if (!href || !href.startsWith('?doc=')) return;
+      event.preventDefault();
+      const key = new URLSearchParams(href.slice(1)).get('doc');
+      history.pushState(null, '', href);
+      showDocument(key);
+    });
+  </script>
+</body>
+</html>

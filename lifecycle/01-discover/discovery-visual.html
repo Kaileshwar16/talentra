@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Talentra · Stage 1 discovery map</title>
+  <style>
+    :root { --ink:#172640; --muted:#50627b; --line:#ccd7e5; --paper:#f6f8fc; --blue:#1769aa; --teal:#087f74; --amber:#aa5d0b; --violet:#7652a6; --rose:#ad4268; --white:#fff; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+    a { color:#0b5f9d; text-underline-offset:3px; }
+    button { font:inherit; }
+    button:focus-visible, a:focus-visible { outline:3px solid #e4a12b; outline-offset:3px; }
+    .wrap { max-width:1250px; margin:auto; padding:28px 24px 80px; }
+    .topline { display:flex; justify-content:space-between; gap:20px; align-items:start; flex-wrap:wrap; }
+    .eyebrow { margin:0 0 5px; color:var(--blue); font-size:.8rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+    h1 { margin:0; font-size:clamp(2rem,4.3vw,3.6rem); line-height:1.05; letter-spacing:-.035em; }
+    .subtitle { max-width:760px; margin:14px 0 0; color:var(--muted); font-size:1.08rem; }
+    .actions { display:flex; gap:8px; flex-wrap:wrap; }
+    .action { background:var(--white); border:1px solid var(--line); border-radius:10px; padding:9px 13px; color:var(--ink); text-decoration:none; cursor:pointer; font-weight:700; }
+    .action:hover { border-color:var(--blue); }
+    .strip { margin:30px 0 16px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+    .pill { padding:5px 10px; border-radius:999px; background:#e7eef8; color:#23456f; font-size:.83rem; font-weight:750; }
+    .pill.open { background:#fff0d9; color:#78440a; }
+    .pill.local { background:#e3f3ef; color:#165c50; }
+    .sequence { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:13px; margin:12px 0 20px; }
+    .step { position:relative; width:100%; min-height:154px; text-align:left; padding:19px 17px; background:var(--white); border:2px solid var(--line); border-radius:17px; color:var(--ink); cursor:pointer; box-shadow:0 6px 20px rgba(29,49,76,.05); transition:transform .15s,border-color .15s,box-shadow .15s; }
+    .step:hover { transform:translateY(-3px); box-shadow:0 11px 24px rgba(29,49,76,.12); }
+    .step[aria-selected="true"] { border-color:var(--accent); box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 17%,white); }
+    .step::after { content:"→"; position:absolute; right:-15px; top:50%; transform:translateY(-50%); z-index:2; color:#7990a7; font-weight:900; font-size:1.1rem; }
+    .step:last-child::after { content:""; }
+    .step .num { display:inline-grid; place-items:center; width:36px; height:36px; border-radius:10px; background:var(--accent); color:white; font-size:.95rem; font-weight:800; }
+    .step strong { display:block; margin:12px 0 4px; font-size:1.03rem; line-height:1.25; }
+    .step small { display:block; color:var(--muted); line-height:1.35; }
+    .step[data-step="1"] { --accent:var(--blue); }
+    .step[data-step="2"] { --accent:var(--teal); }
+    .step[data-step="3"] { --accent:var(--violet); }
+    .step[data-step="4"] { --accent:var(--amber); }
+    .step[data-step="5"] { --accent:var(--rose); }
+    .detail { --accent:var(--blue); display:none; background:var(--white); border:1px solid var(--line); border-top:6px solid var(--accent); border-radius:17px; padding:27px; box-shadow:0 10px 32px rgba(29,49,76,.07); }
+    .detail.active { display:block; }
+    .detail[data-panel="2"] { --accent:var(--teal); }
+    .detail[data-panel="3"] { --accent:var(--violet); }
+    .detail[data-panel="4"] { --accent:var(--amber); }
+    .detail[data-panel="5"] { --accent:var(--rose); }
+    .detail h2 { margin:0 0 7px; font-size:clamp(1.5rem,3vw,2.15rem); line-height:1.15; }
+    .lead { margin:0 0 23px; max-width:900px; color:var(--muted); font-size:1.05rem; }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:15px; }
+    .box { border:1px solid var(--line); border-radius:13px; padding:17px; background:#fbfcff; }
+    .box h3 { margin:0 0 8px; color:var(--accent); font-size:.79rem; text-transform:uppercase; letter-spacing:.08em; }
+    .box p { margin:0; }
+    .box ul { margin:0; padding-left:19px; }
+    .box li + li { margin-top:5px; }
+    .flow { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:20px 0; }
+    .node { padding:8px 11px; border-radius:9px; background:#eaf0f8; font-weight:750; font-size:.9rem; }
+    .arrow { color:#71869d; font-weight:900; }
+    .docs { margin-top:24px; border-top:1px solid var(--line); padding-top:18px; }
+    .docs h3 { margin:0 0 10px; font-size:1rem; }
+    .doclinks { display:flex; flex-wrap:wrap; gap:9px; }
+    .doclinks a { display:inline-block; padding:9px 12px; border:1px solid var(--line); border-radius:9px; background:white; font-size:.92rem; font-weight:700; text-decoration:none; }
+    .doclinks a:hover { background:#eef5fb; }
+    .note { margin:17px 0 0; padding:12px 14px; background:#fff8e9; border-left:4px solid #cb8524; border-radius:7px; color:#604311; }
+    .nav { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:19px; }
+    .nav button { padding:10px 16px; border:1px solid var(--line); border-radius:9px; background:white; color:var(--ink); font-weight:750; cursor:pointer; }
+    .nav button:disabled { opacity:.45; cursor:default; }
+    .foot { margin-top:25px; padding:18px 20px; border:1px solid var(--line); border-radius:12px; background:#edf2f8; }
+    .foot p { margin:4px 0; }
+    @media(max-width:850px) { .sequence { grid-template-columns:1fr; } .step { min-height:auto; } .step::after { content:"↓"; top:auto; bottom:-19px; right:50%; transform:translateX(50%); } .grid { grid-template-columns:1fr; } }
+    @media print { body { background:white; } .wrap { max-width:none; padding:0; } .actions,.nav { display:none; } .sequence { grid-template-columns:repeat(5,1fr); } .step { min-height:110px; box-shadow:none; padding:8px; } .step::after { display:none; } .detail { display:block!important; margin:20px 0; break-inside:avoid; box-shadow:none; padding:14px; } .grid { gap:8px; } .box { padding:9px; } a { color:var(--ink); } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="topline">
+      <div>
+        <p class="eyebrow">Talentra · Source and data-driven development</p>
+        <h1>Stage 1 discovery map</h1>
+        <p class="subtitle">Five questions turn the raw brief into a reviewable design. Select a step to show its purpose, a Talentra example, and its three deliverables.</p>
+      </div>
+      <div class="actions"><a class="action" href="requirement-graph.html">18-requirement graph</a><a class="action" href="schema-hierarchy.html">Graphical schema</a><a class="action" href="discovery-documents.html?doc=presenter-notes.md">Presenter script</a><button class="action" type="button" onclick="window.print()">Print / Save PDF</button></div>
+    </div>
+    <div class="strip" aria-label="Evidence status"><span class="pill">15 documents prepared</span><span class="pill local">Local core seed measured</span><span class="pill open">Gate G1 open</span></div>
+    <nav class="sequence" aria-label="Five discovery steps">
+      <button class="step" data-step="1" aria-selected="true" aria-controls="panel-1" type="button"><span class="num">01</span><strong>Requirements</strong><small>What problem and boundaries?</small></button>
+      <button class="step" data-step="2" aria-selected="false" aria-controls="panel-2" type="button"><span class="num">02</span><strong>Actors & roles</strong><small>Who acts, owns, or is affected?</small></button>
+      <button class="step" data-step="3" aria-selected="false" aria-controls="panel-3" type="button"><span class="num">03</span><strong>Features</strong><small>What must the product do?</small></button>
+      <button class="step" data-step="4" aria-selected="false" aria-controls="panel-4" type="button"><span class="num">04</span><strong>Quality targets</strong><small>How well must it work?</small></button>
+      <button class="step" data-step="5" aria-selected="false" aria-controls="panel-5" type="button"><span class="num">05</span><strong>Workflows</strong><small>What happens, including failure?</small></button>
+    </nav>
+
+    <section class="detail active" id="panel-1" data-panel="1" aria-label="Requirement analysis">
+      <h2>01 · Requirement Analysis Docket</h2>
+      <p class="lead">Turn brief statements into numbered, testable obligations and explicit exclusions.</p>
+      <div class="grid">
+        <div class="box"><h3>The question</h3><p>What problem are we solving? What is in scope, out of scope, assumed, or still unclear?</p></div>
+        <div class="box"><h3>Talentra example</h3><p>Legacy candidate, job and application records are inconsistent. The full-scale design target is <strong>10 million candidate profiles</strong>; the laptop proof target is <strong>1 million</strong>.</p></div>
+        <div class="box"><h3>What to show</h3><p><strong>18 grouped REQ IDs</strong>, four OS exclusions, source and priority, actor links, ambiguity notes, and ranked questions.</p></div>
+      </div>
+      <div class="flow"><span class="node">Docket sentence</span><span class="arrow">→</span><span class="node">REQ or OS ID</span><span class="arrow">→</span><span class="node">Acceptance intent</span></div>
+      <p class="note"><strong>Review gap:</strong> Source blocks are indexed, but a sentence-by-sentence and B1–B82 audit remains open.</p>
+      <div class="docs"><h3>Three deliverables</h3><div class="doclinks"><a href="discovery-documents.html?doc=01-requirements%2Foutput-schema.md">A · Output schema</a><a href="discovery-documents.html?doc=01-requirements%2Fschema-rating-scorecard.md">B · Scorecard</a><a href="discovery-documents.html?doc=01-requirements%2Foutput-document.md">C · Output document</a></div></div>
+    </section>
+
+    <section class="detail" id="panel-2" data-panel="2" aria-label="Stakeholders personas and roles" hidden>
+      <h2>02 · Stakeholders, Personas & Roles</h2>
+      <p class="lead">Name every human and system actor, then define each actor's goal, frequency, permission and denial.</p>
+      <div class="grid">
+        <div class="box"><h3>The question</h3><p>Who uses the system, who governs it, and who is affected when data or access changes?</p></div>
+        <div class="box"><h3>Talentra example</h3><p>A recruiter may contact candidates only for assigned jobs in their own company. A candidate's block must hide that candidate from the blocked party.</p></div>
+        <div class="box"><h3>What to show</h3><p><strong>16 actor IDs</strong>, persona cards and a role-permission matrix, including auditor, support staff, regulator, scheduled worker and database engineer.</p></div>
+      </div>
+      <div class="flow"><span class="node">REQ-03 / REQ-04</span><span class="arrow">→</span><span class="node">Recruiter / candidate</span><span class="arrow">→</span><span class="node">Allow or deny + audit</span></div>
+      <p class="note"><strong>Review gap:</strong> The matrix is proposed policy. TPO, guest, support and elevated-admin access still need owner review and role-based tests.</p>
+      <div class="docs"><h3>Three deliverables</h3><div class="doclinks"><a href="discovery-documents.html?doc=02-stakeholders%2Foutput-schema.md">A · Output schema</a><a href="discovery-documents.html?doc=02-stakeholders%2Fschema-rating-scorecard.md">B · Scorecard</a><a href="discovery-documents.html?doc=02-stakeholders%2Foutput-document.md">C · Output document</a></div></div>
+    </section>
+
+    <section class="detail" id="panel-3" data-panel="3" aria-label="Feature discovery" hidden>
+      <h2>03 · Feature Discovery</h2>
+      <p class="lead">Prioritize capabilities and compare documented competitor coverage without overstating evidence.</p>
+      <div class="grid">
+        <div class="box"><h3>The question</h3><p>Which features are must-have, should-have or potential differentiators? Which requirement supports each one?</p></div>
+        <div class="box"><h3>Talentra example</h3><p>Candidate profiles, jobs and applications are core. A connected gig handoff and financial event trail is a <em>proposed</em> differentiation opportunity.</p></div>
+        <div class="box"><h3>What to show</h3><p><strong>12 FEAT IDs</strong> and a public-source comparison of Naukri, Monster and LinkedIn.</p></div>
+      </div>
+      <div class="flow"><span class="node">REQ ID</span><span class="arrow">→</span><span class="node">FEAT ID + priority</span><span class="arrow">→</span><span class="node">Competitor evidence</span></div>
+      <p class="note"><strong>Review gap:</strong> Public pages do not prove a competitor lacks an internal capability; a field-level comparison is still needed.</p>
+      <div class="docs"><h3>Three deliverables</h3><div class="doclinks"><a href="discovery-documents.html?doc=03-features%2Foutput-schema.md">A · Output schema</a><a href="discovery-documents.html?doc=03-features%2Fschema-rating-scorecard.md">B · Scorecard</a><a href="discovery-documents.html?doc=03-features%2Foutput-document.md">C · Output document</a></div></div>
+    </section>
+
+    <section class="detail" id="panel-4" data-panel="4" aria-label="Non-functional requirements" hidden>
+      <h2>04 · NFR Discovery</h2>
+      <p class="lead">Write each quality target as a number with a workload, measurement method and evidence artifact.</p>
+      <div class="grid">
+        <div class="box"><h3>The question</h3><p>What scale, latency, availability, security, privacy, compliance and accessibility must the design support?</p></div>
+        <div class="box"><h3>Talentra example</h3><p>The local seed has <strong>1m candidates, 100k jobs, 5m applications</strong>. A <strong>60 reads/s</strong> load and <strong>500 ms p95</strong> lookup are proposals based on explicit, unverified activity assumptions.</p></div>
+        <div class="box"><h3>What to show</h3><p><strong>13 NFR IDs</strong>, tests and evidence status; DPDP Act 2023 / Rules 2025 mapping, and proposed WCAG 2.2 AA for a future UI.</p></div>
+      </div>
+      <div class="flow"><span class="node">Volume assumption</span><span class="arrow">→</span><span class="node">Numeric target</span><span class="arrow">→</span><span class="node">Test result</span></div>
+      <p class="note"><strong>Review gap:</strong> Service targets need approval; per-entity personal-data retention periods remain undecided. The proposed 24-month candidate review is not an approved deletion rule. Local seed counts do not prove production performance.</p>
+      <div class="docs"><h3>Three deliverables</h3><div class="doclinks"><a href="discovery-documents.html?doc=04-nfr%2Foutput-schema.md">A · Output schema</a><a href="discovery-documents.html?doc=04-nfr%2Fschema-rating-scorecard.md">B · Scorecard</a><a href="discovery-documents.html?doc=04-nfr%2Foutput-document.md">C · Output document</a></div></div>
+    </section>
+
+    <section class="detail" id="panel-5" data-panel="5" aria-label="Business workflow analysis" hidden>
+      <h2>05 · Business Workflow Analysis</h2>
+      <p class="lead">Trace each must-have capability from trigger through decisions to output and exception handling.</p>
+      <div class="grid">
+        <div class="box"><h3>The question</h3><p>Who starts the work, what decisions happen, what is recorded, and how does the system recover?</p></div>
+        <div class="box"><h3>Talentra example</h3><p>For a subscription payment: confirm once, append a ledger event, and use a compensating entry for a refund. A timeout moves to reconciliation.</p></div>
+        <div class="box"><h3>What to show</h3><p><strong>12 WF IDs</strong>, workflow diagrams and an exception catalogue covering cancel, refund, retry and timeout.</p></div>
+      </div>
+      <div class="flow"><span class="node">Trigger</span><span class="arrow">→</span><span class="node">Decision</span><span class="arrow">→</span><span class="node">Output</span><span class="arrow">↘</span><span class="node">Exception / recovery</span></div>
+      <p class="note"><strong>Review gap:</strong> Domain owners still need to approve exception ownership, state transitions and reconciliation behavior.</p>
+      <div class="docs"><h3>Three deliverables</h3><div class="doclinks"><a href="discovery-documents.html?doc=05-workflows%2Foutput-schema.md">A · Output schema</a><a href="discovery-documents.html?doc=05-workflows%2Fschema-rating-scorecard.md">B · Scorecard</a><a href="discovery-documents.html?doc=05-workflows%2Foutput-document.md">C · Output document</a></div></div>
+    </section>
+
+    <div class="nav"><button id="prev" type="button">← Previous</button><span id="position" aria-live="polite">Step 1 of 5</span><button id="next" type="button">Next →</button></div>
+    <aside class="foot"><strong>Presenter close:</strong><p>All 15 Stage 1 documents are prepared. The scorecards are self-reviews. <a href="discovery-documents.html?doc=decisions-and-gaps.md">Gate G1 remains open</a> until source trace, access rules, field comparison, NFR targets and workflow exceptions are reviewed.</p></aside>
+  </main>
+  <script>
+    const buttons = [...document.querySelectorAll('.step')];
+    const panels = [...document.querySelectorAll('.detail')];
+    const previous = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const position = document.getElementById('position');
+    let active = 1;
+    function showStep(number, updateHash = true) {
+      active = Math.min(5, Math.max(1, number));
+      buttons.forEach((button, index) => button.setAttribute('aria-selected', String(index + 1 === active)));
+      panels.forEach((panel, index) => { panel.hidden = index + 1 !== active; panel.classList.toggle('active', index + 1 === active); });
+      previous.disabled = active === 1;
+      next.disabled = active === 5;
+      position.textContent = `Step ${active} of 5`;
+      if (updateHash) history.replaceState(null, '', `#step-${active}`);
+    }
+    buttons.forEach(button => button.addEventListener('click', () => showStep(Number(button.dataset.step))));
+    previous.addEventListener('click', () => showStep(active - 1));
+    next.addEventListener('click', () => showStep(active + 1));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'ArrowRight') showStep(active + 1);
+      if (event.key === 'ArrowLeft') showStep(active - 1);
+    });
+    const initial = Number(location.hash.match(/^#step-([1-5])$/)?.[1] || 1);
+    showStep(initial, false);
+  </script>
+</body>
+</html>

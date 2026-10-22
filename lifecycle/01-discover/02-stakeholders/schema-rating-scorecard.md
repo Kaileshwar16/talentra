@@ -4,9 +4,9 @@ Rubric: 0 missing, 1 partial, 2 clear and reviewable per criterion; 8/10 is an i
 
 | Criterion | Score | Evidence / correction |
 | --- | ---: | --- |
-| All human and edge actors | 2 | Nine docket roles plus external provider and scheduled worker |
+| All human and edge actors | 2 | ACT-01–16 includes split administrator roles, gig worker, auditor, provider, scheduled worker, support, regulator and engineer |
 | Persona task, pain and success | 2 | Required card fields connect role to real workflow |
-| Explicit permission scope | 2 | Matrix requires predicate, enforcement layer and denial |
+| Explicit permission scope | 2 | ACT-03 requires same-company active assignment and no block; candidate registration is denied |
 | Requirement and workflow links | 2 | Actor IDs and interaction IDs mandatory |
 | Independent privilege review | 1 | Questions capture disputed grants; product/security owner still needed |
 | **Total** | **9/10** | Schema ready for owner review |

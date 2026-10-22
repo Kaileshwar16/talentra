@@ -1,0 +1,70 @@
+TALENTRA — STAGE 1 DISCOVERY PRESENTATION
+Prepared 22 October 2026
+
+OPENING
+Our source is the 12-page Talentra Database Design Hackathon Docket in sources/. The data-driven lifecycle playbook supplies the five-step method. We produced three artifacts for each step: an output schema definition, a schema rating scorecard, and an output document. The fifteen documents are in lifecycle/01-discover/01-requirements through 05-workflows. These are reviewable discovery artifacts; Gate G1 is still open.
+
+HOW TO EXPLAIN THE THREE DELIVERABLES IN EVERY STEP
+Output Schema Definition = the required structure and validation rules for that step's result.
+Schema Rating Scorecard = our self-check of whether that structure is complete and reviewable; it is not approval.
+Output Document = the actual Talentra findings, examples, trace IDs and unresolved decisions.
+
+ONE-MINUTE STORY OF THE FIVE STEPS
+01 Requirements: What problem are we solving, what is in scope, and which source statement created each requirement?
+02 Actors and roles: Who may use or affect the system, and exactly what may each actor do?
+03 Features: Which capabilities must we support, what do three competitors document, and where is Talentra's proposed opportunity?
+04 NFRs: How large, quick, reliable, secure, private and accessible must it be, and how will we measure each target?
+05 Workflows: How does work move from trigger to outcome, including cancellation, refund, retry and timeout?
+Each step narrows the next: source statement → actor → feature → measurable target → workflow and exception.
+
+ONE REAL EXAMPLE TO TELL THE HEAD
+The docket says a recruiter can work only assigned jobs for their own company. We captured that as REQ-03, named the recruiter ACT-03, designed FEAT-03 as scoped access, and walked the decision in WF-03. In the review, show one allowed request for an assigned company job and one denied request for another company's job. The denied request should leave an audit record. We have specified that proof, but the production-role test is still open. This is how the documents connect, rather than fifteen unrelated templates.
+
+WHAT TO SHOW THE HEAD
+1. Open lifecycle/01-discover/discovery-visual.html in a browser and advance through its five steps. The six-page discovery-visual.pdf is a static handout.
+2. Open lifecycle/01-discover/requirement-graph.html. Click REQ-03 to show the source-to-recruiter-to-access-feature-to-workflow chain, then REQ-10 to show payments, the external provider and refund workflow. Filled actor links come from the requirement row; dotted ones are related actors from stakeholder/workflow records.
+3. Open lifecycle/01-discover/schema-hierarchy.html. Show talentra_local -> public -> candidate_profile -> its columns, then switch to Relationships to show the foreign keys. This is a snapshot of the local physical database, separate from the requirement graph.
+4. Use lifecycle/01-discover/README.md for the clickable document index.
+5. Click A, B or C in the visual to open the formatted document viewer. A is the output schema, B the self-review scorecard and C the Talentra output document. The viewer includes the original Markdown source link for detailed review.
+6. End with lifecycle/01-discover/decisions-and-gaps.md and stage1-form-evidence.md for status and approval items.
+7. If asked for data evidence, use dbeaver-hierarchy.md and dbeaver-presentation.sql to show the local synthetic example.
+
+STEP 01 — REQUIREMENT ANALYSIS DOCKET
+Files: 01-requirements/output-schema.md, schema-rating-scorecard.md, output-document.md.
+Say: "The problem is inconsistent candidate, job and application records, low candidate retention, and no unified pipeline view. The source docket defines 18 grouped requirements, four explicit exclusions, and a full-scale design target of 10 million candidate profiles. Each requirement has a source, priority, actor, linked feature/workflow and evidence or gap. The laptop proof target is one million candidates, 100,000 jobs and five million applications. We have a source-block review index, but sentence-by-sentence and B1–B82 mapping still needs an owner audit; we are not claiming that check is complete."
+Point to: requirements.md and the Source coverage section of 01-requirements/output-document.md.
+Decision needed: assign an owner for sentence-level trace, Tier 2 coverage and ten-rule compliance audit.
+
+STEP 02 — STAKEHOLDERS, PERSONAS AND ROLES
+Files: 02-stakeholders/output-schema.md, schema-rating-scorecard.md, output-document.md.
+Say: "The actor register names 16 categories, including candidate, employer, recruiter, consultant, placement officer, gig worker, guest, three distinct administrator roles, auditor, external provider, scheduled worker, support staff, regulator and database engineer. Persona cards show goals and failure modes. The role-permission matrix specifies scope and denials, including same-company recruiter assignments, candidate blocks and no recruiter-created candidate registration. These are proposed policies, not verified production grants."
+Decision needed: product and security owners approve TPO, guest, support and exceptional-admin access; then test each rule under separate database principals.
+
+STEP 03 — FEATURE DISCOVERY
+Files: 03-features/output-schema.md, schema-rating-scorecard.md, output-document.md.
+Say: "Twelve feature groups cover the required data and workflows. The public-source matrix compares Naukri, Monster and LinkedIn for documented candidate and employer capabilities. Talentra's candidate, job and pipeline data are baseline needs. Its combined gig handoff, account controls and financial event trail are a proposed differentiator because they could make reconciliation and audit easier. Public pages do not prove that competitors lack these features or that we exceed their field coverage."
+Decision needed: approve the must-have/should-have split and commission a field-level data dictionary comparison before making an exceed claim.
+
+STEP 04 — NON-FUNCTIONAL REQUIREMENTS
+Files: 04-nfr/output-schema.md, schema-rating-scorecard.md, output-document.md.
+Say: "The register separates docket obligations from our proposals. The full local core seed reached one million candidates, 100,000 jobs and five million applications; this proves counts in that local environment, not production speed or access control. We propose measurable lookup, throughput, availability, recovery, mart freshness, erasure-service and accessibility targets. The 60-read/second load proposal is calculated from explicit activity assumptions and must be validated. Every personal-data entity needs an approved numeric retention rule; the 24-month candidate inactivity review is only a planning proposal, while actual per-entity periods remain undecided. The privacy review names India's DPDP Act 2023 and Rules 2025, including phased commencement; future UI accessibility proposes WCAG 2.2 AA."
+Decision needed: product, operations, privacy/legal and accessibility owners accept or replace numeric proposals; run performance, access, restore and retention tests.
+
+STEP 05 — BUSINESS WORKFLOW ANALYSIS
+Files: 05-workflows/output-schema.md, schema-rating-scorecard.md, output-document.md.
+Say: "Twelve workflows cover all must-have feature groups. Diagrams show registration and applications, scoped sourcing, gig bids and handoff, payments, sessions, notification delivery, analytics and validation. The exception catalogue records duplicate applications, access denial, gig overlap, provider timeout, retry, payment refund, seat-cap races and stale marts. The source workflow catalogue supplies actors, triggers, decisions and outputs."
+Decision needed: domain owners confirm exception ownership, allowed state transitions and reconciliation behavior before implementation sign-off.
+
+EVIDENCE AND STATUS
+The documents are produced and self-rated; they are not independently accepted. The local seed and constraint evidence is in phase5/local/validation-report.md. The 2026-10-17 Neon production observation was only 25% of the laptop target and uses a different Phase 2 physical/access shape, so local results cannot stand in for production validation. Gate G1 remains OPEN pending source trace, role/access review, competitor depth, NFR approvals and workflow exception ownership.
+
+REQUEST TO THE HEAD
+Please name a product/domain reviewer for the docket and feature scope, a security/privacy reviewer for access and DPDP mapping, and a database/operations reviewer for numeric NFRs and the production compatibility decision. Record accepted changes in decisions-and-gaps.md. After those reviews, rerate the five scorecards and decide Gate G1; do not treat the 9/10 self-scores as approval.
+
+QUICK FILE INDEX (relative to this master.txt)
+01-requirements/{output-schema.md,schema-rating-scorecard.md,output-document.md}
+02-stakeholders/{output-schema.md,schema-rating-scorecard.md,output-document.md}
+03-features/{output-schema.md,schema-rating-scorecard.md,output-document.md}
+04-nfr/{output-schema.md,schema-rating-scorecard.md,output-document.md}
+05-workflows/{output-schema.md,schema-rating-scorecard.md,output-document.md}
+Shared evidence: requirements.md, actors-goals-features.md, nfr-workflows.md, decisions-and-gaps.md, stage1-form-evidence.md.
